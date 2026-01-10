@@ -1,14 +1,18 @@
 # Meerab's Wardrobe - Setup Checklist
 
+**Domain**: https://meerabs.com/  
+**Admin Panel**: https://api.meerabs.com/admin/  
+**API Base**: https://api.meerabs.com/
+
 ## Pre-Launch Checklist
 
 ### 1. Environment Configuration
 - [ ] Create `.env.local` file with these variables:
   ```bash
-  NEXT_PUBLIC_URL=https://meerabswardrobe.com
+  NEXT_PUBLIC_URL=https://meerabs.com
   NEXT_PUBLIC_COMPANY_NAME=Meerab's Wardrobe
-  NEXT_PUBLIC_BACKEND_API_BASE=https://api.meerabswardrobe.com/
-  NEXT_PUBLIC_IMAGE_BASE_API_URL=https://api.meerabswardrobe.com/media/
+  NEXT_PUBLIC_BACKEND_API_BASE=https://api.meerabs.com/
+  NEXT_PUBLIC_IMAGE_BASE_API_URL=https://api.meerabs.com/media/
   ```
 
 ### 2. Database Setup
@@ -103,11 +107,14 @@
 - [ ] Test CDN configuration (if using)
 
 ### 13. Domain & Hosting
-- [ ] Purchase domain: meerabswardrobe.com
-- [ ] Configure DNS settings
-- [ ] Set up SSL certificate (HTTPS)
-- [ ] Configure www to non-www redirect (or vice versa)
-- [ ] Set up email hosting for info@meerabswardrobe.com
+- [ ] Purchase domain: meerabs.com
+- [ ] Configure DNS settings (point to your hosting)
+- [ ] Set up SSL certificate (HTTPS) - required!
+- [ ] Configure subdomains:
+  - [ ] api.meerabs.com → Backend server
+  - [ ] admin.meerabs.com → Django admin (or use api.meerabs.com/admin/)
+  - [ ] www.meerabs.com → Redirect to meerabs.com
+- [ ] Set up email hosting for info@meerabs.com
 
 ### 14. Backup & Security
 - [ ] Set up automated database backups

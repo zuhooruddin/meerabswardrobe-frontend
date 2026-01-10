@@ -3,6 +3,10 @@
 ## Overview
 This document summarizes the rebranding changes from **Chitral Hive** to **Meerab's Wardrobe** - a premium women's clothing ecommerce shop.
 
+**Domain**: https://meerabs.com/  
+**Admin Panel**: https://admin.meerabs.com/ or https://api.meerabs.com/admin/  
+**API Base**: https://api.meerabs.com/
+
 ---
 
 ## Changes Made
@@ -10,7 +14,7 @@ This document summarizes the rebranding changes from **Chitral Hive** to **Meera
 ### 1. SEO & Metadata Updates
 
 #### `src/components/SEO.jsx`
-- **Base URL**: Changed from `https://chitralhive.com` to `https://meerabswardrobe.com`
+- **Base URL**: Changed from `https://chitralhive.com` to `https://meerabs.com`
 - **Default Description**: Updated to focus on women's fashion
   - New: "Shop premium women's clothing online in Pakistan at Meerab's Wardrobe. Discover elegant dresses, trendy tops, stylish bottoms, traditional wear, and contemporary fashion..."
 - **Keywords**: Changed to women's fashion keywords
@@ -23,13 +27,13 @@ This document summarizes the rebranding changes from **Chitral Hive** to **Meera
 #### `src/utils/OpenGraphTags.jsx`
 - Updated all Open Graph and Twitter Card metadata
 - Changed titles, descriptions, and social handles
-- Updated base URL to meerabswardrobe.com
+- Updated base URL to meerabs.com
 
 ### 2. Configuration Files
 
 #### `next.config.js`
-- **Image Domains**: Updated from `api.chitralhive.com` to `api.meerabswardrobe.com`
-- **CSP Headers**: Updated Content-Security-Policy to allow connections to new domains
+- **Image Domains**: Updated from `api.chitralhive.com` to `api.meerabs.com`
+- **CSP Headers**: Updated Content-Security-Policy to allow connections to new domains (api.meerabs.com, admin.meerabs.com, meerabs.com)
 
 #### `package.json`
 - **Name**: Changed from "ecommerce_frontend" to "meerabs_wardrobe_frontend"
@@ -37,14 +41,19 @@ This document summarizes the rebranding changes from **Chitral Hive** to **Meera
 ### 3. Backend Configuration
 
 #### `chitralhivedjango/ecommerce_backend/settings.py`
-- **Allowed Hosts**: Updated to include `meerabswardrobe.com` and `api.meerabswardrobe.com`
+- **Allowed Hosts**: Updated to include `meerabs.com`, `api.meerabs.com`, `admin.meerabs.com`, and `www.meerabs.com`
 - **Database Name**: Changed from `chitral_hive` to `meerabs_wardrobe`
 - **Database User**: Changed from `chitral` to `meerabs`
+
+#### `chitralhivedjango/inara/admin.py`
+- **Admin Site Header**: Set to "Meerab's Wardrobe Admin"
+- **Admin Site Title**: Set to "Meerab's Wardrobe Admin Portal"
+- **Admin Index Title**: Set to "Welcome to Meerab's Wardrobe Administration"
 
 ### 4. UI Components
 
 #### `src/components/footer/Footer.jsx`
-- **Logo Alt Text**: Updated from "Chitral Hive Logo" to "Meerab's Wardrobe Logo"
+- **Logo Alt Text**: Updated from "Meerab's Wardrobe Logo" to "Meerab's Wardrobe Logo"
 - **Default Description**: Changed to "Discover premium women's fashion. Style and elegance delivered to your doorstep."
 - **Copyright**: Updated to "© 2026 Meerab's Wardrobe. All rights reserved."
 - **Aria Labels**: Updated for accessibility
@@ -62,10 +71,11 @@ This document summarizes the rebranding changes from **Chitral Hive** to **Meera
 ### 6. API & Server Configuration
 
 #### `src/utils/backend_server_ip.jsx`
-- **Server IP**: Changed from `http://chitralhive.com/api` to `http://meerabswardrobe.com/api`
+- **Server IP**: Changed from `http://chitralhive.com/api` to `https://api.meerabs.com`
 
 #### `pages/_app.jsx` & `pages/_document.jsx`
-- **Preconnect Links**: Updated API preconnect to `api.meerabswardrobe.com`
+- **Preconnect Links**: Updated API preconnect to `api.meerabs.com`
+- **DNS Prefetch**: Updated to `api.meerabs.com`
 - **Geo Tags**: Changed from Chitral-specific to Pakistan-wide
 
 ---
@@ -76,10 +86,10 @@ This document summarizes the rebranding changes from **Chitral Hive** to **Meera
 Create a `.env.local` file in the `chitralhive` directory with:
 
 ```bash
-NEXT_PUBLIC_URL=https://meerabswardrobe.com
+NEXT_PUBLIC_URL=https://meerabs.com
 NEXT_PUBLIC_COMPANY_NAME=Meerab's Wardrobe
-NEXT_PUBLIC_BACKEND_API_BASE=https://api.meerabswardrobe.com/
-NEXT_PUBLIC_IMAGE_BASE_API_URL=https://api.meerabswardrobe.com/media/
+NEXT_PUBLIC_BACKEND_API_BASE=https://api.meerabs.com/
+NEXT_PUBLIC_IMAGE_BASE_API_URL=https://api.meerabs.com/media/
 ```
 
 ### Backend Database Setup
@@ -194,13 +204,14 @@ The theme uses 'Outfit' font family for headings with -0.02em letter spacing for
 
 Update your contact details in the Django admin panel:
 - **Business Name**: Meerab's Wardrobe
-- **Email**: info@meerabswardrobe.com
+- **Email**: info@meerabs.com
 - **Phone**: [Your Phone Number]
 - **Address**: [Your Business Address]
+- **Website**: https://meerabs.com
 - **Social Media**:
-  - Facebook: facebook.com/meerabswardrobe
-  - Instagram: instagram.com/meerabswardrobe
-  - Twitter: twitter.com/meerabswardrobe
+  - Facebook: https://facebook.com/meerabswardrobe
+  - Instagram: https://instagram.com/meerabswardrobe
+  - Twitter: https://twitter.com/meerabswardrobe
 
 ---
 

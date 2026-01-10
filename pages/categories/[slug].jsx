@@ -94,7 +94,7 @@ const Allcategories = () => {
       <SEO 
         title={data[0]['title']} 
         description={"Buy amazing products from "+data[0]['title']+" not limited to "+metaDescription.toString()}
-        metaTitle = {"Shop now  from a wide range of products under the umbrella of "+data[0]['title']+" with chitral hive"}
+        metaTitle = {"Shop now  from a wide range of products under the umbrella of "+data[0]['title']+" with Meerab's Wardrobe"}
       />
 
 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "22px",  margin: '40px 40px 30px 30px', justifyContent: "center" }}>
