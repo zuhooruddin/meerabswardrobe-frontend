@@ -1,0 +1,3023 @@
+{
+  "timestamp": "2026-01-04T15:44:44.687Z",
+  "dryRun": true,
+  "stats": {
+    "totalImages": 1221,
+    "usedImages": 619,
+    "unusedImages": 602,
+    "deletedFiles": 0
+  },
+  "unusedImages": [
+    {
+      "path": "/assets/images/avatars/005-man-1.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\avatars\\005-man-1.svg",
+      "fileName": "005-man-1.svg"
+    },
+    {
+      "path": "/assets/images/avatars/006-woman-1.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\avatars\\006-woman-1.svg",
+      "fileName": "006-woman-1.svg"
+    },
+    {
+      "path": "/assets/images/avatars/007-boy-1.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\avatars\\007-boy-1.svg",
+      "fileName": "007-boy-1.svg"
+    },
+    {
+      "path": "/assets/images/avatars/007-woman-2.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\avatars\\007-woman-2.svg",
+      "fileName": "007-woman-2.svg"
+    },
+    {
+      "path": "/assets/images/avatars/008-clown.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\avatars\\008-clown.svg",
+      "fileName": "008-clown.svg"
+    },
+    {
+      "path": "/assets/images/avatars/009-firefighter.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\avatars\\009-firefighter.svg",
+      "fileName": "009-firefighter.svg"
+    },
+    {
+      "path": "/assets/images/avatars/010-girl-1.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\avatars\\010-girl-1.svg",
+      "fileName": "010-girl-1.svg"
+    },
+    {
+      "path": "/assets/images/avatars/011-man-2.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\avatars\\011-man-2.svg",
+      "fileName": "011-man-2.svg"
+    },
+    {
+      "path": "/assets/images/avatars/012-woman-2.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\avatars\\012-woman-2.svg",
+      "fileName": "012-woman-2.svg"
+    },
+    {
+      "path": "/assets/images/avatars/013-woman-3.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\avatars\\013-woman-3.svg",
+      "fileName": "013-woman-3.svg"
+    },
+    {
+      "path": "/assets/images/avatars/014-man-3.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\avatars\\014-man-3.svg",
+      "fileName": "014-man-3.svg"
+    },
+    {
+      "path": "/assets/images/avatars/015-woman-4.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\avatars\\015-woman-4.svg",
+      "fileName": "015-woman-4.svg"
+    },
+    {
+      "path": "/assets/images/avatars/016-boy-2.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\avatars\\016-boy-2.svg",
+      "fileName": "016-boy-2.svg"
+    },
+    {
+      "path": "/assets/images/avatars/017-girl-2.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\avatars\\017-girl-2.svg",
+      "fileName": "017-girl-2.svg"
+    },
+    {
+      "path": "/assets/images/avatars/018-boy-3.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\avatars\\018-boy-3.svg",
+      "fileName": "018-boy-3.svg"
+    },
+    {
+      "path": "/assets/images/avatars/019-woman-5.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\avatars\\019-woman-5.svg",
+      "fileName": "019-woman-5.svg"
+    },
+    {
+      "path": "/assets/images/avatars/020-man-4.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\avatars\\020-man-4.svg",
+      "fileName": "020-man-4.svg"
+    },
+    {
+      "path": "/assets/images/avatars/021-girl-3.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\avatars\\021-girl-3.svg",
+      "fileName": "021-girl-3.svg"
+    },
+    {
+      "path": "/assets/images/avatars/022-man-5.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\avatars\\022-man-5.svg",
+      "fileName": "022-man-5.svg"
+    },
+    {
+      "path": "/assets/images/badges/badge-1.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\badges\\badge-1.svg",
+      "fileName": "badge-1.svg"
+    },
+    {
+      "path": "/assets/images/badges/badge-2.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\badges\\badge-2.svg",
+      "fileName": "badge-2.svg"
+    },
+    {
+      "path": "/assets/images/badges/badge-3.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\badges\\badge-3.svg",
+      "fileName": "badge-3.svg"
+    },
+    {
+      "path": "/assets/images/badges/badge-4.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\badges\\badge-4.svg",
+      "fileName": "badge-4.svg"
+    },
+    {
+      "path": "/assets/images/badges/badge-5.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\badges\\badge-5.svg",
+      "fileName": "badge-5.svg"
+    },
+    {
+      "path": "/assets/images/badges/badge-6.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\badges\\badge-6.svg",
+      "fileName": "badge-6.svg"
+    },
+    {
+      "path": "/assets/images/badges/badge-7.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\badges\\badge-7.svg",
+      "fileName": "badge-7.svg"
+    },
+    {
+      "path": "/assets/images/badges/badge-8.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\badges\\badge-8.svg",
+      "fileName": "badge-8.svg"
+    },
+    {
+      "path": "/assets/images/badges/badge-9.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\badges\\badge-9.svg",
+      "fileName": "badge-9.svg"
+    },
+    {
+      "path": "/assets/images/badges/hot.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\badges\\hot.svg",
+      "fileName": "hot.svg"
+    },
+    {
+      "path": "/assets/images/banners/banner-10.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\banner-10.png",
+      "fileName": "banner-10.png"
+    },
+    {
+      "path": "/assets/images/banners/banner-11.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\banner-11.jpg",
+      "fileName": "banner-11.jpg"
+    },
+    {
+      "path": "/assets/images/banners/banner-12.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\banner-12.jpg",
+      "fileName": "banner-12.jpg"
+    },
+    {
+      "path": "/assets/images/banners/banner-13.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\banner-13.jpg",
+      "fileName": "banner-13.jpg"
+    },
+    {
+      "path": "/assets/images/banners/banner-14.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\banner-14.jpg",
+      "fileName": "banner-14.jpg"
+    },
+    {
+      "path": "/assets/images/banners/banner-15-trashed.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\banner-15-trashed.jpg",
+      "fileName": "banner-15-trashed.jpg"
+    },
+    {
+      "path": "/assets/images/banners/banner-15.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\banner-15.jpg",
+      "fileName": "banner-15.jpg"
+    },
+    {
+      "path": "/assets/images/banners/banner-16.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\banner-16.jpg",
+      "fileName": "banner-16.jpg"
+    },
+    {
+      "path": "/assets/images/banners/banner-17.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\banner-17.jpg",
+      "fileName": "banner-17.jpg"
+    },
+    {
+      "path": "/assets/images/banners/banner-18.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\banner-18.jpg",
+      "fileName": "banner-18.jpg"
+    },
+    {
+      "path": "/assets/images/banners/banner-19.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\banner-19.jpg",
+      "fileName": "banner-19.jpg"
+    },
+    {
+      "path": "/assets/images/banners/banner-20.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\banner-20.jpg",
+      "fileName": "banner-20.jpg"
+    },
+    {
+      "path": "/assets/images/banners/banner-23.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\banner-23.jpg",
+      "fileName": "banner-23.jpg"
+    },
+    {
+      "path": "/assets/images/banners/banner-24.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\banner-24.jpg",
+      "fileName": "banner-24.jpg"
+    },
+    {
+      "path": "/assets/images/banners/banner-25.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\banner-25.jpg",
+      "fileName": "banner-25.jpg"
+    },
+    {
+      "path": "/assets/images/banners/banner-3.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\banner-3.png",
+      "fileName": "banner-3.png"
+    },
+    {
+      "path": "/assets/images/banners/banner-6.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\banner-6.png",
+      "fileName": "banner-6.png"
+    },
+    {
+      "path": "/assets/images/banners/banner-7.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\banner-7.png",
+      "fileName": "banner-7.png"
+    },
+    {
+      "path": "/assets/images/banners/banner-8.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\banner-8.png",
+      "fileName": "banner-8.png"
+    },
+    {
+      "path": "/assets/images/banners/banner-9.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\banner-9.png",
+      "fileName": "banner-9.png"
+    },
+    {
+      "path": "/assets/images/banners/banner-x.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\banner-x.png",
+      "fileName": "banner-x.png"
+    },
+    {
+      "path": "/assets/images/banners/banner2.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\banner2.jpg",
+      "fileName": "banner2.jpg"
+    },
+    {
+      "path": "/assets/images/banners/banner3.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\banner3.jpg",
+      "fileName": "banner3.jpg"
+    },
+    {
+      "path": "/assets/images/banners/costumes.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\costumes.jpg",
+      "fileName": "costumes.jpg"
+    },
+    {
+      "path": "/assets/images/banners/default2.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\default2.png",
+      "fileName": "default2.png"
+    },
+    {
+      "path": "/assets/images/banners/long-banner.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\long-banner.jpg",
+      "fileName": "long-banner.jpg"
+    },
+    {
+      "path": "/assets/images/banners/men's-fashion.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\men's-fashion.jpg",
+      "fileName": "men's-fashion.jpg"
+    },
+    {
+      "path": "/assets/images/banners/no-banner.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\no-banner.jpg",
+      "fileName": "no-banner.jpg"
+    },
+    {
+      "path": "/assets/images/banners/no-image.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\no-image.png",
+      "fileName": "no-image.png"
+    },
+    {
+      "path": "/assets/images/banners/removedWeb-Banner-BSS.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\removedWeb-Banner-BSS.png",
+      "fileName": "removedWeb-Banner-BSS.png"
+    },
+    {
+      "path": "/assets/images/banners/replacedWeb-Banner-TCS.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\replacedWeb-Banner-TCS.png",
+      "fileName": "replacedWeb-Banner-TCS.png"
+    },
+    {
+      "path": "/assets/images/banners/replacingWeb-Banner-TCS.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\replacingWeb-Banner-TCS.png",
+      "fileName": "replacingWeb-Banner-TCS.png"
+    },
+    {
+      "path": "/assets/images/banners/toy.jpeg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\toy.jpeg",
+      "fileName": "toy.jpeg"
+    },
+    {
+      "path": "/assets/images/banners/toys.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\toys.jpg",
+      "fileName": "toys.jpg"
+    },
+    {
+      "path": "/assets/images/banners/womens-fashion.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\banners\\womens-fashion.jpg",
+      "fileName": "womens-fashion.jpg"
+    },
+    {
+      "path": "/assets/images/blogs/post-1.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\blogs\\post-1.jpg",
+      "fileName": "post-1.jpg"
+    },
+    {
+      "path": "/assets/images/blogs/post-2.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\blogs\\post-2.jpg",
+      "fileName": "post-2.jpg"
+    },
+    {
+      "path": "/assets/images/blogs/post-3.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\blogs\\post-3.jpg",
+      "fileName": "post-3.jpg"
+    },
+    {
+      "path": "/assets/images/blogs/post-4.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\blogs\\post-4.jpg",
+      "fileName": "post-4.jpg"
+    },
+    {
+      "path": "/assets/images/blogs/post-5.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\blogs\\post-5.jpg",
+      "fileName": "post-5.jpg"
+    },
+    {
+      "path": "/assets/images/blogs/post-6.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\blogs\\post-6.jpg",
+      "fileName": "post-6.jpg"
+    },
+    {
+      "path": "/assets/images/brands/acer.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\brands\\acer.png",
+      "fileName": "acer.png"
+    },
+    {
+      "path": "/assets/images/brands/asus.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\brands\\asus.png",
+      "fileName": "asus.png"
+    },
+    {
+      "path": "/assets/images/brands/bmw.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\brands\\bmw.png",
+      "fileName": "bmw.png"
+    },
+    {
+      "path": "/assets/images/brands/dell.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\brands\\dell.png",
+      "fileName": "dell.png"
+    },
+    {
+      "path": "/assets/images/brands/ferrari.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\brands\\ferrari.png",
+      "fileName": "ferrari.png"
+    },
+    {
+      "path": "/assets/images/brands/lotto.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\brands\\lotto.png",
+      "fileName": "lotto.png"
+    },
+    {
+      "path": "/assets/images/brands/occular.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\brands\\occular.png",
+      "fileName": "occular.png"
+    },
+    {
+      "path": "/assets/images/brands/ray-ban.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\brands\\ray-ban.png",
+      "fileName": "ray-ban.png"
+    },
+    {
+      "path": "/assets/images/brands/sony.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\brands\\sony.png",
+      "fileName": "sony.png"
+    },
+    {
+      "path": "/assets/images/brands/tesla.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\brands\\tesla.png",
+      "fileName": "tesla.png"
+    },
+    {
+      "path": "/assets/images/brands/titan.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\brands\\titan.png",
+      "fileName": "titan.png"
+    },
+    {
+      "path": "/assets/images/brands/toyota.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\brands\\toyota.png",
+      "fileName": "toyota.png"
+    },
+    {
+      "path": "/assets/images/brands/zeiss.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\brands\\zeiss.png",
+      "fileName": "zeiss.png"
+    },
+    {
+      "path": "/assets/images/browsers/chrome.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\browsers\\chrome.svg",
+      "fileName": "chrome.svg"
+    },
+    {
+      "path": "/assets/images/browsers/explorer.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\browsers\\explorer.svg",
+      "fileName": "explorer.svg"
+    },
+    {
+      "path": "/assets/images/browsers/linux.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\browsers\\linux.svg",
+      "fileName": "linux.svg"
+    },
+    {
+      "path": "/assets/images/browsers/mozilla.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\browsers\\mozilla.svg",
+      "fileName": "mozilla.svg"
+    },
+    {
+      "path": "/assets/images/browsers/netscape.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\browsers\\netscape.svg",
+      "fileName": "netscape.svg"
+    },
+    {
+      "path": "/assets/images/browsers/opera.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\browsers\\opera.svg",
+      "fileName": "opera.svg"
+    },
+    {
+      "path": "/assets/images/browsers/safari.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\browsers\\safari.svg",
+      "fileName": "safari.svg"
+    },
+    {
+      "path": "/assets/images/browsers/windows.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\browsers\\windows.svg",
+      "fileName": "windows.svg"
+    },
+    {
+      "path": "/assets/images/categories/arts.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\categories\\arts.png",
+      "fileName": "arts.png"
+    },
+    {
+      "path": "/assets/images/categories/cat-1.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\categories\\cat-1.jpg",
+      "fileName": "cat-1.jpg"
+    },
+    {
+      "path": "/assets/images/categories/cat-2.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\categories\\cat-2.jpg",
+      "fileName": "cat-2.jpg"
+    },
+    {
+      "path": "/assets/images/categories/cat-3.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\categories\\cat-3.jpg",
+      "fileName": "cat-3.jpg"
+    },
+    {
+      "path": "/assets/images/categories/cat-4.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\categories\\cat-4.jpg",
+      "fileName": "cat-4.jpg"
+    },
+    {
+      "path": "/assets/images/categories/cat-5.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\categories\\cat-5.jpg",
+      "fileName": "cat-5.jpg"
+    },
+    {
+      "path": "/assets/images/categories/cat-6.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\categories\\cat-6.jpg",
+      "fileName": "cat-6.jpg"
+    },
+    {
+      "path": "/assets/images/categories/College-book.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\categories\\College-book.png",
+      "fileName": "College-book.png"
+    },
+    {
+      "path": "/assets/images/categories/college.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\categories\\college.png",
+      "fileName": "college.png"
+    },
+    {
+      "path": "/assets/images/categories/costume.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\categories\\costume.png",
+      "fileName": "costume.png"
+    },
+    {
+      "path": "/assets/images/categories/Islamic-book.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\categories\\Islamic-book.png",
+      "fileName": "Islamic-book.png"
+    },
+    {
+      "path": "/assets/images/categories/school-book.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\categories\\school-book.png",
+      "fileName": "school-book.png"
+    },
+    {
+      "path": "/assets/images/categories/Test-boo.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\categories\\Test-boo.png",
+      "fileName": "Test-boo.png"
+    },
+    {
+      "path": "/assets/images/faces/face-7.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\faces\\face-7.jpg",
+      "fileName": "face-7.jpg"
+    },
+    {
+      "path": "/assets/images/faces/propic(2).png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\faces\\propic(2).png",
+      "fileName": "propic(2).png"
+    },
+    {
+      "path": "/assets/images/faces/propic(3).png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\faces\\propic(3).png",
+      "fileName": "propic(3).png"
+    },
+    {
+      "path": "/assets/images/faces/propic(4).png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\faces\\propic(4).png",
+      "fileName": "propic(4).png"
+    },
+    {
+      "path": "/assets/images/faces/propic(5).png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\faces\\propic(5).png",
+      "fileName": "propic(5).png"
+    },
+    {
+      "path": "/assets/images/faces/propic(6).png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\faces\\propic(6).png",
+      "fileName": "propic(6).png"
+    },
+    {
+      "path": "/assets/images/faces/propic(7).png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\faces\\propic(7).png",
+      "fileName": "propic(7).png"
+    },
+    {
+      "path": "/assets/images/faces/propic(9).png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\faces\\propic(9).png",
+      "fileName": "propic(9).png"
+    },
+    {
+      "path": "/assets/images/file-types/001-pdf.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\file-types\\001-pdf.svg",
+      "fileName": "001-pdf.svg"
+    },
+    {
+      "path": "/assets/images/file-types/002-psd.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\file-types\\002-psd.svg",
+      "fileName": "002-psd.svg"
+    },
+    {
+      "path": "/assets/images/file-types/003-xls.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\file-types\\003-xls.svg",
+      "fileName": "003-xls.svg"
+    },
+    {
+      "path": "/assets/images/file-types/004-xlsx.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\file-types\\004-xlsx.svg",
+      "fileName": "004-xlsx.svg"
+    },
+    {
+      "path": "/assets/images/file-types/005-documents.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\file-types\\005-documents.svg",
+      "fileName": "005-documents.svg"
+    },
+    {
+      "path": "/assets/images/file-types/006-png.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\file-types\\006-png.svg",
+      "fileName": "006-png.svg"
+    },
+    {
+      "path": "/assets/images/file-types/007-jpg.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\file-types\\007-jpg.svg",
+      "fileName": "007-jpg.svg"
+    },
+    {
+      "path": "/assets/images/flags/bd.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\flags\\bd.png",
+      "fileName": "bd.png"
+    },
+    {
+      "path": "/assets/images/flags/uk.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\flags\\uk.png",
+      "fileName": "uk.png"
+    },
+    {
+      "path": "/assets/images/flags/usa.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\flags\\usa.png",
+      "fileName": "usa.png"
+    },
+    {
+      "path": "/assets/images/Furniture Shop/Furniture (5).png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\Furniture Shop\\Furniture (5).png",
+      "fileName": "Furniture (5).png"
+    },
+    {
+      "path": "/assets/images/Furniture Shop/Furniture Shop Header.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\Furniture Shop\\Furniture Shop Header.jpg",
+      "fileName": "Furniture Shop Header.jpg"
+    },
+    {
+      "path": "/assets/images/Gift Shop/7-1.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\Gift Shop\\7-1.jpg",
+      "fileName": "7-1.jpg"
+    },
+    {
+      "path": "/assets/images/Gift Shop/flat-lay-composition-wrapped-presents-with-copy-space.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\Gift Shop\\flat-lay-composition-wrapped-presents-with-copy-space.jpg",
+      "fileName": "flat-lay-composition-wrapped-presents-with-copy-space.jpg"
+    },
+    {
+      "path": "/assets/images/Gift Shop/gift-box-white-background.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\Gift Shop\\gift-box-white-background.jpg",
+      "fileName": "gift-box-white-background.jpg"
+    },
+    {
+      "path": "/assets/images/Gift Shop/Header.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\Gift Shop\\Header.png",
+      "fileName": "Header.png"
+    },
+    {
+      "path": "/assets/images/Gift Shop/Offer 1.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\Gift Shop\\Offer 1.png",
+      "fileName": "Offer 1.png"
+    },
+    {
+      "path": "/assets/images/Gift Shop/Offer Card 2.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\Gift Shop\\Offer Card 2.png",
+      "fileName": "Offer Card 2.png"
+    },
+    {
+      "path": "/assets/images/Gift Shop/pngwing.com (1).png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\Gift Shop\\pngwing.com (1).png",
+      "fileName": "pngwing.com (1).png"
+    },
+    {
+      "path": "/assets/images/Gift Shop/pngwing.com (2).png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\Gift Shop\\pngwing.com (2).png",
+      "fileName": "pngwing.com (2).png"
+    },
+    {
+      "path": "/assets/images/Gift Shop/pngwing.com (4).png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\Gift Shop\\pngwing.com (4).png",
+      "fileName": "pngwing.com (4).png"
+    },
+    {
+      "path": "/assets/images/Groceries Shop/banner-3.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\Groceries Shop\\banner-3.png",
+      "fileName": "banner-3.png"
+    },
+    {
+      "path": "/assets/images/Groceries Shop/eye.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\Groceries Shop\\eye.svg",
+      "fileName": "eye.svg"
+    },
+    {
+      "path": "/assets/images/Groceries Shop/Header Image 3.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\Groceries Shop\\Header Image 3.png",
+      "fileName": "Header Image 3.png"
+    },
+    {
+      "path": "/assets/images/Groceries Shop/heart.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\Groceries Shop\\heart.svg",
+      "fileName": "heart.svg"
+    },
+    {
+      "path": "/assets/images/Groceries Shop/shopping-cart.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\Groceries Shop\\shopping-cart.svg",
+      "fileName": "shopping-cart.svg"
+    },
+    {
+      "path": "/assets/images/headers/Header BG1.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\headers\\Header BG1.png",
+      "fileName": "Header BG1.png"
+    },
+    {
+      "path": "/assets/images/headers/Header BG2.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\headers\\Header BG2.png",
+      "fileName": "Header BG2.png"
+    },
+    {
+      "path": "/assets/images/Health Shop/Doctor.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\Health Shop\\Doctor.png",
+      "fileName": "Doctor.png"
+    },
+    {
+      "path": "/assets/images/Health Shop/Header 1.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\Health Shop\\Header 1.png",
+      "fileName": "Header 1.png"
+    },
+    {
+      "path": "/assets/images/Health Shop/Vector (1).png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\Health Shop\\Vector (1).png",
+      "fileName": "Vector (1).png"
+    },
+    {
+      "path": "/assets/images/icons/alarm-clock.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\alarm-clock.svg",
+      "fileName": "alarm-clock.svg"
+    },
+    {
+      "path": "/assets/images/icons/app-store.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\app-store.svg",
+      "fileName": "app-store.svg"
+    },
+    {
+      "path": "/assets/images/icons/arrow-down-filled.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\arrow-down-filled.svg",
+      "fileName": "arrow-down-filled.svg"
+    },
+    {
+      "path": "/assets/images/icons/arrow-left.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\arrow-left.svg",
+      "fileName": "arrow-left.svg"
+    },
+    {
+      "path": "/assets/images/icons/arrow-long-right.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\arrow-long-right.svg",
+      "fileName": "arrow-long-right.svg"
+    },
+    {
+      "path": "/assets/images/icons/arrow-right.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\arrow-right.svg",
+      "fileName": "arrow-right.svg"
+    },
+    {
+      "path": "/assets/images/icons/baby-boy.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\baby-boy.svg",
+      "fileName": "baby-boy.svg"
+    },
+    {
+      "path": "/assets/images/icons/baby-feeder.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\baby-feeder.svg",
+      "fileName": "baby-feeder.svg"
+    },
+    {
+      "path": "/assets/images/icons/baby-girl.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\baby-girl.svg",
+      "fileName": "baby-girl.svg"
+    },
+    {
+      "path": "/assets/images/icons/bag_filled.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\bag_filled.svg",
+      "fileName": "bag_filled.svg"
+    },
+    {
+      "path": "/assets/images/icons/bangladesh.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\bangladesh.svg",
+      "fileName": "bangladesh.svg"
+    },
+    {
+      "path": "/assets/images/icons/basket-ball.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\basket-ball.svg",
+      "fileName": "basket-ball.svg"
+    },
+    {
+      "path": "/assets/images/icons/basketball-ball.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\basketball-ball.svg",
+      "fileName": "basketball-ball.svg"
+    },
+    {
+      "path": "/assets/images/icons/beauty-products.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\beauty-products.svg",
+      "fileName": "beauty-products.svg"
+    },
+    {
+      "path": "/assets/images/icons/beer.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\beer.svg",
+      "fileName": "beer.svg"
+    },
+    {
+      "path": "/assets/images/icons/breakfast.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\breakfast.svg",
+      "fileName": "breakfast.svg"
+    },
+    {
+      "path": "/assets/images/icons/carrot.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\carrot.svg",
+      "fileName": "carrot.svg"
+    },
+    {
+      "path": "/assets/images/icons/Celebration.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\Celebration.svg",
+      "fileName": "Celebration.svg"
+    },
+    {
+      "path": "/assets/images/icons/checkbox.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\checkbox.svg",
+      "fileName": "checkbox.svg"
+    },
+    {
+      "path": "/assets/images/icons/chevron-down.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\chevron-down.svg",
+      "fileName": "chevron-down.svg"
+    },
+    {
+      "path": "/assets/images/icons/chevron-left.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\chevron-left.svg",
+      "fileName": "chevron-left.svg"
+    },
+    {
+      "path": "/assets/images/icons/chevron-right.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\chevron-right.svg",
+      "fileName": "chevron-right.svg"
+    },
+    {
+      "path": "/assets/images/icons/chevron-up.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\chevron-up.svg",
+      "fileName": "chevron-up.svg"
+    },
+    {
+      "path": "/assets/images/icons/clock-circular-outline.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\clock-circular-outline.svg",
+      "fileName": "clock-circular-outline.svg"
+    },
+    {
+      "path": "/assets/images/icons/close.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\close.svg",
+      "fileName": "close.svg"
+    },
+    {
+      "path": "/assets/images/icons/cloud-data.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\cloud-data.svg",
+      "fileName": "cloud-data.svg"
+    },
+    {
+      "path": "/assets/images/icons/code.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\code.svg",
+      "fileName": "code.svg"
+    },
+    {
+      "path": "/assets/images/icons/comment.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\comment.svg",
+      "fileName": "comment.svg"
+    },
+    {
+      "path": "/assets/images/icons/credit-card-1.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\credit-card-1.svg",
+      "fileName": "credit-card-1.svg"
+    },
+    {
+      "path": "/assets/images/icons/credit-card-2.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\credit-card-2.svg",
+      "fileName": "credit-card-2.svg"
+    },
+    {
+      "path": "/assets/images/icons/credit-card.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\credit-card.svg",
+      "fileName": "credit-card.svg"
+    },
+    {
+      "path": "/assets/images/icons/credit-card_filled.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\credit-card_filled.svg",
+      "fileName": "credit-card_filled.svg"
+    },
+    {
+      "path": "/assets/images/icons/credit.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\credit.svg",
+      "fileName": "credit.svg"
+    },
+    {
+      "path": "/assets/images/icons/customer-service.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\customer-service.svg",
+      "fileName": "customer-service.svg"
+    },
+    {
+      "path": "/assets/images/icons/delete.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\delete.svg",
+      "fileName": "delete.svg"
+    },
+    {
+      "path": "/assets/images/icons/delivery-box.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\delivery-box.svg",
+      "fileName": "delivery-box.svg"
+    },
+    {
+      "path": "/assets/images/icons/delivery-truck.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\delivery-truck.svg",
+      "fileName": "delivery-truck.svg"
+    },
+    {
+      "path": "/assets/images/icons/delivery.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\delivery.svg",
+      "fileName": "delivery.svg"
+    },
+    {
+      "path": "/assets/images/icons/dollar.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\dollar.svg",
+      "fileName": "dollar.svg"
+    },
+    {
+      "path": "/assets/images/icons/dress-1.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\dress-1.svg",
+      "fileName": "dress-1.svg"
+    },
+    {
+      "path": "/assets/images/icons/drill-machine.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\drill-machine.svg",
+      "fileName": "drill-machine.svg"
+    },
+    {
+      "path": "/assets/images/icons/eye-alt.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\eye-alt.svg",
+      "fileName": "eye-alt.svg"
+    },
+    {
+      "path": "/assets/images/icons/eye.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\eye.svg",
+      "fileName": "eye.svg"
+    },
+    {
+      "path": "/assets/images/icons/facebook-1.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\facebook-1.svg",
+      "fileName": "facebook-1.svg"
+    },
+    {
+      "path": "/assets/images/icons/facebook_filled.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\facebook_filled.svg",
+      "fileName": "facebook_filled.svg"
+    },
+    {
+      "path": "/assets/images/icons/feature.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\feature.svg",
+      "fileName": "feature.svg"
+    },
+    {
+      "path": "/assets/images/icons/feedback-thumbs-up.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\feedback-thumbs-up.svg",
+      "fileName": "feedback-thumbs-up.svg"
+    },
+    {
+      "path": "/assets/images/icons/figma.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\figma.svg",
+      "fileName": "figma.svg"
+    },
+    {
+      "path": "/assets/images/icons/gear-2.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\gear-2.svg",
+      "fileName": "gear-2.svg"
+    },
+    {
+      "path": "/assets/images/icons/gift-1.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\gift-1.svg",
+      "fileName": "gift-1.svg"
+    },
+    {
+      "path": "/assets/images/icons/Giftbox.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\Giftbox.svg",
+      "fileName": "Giftbox.svg"
+    },
+    {
+      "path": "/assets/images/icons/grid.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\grid.svg",
+      "fileName": "grid.svg"
+    },
+    {
+      "path": "/assets/images/icons/Group.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\Group.svg",
+      "fileName": "Group.svg"
+    },
+    {
+      "path": "/assets/images/icons/heart-filled.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\heart-filled.svg",
+      "fileName": "heart-filled.svg"
+    },
+    {
+      "path": "/assets/images/icons/heart.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\heart.svg",
+      "fileName": "heart.svg"
+    },
+    {
+      "path": "/assets/images/icons/heart_filled.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\heart_filled.svg",
+      "fileName": "heart_filled.svg"
+    },
+    {
+      "path": "/assets/images/icons/hot-deal.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\hot-deal.svg",
+      "fileName": "hot-deal.svg"
+    },
+    {
+      "path": "/assets/images/icons/india.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\india.svg",
+      "fileName": "india.svg"
+    },
+    {
+      "path": "/assets/images/icons/instagram-1.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\instagram-1.svg",
+      "fileName": "instagram-1.svg"
+    },
+    {
+      "path": "/assets/images/icons/instagram.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\instagram.svg",
+      "fileName": "instagram.svg"
+    },
+    {
+      "path": "/assets/images/icons/instagram_filled.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\instagram_filled.svg",
+      "fileName": "instagram_filled.svg"
+    },
+    {
+      "path": "/assets/images/icons/laptop.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\laptop.svg",
+      "fileName": "laptop.svg"
+    },
+    {
+      "path": "/assets/images/icons/layout-list.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\layout-list.svg",
+      "fileName": "layout-list.svg"
+    },
+    {
+      "path": "/assets/images/icons/lighting.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\lighting.svg",
+      "fileName": "lighting.svg"
+    },
+    {
+      "path": "/assets/images/icons/mail.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\mail.svg",
+      "fileName": "mail.svg"
+    },
+    {
+      "path": "/assets/images/icons/make-up.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\make-up.svg",
+      "fileName": "make-up.svg"
+    },
+    {
+      "path": "/assets/images/icons/map-pin (2).svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\map-pin (2).svg",
+      "fileName": "map-pin (2).svg"
+    },
+    {
+      "path": "/assets/images/icons/map-pin-2.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\map-pin-2.svg",
+      "fileName": "map-pin-2.svg"
+    },
+    {
+      "path": "/assets/images/icons/map-pin.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\map-pin.svg",
+      "fileName": "map-pin.svg"
+    },
+    {
+      "path": "/assets/images/icons/map-pin_filled.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\map-pin_filled.svg",
+      "fileName": "map-pin_filled.svg"
+    },
+    {
+      "path": "/assets/images/icons/math-equal.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\math-equal.svg",
+      "fileName": "math-equal.svg"
+    },
+    {
+      "path": "/assets/images/icons/menu.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\menu.svg",
+      "fileName": "menu.svg"
+    },
+    {
+      "path": "/assets/images/icons/minus.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\minus.svg",
+      "fileName": "minus.svg"
+    },
+    {
+      "path": "/assets/images/icons/more-horizontal.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\more-horizontal.svg",
+      "fileName": "more-horizontal.svg"
+    },
+    {
+      "path": "/assets/images/icons/motorbike.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\motorbike.svg",
+      "fileName": "motorbike.svg"
+    },
+    {
+      "path": "/assets/images/icons/multivendor.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\multivendor.svg",
+      "fileName": "multivendor.svg"
+    },
+    {
+      "path": "/assets/images/icons/new-product-1.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\new-product-1.svg",
+      "fileName": "new-product-1.svg"
+    },
+    {
+      "path": "/assets/images/icons/new-product.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\new-product.svg",
+      "fileName": "new-product.svg"
+    },
+    {
+      "path": "/assets/images/icons/optimization.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\optimization.svg",
+      "fileName": "optimization.svg"
+    },
+    {
+      "path": "/assets/images/icons/options.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\options.svg",
+      "fileName": "options.svg"
+    },
+    {
+      "path": "/assets/images/icons/package-box.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\package-box.svg",
+      "fileName": "package-box.svg"
+    },
+    {
+      "path": "/assets/images/icons/phone-call.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\phone-call.svg",
+      "fileName": "phone-call.svg"
+    },
+    {
+      "path": "/assets/images/icons/phone_filled.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\phone_filled.svg",
+      "fileName": "phone_filled.svg"
+    },
+    {
+      "path": "/assets/images/icons/pick-up-box.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\pick-up-box.svg",
+      "fileName": "pick-up-box.svg"
+    },
+    {
+      "path": "/assets/images/icons/piggy-bank.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\piggy-bank.svg",
+      "fileName": "piggy-bank.svg"
+    },
+    {
+      "path": "/assets/images/icons/pin_filled.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\pin_filled.svg",
+      "fileName": "pin_filled.svg"
+    },
+    {
+      "path": "/assets/images/icons/plant-pot.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\plant-pot.svg",
+      "fileName": "plant-pot.svg"
+    },
+    {
+      "path": "/assets/images/icons/play-store.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\play-store.svg",
+      "fileName": "play-store.svg"
+    },
+    {
+      "path": "/assets/images/icons/plus.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\plus.svg",
+      "fileName": "plus.svg"
+    },
+    {
+      "path": "/assets/images/icons/quote-close.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\quote-close.svg",
+      "fileName": "quote-close.svg"
+    },
+    {
+      "path": "/assets/images/icons/quote-open.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\quote-open.svg",
+      "fileName": "quote-open.svg"
+    },
+    {
+      "path": "/assets/images/icons/ranking-1.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\ranking-1.svg",
+      "fileName": "ranking-1.svg"
+    },
+    {
+      "path": "/assets/images/icons/ranking.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\ranking.svg",
+      "fileName": "ranking.svg"
+    },
+    {
+      "path": "/assets/images/icons/Review.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\Review.svg",
+      "fileName": "Review.svg"
+    },
+    {
+      "path": "/assets/images/icons/right-arrow.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\right-arrow.svg",
+      "fileName": "right-arrow.svg"
+    },
+    {
+      "path": "/assets/images/icons/rotate-ccw.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\rotate-ccw.svg",
+      "fileName": "rotate-ccw.svg"
+    },
+    {
+      "path": "/assets/images/icons/service-customer.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\service-customer.svg",
+      "fileName": "service-customer.svg"
+    },
+    {
+      "path": "/assets/images/icons/settings_filled.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\settings_filled.svg",
+      "fileName": "settings_filled.svg"
+    },
+    {
+      "path": "/assets/images/icons/shield.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\shield.svg",
+      "fileName": "shield.svg"
+    },
+    {
+      "path": "/assets/images/icons/shopping-cart.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\shopping-cart.svg",
+      "fileName": "shopping-cart.svg"
+    },
+    {
+      "path": "/assets/images/icons/smartphone.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\smartphone.svg",
+      "fileName": "smartphone.svg"
+    },
+    {
+      "path": "/assets/images/icons/snack.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\snack.svg",
+      "fileName": "snack.svg"
+    },
+    {
+      "path": "/assets/images/icons/sofa.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\sofa.svg",
+      "fileName": "sofa.svg"
+    },
+    {
+      "path": "/assets/images/icons/star.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\star.svg",
+      "fileName": "star.svg"
+    },
+    {
+      "path": "/assets/images/icons/teddy-bear.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\teddy-bear.svg",
+      "fileName": "teddy-bear.svg"
+    },
+    {
+      "path": "/assets/images/icons/telegram.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\telegram.svg",
+      "fileName": "telegram.svg"
+    },
+    {
+      "path": "/assets/images/icons/top-categories.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\top-categories.svg",
+      "fileName": "top-categories.svg"
+    },
+    {
+      "path": "/assets/images/icons/track.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\track.svg",
+      "fileName": "track.svg"
+    },
+    {
+      "path": "/assets/images/icons/triple-dot.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\triple-dot.svg",
+      "fileName": "triple-dot.svg"
+    },
+    {
+      "path": "/assets/images/icons/truck-1.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\truck-1.svg",
+      "fileName": "truck-1.svg"
+    },
+    {
+      "path": "/assets/images/icons/truck.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\truck.svg",
+      "fileName": "truck.svg"
+    },
+    {
+      "path": "/assets/images/icons/twitter-1.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\twitter-1.svg",
+      "fileName": "twitter-1.svg"
+    },
+    {
+      "path": "/assets/images/icons/twitter.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\twitter.svg",
+      "fileName": "twitter.svg"
+    },
+    {
+      "path": "/assets/images/icons/twitter_filled.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\twitter_filled.svg",
+      "fileName": "twitter_filled.svg"
+    },
+    {
+      "path": "/assets/images/icons/united-kingdom.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\united-kingdom.svg",
+      "fileName": "united-kingdom.svg"
+    },
+    {
+      "path": "/assets/images/icons/united-states.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\united-states.svg",
+      "fileName": "united-states.svg"
+    },
+    {
+      "path": "/assets/images/icons/upload.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\upload.svg",
+      "fileName": "upload.svg"
+    },
+    {
+      "path": "/assets/images/icons/user-1.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\user-1.svg",
+      "fileName": "user-1.svg"
+    },
+    {
+      "path": "/assets/images/icons/user-2.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\user-2.svg",
+      "fileName": "user-2.svg"
+    },
+    {
+      "path": "/assets/images/icons/user_filled.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\user_filled.svg",
+      "fileName": "user_filled.svg"
+    },
+    {
+      "path": "/assets/images/icons/verify.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\verify.svg",
+      "fileName": "verify.svg"
+    },
+    {
+      "path": "/assets/images/icons/voice-recorder.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\voice-recorder.svg",
+      "fileName": "voice-recorder.svg"
+    },
+    {
+      "path": "/assets/images/icons/wheel.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\wheel.svg",
+      "fileName": "wheel.svg"
+    },
+    {
+      "path": "/assets/images/icons/women-dress.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\women-dress.svg",
+      "fileName": "women-dress.svg"
+    },
+    {
+      "path": "/assets/images/icons/yogurt.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\yogurt.svg",
+      "fileName": "yogurt.svg"
+    },
+    {
+      "path": "/assets/images/icons/youtube-1.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\youtube-1.svg",
+      "fileName": "youtube-1.svg"
+    },
+    {
+      "path": "/assets/images/icons/youtube.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\youtube.svg",
+      "fileName": "youtube.svg"
+    },
+    {
+      "path": "/assets/images/icons/youtube_filled.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\icons\\youtube_filled.svg",
+      "fileName": "youtube_filled.svg"
+    },
+    {
+      "path": "/assets/images/idris-footer-logo.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\idris-footer-logo.png",
+      "fileName": "idris-footer-logo.png"
+    },
+    {
+      "path": "/assets/images/idris-logo.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\idris-logo.png",
+      "fileName": "idris-logo.png"
+    },
+    {
+      "path": "/assets/images/illustrations/announcement.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\illustrations\\announcement.svg",
+      "fileName": "announcement.svg"
+    },
+    {
+      "path": "/assets/images/illustrations/baby.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\illustrations\\baby.svg",
+      "fileName": "baby.svg"
+    },
+    {
+      "path": "/assets/images/illustrations/business_deal.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\illustrations\\business_deal.svg",
+      "fileName": "business_deal.svg"
+    },
+    {
+      "path": "/assets/images/illustrations/designer.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\illustrations\\designer.svg",
+      "fileName": "designer.svg"
+    },
+    {
+      "path": "/assets/images/illustrations/dreamer.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\illustrations\\dreamer.svg",
+      "fileName": "dreamer.svg"
+    },
+    {
+      "path": "/assets/images/illustrations/lighthouse.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\illustrations\\lighthouse.svg",
+      "fileName": "lighthouse.svg"
+    },
+    {
+      "path": "/assets/images/illustrations/mobile-message.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\illustrations\\mobile-message.svg",
+      "fileName": "mobile-message.svg"
+    },
+    {
+      "path": "/assets/images/illustrations/posting_photo.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\illustrations\\posting_photo.svg",
+      "fileName": "posting_photo.svg"
+    },
+    {
+      "path": "/assets/images/illustrations/upgrade.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\illustrations\\upgrade.svg",
+      "fileName": "upgrade.svg"
+    },
+    {
+      "path": "/assets/images/landing/bonik.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\landing\\bonik.svg",
+      "fileName": "bonik.svg"
+    },
+    {
+      "path": "/assets/images/landing/customer/add-address.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\landing\\customer\\add-address.png",
+      "fileName": "add-address.png"
+    },
+    {
+      "path": "/assets/images/landing/customer/edit-payment.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\landing\\customer\\edit-payment.jpg",
+      "fileName": "edit-payment.jpg"
+    },
+    {
+      "path": "/assets/images/landing/customer/page-5.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\landing\\customer\\page-5.png",
+      "fileName": "page-5.png"
+    },
+    {
+      "path": "/assets/images/landing/customer/page-6.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\landing\\customer\\page-6.png",
+      "fileName": "page-6.png"
+    },
+    {
+      "path": "/assets/images/landing/customer/page-7.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\landing\\customer\\page-7.png",
+      "fileName": "page-7.png"
+    },
+    {
+      "path": "/assets/images/landing/customer/page-8.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\landing\\customer\\page-8.png",
+      "fileName": "page-8.png"
+    },
+    {
+      "path": "/assets/images/landing/customer/page-9.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\landing\\customer\\page-9.png",
+      "fileName": "page-9.png"
+    },
+    {
+      "path": "/assets/images/landing/image-preview.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\landing\\image-preview.png",
+      "fileName": "image-preview.png"
+    },
+    {
+      "path": "/assets/images/landing/landing-bg-1-old.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\landing\\landing-bg-1-old.svg",
+      "fileName": "landing-bg-1-old.svg"
+    },
+    {
+      "path": "/assets/images/landing/page-group-3.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\landing\\page-group-3.png",
+      "fileName": "page-group-3.png"
+    },
+    {
+      "path": "/assets/images/landing/page-group-old.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\landing\\page-group-old.png",
+      "fileName": "page-group-old.png"
+    },
+    {
+      "path": "/assets/images/landing/preview.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\landing\\preview.png",
+      "fileName": "preview.png"
+    },
+    {
+      "path": "/assets/images/logo-old.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\logo-old.svg",
+      "fileName": "logo-old.svg"
+    },
+    {
+      "path": "/assets/images/logo2-old.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\logo2-old.svg",
+      "fileName": "logo2-old.svg"
+    },
+    {
+      "path": "/assets/images/logos/carousel.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\logos\\carousel.png",
+      "fileName": "carousel.png"
+    },
+    {
+      "path": "/assets/images/logos/chart-js.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\logos\\chart-js.png",
+      "fileName": "chart-js.png"
+    },
+    {
+      "path": "/assets/images/logos/figma.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\logos\\figma.svg",
+      "fileName": "figma.svg"
+    },
+    {
+      "path": "/assets/images/logos/formik.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\logos\\formik.png",
+      "fileName": "formik.png"
+    },
+    {
+      "path": "/assets/images/logos/react-dropzone.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\logos\\react-dropzone.png",
+      "fileName": "react-dropzone.png"
+    },
+    {
+      "path": "/assets/images/logos/sass.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\logos\\sass.png",
+      "fileName": "sass.png"
+    },
+    {
+      "path": "/assets/images/logos/styled-component.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\logos\\styled-component.png",
+      "fileName": "styled-component.png"
+    },
+    {
+      "path": "/assets/images/logos/styled-system.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\logos\\styled-system.png",
+      "fileName": "styled-system.png"
+    },
+    {
+      "path": "/assets/images/logos/webpack1.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\logos\\webpack1.png",
+      "fileName": "webpack1.png"
+    },
+    {
+      "path": "/assets/images/logos/webpack2.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\logos\\webpack2.png",
+      "fileName": "webpack2.png"
+    },
+    {
+      "path": "/assets/images/models/model-2.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\models\\model-2.png",
+      "fileName": "model-2.png"
+    },
+    {
+      "path": "/assets/images/models/model-3.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\models\\model-3.png",
+      "fileName": "model-3.png"
+    },
+    {
+      "path": "/assets/images/models/mohammad-faruque-SpIKPT8zeAs-unsplash-removebg-preview 1.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\models\\mohammad-faruque-SpIKPT8zeAs-unsplash-removebg-preview 1.png",
+      "fileName": "mohammad-faruque-SpIKPT8zeAs-unsplash-removebg-preview 1.png"
+    },
+    {
+      "path": "/assets/images/order-confirm.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\order-confirm.png",
+      "fileName": "order-confirm.png"
+    },
+    {
+      "path": "/assets/images/payment-card/001-paypal.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\001-paypal.svg",
+      "fileName": "001-paypal.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/002-mastercard.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\002-mastercard.svg",
+      "fileName": "002-mastercard.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/003-american express.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\003-american express.svg",
+      "fileName": "003-american express.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/004-visa.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\004-visa.svg",
+      "fileName": "004-visa.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/005-discover.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\005-discover.svg",
+      "fileName": "005-discover.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/006-western union.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\006-western union.svg",
+      "fileName": "006-western union.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/007-cirrus.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\007-cirrus.svg",
+      "fileName": "007-cirrus.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/008-ideal.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\008-ideal.svg",
+      "fileName": "008-ideal.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/009-jcb.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\009-jcb.svg",
+      "fileName": "009-jcb.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/010-eway.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\010-eway.svg",
+      "fileName": "010-eway.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/011-wirecard.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\011-wirecard.svg",
+      "fileName": "011-wirecard.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/012-solo.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\012-solo.svg",
+      "fileName": "012-solo.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/013-hsbc.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\013-hsbc.svg",
+      "fileName": "013-hsbc.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/014-ebay.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\014-ebay.svg",
+      "fileName": "014-ebay.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/015-citi.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\015-citi.svg",
+      "fileName": "015-citi.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/016-direct debit.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\016-direct debit.svg",
+      "fileName": "016-direct debit.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/017-symbols.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\017-symbols.svg",
+      "fileName": "017-symbols.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/018-dinners club.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\018-dinners club.svg",
+      "fileName": "018-dinners club.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/019-postepay.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\019-postepay.svg",
+      "fileName": "019-postepay.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/020-sage.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\020-sage.svg",
+      "fileName": "020-sage.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/021-switch.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\021-switch.svg",
+      "fileName": "021-switch.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/022-maestro.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\022-maestro.svg",
+      "fileName": "022-maestro.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/023-paypoint.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\023-paypoint.svg",
+      "fileName": "023-paypoint.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/024-pick n pay.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\024-pick n pay.svg",
+      "fileName": "024-pick n pay.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/025-worldpay.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\025-worldpay.svg",
+      "fileName": "025-worldpay.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/026-union pay.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\026-union pay.svg",
+      "fileName": "026-union pay.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/027-better business bureau.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\027-better business bureau.svg",
+      "fileName": "027-better business bureau.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/028-2co.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\028-2co.svg",
+      "fileName": "028-2co.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/029-authorize.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\029-authorize.svg",
+      "fileName": "029-authorize.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/030-bluepay.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\030-bluepay.svg",
+      "fileName": "030-bluepay.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/031-clickbank.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\031-clickbank.svg",
+      "fileName": "031-clickbank.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/032-wepay.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\032-wepay.svg",
+      "fileName": "032-wepay.svg"
+    },
+    {
+      "path": "/assets/images/payment-card/maestro.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\maestro.png",
+      "fileName": "maestro.png"
+    },
+    {
+      "path": "/assets/images/payment-card/master-card.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\master-card.png",
+      "fileName": "master-card.png"
+    },
+    {
+      "path": "/assets/images/payment-card/paypal-2.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\paypal-2.png",
+      "fileName": "paypal-2.png"
+    },
+    {
+      "path": "/assets/images/payment-card/paypal.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\paypal.png",
+      "fileName": "paypal.png"
+    },
+    {
+      "path": "/assets/images/payment-card/visa-2.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\visa-2.png",
+      "fileName": "visa-2.png"
+    },
+    {
+      "path": "/assets/images/payment-card/visa.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-card\\visa.png",
+      "fileName": "visa.png"
+    },
+    {
+      "path": "/assets/images/payment-methods/amex.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-methods\\amex.png",
+      "fileName": "amex.png"
+    },
+    {
+      "path": "/assets/images/payment-methods/Amex.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-methods\\Amex.svg",
+      "fileName": "Amex.svg"
+    },
+    {
+      "path": "/assets/images/payment-methods/cirrus.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-methods\\cirrus.png",
+      "fileName": "cirrus.png"
+    },
+    {
+      "path": "/assets/images/payment-methods/maestro.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-methods\\maestro.png",
+      "fileName": "maestro.png"
+    },
+    {
+      "path": "/assets/images/payment-methods/master-card.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-methods\\master-card.png",
+      "fileName": "master-card.png"
+    },
+    {
+      "path": "/assets/images/payment-methods/Mastercard.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-methods\\Mastercard.svg",
+      "fileName": "Mastercard.svg"
+    },
+    {
+      "path": "/assets/images/payment-methods/paypal.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-methods\\paypal.png",
+      "fileName": "paypal.png"
+    },
+    {
+      "path": "/assets/images/payment-methods/PayPal.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-methods\\PayPal.svg",
+      "fileName": "PayPal.svg"
+    },
+    {
+      "path": "/assets/images/payment-methods/shopify.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-methods\\shopify.png",
+      "fileName": "shopify.png"
+    },
+    {
+      "path": "/assets/images/payment-methods/skrill.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-methods\\skrill.png",
+      "fileName": "skrill.png"
+    },
+    {
+      "path": "/assets/images/payment-methods/visa-electron.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-methods\\visa-electron.png",
+      "fileName": "visa-electron.png"
+    },
+    {
+      "path": "/assets/images/payment-methods/visa.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-methods\\visa.png",
+      "fileName": "visa.png"
+    },
+    {
+      "path": "/assets/images/payment-methods/Visa.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-methods\\Visa.svg",
+      "fileName": "Visa.svg"
+    },
+    {
+      "path": "/assets/images/payment-methods/western-union.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\payment-methods\\western-union.png",
+      "fileName": "western-union.png"
+    },
+    {
+      "path": "/assets/images/products/2 6.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\2 6.png",
+      "fileName": "2 6.png"
+    },
+    {
+      "path": "/assets/images/products/3 50092.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\3 50092.png",
+      "fileName": "3 50092.png"
+    },
+    {
+      "path": "/assets/images/products/alexa-plus.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\alexa-plus.png",
+      "fileName": "alexa-plus.png"
+    },
+    {
+      "path": "/assets/images/products/apple-watch-0.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\apple-watch-0.png",
+      "fileName": "apple-watch-0.png"
+    },
+    {
+      "path": "/assets/images/products/apple-watch-1.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\apple-watch-1.png",
+      "fileName": "apple-watch-1.png"
+    },
+    {
+      "path": "/assets/images/products/apple-watch-2.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\apple-watch-2.png",
+      "fileName": "apple-watch-2.png"
+    },
+    {
+      "path": "/assets/images/products/apple-watch-3.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\apple-watch-3.png",
+      "fileName": "apple-watch-3.png"
+    },
+    {
+      "path": "/assets/images/products/bg (1).png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bg (1).png",
+      "fileName": "bg (1).png"
+    },
+    {
+      "path": "/assets/images/products/bg-gradient.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bg-gradient.png",
+      "fileName": "bg-gradient.png"
+    },
+    {
+      "path": "/assets/images/products/bgbeauty (1).png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bgbeauty (1).png",
+      "fileName": "bgbeauty (1).png"
+    },
+    {
+      "path": "/assets/images/products/bgbeauty (2).png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bgbeauty (2).png",
+      "fileName": "bgbeauty (2).png"
+    },
+    {
+      "path": "/assets/images/products/bgbeauty.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bgbeauty.png",
+      "fileName": "bgbeauty.png"
+    },
+    {
+      "path": "/assets/images/products/bgchair1.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bgchair1.png",
+      "fileName": "bgchair1.png"
+    },
+    {
+      "path": "/assets/images/products/bgchair2.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bgchair2.png",
+      "fileName": "bgchair2.png"
+    },
+    {
+      "path": "/assets/images/products/bgchair3.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bgchair3.png",
+      "fileName": "bgchair3.png"
+    },
+    {
+      "path": "/assets/images/products/bgchair4.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bgchair4.png",
+      "fileName": "bgchair4.png"
+    },
+    {
+      "path": "/assets/images/products/bgchair5.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bgchair5.png",
+      "fileName": "bgchair5.png"
+    },
+    {
+      "path": "/assets/images/products/bgchair6.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bgchair6.png",
+      "fileName": "bgchair6.png"
+    },
+    {
+      "path": "/assets/images/products/bgearphone.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bgearphone.png",
+      "fileName": "bgearphone.png"
+    },
+    {
+      "path": "/assets/images/products/bghead-phone (1).png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bghead-phone (1).png",
+      "fileName": "bghead-phone (1).png"
+    },
+    {
+      "path": "/assets/images/products/bghead-phone (2).png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bghead-phone (2).png",
+      "fileName": "bghead-phone (2).png"
+    },
+    {
+      "path": "/assets/images/products/bghead-phone.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bghead-phone.png",
+      "fileName": "bghead-phone.png"
+    },
+    {
+      "path": "/assets/images/products/bglaptop1.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bglaptop1.png",
+      "fileName": "bglaptop1.png"
+    },
+    {
+      "path": "/assets/images/products/bglaptop2.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bglaptop2.png",
+      "fileName": "bglaptop2.png"
+    },
+    {
+      "path": "/assets/images/products/bglaptop3.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bglaptop3.png",
+      "fileName": "bglaptop3.png"
+    },
+    {
+      "path": "/assets/images/products/bglaptop4.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bglaptop4.png",
+      "fileName": "bglaptop4.png"
+    },
+    {
+      "path": "/assets/images/products/bglaptop5.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bglaptop5.png",
+      "fileName": "bglaptop5.png"
+    },
+    {
+      "path": "/assets/images/products/bglaptop6.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bglaptop6.png",
+      "fileName": "bglaptop6.png"
+    },
+    {
+      "path": "/assets/images/products/bglight.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bglight.png",
+      "fileName": "bglight.png"
+    },
+    {
+      "path": "/assets/images/products/bgmobile1.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bgmobile1.png",
+      "fileName": "bgmobile1.png"
+    },
+    {
+      "path": "/assets/images/products/bgmobile2.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bgmobile2.png",
+      "fileName": "bgmobile2.png"
+    },
+    {
+      "path": "/assets/images/products/bgmobile3.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bgmobile3.png",
+      "fileName": "bgmobile3.png"
+    },
+    {
+      "path": "/assets/images/products/bgmobile4.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bgmobile4.png",
+      "fileName": "bgmobile4.png"
+    },
+    {
+      "path": "/assets/images/products/bgmobile5.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bgmobile5.png",
+      "fileName": "bgmobile5.png"
+    },
+    {
+      "path": "/assets/images/products/bgmobile6.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bgmobile6.png",
+      "fileName": "bgmobile6.png"
+    },
+    {
+      "path": "/assets/images/products/bgvessel.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bgvessel.png",
+      "fileName": "bgvessel.png"
+    },
+    {
+      "path": "/assets/images/products/bonsai-tree.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\bonsai-tree.png",
+      "fileName": "bonsai-tree.png"
+    },
+    {
+      "path": "/assets/images/products/casmatics.jpg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\casmatics.jpg",
+      "fileName": "casmatics.jpg"
+    },
+    {
+      "path": "/assets/images/products/categories/cap.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\categories\\cap.png",
+      "fileName": "cap.png"
+    },
+    {
+      "path": "/assets/images/products/Electronics/8.BenQ2020.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Electronics\\8.BenQ2020.png",
+      "fileName": "8.BenQ2020.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Jewellery/10.Indian 8kt Gold Bracelet.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Jewellery\\10.Indian 8kt Gold Bracelet.png",
+      "fileName": "10.Indian 8kt Gold Bracelet.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Jewellery/11.Heavy 5kt Indian Earrings.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Jewellery\\11.Heavy 5kt Indian Earrings.png",
+      "fileName": "11.Heavy 5kt Indian Earrings.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Jewellery/12.Blue Stone Locket.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Jewellery\\12.Blue Stone Locket.png",
+      "fileName": "12.Blue Stone Locket.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Jewellery/13.Black Stone Modern Locket.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Jewellery\\13.Black Stone Modern Locket.png",
+      "fileName": "13.Black Stone Modern Locket.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Jewellery/14.Diamond Wedding Rings.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Jewellery\\14.Diamond Wedding Rings.png",
+      "fileName": "14.Diamond Wedding Rings.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Jewellery/15.Indian 6kt Gold Earrings.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Jewellery\\15.Indian 6kt Gold Earrings.png",
+      "fileName": "15.Indian 6kt Gold Earrings.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Jewellery/16.Custom Made Threads Beads Necklace Set.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Jewellery\\16.Custom Made Threads Beads Necklace Set.png",
+      "fileName": "16.Custom Made Threads Beads Necklace Set.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Jewellery/17.Heavy Stone Colorful Necklace.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Jewellery\\17.Heavy Stone Colorful Necklace.png",
+      "fileName": "17.Heavy Stone Colorful Necklace.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Jewellery/18.Beads and Threads Simple Earrings.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Jewellery\\18.Beads and Threads Simple Earrings.png",
+      "fileName": "18.Beads and Threads Simple Earrings.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Jewellery/19.Tamil Wedding Necklace Set.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Jewellery\\19.Tamil Wedding Necklace Set.png",
+      "fileName": "19.Tamil Wedding Necklace Set.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Jewellery/20.Shahi 21kt Gold Necklace Set.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Jewellery\\20.Shahi 21kt Gold Necklace Set.png",
+      "fileName": "20.Shahi 21kt Gold Necklace Set.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Jewellery/21.Feathers and Beads Bohemian Necklace.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Jewellery\\21.Feathers and Beads Bohemian Necklace.png",
+      "fileName": "21.Feathers and Beads Bohemian Necklace.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Jewellery/22.Red Peacock Tail Earrings.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Jewellery\\22.Red Peacock Tail Earrings.png",
+      "fileName": "22.Red Peacock Tail Earrings.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Jewellery/23.Heavy 13kt Gold Wedding Necklace Set.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Jewellery\\23.Heavy 13kt Gold Wedding Necklace Set.png",
+      "fileName": "23.Heavy 13kt Gold Wedding Necklace Set.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Jewellery/3.Diamond Silver Ring.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Jewellery\\3.Diamond Silver Ring.png",
+      "fileName": "3.Diamond Silver Ring.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Jewellery/4.Black Stones Necklace.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Jewellery\\4.Black Stones Necklace.png",
+      "fileName": "4.Black Stones Necklace.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Jewellery/5.Indian Pearl Earrings.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Jewellery\\5.Indian Pearl Earrings.png",
+      "fileName": "5.Indian Pearl Earrings.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Jewellery/6.Indian Copper Earrings.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Jewellery\\6.Indian Copper Earrings.png",
+      "fileName": "6.Indian Copper Earrings.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Jewellery/7.Indian Pearl Square Stone Necklace.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Jewellery\\7.Indian Pearl Square Stone Necklace.png",
+      "fileName": "7.Indian Pearl Square Stone Necklace.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Jewellery/8.Indian Pearl Thread Earrings.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Jewellery\\8.Indian Pearl Thread Earrings.png",
+      "fileName": "8.Indian Pearl Thread Earrings.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Jewellery/9.Heavy 20kt Gold Necklace.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Jewellery\\9.Heavy 20kt Gold Necklace.png",
+      "fileName": "9.Heavy 20kt Gold Necklace.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Shoes/10.Adidas White.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Shoes\\10.Adidas White.png",
+      "fileName": "10.Adidas White.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Shoes/11.Flow white.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Shoes\\11.Flow white.png",
+      "fileName": "11.Flow white.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Shoes/12._Nike Air White.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Shoes\\12._Nike Air White.png",
+      "fileName": "12._Nike Air White.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Shoes/13.Puma Red.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Shoes\\13.Puma Red.png",
+      "fileName": "13.Puma Red.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Shoes/14.Nike Pink.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Shoes\\14.Nike Pink.png",
+      "fileName": "14.Nike Pink.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Shoes/15.Nike Mint.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Shoes\\15.Nike Mint.png",
+      "fileName": "15.Nike Mint.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Shoes/16.Nike Silver.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Shoes\\16.Nike Silver.png",
+      "fileName": "16.Nike Silver.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Shoes/17.North Star Olive.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Shoes\\17.North Star Olive.png",
+      "fileName": "17.North Star Olive.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Shoes/18.Adidas Rainbow.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Shoes\\18.Adidas Rainbow.png",
+      "fileName": "18.Adidas Rainbow.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Shoes/19.Nike Yellow Black.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Shoes\\19.Nike Yellow Black.png",
+      "fileName": "19.Nike Yellow Black.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Shoes/2.North Star Cream.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Shoes\\2.North Star Cream.png",
+      "fileName": "2.North Star Cream.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Shoes/20.Merrell Woods.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Shoes\\20.Merrell Woods.png",
+      "fileName": "20.Merrell Woods.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Shoes/21.North Star Blue.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Shoes\\21.North Star Blue.png",
+      "fileName": "21.North Star Blue.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Shoes/22.Nike Black Red.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Shoes\\22.Nike Black Red.png",
+      "fileName": "22.Nike Black Red.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Shoes/23.Nike Silver Race.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Shoes\\23.Nike Silver Race.png",
+      "fileName": "23.Nike Silver Race.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Shoes/3.Puma Black.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Shoes\\3.Puma Black.png",
+      "fileName": "3.Puma Black.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Shoes/4.Nike Fluffy Yellow.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Shoes\\4.Nike Fluffy Yellow.png",
+      "fileName": "4.Nike Fluffy Yellow.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Shoes/5.Nike Blue.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Shoes\\5.Nike Blue.png",
+      "fileName": "5.Nike Blue.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Shoes/6.North Star Black.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Shoes\\6.North Star Black.png",
+      "fileName": "6.North Star Black.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Shoes/7.Nike Green.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Shoes\\7.Nike Green.png",
+      "fileName": "7.Nike Green.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Shoes/8.Nike Skill.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Shoes\\8.Nike Skill.png",
+      "fileName": "8.Nike Skill.png"
+    },
+    {
+      "path": "/assets/images/products/Fashion/Shoes/9.Adidas Green.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Fashion\\Shoes\\9.Adidas Green.png",
+      "fileName": "9.Adidas Green.png"
+    },
+    {
+      "path": "/assets/images/products/garlic.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\garlic.png",
+      "fileName": "garlic.png"
+    },
+    {
+      "path": "/assets/images/products/golden-watch.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\golden-watch.png",
+      "fileName": "golden-watch.png"
+    },
+    {
+      "path": "/assets/images/products/green-plant.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\green-plant.png",
+      "fileName": "green-plant.png"
+    },
+    {
+      "path": "/assets/images/products/Groceries/1.Sakti Sambar Powder.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Groceries\\1.Sakti Sambar Powder.png",
+      "fileName": "1.Sakti Sambar Powder.png"
+    },
+    {
+      "path": "/assets/images/products/Groceries/10.Catch Italian Seasoning Grinder.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Groceries\\10.Catch Italian Seasoning Grinder.png",
+      "fileName": "10.Catch Italian Seasoning Grinder.png"
+    },
+    {
+      "path": "/assets/images/products/Groceries/11.Tadka Garam Masala.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Groceries\\11.Tadka Garam Masala.png",
+      "fileName": "11.Tadka Garam Masala.png"
+    },
+    {
+      "path": "/assets/images/products/Groceries/12.Thanks a Latte Coffee.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Groceries\\12.Thanks a Latte Coffee.png",
+      "fileName": "12.Thanks a Latte Coffee.png"
+    },
+    {
+      "path": "/assets/images/products/Groceries/13.Grocery Package Offer.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Groceries\\13.Grocery Package Offer.png",
+      "fileName": "13.Grocery Package Offer.png"
+    },
+    {
+      "path": "/assets/images/products/Groceries/14.ACI Products.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Groceries\\14.ACI Products.png",
+      "fileName": "14.ACI Products.png"
+    },
+    {
+      "path": "/assets/images/products/Groceries/15.Lightskin Soap.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Groceries\\15.Lightskin Soap.png",
+      "fileName": "15.Lightskin Soap.png"
+    },
+    {
+      "path": "/assets/images/products/Groceries/16.Artidoro Rodriguez Coffee.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Groceries\\16.Artidoro Rodriguez Coffee.png",
+      "fileName": "16.Artidoro Rodriguez Coffee.png"
+    },
+    {
+      "path": "/assets/images/products/Groceries/17.Dove Sensitive Skin Soap.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Groceries\\17.Dove Sensitive Skin Soap.png",
+      "fileName": "17.Dove Sensitive Skin Soap.png"
+    },
+    {
+      "path": "/assets/images/products/Groceries/18.Aniket Garam Masala.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Groceries\\18.Aniket Garam Masala.png",
+      "fileName": "18.Aniket Garam Masala.png"
+    },
+    {
+      "path": "/assets/images/products/Groceries/19.Portsmouth Soaps.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Groceries\\19.Portsmouth Soaps.png",
+      "fileName": "19.Portsmouth Soaps.png"
+    },
+    {
+      "path": "/assets/images/products/Groceries/2.Premium Grocery Collection.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Groceries\\2.Premium Grocery Collection.png",
+      "fileName": "2.Premium Grocery Collection.png"
+    },
+    {
+      "path": "/assets/images/products/Groceries/20.Premium Kitchen Pack.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Groceries\\20.Premium Kitchen Pack.png",
+      "fileName": "20.Premium Kitchen Pack.png"
+    },
+    {
+      "path": "/assets/images/products/Groceries/21.Mega Sardines.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Groceries\\21.Mega Sardines.png",
+      "fileName": "21.Mega Sardines.png"
+    },
+    {
+      "path": "/assets/images/products/Groceries/22.Organic Company Products.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Groceries\\22.Organic Company Products.png",
+      "fileName": "22.Organic Company Products.png"
+    },
+    {
+      "path": "/assets/images/products/Groceries/23.Earnest Sardines.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Groceries\\23.Earnest Sardines.png",
+      "fileName": "23.Earnest Sardines.png"
+    },
+    {
+      "path": "/assets/images/products/Groceries/24.Parachute Coconut Oil.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Groceries\\24.Parachute Coconut Oil.png",
+      "fileName": "24.Parachute Coconut Oil.png"
+    },
+    {
+      "path": "/assets/images/products/Groceries/25.Cafe Torrefaction Fraiche.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Groceries\\25.Cafe Torrefaction Fraiche.png",
+      "fileName": "25.Cafe Torrefaction Fraiche.png"
+    },
+    {
+      "path": "/assets/images/products/Groceries/26.Madina Soaps.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Groceries\\26.Madina Soaps.png",
+      "fileName": "26.Madina Soaps.png"
+    },
+    {
+      "path": "/assets/images/products/Groceries/27.Sardines Pack.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Groceries\\27.Sardines Pack.png",
+      "fileName": "27.Sardines Pack.png"
+    },
+    {
+      "path": "/assets/images/products/Groceries/28.Turmeric Powder.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Groceries\\28.Turmeric Powder.png",
+      "fileName": "28.Turmeric Powder.png"
+    },
+    {
+      "path": "/assets/images/products/Groceries/3.Premium Grocery Pack.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Groceries\\3.Premium Grocery Pack.png",
+      "fileName": "3.Premium Grocery Pack.png"
+    },
+    {
+      "path": "/assets/images/products/Groceries/4.Freash Real Chole Masala.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Groceries\\4.Freash Real Chole Masala.png",
+      "fileName": "4.Freash Real Chole Masala.png"
+    },
+    {
+      "path": "/assets/images/products/Groceries/5.Gum Pack.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Groceries\\5.Gum Pack.png",
+      "fileName": "5.Gum Pack.png"
+    },
+    {
+      "path": "/assets/images/products/Groceries/6.Indian Grocery Products Pack.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Groceries\\6.Indian Grocery Products Pack.png",
+      "fileName": "6.Indian Grocery Products Pack.png"
+    },
+    {
+      "path": "/assets/images/products/Groceries/7.Saffola Gold Oil.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Groceries\\7.Saffola Gold Oil.png",
+      "fileName": "7.Saffola Gold Oil.png"
+    },
+    {
+      "path": "/assets/images/products/Groceries/8.Colgate Advance Protection Toothpaste.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Groceries\\8.Colgate Advance Protection Toothpaste.png",
+      "fileName": "8.Colgate Advance Protection Toothpaste.png"
+    },
+    {
+      "path": "/assets/images/products/Groceries/9.Catch Sprinklers Chat Masala.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Groceries\\9.Catch Sprinklers Chat Masala.png",
+      "fileName": "9.Catch Sprinklers Chat Masala.png"
+    },
+    {
+      "path": "/assets/images/products/Health & Beauty/1.Biossance Oil.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Health & Beauty\\1.Biossance Oil.png",
+      "fileName": "1.Biossance Oil.png"
+    },
+    {
+      "path": "/assets/images/products/Health & Beauty/10.Mykirei hand Wash.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Health & Beauty\\10.Mykirei hand Wash.png",
+      "fileName": "10.Mykirei hand Wash.png"
+    },
+    {
+      "path": "/assets/images/products/Health & Beauty/11.Rahua Classic Conditioner.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Health & Beauty\\11.Rahua Classic Conditioner.png",
+      "fileName": "11.Rahua Classic Conditioner.png"
+    },
+    {
+      "path": "/assets/images/products/Health & Beauty/12.Beauty Society anti acne mask.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Health & Beauty\\12.Beauty Society anti acne mask.png",
+      "fileName": "12.Beauty Society anti acne mask.png"
+    },
+    {
+      "path": "/assets/images/products/Health & Beauty/13.Mistral Lipstick.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Health & Beauty\\13.Mistral Lipstick.png",
+      "fileName": "13.Mistral Lipstick.png"
+    },
+    {
+      "path": "/assets/images/products/Health & Beauty/14.Kylieskin Face Wash.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Health & Beauty\\14.Kylieskin Face Wash.png",
+      "fileName": "14.Kylieskin Face Wash.png"
+    },
+    {
+      "path": "/assets/images/products/Health & Beauty/15.Amala Products.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Health & Beauty\\15.Amala Products.png",
+      "fileName": "15.Amala Products.png"
+    },
+    {
+      "path": "/assets/images/products/Health & Beauty/16.Caudalie Hand and Nail Cream.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Health & Beauty\\16.Caudalie Hand and Nail Cream.png",
+      "fileName": "16.Caudalie Hand and Nail Cream.png"
+    },
+    {
+      "path": "/assets/images/products/Health & Beauty/17.Alkemie Glow Up.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Health & Beauty\\17.Alkemie Glow Up.png",
+      "fileName": "17.Alkemie Glow Up.png"
+    },
+    {
+      "path": "/assets/images/products/Health & Beauty/18.Shiseido Products.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Health & Beauty\\18.Shiseido Products.png",
+      "fileName": "18.Shiseido Products.png"
+    },
+    {
+      "path": "/assets/images/products/Health & Beauty/19.Premium Lipstick.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Health & Beauty\\19.Premium Lipstick.png",
+      "fileName": "19.Premium Lipstick.png"
+    },
+    {
+      "path": "/assets/images/products/Health & Beauty/2.Amorpacific Products.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Health & Beauty\\2.Amorpacific Products.png",
+      "fileName": "2.Amorpacific Products.png"
+    },
+    {
+      "path": "/assets/images/products/Health & Beauty/20.Blemish Elixir.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Health & Beauty\\20.Blemish Elixir.png",
+      "fileName": "20.Blemish Elixir.png"
+    },
+    {
+      "path": "/assets/images/products/Health & Beauty/21.Red Serum and Cream.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Health & Beauty\\21.Red Serum and Cream.png",
+      "fileName": "21.Red Serum and Cream.png"
+    },
+    {
+      "path": "/assets/images/products/Health & Beauty/22.Detol Liquid Hand Wash.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Health & Beauty\\22.Detol Liquid Hand Wash.png",
+      "fileName": "22.Detol Liquid Hand Wash.png"
+    },
+    {
+      "path": "/assets/images/products/Health & Beauty/23.Dove Face Wash.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Health & Beauty\\23.Dove Face Wash.png",
+      "fileName": "23.Dove Face Wash.png"
+    },
+    {
+      "path": "/assets/images/products/Health & Beauty/24.Loreal Kids Extra Gentle Shampoo.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Health & Beauty\\24.Loreal Kids Extra Gentle Shampoo.png",
+      "fileName": "24.Loreal Kids Extra Gentle Shampoo.png"
+    },
+    {
+      "path": "/assets/images/products/Health & Beauty/25.Mario Badescu Skin Care Shampoo.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Health & Beauty\\25.Mario Badescu Skin Care Shampoo.png",
+      "fileName": "25.Mario Badescu Skin Care Shampoo.png"
+    },
+    {
+      "path": "/assets/images/products/Health & Beauty/3.Covergirl Vitalist.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Health & Beauty\\3.Covergirl Vitalist.png",
+      "fileName": "3.Covergirl Vitalist.png"
+    },
+    {
+      "path": "/assets/images/products/Health & Beauty/4.Dr.Alka's Hair Shine.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Health & Beauty\\4.Dr.Alka's Hair Shine.png",
+      "fileName": "4.Dr.Alka's Hair Shine.png"
+    },
+    {
+      "path": "/assets/images/products/Health & Beauty/5.Huda Beauty Nailpolish.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Health & Beauty\\5.Huda Beauty Nailpolish.png",
+      "fileName": "5.Huda Beauty Nailpolish.png"
+    },
+    {
+      "path": "/assets/images/products/Health & Beauty/6.SKin Glow Oil.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Health & Beauty\\6.SKin Glow Oil.png",
+      "fileName": "6.SKin Glow Oil.png"
+    },
+    {
+      "path": "/assets/images/products/Health & Beauty/7.Venus Makeup Product.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Health & Beauty\\7.Venus Makeup Product.png",
+      "fileName": "7.Venus Makeup Product.png"
+    },
+    {
+      "path": "/assets/images/products/Health & Beauty/8.Volition Products.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Health & Beauty\\8.Volition Products.png",
+      "fileName": "8.Volition Products.png"
+    },
+    {
+      "path": "/assets/images/products/Health & Beauty/9.Aniise Cream.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Health & Beauty\\9.Aniise Cream.png",
+      "fileName": "9.Aniise Cream.png"
+    },
+    {
+      "path": "/assets/images/products/Health&Beauty/4.Dr.Alka'sHairShine.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Health&Beauty\\4.Dr.Alka'sHairShine.png",
+      "fileName": "4.Dr.Alka'sHairShine.png"
+    },
+    {
+      "path": "/assets/images/products/hiclipart.com (14).png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\hiclipart.com (14).png",
+      "fileName": "hiclipart.com (14).png"
+    },
+    {
+      "path": "/assets/images/products/hiclipart.com (15).png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\hiclipart.com (15).png",
+      "fileName": "hiclipart.com (15).png"
+    },
+    {
+      "path": "/assets/images/products/hiclipart.com (16).png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\hiclipart.com (16).png",
+      "fileName": "hiclipart.com (16).png"
+    },
+    {
+      "path": "/assets/images/products/hiclipart.com (18).png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\hiclipart.com (18).png",
+      "fileName": "hiclipart.com (18).png"
+    },
+    {
+      "path": "/assets/images/products/Home & Garden/1.The Poinsettia Plant.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Home & Garden\\1.The Poinsettia Plant.png",
+      "fileName": "1.The Poinsettia Plant.png"
+    },
+    {
+      "path": "/assets/images/products/Home & Garden/10.Fiddle-leaf Plant in Bamboo Basket.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Home & Garden\\10.Fiddle-leaf Plant in Bamboo Basket.png",
+      "fileName": "10.Fiddle-leaf Plant in Bamboo Basket.png"
+    },
+    {
+      "path": "/assets/images/products/Home & Garden/11.Beautiful Cactus in Ceramic Cup.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Home & Garden\\11.Beautiful Cactus in Ceramic Cup.png",
+      "fileName": "11.Beautiful Cactus in Ceramic Cup.png"
+    },
+    {
+      "path": "/assets/images/products/Home & Garden/12.Cactus in Japanese Ceramic.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Home & Garden\\12.Cactus in Japanese Ceramic.png",
+      "fileName": "12.Cactus in Japanese Ceramic.png"
+    },
+    {
+      "path": "/assets/images/products/Home & Garden/13.Garden Roses in Blue Vase.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Home & Garden\\13.Garden Roses in Blue Vase.png",
+      "fileName": "13.Garden Roses in Blue Vase.png"
+    },
+    {
+      "path": "/assets/images/products/Home & Garden/14.Hanging Planters with Green Plants.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Home & Garden\\14.Hanging Planters with Green Plants.png",
+      "fileName": "14.Hanging Planters with Green Plants.png"
+    },
+    {
+      "path": "/assets/images/products/Home & Garden/15.Tilandsia Flexuosa in Wood Frame.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Home & Garden\\15.Tilandsia Flexuosa in Wood Frame.png",
+      "fileName": "15.Tilandsia Flexuosa in Wood Frame.png"
+    },
+    {
+      "path": "/assets/images/products/Home & Garden/16.Copper Planter with Mixed Plants.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Home & Garden\\16.Copper Planter with Mixed Plants.png",
+      "fileName": "16.Copper Planter with Mixed Plants.png"
+    },
+    {
+      "path": "/assets/images/products/Home & Garden/17.Molded wax agave in Japanese Planter.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Home & Garden\\17.Molded wax agave in Japanese Planter.png",
+      "fileName": "17.Molded wax agave in Japanese Planter.png"
+    },
+    {
+      "path": "/assets/images/products/Home & Garden/18.Green Vase Doilies.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Home & Garden\\18.Green Vase Doilies.png",
+      "fileName": "18.Green Vase Doilies.png"
+    },
+    {
+      "path": "/assets/images/products/Home & Garden/19.Mammillaria Elongata Cactus.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Home & Garden\\19.Mammillaria Elongata Cactus.png",
+      "fileName": "19.Mammillaria Elongata Cactus.png"
+    },
+    {
+      "path": "/assets/images/products/Home & Garden/2.Devil's Ivy Indoor Plant.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Home & Garden\\2.Devil's Ivy Indoor Plant.png",
+      "fileName": "2.Devil's Ivy Indoor Plant.png"
+    },
+    {
+      "path": "/assets/images/products/Home & Garden/20.Setgreen Plastic Pot 25CMS (Blue).png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Home & Garden\\20.Setgreen Plastic Pot 25CMS (Blue).png",
+      "fileName": "20.Setgreen Plastic Pot 25CMS (Blue).png"
+    },
+    {
+      "path": "/assets/images/products/Home & Garden/21.Grass Pot 15.5 inch.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Home & Garden\\21.Grass Pot 15.5 inch.png",
+      "fileName": "21.Grass Pot 15.5 inch.png"
+    },
+    {
+      "path": "/assets/images/products/Home & Garden/22.Euphorbia Leuconeura with Orange Pot.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Home & Garden\\22.Euphorbia Leuconeura with Orange Pot.png",
+      "fileName": "22.Euphorbia Leuconeura with Orange Pot.png"
+    },
+    {
+      "path": "/assets/images/products/Home & Garden/23.Euphorbia Lactea in Round Clay Pot.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Home & Garden\\23.Euphorbia Lactea in Round Clay Pot.png",
+      "fileName": "23.Euphorbia Lactea in Round Clay Pot.png"
+    },
+    {
+      "path": "/assets/images/products/Home & Garden/24.Mixed Succulent in Glass Jar.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Home & Garden\\24.Mixed Succulent in Glass Jar.png",
+      "fileName": "24.Mixed Succulent in Glass Jar.png"
+    },
+    {
+      "path": "/assets/images/products/Home & Garden/25.Painted Leaf Begonia Plant.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Home & Garden\\25.Painted Leaf Begonia Plant.png",
+      "fileName": "25.Painted Leaf Begonia Plant.png"
+    },
+    {
+      "path": "/assets/images/products/Home & Garden/26.Areca Palm in Clay Pot.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Home & Garden\\26.Areca Palm in Clay Pot.png",
+      "fileName": "26.Areca Palm in Clay Pot.png"
+    },
+    {
+      "path": "/assets/images/products/Home & Garden/27.Black Coral Sansevieria Plant.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Home & Garden\\27.Black Coral Sansevieria Plant.png",
+      "fileName": "27.Black Coral Sansevieria Plant.png"
+    },
+    {
+      "path": "/assets/images/products/Home & Garden/3.Aloe Vera Plant.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Home & Garden\\3.Aloe Vera Plant.png",
+      "fileName": "3.Aloe Vera Plant.png"
+    },
+    {
+      "path": "/assets/images/products/Home & Garden/4.Satin Pothos Plant.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Home & Garden\\4.Satin Pothos Plant.png",
+      "fileName": "4.Satin Pothos Plant.png"
+    },
+    {
+      "path": "/assets/images/products/Home & Garden/5.Japanese Maple Plant.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Home & Garden\\5.Japanese Maple Plant.png",
+      "fileName": "5.Japanese Maple Plant.png"
+    },
+    {
+      "path": "/assets/images/products/Home & Garden/6.Green Leaf Plant in Glass Jar.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Home & Garden\\6.Green Leaf Plant in Glass Jar.png",
+      "fileName": "6.Green Leaf Plant in Glass Jar.png"
+    },
+    {
+      "path": "/assets/images/products/Home & Garden/7.Spider Plant in Round Glass.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Home & Garden\\7.Spider Plant in Round Glass.png",
+      "fileName": "7.Spider Plant in Round Glass.png"
+    },
+    {
+      "path": "/assets/images/products/Home & Garden/8.Chamaedorea Elegans Plants with Ceramic Pot.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Home & Garden\\8.Chamaedorea Elegans Plants with Ceramic Pot.png",
+      "fileName": "8.Chamaedorea Elegans Plants with Ceramic Pot.png"
+    },
+    {
+      "path": "/assets/images/products/Home & Garden/9.Houseplant in Japanese Pot.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Home & Garden\\9.Houseplant in Japanese Pot.png",
+      "fileName": "9.Houseplant in Japanese Pot.png"
+    },
+    {
+      "path": "/assets/images/products/Home&Garden/2.Devil'sIvyIndoorPlant.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Home&Garden\\2.Devil'sIvyIndoorPlant.png",
+      "fileName": "2.Devil'sIvyIndoorPlant.png"
+    },
+    {
+      "path": "/assets/images/products/imagelipstick.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\imagelipstick.png",
+      "fileName": "imagelipstick.png"
+    },
+    {
+      "path": "/assets/images/products/imagemakeup.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\imagemakeup.png",
+      "fileName": "imagemakeup.png"
+    },
+    {
+      "path": "/assets/images/products/imageshoes.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\imageshoes.png",
+      "fileName": "imageshoes.png"
+    },
+    {
+      "path": "/assets/images/products/imagesmart-watch.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\imagesmart-watch.png",
+      "fileName": "imagesmart-watch.png"
+    },
+    {
+      "path": "/assets/images/products/imagetree.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\imagetree.png",
+      "fileName": "imagetree.png"
+    },
+    {
+      "path": "/assets/images/products/jacket.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\jacket.png",
+      "fileName": "jacket.png"
+    },
+    {
+      "path": "/assets/images/products/jeans-pant.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\jeans-pant.png",
+      "fileName": "jeans-pant.png"
+    },
+    {
+      "path": "/assets/images/products/kisspng-rolex-submariner-rolex-sea-dweller-rolex-datejust-rolex-watch-png-transparent-image-5a780226cb3f98.5864291415178143108325.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\kisspng-rolex-submariner-rolex-sea-dweller-rolex-datejust-rolex-watch-png-transparent-image-5a780226cb3f98.5864291415178143108325.png",
+      "fileName": "kisspng-rolex-submariner-rolex-sea-dweller-rolex-datejust-rolex-watch-png-transparent-image-5a780226cb3f98.5864291415178143108325.png"
+    },
+    {
+      "path": "/assets/images/products/ladies-dress.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\ladies-dress.png",
+      "fileName": "ladies-dress.png"
+    },
+    {
+      "path": "/assets/images/products/ladies-dress2.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\ladies-dress2.png",
+      "fileName": "ladies-dress2.png"
+    },
+    {
+      "path": "/assets/images/products/lipsticks.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\lipsticks.png",
+      "fileName": "lipsticks.png"
+    },
+    {
+      "path": "/assets/images/products/make-up.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\make-up.png",
+      "fileName": "make-up.png"
+    },
+    {
+      "path": "/assets/images/products/makeup.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\makeup.png",
+      "fileName": "makeup.png"
+    },
+    {
+      "path": "/assets/images/products/Music/1.6String Cheap Electric Guitar.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\1.6String Cheap Electric Guitar.png",
+      "fileName": "1.6String Cheap Electric Guitar.png"
+    },
+    {
+      "path": "/assets/images/products/Music/10.Buffet 400 Saxophone.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\10.Buffet 400 Saxophone.png",
+      "fileName": "10.Buffet 400 Saxophone.png"
+    },
+    {
+      "path": "/assets/images/products/Music/11.Yamaha Electric Violin.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\11.Yamaha Electric Violin.png",
+      "fileName": "11.Yamaha Electric Violin.png"
+    },
+    {
+      "path": "/assets/images/products/Music/12.Cheap Ukulele Offers.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\12.Cheap Ukulele Offers.png",
+      "fileName": "12.Cheap Ukulele Offers.png"
+    },
+    {
+      "path": "/assets/images/products/Music/13.Cordoba Classical Guitar.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\13.Cordoba Classical Guitar.png",
+      "fileName": "13.Cordoba Classical Guitar.png"
+    },
+    {
+      "path": "/assets/images/products/Music/14.Little Percussion Instruments.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\14.Little Percussion Instruments.png",
+      "fileName": "14.Little Percussion Instruments.png"
+    },
+    {
+      "path": "/assets/images/products/Music/15.Pearl Snare Drum.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\15.Pearl Snare Drum.png",
+      "fileName": "15.Pearl Snare Drum.png"
+    },
+    {
+      "path": "/assets/images/products/Music/16.Yamaha Piano.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\16.Yamaha Piano.png",
+      "fileName": "16.Yamaha Piano.png"
+    },
+    {
+      "path": "/assets/images/products/Music/17.Roland Piano.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\17.Roland Piano.png",
+      "fileName": "17.Roland Piano.png"
+    },
+    {
+      "path": "/assets/images/products/Music/18.Fender 4string Bass Guitar.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\18.Fender 4string Bass Guitar.png",
+      "fileName": "18.Fender 4string Bass Guitar.png"
+    },
+    {
+      "path": "/assets/images/products/Music/19.Changer Harmonium.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\19.Changer Harmonium.png",
+      "fileName": "19.Changer Harmonium.png"
+    },
+    {
+      "path": "/assets/images/products/Music/2.Affordable 4 String Tenor Banjo.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\2.Affordable 4 String Tenor Banjo.png",
+      "fileName": "2.Affordable 4 String Tenor Banjo.png"
+    },
+    {
+      "path": "/assets/images/products/Music/20.Roland V Drums.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\20.Roland V Drums.png",
+      "fileName": "20.Roland V Drums.png"
+    },
+    {
+      "path": "/assets/images/products/Music/21.Ibanez GIO 6string Guitar.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\21.Ibanez GIO 6string Guitar.png",
+      "fileName": "21.Ibanez GIO 6string Guitar.png"
+    },
+    {
+      "path": "/assets/images/products/Music/25.Turkish Mandolin.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\25.Turkish Mandolin.png",
+      "fileName": "25.Turkish Mandolin.png"
+    },
+    {
+      "path": "/assets/images/products/Music/26.Afforable Turkish Oud.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\26.Afforable Turkish Oud.png",
+      "fileName": "26.Afforable Turkish Oud.png"
+    },
+    {
+      "path": "/assets/images/products/Music/27.Yamaha Acoustic Guitar.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\27.Yamaha Acoustic Guitar.png",
+      "fileName": "27.Yamaha Acoustic Guitar.png"
+    },
+    {
+      "path": "/assets/images/products/Music/28.Roland Full Set V Drums.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\28.Roland Full Set V Drums.png",
+      "fileName": "28.Roland Full Set V Drums.png"
+    },
+    {
+      "path": "/assets/images/products/Music/29.Roland Jupiter-X Synthesizer.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\29.Roland Jupiter-X Synthesizer.png",
+      "fileName": "29.Roland Jupiter-X Synthesizer.png"
+    },
+    {
+      "path": "/assets/images/products/Music/3.Affordable Indian Sitar.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\3.Affordable Indian Sitar.png",
+      "fileName": "3.Affordable Indian Sitar.png"
+    },
+    {
+      "path": "/assets/images/products/Music/30.Affordable Cordoba Classical Guitar.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\30.Affordable Cordoba Classical Guitar.png",
+      "fileName": "30.Affordable Cordoba Classical Guitar.png"
+    },
+    {
+      "path": "/assets/images/products/Music/31.Turkish Long Neck Baglama.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\31.Turkish Long Neck Baglama.png",
+      "fileName": "31.Turkish Long Neck Baglama.png"
+    },
+    {
+      "path": "/assets/images/products/Music/32.Mahalo Soprano Ukuleles.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\32.Mahalo Soprano Ukuleles.png",
+      "fileName": "32.Mahalo Soprano Ukuleles.png"
+    },
+    {
+      "path": "/assets/images/products/Music/33.Yamaha YAS-280 Saxophone.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\33.Yamaha YAS-280 Saxophone.png",
+      "fileName": "33.Yamaha YAS-280 Saxophone.png"
+    },
+    {
+      "path": "/assets/images/products/Music/34.Eastman Westburry Cello.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\34.Eastman Westburry Cello.png",
+      "fileName": "34.Eastman Westburry Cello.png"
+    },
+    {
+      "path": "/assets/images/products/Music/4.Detailed Painted Acoustic Guitar.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\4.Detailed Painted Acoustic Guitar.png",
+      "fileName": "4.Detailed Painted Acoustic Guitar.png"
+    },
+    {
+      "path": "/assets/images/products/Music/5.Jackson 6String Floyd Rose.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\5.Jackson 6String Floyd Rose.png",
+      "fileName": "5.Jackson 6String Floyd Rose.png"
+    },
+    {
+      "path": "/assets/images/products/Music/6.Jackson 6String Fixed Bridge.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\6.Jackson 6String Fixed Bridge.png",
+      "fileName": "6.Jackson 6String Fixed Bridge.png"
+    },
+    {
+      "path": "/assets/images/products/Music/7.Royal Harp.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\7.Royal Harp.png",
+      "fileName": "7.Royal Harp.png"
+    },
+    {
+      "path": "/assets/images/products/Music/8.Mid Range Tabla.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\8.Mid Range Tabla.png",
+      "fileName": "8.Mid Range Tabla.png"
+    },
+    {
+      "path": "/assets/images/products/Music/9.Mid Range Dhol.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Music\\9.Mid Range Dhol.png",
+      "fileName": "9.Mid Range Dhol.png"
+    },
+    {
+      "path": "/assets/images/products/Orange 1kg 1.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Orange 1kg 1.png",
+      "fileName": "Orange 1kg 1.png"
+    },
+    {
+      "path": "/assets/images/products/paper-bag.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\paper-bag.png",
+      "fileName": "paper-bag.png"
+    },
+    {
+      "path": "/assets/images/products/rayban.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\rayban.png",
+      "fileName": "rayban.png"
+    },
+    {
+      "path": "/assets/images/products/Rectangle 142.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Rectangle 142.png",
+      "fileName": "Rectangle 142.png"
+    },
+    {
+      "path": "/assets/images/products/Red apple 1kg 1.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\Red apple 1kg 1.png",
+      "fileName": "Red apple 1kg 1.png"
+    },
+    {
+      "path": "/assets/images/products/red-shoe.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\red-shoe.png",
+      "fileName": "red-shoe.png"
+    },
+    {
+      "path": "/assets/images/products/ring-1.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\ring-1.png",
+      "fileName": "ring-1.png"
+    },
+    {
+      "path": "/assets/images/products/sdafdsfdsfsdaf.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\sdafdsfdsfsdaf.png",
+      "fileName": "sdafdsfdsfsdaf.png"
+    },
+    {
+      "path": "/assets/images/products/shoes-1.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\shoes-1.png",
+      "fileName": "shoes-1.png"
+    },
+    {
+      "path": "/assets/images/products/smartwatch-2.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\smartwatch-2.png",
+      "fileName": "smartwatch-2.png"
+    },
+    {
+      "path": "/assets/images/products/smartwatch.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\smartwatch.png",
+      "fileName": "smartwatch.png"
+    },
+    {
+      "path": "/assets/images/products/t-shirt-1.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\t-shirt-1.png",
+      "fileName": "t-shirt-1.png"
+    },
+    {
+      "path": "/assets/images/products/t-shirt2.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\t-shirt2.png",
+      "fileName": "t-shirt2.png"
+    },
+    {
+      "path": "/assets/images/products/t-shirt6.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\products\\t-shirt6.png",
+      "fileName": "t-shirt6.png"
+    },
+    {
+      "path": "/assets/images/promotion/offer-2.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\promotion\\offer-2.png",
+      "fileName": "offer-2.png"
+    },
+    {
+      "path": "/assets/images/promotion/offer-3.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\promotion\\offer-3.png",
+      "fileName": "offer-3.png"
+    },
+    {
+      "path": "/assets/images/promotion/offer-4.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\promotion\\offer-4.png",
+      "fileName": "offer-4.png"
+    },
+    {
+      "path": "/assets/images/shops/hatil.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\shops\\hatil.png",
+      "fileName": "hatil.png"
+    },
+    {
+      "path": "/assets/images/shops/herman miller.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\shops\\herman miller.png",
+      "fileName": "herman miller.png"
+    },
+    {
+      "path": "/assets/images/shops/otobi.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\shops\\otobi.png",
+      "fileName": "otobi.png"
+    },
+    {
+      "path": "/assets/images/shops/steelcase.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\shops\\steelcase.png",
+      "fileName": "steelcase.png"
+    },
+    {
+      "path": "/assets/images/shops/zeiss.png",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\images\\shops\\zeiss.png",
+      "fileName": "zeiss.png"
+    },
+    {
+      "path": "/assets/white-fav.svg",
+      "absolutePath": "E:\\chitralhive\\chitralhive\\public\\assets\\white-fav.svg",
+      "fileName": "white-fav.svg"
+    }
+  ],
+  "errors": []
+}

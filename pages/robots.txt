@@ -1,0 +1,94 @@
+# Robots.txt for Chitral Hive - Optimized for Search Engine Crawling
+
+# Default rules for all crawlers
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /checkout
+Disallow: /cart
+Disallow: /profile
+Disallow: /orders
+Disallow: /login
+Disallow: /signup
+Disallow: /forgot-password
+Disallow: /reset-password
+Disallow: /wish-list
+Disallow: /address/
+Disallow: /increment.js
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+Disallow: /*?*page=
+
+# Allow important pages
+Allow: /products
+Allow: /categories
+Allow: /brands
+Allow: /about-us
+Allow: /contact-us
+Allow: /privacy-policy
+Allow: /return-policy
+
+# Googlebot - Full access for better indexing
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /checkout
+Disallow: /cart
+Disallow: /profile
+Disallow: /orders
+
+# Googlebot-Image - Allow image crawling
+User-agent: Googlebot-Image
+Allow: /media/
+Allow: /assets/images/
+Disallow: /
+
+# Bingbot - Full access
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /checkout
+Disallow: /cart
+Disallow: /profile
+Disallow: /orders
+
+# Slurp (Yahoo) - Full access
+User-agent: Slurp
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+
+# DuckDuckBot - Full access
+User-agent: DuckDuckBot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+
+# Baiduspider - Full access
+User-agent: Baiduspider
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+
+# Yandex - Full access
+User-agent: Yandex
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+
+# Crawl-delay (optional - helps prevent server overload)
+User-agent: *
+Crawl-delay: 1
+
+# Sitemap locations
+Sitemap: https://chitralhive.com/sitemap.xml
