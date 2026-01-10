@@ -44,20 +44,20 @@ const BlogPostPage = ({ post, allPosts }) => {
     "dateModified": post.modifiedTime || post.publishedTime,
     "author": {
       "@type": "Organization",
-      "name": "Chitral Hive",
-      "url": "https://chitralhive.com"
+      "name": "Meerab's Wardrobe",
+      "url": process.env.NEXT_PUBLIC_URL || "https://meerabs.com"
     },
     "publisher": {
       "@type": "Organization",
-      "name": "Chitral Hive",
+      "name": "Meerab's Wardrobe",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://chitralhive.com/images/logo.png"
+        "url": `${process.env.NEXT_PUBLIC_URL || "https://meerabs.com"}/images/logo.png`
       }
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://chitralhive.com/blog/${post.slug}`
+      "@id": `${process.env.NEXT_PUBLIC_URL || "https://meerabs.com"}/blog/${post.slug}`
     },
     "articleSection": post.section,
     "keywords": post.tags?.join(", ") || ""
@@ -70,11 +70,11 @@ const BlogPostPage = ({ post, allPosts }) => {
         description={post.description}
         metaTitle={post.metaTitle || post.title}
         keywords={post.tags?.join(", ") || ""}
-        canonical={`https://chitralhive.com/blog/${post.slug}`}
+        canonical={`${process.env.NEXT_PUBLIC_URL || "https://meerabs.com"}/blog/${post.slug}`}
         type="article"
         publishedTime={post.publishedTime}
         modifiedTime={post.modifiedTime || post.publishedTime}
-        author="Chitral Hive"
+        author="Meerab's Wardrobe"
         section={post.section}
         tags={post.tags}
         image={post.imgUrl}
@@ -98,7 +98,7 @@ const BlogPostPage = ({ post, allPosts }) => {
               </Box>
               <Box sx={{ display: "flex", alignItems: "center", color: "text.secondary" }}>
                 <Person sx={{ mr: 1, fontSize: "1rem" }} />
-                <Typography variant="body2">Chitral Hive</Typography>
+                <Typography variant="body2">Meerab's Wardrobe</Typography>
               </Box>
               {post.section && (
                 <Chip label={post.section} size="small" color="primary" />

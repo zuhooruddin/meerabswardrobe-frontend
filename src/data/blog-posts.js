@@ -1,21 +1,21 @@
 // Blog posts data with SEO-optimized content
 export const blogPosts = [
   {
-    slug: "complete-guide-to-chitrali-products",
-    title: "Complete Guide to Authentic Chitrali Products: What Makes Them Special",
-    description: "Discover the unique characteristics of Chitrali products including dry fruits, honey, herbs, and traditional crafts. Learn why Chitrali products are prized for their quality and authenticity.",
-    metaTitle: "Complete Guide to Chitrali Products - Quality & Authenticity",
-    imgUrl: "/images/blog/chitrali-products-guide.jpg",
+    slug: "complete-guide-to-womens-fashion",
+    title: "Complete Guide to Women's Fashion: Style Tips & Trends",
+    description: "Discover the latest fashion trends, styling tips, and wardrobe essentials. Learn how to build a versatile wardrobe with quality women's clothing that suits your style.",
+    metaTitle: "Complete Guide to Women's Fashion - Style Tips & Trends",
+    imgUrl: "/images/blog/womens-fashion-guide.jpg",
     publishedTime: "2024-12-15T10:00:00Z",
     modifiedTime: "2024-12-15T10:00:00Z",
-    section: "Product Guides",
+    section: "Fashion Guides",
     tags: [
-      "Chitrali products guide",
-      "authentic Chitrali products",
-      "Chitrali dry fruits",
-      "Chitrali honey",
-      "Chitrali herbs",
-      "buy Chitrali products online"
+      "women's fashion guide",
+      "fashion trends",
+      "styling tips",
+      "wardrobe essentials",
+      "women's clothing",
+      "buy fashion online"
     ],
     content: `
       <h2>Introduction to Chitrali Products</h2>

@@ -38,7 +38,7 @@ export default async function handler(req, res) {
     
     // Final fallback
     if (!baseUrl) {
-      baseUrl = 'https://chitralhive.com';
+      baseUrl = process.env.NEXT_PUBLIC_URL || 'https://meerabs.com';
     }
   }
   

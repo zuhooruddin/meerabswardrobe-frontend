@@ -29,7 +29,7 @@ const ProductSearchResult = (props) => {
   const router = useRouter();
   const handleGoBack = () => router.back();
 
-  const baseUrl = process.env.NEXT_PUBLIC_URL || "https://chitralhive.com";
+  const baseUrl = process.env.NEXT_PUBLIC_URL || "https://meerabs.com";
   const imgbaseurl = process.env.NEXT_PUBLIC_IMAGE_BASE_API_URL || "";
 
   // Generate structured data for category page
@@ -40,12 +40,12 @@ const ProductSearchResult = (props) => {
     "name": categoryDetail['name'],
     "description": categoryDetail['metaDescription'] && categoryDetail['metaDescription'] != "undefined" 
       ? categoryDetail['metaDescription'] 
-      : `Shop authentic ${categoryDetail['name']} from Chitral Hive in Pakistan. Browse our wide collection of Chitrali ${categoryDetail['name']} products available for delivery across Pakistan.`,
+      : `Shop ${categoryDetail['name']} from Meerab's Wardrobe in Europe. Browse our wide collection of premium women's ${categoryDetail['name']} available for delivery across Europe.`,
     "url": `${baseUrl}/category/${categoryDetail['slug'] || categoryDetail['id']}`,
     "mainEntity": {
       "@type": "ItemList",
       "name": `${categoryDetail['name']} Products`,
-      "description": `Browse our collection of ${categoryDetail['name']} products from Chitral Hive`,
+      "description": `Browse our collection of ${categoryDetail['name']} products from Meerab's Wardrobe`,
       "numberOfItems": categoryDetail['products']?.length || 0
     },
     "breadcrumb": {
@@ -78,10 +78,10 @@ const ProductSearchResult = (props) => {
       <StructuredData data={categoryStructuredData} />
       <SEO 
         title={categoryDetail['name']}
-        description={categoryDetail['metaDescription'] && categoryDetail['metaDescription'] != "undefined" ? categoryDetail['metaDescription'] : `Shop authentic ${categoryDetail['name']} from Chitral Hive in Pakistan. Browse our wide collection of Chitrali ${categoryDetail['name']} products. Order online and get delivered to your doorstep across all major cities in Pakistan including Karachi, Lahore, Islamabad, Rawalpindi, Peshawar, and more.`}
-        metaTitle={categoryDetail['metaTitle'] && categoryDetail['metaTitle'] != "undefined" ? categoryDetail['metaTitle'] : `Buy ${categoryDetail['name']} Online in Pakistan | Chitral Hive`}
-        keywords={`${categoryDetail['name']} Pakistan, Chitrali ${categoryDetail['name']}, buy ${categoryDetail['name']} online Pakistan, Chitral Hive, authentic Chitrali products, ${categoryDetail['name']} price in Pakistan, ${categoryDetail['name']} Karachi, ${categoryDetail['name']} Lahore, ${categoryDetail['name']} Islamabad, KPK ${categoryDetail['name']}`}
-        canonical={`https://chitralhive.com/category/${categoryDetail['slug'] || categoryDetail['id']}`}
+        description={categoryDetail['metaDescription'] && categoryDetail['metaDescription'] != "undefined" ? categoryDetail['metaDescription'] : `Shop ${categoryDetail['name']} from Meerab's Wardrobe in Europe. Browse our wide collection of premium women's ${categoryDetail['name']}. Order online and get delivered to your doorstep across all European countries including UK, Germany, France, Italy, Spain, and more.`}
+        metaTitle={categoryDetail['metaTitle'] && categoryDetail['metaTitle'] != "undefined" ? categoryDetail['metaTitle'] : `Buy ${categoryDetail['name']} Online in Europe | Meerab's Wardrobe`}
+        keywords={`${categoryDetail['name']} Europe, women's ${categoryDetail['name']}, buy ${categoryDetail['name']} online Europe, Meerab's Wardrobe, premium women's fashion, ${categoryDetail['name']} price in Europe, ${categoryDetail['name']} UK, ${categoryDetail['name']} Germany, ${categoryDetail['name']} France, ${categoryDetail['name']} Italy`}
+        canonical={`${baseUrl}/category/${categoryDetail['slug'] || categoryDetail['id']}`}
         type="website"
         category={categoryDetail['name']}
       />

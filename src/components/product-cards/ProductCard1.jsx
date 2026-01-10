@@ -454,8 +454,8 @@ const ProductCard1 = ({
               <Image
                 width={300}
                 height={300}
-                alt={name ? `${name} - Buy Authentic Chitrali Products Online at Chitral Hive` : "Chitrali Product"}
-                title={name || "Chitrali Product"}
+                alt={name ? `${name} - Buy Premium Women's Clothing Online at Meerab's Wardrobe` : "Women's Clothing"}
+                title={name || "Women's Clothing"}
                 objectFit="contain"
                 layout="intrinsic"
                 src={imgbaseurl + image}

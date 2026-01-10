@@ -11,8 +11,8 @@ const BazaarImage = styled(({ src, alt = "", width, height, objectFit = "cover",
   // Otherwise fall back to regular img tag for external images that can't be optimized
   const isExternal = normalizedSrc && (normalizedSrc.startsWith('http://') || normalizedSrc.startsWith('https://'));
   const canOptimize = !isExternal || (
-    normalizedSrc.includes('api.chitralhive.com') || 
-    normalizedSrc.includes('chitralhive.com') ||
+    normalizedSrc.includes('api.meerabs.com') || 
+    normalizedSrc.includes('meerabs.com') ||
     normalizedSrc.startsWith('/')
   );
 

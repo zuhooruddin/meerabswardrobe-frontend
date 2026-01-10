@@ -58,9 +58,9 @@ const Section12 = dynamic(() => import("pages-sections/market-2/Section12"), {
 
 // Generate structured data for homepage
 const getHomePageStructuredData = (generalSetting) => {
-  const baseUrl = "https://chitralhive.com";
-  const siteName = generalSetting && generalSetting.length > 0 ? generalSetting[0].site_name : "Chitral Hive";
-  const siteDescription = generalSetting && generalSetting.length > 0 ? generalSetting[0].site_description : "Shop authentic Chitrali products online at Chitral Hive";
+  const baseUrl = process.env.NEXT_PUBLIC_URL || "https://meerabs.com";
+  const siteName = generalSetting && generalSetting.length > 0 ? generalSetting[0].site_name : "Meerab's Wardrobe";
+  const siteDescription = generalSetting && generalSetting.length > 0 ? generalSetting[0].site_description : "Shop premium women's clothing online in Europe at Meerab's Wardrobe";
   
   return {
     "@context": "https://schema.org",
@@ -78,9 +78,9 @@ const getHomePageStructuredData = (generalSetting) => {
         },
         "description": siteDescription,
         "sameAs": [
-          "https://www.facebook.com/chitralhive",
-          "https://www.instagram.com/chitralhive",
-          "https://twitter.com/chitralhive"
+          "https://www.facebook.com/meerabswardrobe",
+          "https://www.instagram.com/meerabswardrobe",
+          "https://twitter.com/meerabswardrobe"
         ],
         "contactPoint": {
           "@type": "ContactPoint",
@@ -88,16 +88,15 @@ const getHomePageStructuredData = (generalSetting) => {
           "contactType": "Customer Service",
           "areaServed": {
             "@type": "Country",
-            "name": "Pakistan"
+            "name": "Europe"
           },
-          "availableLanguage": ["en", "ur", "en-PK", "ur-PK"]
+          "availableLanguage": ["en", "en-GB", "en-DE", "en-FR", "en-IT", "en-ES"]
         },
         "address": {
           "@type": "PostalAddress",
-          "addressLocality": "Chitral",
-          "addressRegion": "Khyber Pakhtunkhwa",
-          "postalCode": "17200",
-          "addressCountry": "PK"
+          "addressLocality": "Europe",
+          "addressRegion": "Europe",
+          "addressCountry": "EU"
         }
       },
       {
@@ -110,17 +109,17 @@ const getHomePageStructuredData = (generalSetting) => {
         "telephone": "+92-323-9119309",
         "address": {
           "@type": "PostalAddress",
-          "addressLocality": "Chitral",
-          "addressRegion": "Khyber Pakhtunkhwa",
-          "addressCountry": "PK"
+          "addressLocality": "Europe",
+          "addressRegion": "Europe",
+          "addressCountry": "EU"
         },
         "geo": {
           "@type": "GeoCoordinates",
-          "latitude": "35.8514",
-          "longitude": "71.7864"
+          "latitude": "50.5",
+          "longitude": "10.5"
         },
         "priceRange": "$$",
-        "currenciesAccepted": "PKR",
+        "currenciesAccepted": "EUR",
         "paymentAccepted": "Cash, Credit Card, Debit Card, Bank Transfer",
         "openingHoursSpecification": {
           "@type": "OpeningHoursSpecification",
@@ -157,38 +156,38 @@ const getHomePageStructuredData = (generalSetting) => {
         "mainEntity": [
           {
             "@type": "WebPage",
-            "@id": `${baseUrl}/category/chitrali-honey#webpage`,
-            "url": `${baseUrl}/category/chitrali-honey`,
-            "name": "Chitrali Products - Shop All Products",
-            "description": "Browse our complete collection of authentic Chitrali products including dry fruits, honey, herbs, spices, and traditional items from Chitral, Pakistan."
+            "@id": `${baseUrl}/category/womens-clothing#webpage`,
+            "url": `${baseUrl}/category/womens-clothing`,
+            "name": "Women's Clothing - Shop All Products",
+            "description": "Browse our complete collection of premium women's clothing including dresses, tops, bottoms, traditional wear, and contemporary fashion for the European market."
           },
           {
             "@type": "WebPage",
-            "@id": `${baseUrl}/category/chitrali-dry-fruits#webpage`,
-            "url": `${baseUrl}/category/chitrali-dry-fruits`,
-            "name": "Product Categories - Chitrali Products",
-            "description": "Explore all categories of Chitrali products including dry fruits, honey, herbs, spices, nuts, and more authentic items from Chitral."
+            "@id": `${baseUrl}/category/womens-fashion#webpage`,
+            "url": `${baseUrl}/category/womens-fashion`,
+            "name": "Product Categories - Women's Fashion",
+            "description": "Explore all categories of women's clothing including dresses, tops, bottoms, traditional wear, and contemporary fashion available in Europe."
           },
           {
             "@type": "WebPage",
             "@id": `${baseUrl}/brands#webpage`,
             "url": `${baseUrl}/brands`,
-            "name": "Brands - Chitral Hive",
-            "description": "Discover trusted brands and authentic Chitrali product manufacturers available at Chitral Hive."
+            "name": "Brands - Meerab's Wardrobe",
+            "description": "Discover trusted brands and premium women's fashion designers available at Meerab's Wardrobe."
           },
           {
             "@type": "WebPage",
             "@id": `${baseUrl}/about-us#webpage`,
             "url": `${baseUrl}/about-us`,
-            "name": "About Us - Chitral Hive",
-            "description": "Learn about Chitral Hive, your trusted source for authentic Chitrali products delivered across Pakistan."
+            "name": "About Us - Meerab's Wardrobe",
+            "description": "Learn about Meerab's Wardrobe, your trusted source for premium women's clothing delivered across Europe."
           },
           {
             "@type": "WebPage",
             "@id": `${baseUrl}/contact-us#webpage`,
             "url": `${baseUrl}/contact-us`,
-            "name": "Contact Us - Chitral Hive",
-            "description": "Get in touch with Chitral Hive for inquiries, orders, and customer support. We're here to help you find the best Chitrali products."
+            "name": "Contact Us - Meerab's Wardrobe",
+            "description": "Get in touch with Meerab's Wardrobe for inquiries, orders, and customer support. We're here to help you find the best women's fashion."
           }
         ]
       },
@@ -202,7 +201,7 @@ const getHomePageStructuredData = (generalSetting) => {
             "@type": "SiteNavigationElement",
             "name": "Products",
             "url": `${baseUrl}/products`,
-            "description": "Shop all Chitrali products"
+            "description": "Shop all women's clothing"
           },
           {
             "@type": "SiteNavigationElement",
@@ -218,35 +217,35 @@ const getHomePageStructuredData = (generalSetting) => {
           },
           {
             "@type": "SiteNavigationElement",
-            "name": "Chitrali Products",
-            "url": `${baseUrl}/category/chitrali-products`,
-            "description": "Authentic Chitrali products from Chitral, Pakistan"
+            "name": "Women's Clothing",
+            "url": `${baseUrl}/category/womens-clothing`,
+            "description": "Premium women's clothing and fashion from Meerab's Wardrobe"
           },
           {
             "@type": "SiteNavigationElement",
             "name": "Dry Fruits",
             "url": `${baseUrl}/category/dry-fruits`,
-            "description": "Premium Chitrali dry fruits and nuts"
+            "description": "Premium women's fashion and clothing"
           },
           {
             "@type": "SiteNavigationElement",
             "name": "About Us",
             "url": `${baseUrl}/about-us`,
-            "description": "Learn about Chitral Hive"
+            "description": "Learn about Meerab's Wardrobe"
           },
           {
             "@type": "SiteNavigationElement",
             "name": "Contact Us",
             "url": `${baseUrl}/contact-us`,
-            "description": "Contact Chitral Hive"
+            "description": "Contact Meerab's Wardrobe"
           }
         ]
       },
       {
         "@type": "ItemList",
         "@id": `${baseUrl}/#itemlist`,
-        "name": "Featured Chitrali Products",
-        "description": "Browse our collection of authentic Chitrali products",
+        "name": "Featured Women's Clothing",
+        "description": "Browse our collection of premium women's clothing",
         "url": `${baseUrl}/products`
       },
       {
@@ -255,18 +254,18 @@ const getHomePageStructuredData = (generalSetting) => {
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "What are Chitrali products?",
+            "name": "What is Meerab's Wardrobe?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Chitrali products are authentic, traditional items from Chitral, Khyber Pakhtunkhwa, Pakistan. These include handmade crafts, local specialties, traditional foods, and unique cultural products that represent the rich heritage of Chitral. Available for purchase online across Pakistan."
+              "text": "Meerab's Wardrobe offers premium women's clothing and fashion items. Our collection includes elegant dresses, trendy tops, stylish bottoms, traditional wear, and contemporary fashion pieces. Available for purchase online across Europe."
             }
           },
           {
             "@type": "Question",
-            "name": "Do you ship Chitrali products nationwide in Pakistan?",
+            "name": "Do you ship women's clothing across Europe?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, Chitral Hive delivers authentic Chitrali products to your doorstep across all major cities in Pakistan including Karachi, Lahore, Islamabad, Rawalpindi, Peshawar, Multan, Faisalabad, Quetta, and more. We ensure safe packaging and timely delivery of all orders."
+              "text": "Yes, Meerab's Wardrobe delivers premium women's clothing to your doorstep across all European countries including UK, Germany, France, Italy, Spain, Netherlands, Belgium, Austria, and more. We ensure safe packaging and timely delivery of all orders."
             }
           },
           {
@@ -274,7 +273,7 @@ const getHomePageStructuredData = (generalSetting) => {
             "name": "Are the products authentic?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, all products at Chitral Hive are 100% authentic and sourced directly from Chitral. We work with local artisans and suppliers to bring you genuine Chitrali products."
+              "text": "Yes, all products at Meerab's Wardrobe are 100% authentic and quality-checked. We work with trusted suppliers to bring you premium women's fashion."
             }
           }
         ]
@@ -317,11 +316,11 @@ const IndexPage = (props) => {
       footerData={null} // Can be passed from props if available
     >
       <SEO
-        title={GeneralSettingMemo&&GeneralSettingMemo.length>0?GeneralSettingMemo[0].site_name:'Discover Authentic Chitrali Products - Chitral Hive'}
-        description={GeneralSettingMemo&&GeneralSettingMemo.length>0?GeneralSettingMemo[0].site_description:'Shop authentic Chitrali products online in Pakistan. Premium dry fruits, pure honey, traditional herbs, and handmade crafts from Chitral. Free delivery across Pakistan. Buy Chitrali almonds, apricots, walnuts, and more at best prices.'}
-        metaTitle={GeneralSettingMemo&&GeneralSettingMemo.length>0?GeneralSettingMemo[0].site_metatitle:'Chitral Hive - Authentic Chitrali Dry Fruits, Honey & Traditional Products Online Pakistan'}
-        keywords="buy Chitrali dry fruits online, Chitrali almonds Pakistan, Chitrali apricots online, Chitrali honey price, Chitrali walnuts, buy dry fruits online Pakistan, Chitrali products online, authentic Chitrali honey, Chitrali dry fruits delivery, Chitrali nuts online, Chitrali recipes, Chitrali culture, Chitrali traditional food, Chitrali herbs, Chitrali spices, Chitrali handicrafts, KPK dry fruits, online dry fruits Pakistan, premium dry fruits Pakistan, organic Chitrali products"
-        canonical="https://chitralhive.com"
+        title={GeneralSettingMemo&&GeneralSettingMemo.length>0?GeneralSettingMemo[0].site_name:'Discover Premium Women\'s Clothing - Meerab\'s Wardrobe'}
+        description={GeneralSettingMemo&&GeneralSettingMemo.length>0?GeneralSettingMemo[0].site_description:'Shop premium women\'s clothing online in Europe at Meerab\'s Wardrobe. Discover elegant dresses, trendy tops, stylish bottoms, traditional wear, and contemporary fashion. Free delivery across Europe. Buy quality women\'s fashion online.'}
+        metaTitle={GeneralSettingMemo&&GeneralSettingMemo.length>0?GeneralSettingMemo[0].site_metatitle:'Meerab\'s Wardrobe - Premium Women\'s Fashion & Clothing Online Europe'}
+        keywords="women's clothing Europe, Meerab's Wardrobe, buy clothes online Europe, ladies fashion Europe, women's dresses online, designer clothes Europe, ethnic wear Europe, casual wear women, formal wear Europe, trendy clothing Europe, women's fashion store, online shopping Europe, ladies clothes online, fashion boutique Europe, designer wear Europe, branded clothes Europe, women's apparel online, UK fashion, European fashion"
+        canonical={process.env.NEXT_PUBLIC_URL || "https://meerabs.com"}
       />
       <StructuredData data={getHomePageStructuredData(GeneralSettingMemo)} />
       <Box bgcolor="#F6F6F6">
@@ -341,8 +340,8 @@ const IndexPage = (props) => {
           }}
         >
           {GeneralSettingMemo&&GeneralSettingMemo.length>0 
-            ? `${GeneralSettingMemo[0].site_name} - Discover Authentic Chitrali Products Online`
-            : 'Chitral Hive - Discover Authentic Chitrali Products Online in Pakistan'}
+            ? `${GeneralSettingMemo[0].site_name} - Discover Premium Women's Clothing Online`
+            : 'Meerab\'s Wardrobe - Discover Premium Women\'s Clothing Online in Europe'}
         </Box>
         <Section1
           data1={props.Section1SequenceData}

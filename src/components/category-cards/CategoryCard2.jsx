@@ -48,7 +48,7 @@ const CategoryCard2 = ({ image, title, url }) => {
           >
             <Image
               src={image || '/assets/images/banners/default.png'}
-              alt={title ? `${title} - Shop authentic Chitrali products` : 'Category'}
+              alt={title ? `${title} - Shop premium women's clothing` : 'Category'}
               layout="fill"
               sizes="(max-width: 600px) 45vw, (max-width: 960px) 30vw, 200px"
               style={{ objectFit: 'cover' }}

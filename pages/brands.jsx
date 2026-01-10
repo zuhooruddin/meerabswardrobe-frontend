@@ -63,7 +63,7 @@ const BrandBundles = (data) => {
     <ShopLayout1>
       <SEO 
         title="Brands" 
-        description={"Explore authentic Chitrali brands at Chitral Hive. Shop traditional products, local crafts, and specialty items from Chitral. Order online and get authentic Chitrali products delivered to your doorstep."}
+        description={"Explore premium fashion brands at Meerab's Wardrobe. Shop quality women's clothing, designer wear, and contemporary fashion. Order online and get premium women's clothing delivered to your doorstep across Europe."}
         metaTitle="Brands"
       />
   

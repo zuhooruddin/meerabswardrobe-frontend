@@ -48,7 +48,7 @@ export default NextAuth({
   // Base URL for NextAuth (set via NEXTAUTH_URL environment variable)
   // This ensures the redirect URI is correctly constructed for OAuth callbacks
   // For localhost: http://localhost:4000
-  // For production: https://chitralhive.com
+  // For production: https://meerabs.com
   // IMPORTANT: Set NEXTAUTH_URL in your production environment variables
   // Remove trailing slash if present to avoid routing issues
   ...(process.env.NEXTAUTH_URL && { 

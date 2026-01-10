@@ -33,7 +33,7 @@ const BundleSearchResult = (props) => {
             ? bundleDetail["metaDescription"]
             : "Home Delivery Service for your favorite brand bundles of " +
               bundleDetail["title"] +
-              ". Order products from Meerab's Wardrobe and get at your doorstep across Pakistan."
+              ". Order products from Meerab's Wardrobe and get at your doorstep across Europe."
         }
         metaTitle={
           bundleDetail["metaTitle"] && bundleDetail["metaTitle"] != "undefined"

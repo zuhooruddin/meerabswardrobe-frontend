@@ -1,5 +1,5 @@
 // Image proxy API route to add cache headers for external images
-// This helps with caching images from api.chitralhive.com
+// This helps with caching images from api.meerabs.com
 
 export default async function handler(req, res) {
   const { url } = req.query;
@@ -11,8 +11,8 @@ export default async function handler(req, res) {
   try {
     // Validate URL is from allowed domains
     const allowedDomains = [
-      'api.chitralhive.com',
-      'chitralhive.com',
+      'api.meerabs.com',
+      'meerabs.com',
       process.env.NEXT_PUBLIC_BACKEND_API_BASE?.replace('https://', '').replace('http://', '').replace('/api', ''),
     ].filter(Boolean);
 

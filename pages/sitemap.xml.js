@@ -31,9 +31,9 @@ function SiteMap() {
 }
 
 export async function getServerSideProps({ res }) {
-  const baseUrl = process.env.NEXT_PUBLIC_URL || 'https://chitralhive.com';
+  const baseUrl = process.env.NEXT_PUBLIC_URL || 'https://meerabs.com';
   // Get API base URL - ensure it has trailing slash (matches API pattern: baseUrl + endpoint)
-  let apiBase = process.env.NEXT_PUBLIC_BACKEND_API_BASE || 'https://api.chitralhive.com/';
+  let apiBase = process.env.NEXT_PUBLIC_BACKEND_API_BASE || 'https://api.meerabs.com/';
   // Ensure it ends with a slash (API pattern: baseUrl + endpoint)
   if (!apiBase.endsWith('/')) {
     apiBase = apiBase + '/';
@@ -170,8 +170,8 @@ export async function getServerSideProps({ res }) {
         priority: '0.7',
         images: item.imgUrl || item.image ? [{
           url: (imgBaseUrl + (item.imgUrl || item.image)).replace(/\/+/g, '/').replace(/^https?:\//, 'https://'),
-          title: item.name || 'Chitrali Product',
-          caption: item.description || item.name ? `Buy ${item.name} from Chitral Hive - Authentic Chitrali Products` : 'Authentic Chitrali Products'
+          title: item.name || 'Women\'s Clothing',
+          caption: item.description || item.name ? `Buy ${item.name} from Meerab's Wardrobe - Premium Women's Clothing` : 'Premium Women\'s Clothing'
         }] : []
       }));
       
@@ -202,8 +202,8 @@ export async function getServerSideProps({ res }) {
         priority: '0.8',
         images: product.imgUrl || product.image ? [{
           url: (imgBaseUrl + (product.imgUrl || product.image)).replace(/\/+/g, '/').replace(/^https?:\//, 'https://'),
-          title: product.name || 'Chitrali Product',
-          caption: product.description || product.name ? `Buy ${product.name} from Chitral Hive` : 'Chitrali Product'
+          title: product.name || 'Women\'s Clothing',
+          caption: product.description || product.name ? `Buy ${product.name} from Meerab's Wardrobe` : 'Women\'s Clothing'
         }] : []
       }));
       

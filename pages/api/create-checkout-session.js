@@ -28,7 +28,7 @@ export default async function handler(req, res) {
             type: 'fixed_amount',
             fixed_amount: {
               amount: body.deliveryFee*100,
-              currency: 'pkr',
+              currency: 'eur',
             },
             display_name: 'Standard Shipping',
           

@@ -94,35 +94,33 @@ const ContactUs = (props) => {
       });
   };
 
-  const baseUrl = process.env.NEXT_PUBLIC_URL || "https://chitralhive.com";
+  const baseUrl = process.env.NEXT_PUBLIC_URL || "https://meerabs.com";
   
   // LocalBusiness structured data for contact page
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": `${baseUrl}/contact-us#localbusiness`,
-    "name": "Chitral Hive",
+    "name": "Meerab's Wardrobe",
     "image": `${baseUrl}/images/og-image.jpg`,
-    "description": "Chitral Hive - Authentic Chitrali Products Online Store. Shop traditional crafts, local specialties, handmade items, and unique products from Chitral.",
+    "description": "Meerab's Wardrobe - Premium Women's Clothing Online Store. Shop elegant dresses, trendy fashion, and contemporary styles delivered across Europe.",
     "url": baseUrl,
     "telephone": "+92-323-9119309",
     "email": "zuhooruddin055@gmail.com",
     "address": [
       {
         "@type": "PostalAddress",
-        "streetAddress": "Chitral",
-        "addressLocality": "Chitral",
-        "addressRegion": "Khyber Pakhtunkhwa",
-        "postalCode": "17200",
-        "addressCountry": "PK"
+        "streetAddress": "Europe",
+        "addressLocality": "Europe",
+        "addressRegion": "Europe",
+        "addressCountry": "EU"
       },
       {
         "@type": "PostalAddress",
-        "streetAddress": "Upper Chitral",
-        "addressLocality": "Upper Chitral",
-        "addressRegion": "Khyber Pakhtunkhwa",
-        "postalCode": "17200",
-        "addressCountry": "PK"
+        "streetAddress": "Europe",
+        "addressLocality": "Europe",
+        "addressRegion": "Europe",
+        "addressCountry": "EU"
       },
       {
         "@type": "PostalAddress",
@@ -154,9 +152,9 @@ const ContactUs = (props) => {
       "closes": "18:00"
     },
     "sameAs": [
-      "https://www.facebook.com/chitralhive",
-      "https://www.instagram.com/chitralhive",
-      "https://twitter.com/chitralhive"
+      "https://www.facebook.com/meerabswardrobe",
+      "https://www.instagram.com/meerabswardrobe",
+      "https://twitter.com/meerabswardrobe"
     ],
     "contactPoint": [
       {
@@ -181,7 +179,7 @@ const ContactUs = (props) => {
       <StructuredData data={localBusinessSchema} />
       <SEO
         title="Contact Us - Get in Touch"
-        description="Get in touch with Chitral Hive for authentic Chitrali products. We are here to help with your orders and inquiries. Contact us via phone, email, or visit our stores in Chitral, Upper Chitral, and Islamabad."
+        description="Get in touch with Meerab's Wardrobe for premium women's clothing. We are here to help with your orders and inquiries. Contact us via phone, email, or visit our online store. We deliver across all European countries."
         metaTitle="Contact Us"
         canonical={`${baseUrl}/contact-us`}
       />
@@ -215,11 +213,11 @@ const ContactUs = (props) => {
             ))}
 
         <Grid container spacing={4}>
-          {/* ==================== CHITRAL LOCATION ================== */}
+          {/* ==================== EUROPE LOCATION ================== */}
           <Grid item xs={12} md={4}>
             <LocationCard>
               <iframe
-                src="https://maps.google.com/maps?q=Chitral,Pakistan&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                src="https://maps.google.com/maps?q=Europe&t=&z=4&ie=UTF8&iwloc=&output=embed"
                 style={{ width: "100%", height: "250px", borderRadius: "8px" }}
                 frameBorder="0"
                 allowFullScreen=""
@@ -228,7 +226,7 @@ const ContactUs = (props) => {
               ></iframe>
               
               <Box sx={{ mt: 3 }}>
-                <H3 sx={{ mb: 2, fontWeight: 600, color: "#667eea" }}>Chitral</H3>
+                <H3 sx={{ mb: 2, fontWeight: 600, color: "#667eea" }}>Europe</H3>
                 
                 <Box sx={{ mb: 3 }}>
                   <IconWrapper>
@@ -236,7 +234,7 @@ const ContactUs = (props) => {
                   </IconWrapper>
                   <H5 sx={{ mb: 1, fontWeight: 600 }}>Location</H5>
                   <Paragraph sx={{ color: "#666", fontSize: "15px" }}>
-                    Chitral, Khyber Pakhtunkhwa, Pakistan
+                    We deliver across all European countries
                   </Paragraph>
                 </Box>
 
@@ -297,11 +295,11 @@ const ContactUs = (props) => {
             </LocationCard>
           </Grid>
 
-          {/* ==================== UPPER CHITRAL LOCATION ================== */}
+          {/* ==================== EUROPE DELIVERY ================== */}
           <Grid item xs={12} md={4}>
             <LocationCard>
               <iframe
-                src="https://maps.google.com/maps?q=Upper+Chitral,Pakistan&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                src="https://maps.google.com/maps?q=Europe&t=&z=4&ie=UTF8&iwloc=&output=embed"
                 style={{ width: "100%", height: "250px", borderRadius: "8px" }}
                 frameBorder="0"
                 allowFullScreen=""
@@ -310,15 +308,15 @@ const ContactUs = (props) => {
               ></iframe>
               
               <Box sx={{ mt: 3 }}>
-                <H3 sx={{ mb: 2, fontWeight: 600, color: "#667eea" }}>Upper Chitral</H3>
+                <H3 sx={{ mb: 2, fontWeight: 600, color: "#667eea" }}>European Delivery</H3>
                 
                 <Box sx={{ mb: 3 }}>
                   <IconWrapper>
                     <Place fontSize="medium" />
                   </IconWrapper>
-                  <H5 sx={{ mb: 1, fontWeight: 600 }}>Location</H5>
+                  <H5 sx={{ mb: 1, fontWeight: 600 }}>Delivery Area</H5>
                   <Paragraph sx={{ color: "#666", fontSize: "15px" }}>
-                    Upper Chitral, Khyber Pakhtunkhwa, Pakistan
+                    We deliver to UK, Germany, France, Italy, Spain, and all European countries
                   </Paragraph>
                 </Box>
 
@@ -379,11 +377,11 @@ const ContactUs = (props) => {
             </LocationCard>
           </Grid>
 
-          {/* ==================== ISLAMABAD LOCATION ================== */}
+          {/* ==================== CUSTOMER SERVICE ================== */}
           <Grid item xs={12} md={4}>
             <LocationCard>
               <iframe
-                src="https://maps.google.com/maps?q=Islamabad,Pakistan&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                src="https://maps.google.com/maps?q=Europe&t=&z=4&ie=UTF8&iwloc=&output=embed"
                 style={{ width: "100%", height: "250px", borderRadius: "8px" }}
                 frameBorder="0"
                 allowFullScreen=""
@@ -392,15 +390,15 @@ const ContactUs = (props) => {
               ></iframe>
               
               <Box sx={{ mt: 3 }}>
-                <H3 sx={{ mb: 2, fontWeight: 600, color: "#667eea" }}>Islamabad</H3>
+                <H3 sx={{ mb: 2, fontWeight: 600, color: "#667eea" }}>Customer Service</H3>
                 
                 <Box sx={{ mb: 3 }}>
                   <IconWrapper>
                     <Place fontSize="medium" />
                   </IconWrapper>
-                  <H5 sx={{ mb: 1, fontWeight: 600 }}>Location</H5>
+                  <H5 sx={{ mb: 1, fontWeight: 600 }}>Service Area</H5>
                   <Paragraph sx={{ color: "#666", fontSize: "15px" }}>
-                    Islamabad, Federal Capital, Pakistan
+                    Online store serving customers across Europe
                   </Paragraph>
                 </Box>
 

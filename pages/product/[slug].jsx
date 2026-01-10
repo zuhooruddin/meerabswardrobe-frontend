@@ -161,14 +161,14 @@ const companyname=process.env.NEXT_PUBLIC_COMPANY_NAME
     "gtin": productDetails[0]["sku"] || productDetails[0]["aliasCode"],
     "brand": {
       "@type": "Brand",
-      "name": productDetails[0]["manufacturer"] || "Chitral Hive"
+      "name": productDetails[0]["manufacturer"] || "Meerab's Wardrobe"
     },
-    "category": productDetails[0]["category"] || "Chitrali Products",
+    "category": productDetails[0]["category"] || "Women's Clothing",
     "offers": {
       "@type": "Offer",
       "url": baseurl + slugbaseurl + productDetails[0]["slug"],
       "price": productDetails[0]["salePrice"] || productDetails[0]["mrp"],
-      "priceCurrency": "PKR",
+      "priceCurrency": "EUR",
       "availability": productDetails[0]["stock"] && parseFloat(productDetails[0]["stock"]) > 0 
         ? "https://schema.org/InStock" 
         : "https://schema.org/OutOfStock",
@@ -176,7 +176,7 @@ const companyname=process.env.NEXT_PUBLIC_COMPANY_NAME
       "itemCondition": "https://schema.org/NewCondition",
       "seller": {
         "@type": "Organization",
-        "name": "Chitral Hive",
+        "name": "Meerab's Wardrobe",
         "url": baseurl
       },
       "shippingDetails": {
@@ -184,11 +184,11 @@ const companyname=process.env.NEXT_PUBLIC_COMPANY_NAME
         "shippingRate": {
           "@type": "MonetaryAmount",
           "value": "0",
-          "currency": "PKR"
+          "currency": "EUR"
         },
         "shippingDestination": {
           "@type": "DefinedRegion",
-          "addressCountry": "PK"
+          "addressCountry": "EU"
         },
         "deliveryTime": {
           "@type": "ShippingDeliveryTime",
@@ -324,7 +324,7 @@ const companyname=process.env.NEXT_PUBLIC_COMPANY_NAME
         "name": `What is ${productDetails[0]["name"]}?`,
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": productDetails[0]["description"] || `${productDetails[0]["name"]} is an authentic Chitrali product available at Chitral Hive. This traditional item represents the rich cultural heritage of Chitral, Pakistan.`
+          "text": productDetails[0]["description"] || `${productDetails[0]["name"]} is a premium women's clothing item available at Meerab's Wardrobe. Shop quality fashion online in Europe.`
         }
       },
       {
@@ -332,7 +332,7 @@ const companyname=process.env.NEXT_PUBLIC_COMPANY_NAME
         "name": `How much does ${productDetails[0]["name"]} cost?`,
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": `${productDetails[0]["name"]} is priced at PKR ${productDetails[0]["salePrice"] || productDetails[0]["mrp"]}. You can purchase it online from Chitral Hive and get it delivered to your doorstep across all major cities in Pakistan including Karachi, Lahore, Islamabad, Rawalpindi, Peshawar, and more.`
+          "text": `${productDetails[0]["name"]} is priced at €${productDetails[0]["salePrice"] || productDetails[0]["mrp"]}. You can purchase it online from Meerab's Wardrobe and get it delivered to your doorstep across all European countries including UK, Germany, France, Italy, Spain, Netherlands, and more.`
         }
       },
       {
@@ -350,7 +350,7 @@ const companyname=process.env.NEXT_PUBLIC_COMPANY_NAME
         "name": `Do you ship ${productDetails[0]["name"]} nationwide?`,
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": `Yes, Chitral Hive delivers ${productDetails[0]["name"]} and all our authentic Chitrali products across all major cities in Pakistan including Karachi, Lahore, Islamabad, Rawalpindi, Peshawar, Multan, Faisalabad, Quetta, and more. We ensure safe packaging and timely delivery to your doorstep.`
+          "text": `Yes, Meerab's Wardrobe delivers ${productDetails[0]["name"]} and all our premium women's clothing across all European countries including UK, Germany, France, Italy, Spain, Netherlands, Belgium, Austria, and more. We ensure safe packaging and timely delivery to your doorstep.`
         }
       },
       {
@@ -358,7 +358,7 @@ const companyname=process.env.NEXT_PUBLIC_COMPANY_NAME
         "name": `Is ${productDetails[0]["name"]} authentic?`,
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": `Yes, all products at Chitral Hive, including ${productDetails[0]["name"]}, are 100% authentic and sourced directly from Chitral. We work with local artisans and suppliers to bring you genuine Chitrali products.`
+          "text": `Yes, all products at Meerab's Wardrobe, including ${productDetails[0]["name"]}, are 100% authentic and quality-checked. We work with trusted suppliers to bring you premium women's fashion.`
         }
       }
     ]
@@ -388,28 +388,28 @@ const companyname=process.env.NEXT_PUBLIC_COMPANY_NAME
           productDetails[0]["metaDescription"] != "undefined"
             ? productDetails[0]["metaDescription"]
             : productDetails[0]["name"]
-            ? "Buy authentic " +
+            ? "Buy " +
               productDetails[0]["name"] +
-              " online in Pakistan from Chitral Hive. Shop Chitrali products online and get it delivered to your doorstep across Pakistan."
-            : "Shop authentic Chitrali products online in Pakistan at Chitral Hive"
+              " online in Europe from Meerab's Wardrobe. Shop premium women's clothing online and get it delivered to your doorstep across Europe."
+            : "Shop premium women's clothing online in Europe at Meerab's Wardrobe"
         }
         metaTitle={
           productDetails[0]["metaTitle"] &&
           productDetails[0]["metaTitle"] != "undefined"
             ? productDetails[0]["metaTitle"]
             : productDetails[0]["name"]
-            ? "Buy " + productDetails[0]["name"] + " Online | Chitral Hive"
+            ? "Buy " + productDetails[0]["name"] + " Online | Meerab's Wardrobe"
             : companyname
         }
-        keywords={`${productDetails[0]["name"]} Pakistan, Chitrali products Pakistan, Chitral Hive, buy ${productDetails[0]["name"]} online Pakistan, authentic Chitrali products, Chitral specialties, ${productDetails[0]["name"]} price in Pakistan, buy ${productDetails[0]["name"]} in Karachi, buy ${productDetails[0]["name"]} in Lahore`}
+        keywords={`${productDetails[0]["name"]} Europe, women's clothing Europe, Meerab's Wardrobe, buy ${productDetails[0]["name"]} online Europe, premium women's fashion, designer clothes Europe, ${productDetails[0]["name"]} price in Europe, buy ${productDetails[0]["name"]} UK, buy ${productDetails[0]["name"]} Germany, buy ${productDetails[0]["name"]} France`}
         canonical={`${baseurl}${slugbaseurl}${productDetails[0]["slug"]}`}
         image={imgbaseurl + productDetails[0]["imgUrl"]}
         type="product"
         price={productDetails[0]["salePrice"] || productDetails[0]["mrp"]}
-        priceCurrency="PKR"
+        priceCurrency="EUR"
         availability={productDetails[0]["stock"] && parseFloat(productDetails[0]["stock"]) > 0 ? "InStock" : "OutOfStock"}
-        brand={productDetails[0]["manufacturer"] || "Chitral Hive"}
-        category={productDetails[0]["category"] || "Chitrali Products"}
+        brand={productDetails[0]["manufacturer"] || "Meerab's Wardrobe"}
+        category={productDetails[0]["category"] || "Women's Clothing"}
         sku={productDetails[0]["sku"] || productDetails[0]["aliasCode"]}
         rating={roundedAverageRating || productDetails[0]["rating"]}
         reviewCount={filteredReviews.length}

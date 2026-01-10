@@ -396,7 +396,7 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
   // Product features for trust badges
   const productFeatures = useMemo(() => [
     { icon: LocalShipping, text: "Free Shipping on Orders over Rs. 2000", color: "#10B981" },
-    { icon: VerifiedUser, text: "100% Authentic Chitrali Products", color: "#3B82F6" },
+    { icon: VerifiedUser, text: "100% Premium Quality", color: "#3B82F6" },
     { icon: Autorenew, text: "Easy 7 Days Return Policy", color: "#8B5CF6" },
   ], []);
 
@@ -471,12 +471,12 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
                 <LazyImage
                   width={400}
                   height={400}
-                  alt={name ? `${name} - Authentic Chitrali Product | Buy Online in Pakistan at Chitral Hive` : "Chitrali Product"}
+                  alt={name ? `${name} - Premium Women's Clothing | Buy Online in Europe at Meerab's Wardrobe` : "Women's Clothing"}
                   loading="eager"
                   priority
                   objectFit="contain"
                   src={localimageurl + `${product.imgGroup[selectedImage]}`}
-                  title={name || "Chitrali Product"}
+                  title={name || "Women's Clothing"}
                   style={{ borderRadius: "16px", aspectRatio: "1 / 1" }}
                   sizes="(max-width: 768px) 100vw, 50vw"
                   quality={85}

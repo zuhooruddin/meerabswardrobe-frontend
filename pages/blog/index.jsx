@@ -19,20 +19,22 @@ const BlogPage = ({ posts }) => {
   return (
     <ShopLayout1 navCategories={[]}>
       <SEO
-        title="Blog - Chitrali Products, Culture, Recipes & Guides"
-        description="Discover authentic Chitrali culture, traditional recipes using dry fruits, product guides, and stories from Chitral. Learn about Chitrali honey, dry fruits, herbs, and traditional crafts."
-        metaTitle="Chitrali Products Blog - Recipes, Culture & Product Guides"
-        keywords="Chitrali recipes, Chitrali culture blog, dry fruits recipes, Chitrali product guides, Chitrali honey benefits, Chitrali traditional food, Chitrali cooking, Chitrali culture articles, Chitrali dry fruits uses, Chitrali heritage"
-        canonical="https://chitralhive.com/blog"
+
+      
+        title="Blog - Women's Fashion, Style Tips & Guides"
+        description="Discover fashion trends, styling tips, product guides, and stories about women's clothing. Learn about fashion trends, styling tips, and contemporary women's fashion in Europe."
+        metaTitle="Women's Fashion Blog - Style Tips & Fashion Guides | Meerab's Wardrobe"
+        keywords="women's fashion blog, style tips, fashion trends, clothing guides, women's fashion Europe, styling tips, fashion articles, women's clothing trends, fashion inspiration, wardrobe tips"
+        canonical={`${process.env.NEXT_PUBLIC_URL || "https://meerabs.com"}/blog`}
         type="website"
       />
       <Container sx={{ py: 4 }}>
         <Box component="header" sx={{ mb: 5, textAlign: "center" }}>
           <H1 component="h1" sx={{ mb: 2 }}>
-            Chitrali Products Blog
+            Meerab's Wardrobe Blog
           </H1>
           <Paragraph color="text.secondary" sx={{ maxWidth: "800px", mx: "auto" }}>
-            Discover authentic Chitrali culture, traditional recipes, product guides, and stories from the heart of Chitral, Pakistan
+            Discover fashion trends, styling tips, product guides, and stories about women's clothing and fashion in Europe
           </Paragraph>
         </Box>
 

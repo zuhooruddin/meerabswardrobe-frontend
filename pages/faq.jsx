@@ -55,11 +55,11 @@ const FAQPage = (props) => {
   return (
     <ShopLayout1>
       <SEO 
-        title="Frequently Asked Questions - Chitral Hive"
-        description="Find answers to common questions about Chitrali products, shipping, delivery, payment methods, and more. Get help with ordering dry fruits, honey, and authentic Chitrali products online in Pakistan."
-        metaTitle="FAQ - Chitrali Products Questions & Answers | Chitral Hive"
-        keywords="Chitrali products FAQ, dry fruits questions, Chitrali honey FAQ, online shopping Pakistan FAQ, Chitral Hive help, product delivery questions, payment methods Pakistan, Chitrali products information"
-        canonical="https://chitralhive.com/faq"
+        title="Frequently Asked Questions - Meerab's Wardrobe"
+        description="Find answers to common questions about women's clothing, shipping, delivery, payment methods, and more. Get help with ordering premium fashion and women's clothing online in Europe."
+        metaTitle="FAQ - Women's Clothing Questions & Answers | Meerab's Wardrobe"
+        keywords="women's clothing FAQ, fashion questions, clothing FAQ, online shopping Europe FAQ, Meerab's Wardrobe help, product delivery questions, payment methods Europe, women's fashion information"
+        canonical={`${process.env.NEXT_PUBLIC_URL || "https://meerabs.com"}/faq`}
       />
       <Container
         sx={{
@@ -69,10 +69,10 @@ const FAQPage = (props) => {
       >
         <Box component="header" sx={{ mb: 4, textAlign: "center" }}>
           <H2 component="h1" sx={{ mb: 2 }}>
-            Frequently Asked Questions About Chitrali Products
+            Frequently Asked Questions About Women's Clothing
           </H2>
           <Paragraph color="text.secondary">
-            Find answers to common questions about our authentic Chitrali products, shipping, and services
+            Find answers to common questions about our premium women's clothing, shipping, and services
           </Paragraph>
         </Box>
         <Grid container spacing={3}>

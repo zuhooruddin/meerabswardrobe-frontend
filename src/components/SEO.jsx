@@ -18,7 +18,7 @@ const SEO = ({
   section,
   tags,
   price,
-  priceCurrency = "PKR",
+  priceCurrency = "EUR",
   availability,
   brand,
   category,
@@ -28,8 +28,8 @@ const SEO = ({
 }) => {
   const router = useRouter();
   const baseUrl = process.env.NEXT_PUBLIC_URL || "https://meerabs.com";
-  const defaultDescription = "Shop premium women's clothing online in Pakistan at Meerab's Wardrobe. Discover elegant dresses, trendy tops, stylish bottoms, traditional wear, and contemporary fashion. Buy quality women's fashion online in Pakistan with delivery to Karachi, Lahore, Islamabad, Rawalpindi, Peshawar, Faisalabad, and all major cities.";
-  const defaultKeywords = "women's clothing Pakistan, Meerab's Wardrobe, Meerabs, buy clothes online Pakistan, ladies fashion Pakistan, women's dresses online, Pakistani fashion online, designer clothes Pakistan, ethnic wear Pakistan, casual wear women, formal wear Pakistan, trendy clothing Pakistan, women's fashion store, online shopping Pakistan, ladies clothes online, fashion boutique Pakistan, Pakistani designer wear, branded clothes Pakistan, women's apparel online";
+  const defaultDescription = "Shop premium women's clothing online in Europe at Meerab's Wardrobe. Discover elegant dresses, trendy tops, stylish bottoms, traditional wear, and contemporary fashion. Buy quality women's fashion online in Europe with delivery to UK, Germany, France, Italy, Spain, Netherlands, and all European countries.";
+  const defaultKeywords = "women's clothing Europe, Meerab's Wardrobe, Meerabs, buy clothes online Europe, ladies fashion Europe, women's dresses online, designer clothes Europe, ethnic wear Europe, casual wear women, formal wear Europe, trendy clothing Europe, women's fashion store, online shopping Europe, ladies clothes online, fashion boutique Europe, designer wear Europe, branded clothes Europe, women's apparel online, UK fashion, European fashion";
   
   sitename = process.env.NEXT_PUBLIC_COMPANY_NAME || "Meerab's Wardrobe";
   
@@ -152,19 +152,19 @@ const SEO = ({
       <meta name="bingbot" content="index, follow" />
       <meta name="slurp" content="index, follow" />
       <meta name="duckduckbot" content="index, follow" />
-      <meta name="language" content="English, Urdu" />
+      <meta name="language" content="English" />
       <meta name="revisit-after" content="7 days" />
-      <meta name="distribution" content="Pakistan" />
+      <meta name="distribution" content="Europe" />
       <meta name="rating" content="general" />
-      <meta name="coverage" content="Pakistan" />
-      <meta name="target" content="Pakistan" />
-      <meta name="audience" content="Pakistan" />
-      <meta name="country" content="Pakistan" />
-      <meta name="geo.country" content="PK" />
-      <meta name="geo.region" content="PK" />
-      <meta name="geo.placename" content="Pakistan" />
-      <meta name="geo.position" content="30.3753;69.3451" />
-      <meta name="ICBM" content="30.3753, 69.3451" />
+      <meta name="coverage" content="Europe" />
+      <meta name="target" content="Europe" />
+      <meta name="audience" content="Europe" />
+      <meta name="country" content="Europe" />
+      <meta name="geo.country" content="EU" />
+      <meta name="geo.region" content="EU" />
+      <meta name="geo.placename" content="Europe" />
+      <meta name="geo.position" content="50.5;10.5" />
+      <meta name="ICBM" content="50.5, 10.5" />
       
       {/* Article-specific meta tags */}
       {type === "article" && publishedTime && (
@@ -193,11 +193,13 @@ const SEO = ({
       {/* Canonical URL */}
       <link rel="canonical" href={canonicalUrl} />
       
-      {/* Alternate language versions (hreflang) - Pakistani audience */}
+      {/* Alternate language versions (hreflang) - European audience */}
       <link rel="alternate" hrefLang="en" href={canonicalUrl} />
-      <link rel="alternate" hrefLang="en-PK" href={canonicalUrl} />
-      <link rel="alternate" hrefLang="ur" href={canonicalUrl} />
-      <link rel="alternate" hrefLang="ur-PK" href={canonicalUrl} />
+      <link rel="alternate" hrefLang="en-GB" href={canonicalUrl} />
+      <link rel="alternate" hrefLang="en-DE" href={canonicalUrl} />
+      <link rel="alternate" hrefLang="en-FR" href={canonicalUrl} />
+      <link rel="alternate" hrefLang="en-IT" href={canonicalUrl} />
+      <link rel="alternate" hrefLang="en-ES" href={canonicalUrl} />
       <link rel="alternate" hrefLang="x-default" href={canonicalUrl} />
       
       {/* Open Graph / Facebook */}
@@ -211,12 +213,15 @@ const SEO = ({
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content={title || fullTitle} />
       <meta property="og:site_name" content={sitename} />
-      <meta property="og:locale" content="en_PK" />
-      <meta property="og:locale:alternate" content="ur_PK" />
-      <meta property="og:country-name" content="Pakistan" />
-      <meta property="business:contact_data:locality" content="Pakistan" />
-      <meta property="business:contact_data:region" content="Pakistan" />
-      <meta property="business:contact_data:country_name" content="Pakistan" />
+      <meta property="og:locale" content="en_GB" />
+      <meta property="og:locale:alternate" content="en_DE" />
+      <meta property="og:locale:alternate" content="en_FR" />
+      <meta property="og:locale:alternate" content="en_IT" />
+      <meta property="og:locale:alternate" content="en_ES" />
+      <meta property="og:country-name" content="Europe" />
+      <meta property="business:contact_data:locality" content="Europe" />
+      <meta property="business:contact_data:region" content="Europe" />
+      <meta property="business:contact_data:country_name" content="Europe" />
       
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -228,12 +233,11 @@ const SEO = ({
       <meta name="twitter:site" content="@meerabswardrobe" />
       <meta name="twitter:creator" content="@meerabswardrobe" />
       
-      {/* Pakistani-specific meta tags */}
-      <meta name="currency" content="PKR" />
-      <meta name="priceCurrency" content="PKR" />
-      <meta name="availableLanguage" content="en, ur" />
+      {/* European-specific meta tags */}
+      <meta name="currency" content="EUR" />
+      <meta name="priceCurrency" content="EUR" />
+      <meta name="availableLanguage" content="en" />
       <meta name="availableLanguage:en" content="English" />
-      <meta name="availableLanguage:ur" content="Urdu" />
       
       {/* Additional Meta Tags for Better Indexing */}
       <meta name="application-name" content="Meerab's Wardrobe" />
