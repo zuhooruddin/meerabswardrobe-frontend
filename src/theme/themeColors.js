@@ -18,18 +18,18 @@ export const grey = {
   50: "#FAFAFA",
 };
 export const primary = {
-  100: "#FCE9EC",
-  200: "#F8C7CF",
-  300: "#F07D90",
-  400: "#EC6178",
-  500: "#D23F57",
-  600: "#E63E58",
-  700: "#E3364E",
-  800: "#DF2E44",
-  900: "#D91F33",
-  main: "#D23F57", // Modern vibrant red for Chitral Hive
-  light: "#FCE9EC",
-  dark: "#D91F33",
+  100: "#FDF4FF",
+  200: "#FAE8FF",
+  300: "#F5D0FE",
+  400: "#E879F9",
+  500: "#D946A0",
+  600: "#C026D3",
+  700: "#A21CAF",
+  800: "#86198F",
+  900: "#701A75",
+  main: "#D946A0", // Elegant pink-magenta for Meerab's Wardrobe
+  light: "#FDF4FF",
+  dark: "#86198F",
   contrastText: "#FFFFFF",
 };
 export const secondary = {
@@ -143,9 +143,9 @@ export const themeColors = {
     disabled: grey[400],
   },
   action: {
-    hover: "rgba(210, 63, 87, 0.08)",
-    selected: "rgba(210, 63, 87, 0.12)",
-    focus: "rgba(210, 63, 87, 0.12)",
+    hover: "rgba(217, 70, 160, 0.08)",
+    selected: "rgba(217, 70, 160, 0.12)",
+    focus: "rgba(217, 70, 160, 0.12)",
   },
 };
 
@@ -184,8 +184,8 @@ export const darkThemeColors = {
     disabled: "#6B7280",
   },
   action: {
-    hover: "rgba(210, 63, 87, 0.15)",
-    selected: "rgba(210, 63, 87, 0.2)",
-    focus: "rgba(210, 63, 87, 0.2)",
+    hover: "rgba(217, 70, 160, 0.15)",
+    selected: "rgba(217, 70, 160, 0.2)",
+    focus: "rgba(217, 70, 160, 0.2)",
   },
 };

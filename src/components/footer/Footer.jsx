@@ -219,7 +219,7 @@ const Footer = ({ footerData: initialFooterData }) => {
                 {/* Column 1: Logo and Description */}
                 <Grid item lg={4} md={6} sm={6} xs={12}>
                   <Link href="/" passHref>
-                    <a aria-label="Chitral Hive - Go to homepage" style={{ minHeight: '48px', minWidth: '160px', display: 'inline-block' }}>
+                    <a aria-label="Meerab's Wardrobe - Go to homepage" style={{ minHeight: '48px', minWidth: '160px', display: 'inline-block' }}>
                       <Box
                         sx={{
                           transition: "all 0.3s ease",
@@ -234,7 +234,7 @@ const Footer = ({ footerData: initialFooterData }) => {
                           width={160}
                           height={48}
                         src={footerData?.footer_logo ? imgbaseurl + footerData.footer_logo : defaultLogo}
-                          alt="Chitral Hive Logo"
+                          alt="Meerab's Wardrobe Logo"
                         style={{ display: 'block', maxWidth: '160px', height: 'auto' }}
                         quality={85}
                         loading="lazy"
@@ -252,7 +252,7 @@ const Footer = ({ footerData: initialFooterData }) => {
                       maxWidth: "320px",
                     }}
                   >
-                    {footerData?.footer_description || "Discover authentic Chitrali products. Quality craftsmanship delivered to your doorstep."}
+                    {footerData?.footer_description || "Discover premium women's fashion. Style and elegance delivered to your doorstep."}
                   </Paragraph>
                   
                   {/* Newsletter Signup */}
@@ -454,7 +454,7 @@ const Footer = ({ footerData: initialFooterData }) => {
                     fontSize: "14px",
                   }}
                 >
-                  © {new Date().getFullYear()} Chitral Hive. All rights reserved.
+                  © {new Date().getFullYear()} Meerab's Wardrobe. All rights reserved.
                 </Paragraph>
                 
                 <FlexBox gap={3}>

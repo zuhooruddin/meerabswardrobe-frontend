@@ -27,9 +27,9 @@ const SEO = ({
   reviewCount
 }) => {
   const router = useRouter();
-  const baseUrl = process.env.NEXT_PUBLIC_URL || "https://meerabswardrobe.com";
+  const baseUrl = process.env.NEXT_PUBLIC_URL || "https://meerabs.com";
   const defaultDescription = "Shop premium women's clothing online in Pakistan at Meerab's Wardrobe. Discover elegant dresses, trendy tops, stylish bottoms, traditional wear, and contemporary fashion. Buy quality women's fashion online in Pakistan with delivery to Karachi, Lahore, Islamabad, Rawalpindi, Peshawar, Faisalabad, and all major cities.";
-  const defaultKeywords = "women's clothing Pakistan, Meerab's Wardrobe, buy clothes online Pakistan, ladies fashion Pakistan, women's dresses online, Pakistani fashion online, designer clothes Pakistan, ethnic wear Pakistan, casual wear women, formal wear Pakistan, trendy clothing Pakistan, women's fashion store, online shopping Pakistan, ladies clothes online, fashion boutique Pakistan, Pakistani designer wear, branded clothes Pakistan, women's apparel online";
+  const defaultKeywords = "women's clothing Pakistan, Meerab's Wardrobe, Meerabs, buy clothes online Pakistan, ladies fashion Pakistan, women's dresses online, Pakistani fashion online, designer clothes Pakistan, ethnic wear Pakistan, casual wear women, formal wear Pakistan, trendy clothing Pakistan, women's fashion store, online shopping Pakistan, ladies clothes online, fashion boutique Pakistan, Pakistani designer wear, branded clothes Pakistan, women's apparel online";
   
   sitename = process.env.NEXT_PUBLIC_COMPANY_NAME || "Meerab's Wardrobe";
   

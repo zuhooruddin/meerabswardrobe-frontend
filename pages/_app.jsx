@@ -156,11 +156,11 @@ const imgbaseurl=process.env.NEXT_PUBLIC_IMAGE_BASE_API_URL
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="language" content="English" />
-        <meta name="geo.region" content="PK-KP" />
-        <meta name="geo.placename" content="Chitral" />
+        <meta name="geo.region" content="PK" />
+        <meta name="geo.placename" content="Pakistan" />
         {/* Resource hints for faster loading - preconnect to critical origins */}
         <link rel="preconnect" href={process.env.NEXT_PUBLIC_BACKEND_API_BASE} crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://api.chitralhive.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://api.meerabs.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href={process.env.NEXT_PUBLIC_IMAGE_BASE_API_URL} />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />

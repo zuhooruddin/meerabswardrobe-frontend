@@ -35,7 +35,7 @@ const nextConfig = {
   },
   
   images: {
-    domains: ["100.64.6.105","idrisbookbank-dev-server.inara.tech","api.meerabswardrobe.com","s3-inara.eu-central-1.linodeobjects.com","meerabswardrobe.com"],
+    domains: ["100.64.6.105","idrisbookbank-dev-server.inara.tech","api.meerabs.com","s3-inara.eu-central-1.linodeobjects.com","meerabs.com"],
     formats: ['image/avif', 'image/webp'], // Enable modern image formats - AVIF provides ~50% better compression than WebP
     deviceSizes: [640, 750, 828, 1080, 1200, 1920], // Optimized device sizes
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384], // Optimized image sizes for category icons
@@ -289,7 +289,7 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://cdn.quilljs.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.quilljs.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; media-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://api.meerabswardrobe.com https://admin.meerabswardrobe.com https://meerabswardrobe.com; frame-ancestors 'none';",
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://cdn.quilljs.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.quilljs.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; media-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://api.meerabs.com https://admin.meerabs.com https://meerabs.com; frame-ancestors 'none';",
           },
           {
             key: 'Strict-Transport-Security',
