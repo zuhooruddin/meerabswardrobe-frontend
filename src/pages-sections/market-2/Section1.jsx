@@ -18,11 +18,11 @@ const Section1 = (data) => {
   const bannerHeight = "245.5px"; 
   const bannerWidth = "100%"; 
   const defaultDummyImages = [
-    { image: "assets/images/banners/s1.png" },
-    { image: "assets/images/banners/s2.png" },
-    { image: "assets/images/banners/s3.png" },
-    { image: "assets/images/banners/banner-4.png" },
-    { image: "assets/images/banners/banner-5.png" },
+    { image: "/assets/images/banners/s1.png" },
+    { image: "/assets/images/banners/s2.png" },
+    { image: "/assets/images/banners/s3.png" },
+    { image: "/assets/images/banners/banner-4.png" },
+    { image: "/assets/images/banners/banner-5.png" },
   ];  
   const carouselStyles = {
     overflow: "hidden",

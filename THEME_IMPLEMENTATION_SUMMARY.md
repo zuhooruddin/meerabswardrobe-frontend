@@ -2,7 +2,7 @@
 
 ## What Was Accomplished
 
-Your Chitral Hive e-commerce website now has a **complete, modern, and professional theme system** with light and dark modes!
+Your Meerab's Wardrobe e-commerce website now has a **complete, modern, and professional theme system** with light and dark modes!
 
 ## ✨ Key Features Implemented
 
@@ -332,7 +332,7 @@ To start using the theme system:
 
 ## 🎊 Conclusion
 
-Your Chitral Hive e-commerce platform now features a **world-class theme system** that provides:
+Your Meerab's Wardrobe e-commerce platform now features a **world-class theme system** that provides:
 - Beautiful, modern design
 - Excellent user experience
 - Professional appearance

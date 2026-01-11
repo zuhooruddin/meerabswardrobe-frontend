@@ -38,28 +38,58 @@ const reducer = (state, action) => {
     case "CHANGE_CART_AMOUNT":
       let cartList = state.cart;
       let cartItem = action.payload;
-      let exist = cartList.find((item) => item.id === cartItem.id);
+      
+      // For clothing products with variants, use variant_id as unique identifier
+      // Otherwise use item id
+      const itemIdentifier = cartItem.variant_id 
+        ? `${cartItem.id}_${cartItem.variant_id}` 
+        : cartItem.id;
+      
+      // Find existing item (checking both id and variant_id for clothing)
+      let exist = cartList.find((item) => {
+        if (item.variant_id && cartItem.variant_id) {
+          return item.id === cartItem.id && item.variant_id === cartItem.variant_id;
+        }
+        return item.id === cartItem.id;
+      });
 
       if (cartItem.qty < 1) {
-        const filteredCart = cartList.filter((item) => item.id !== cartItem.id);
+        const filteredCart = cartList.filter((item) => {
+          if (item.variant_id && cartItem.variant_id) {
+            return !(item.id === cartItem.id && item.variant_id === cartItem.variant_id);
+          }
+          return item.id !== cartItem.id;
+        });
         return { ...state, cart: filteredCart };
       }
       
       if (exist) {
-
         if('bundle' in cartItem && cartItem.bundle){
-          const newCart = cartList.map((item) =>
-          item.id === cartItem.id ? { ...item, qty: parseInt(cartItem.qty)+parseInt(item.qty) } : item
-        );
-        return { ...state, cart: newCart };
+          const newCart = cartList.map((item) => {
+            if (item.variant_id && cartItem.variant_id) {
+              return (item.id === cartItem.id && item.variant_id === cartItem.variant_id)
+                ? { ...item, qty: parseInt(cartItem.qty) + parseInt(item.qty) }
+                : item;
+            }
+            return item.id === cartItem.id 
+              ? { ...item, qty: parseInt(cartItem.qty) + parseInt(item.qty) }
+              : item;
+          });
+          return { ...state, cart: newCart };
         }
-        else{
-        const newCart = cartList.map((item) =>
-          item.id === cartItem.id ? { ...item, qty: cartItem.qty } : item
-        );
-        return { ...state, cart: newCart };
-      }
-        return { ...state, cart: newCart };
+        else {
+          const newCart = cartList.map((item) => {
+            if (item.variant_id && cartItem.variant_id) {
+              return (item.id === cartItem.id && item.variant_id === cartItem.variant_id)
+                ? { ...item, qty: cartItem.qty }
+                : item;
+            }
+            return item.id === cartItem.id 
+              ? { ...item, qty: cartItem.qty }
+              : item;
+          });
+          return { ...state, cart: newCart };
+        }
       }
 
       return { ...state, cart: [...cartList, cartItem] };

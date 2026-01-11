@@ -1,4 +1,4 @@
-# SEO Improvements for Chitral Hive
+# SEO Improvements for Meerab's Wardrobe
 
 This document outlines all the SEO enhancements implemented to improve search engine rankings and visibility.
 

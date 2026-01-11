@@ -404,7 +404,7 @@ This serves as the **template and reference** for modernizing the rest of your s
 
 ---
 
-**Your Chitral Hive website is getting a fresh, modern look! 🎨✨**
+**Your Meerab's Wardrobe website is getting a fresh, modern look! 🎨✨**
 
 The ProductIntro page is production-ready and showcases the new design direction for your entire site.
 

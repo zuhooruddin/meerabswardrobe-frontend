@@ -2,7 +2,7 @@
 
 ## 📌 What Was Done
 
-Your Chitral Hive website has been optimized to address all performance issues from the Lighthouse audit. This includes:
+Your Meerab's Wardrobe website has been optimized to address all performance issues from the Lighthouse audit. This includes:
 
 - ✅ **Image optimization** (Django management command + scripts)
 - ✅ **JavaScript bundle optimization** (code splitting, tree shaking)
@@ -326,7 +326,7 @@ npm start
 **Status:** ✅ Ready for implementation  
 **Expected Impact:** 57% smaller, 42% faster
 
-🚀 **Let's make Chitral Hive blazing fast!**
+🚀 **Let's make Meerab's Wardrobe blazing fast!**
 
 
 

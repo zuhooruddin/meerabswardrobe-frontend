@@ -39,6 +39,9 @@ const ProductCard7 = ({
   salePrice,
   discount,
   description,
+  selected_color,
+  selected_size,
+  variant_id,
 }) => {
   const imgbaseurl = process.env.NEXT_PUBLIC_BACKEND_API_BASE;
 
@@ -68,13 +71,18 @@ useEffect(()=>{
           price: salePrice,
           sku,
           slug,
-          // price,
           image,
           qty: amount,
+          // Include variant information if available
+          ...(variant_id && {
+            variant_id,
+            selected_color,
+            selected_size,
+          }),
         },
       });
     },
-    []
+    [variant_id, selected_color, selected_size]
   );
   return (
     <Wrapper>
@@ -99,7 +107,7 @@ useEffect(()=>{
       </IconButton>
 
       <FlexBox p={2} rowGap={2} width="100%" flexDirection="column">
-        <Link href={`/product/${id}`}>
+        <Link href={`/product/${slug || id}`}>
           <a>
             <H3
               mb={1}
@@ -113,6 +121,40 @@ useEffect(()=>{
             </H3>
           </a>
         </Link>
+
+        {/* Display variant information (color & size) for clothing products */}
+        {(selected_color || selected_size) && (
+          <FlexBox gap={1} mb={1} flexWrap="wrap" alignItems="center">
+            {selected_color && (
+              <Span
+                fontSize="12px"
+                color="grey.600"
+                sx={{
+                  px: 1,
+                  py: 0.5,
+                  borderRadius: "4px",
+                  backgroundColor: "grey.100",
+                }}
+              >
+                Color: <strong>{selected_color}</strong>
+              </Span>
+            )}
+            {selected_size && (
+              <Span
+                fontSize="12px"
+                color="grey.600"
+                sx={{
+                  px: 1,
+                  py: 0.5,
+                  borderRadius: "4px",
+                  backgroundColor: "grey.100",
+                }}
+              >
+                Size: <strong>{selected_size}</strong>
+              </Span>
+            )}
+          </FlexBox>
+        )}
 
         <FlexBox gap={1} flexWrap="wrap" alignItems="center">
           <Span color="grey.600">

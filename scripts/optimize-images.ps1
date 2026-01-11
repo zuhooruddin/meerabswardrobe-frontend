@@ -1,5 +1,5 @@
 # Image Optimization Script for Windows
-# Chitral Hive - Performance Enhancement
+# Meerab's Wardrobe - Performance Enhancement
 #
 # Prerequisites:
 #   1. Python 3.x installed
@@ -27,7 +27,7 @@ $ErrorColor = "Red"
 $InfoColor = "Cyan"
 
 Write-Host "========================================" -ForegroundColor $InfoColor
-Write-Host "  Chitral Hive Image Optimization" -ForegroundColor $InfoColor
+Write-Host "  Meerab's Wardrobe Image Optimization" -ForegroundColor $InfoColor
 Write-Host "========================================" -ForegroundColor $InfoColor
 Write-Host ""
 

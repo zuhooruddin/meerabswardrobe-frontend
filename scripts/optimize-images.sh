@@ -1,8 +1,8 @@
 #!/bin/bash
-# Image Optimization Script for Chitral Hive
+# Image Optimization Script for Meerab's Wardrobe
 # This script compresses large images using WebP format
 
-echo "🖼️  Starting image optimization for Chitral Hive..."
+echo "🖼️  Starting image optimization for Meerab's Wardrobe..."
 
 # Check if cwebp is installed
 if ! command -v cwebp &> /dev/null; then

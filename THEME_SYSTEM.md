@@ -1,7 +1,7 @@
-# 🎨 Modern Theme System - Chitral Hive
+# 🎨 Modern Theme System - Meerab's Wardrobe
 
 ## Overview
-Chitral Hive now features a comprehensive, modern theme system with **Light** and **Dark** modes that provides an exceptional user experience with smooth transitions and professional design.
+Meerab's Wardrobe now features a comprehensive, modern theme system with **Light** and **Dark** modes that provides an exceptional user experience with smooth transitions and professional design.
 
 ## ✨ Features
 
@@ -346,8 +346,8 @@ For issues or questions about the theme system:
 
 **Version**: 1.0.0  
 **Last Updated**: December 2025  
-**Author**: Chitral Hive Development Team
+**Author**: Meerab's Wardrobe Development Team
 
 ## License
-This theme system is part of the Chitral Hive e-commerce platform.
+This theme system is part of the Meerab's Wardrobe e-commerce platform.
 

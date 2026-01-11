@@ -14,6 +14,7 @@ import ImageViewer from "react-simple-image-viewer";
 import { FlexBox, FlexRowCenter } from "../flex-box";
 import { toast } from "react-toastify";
 import BazaarRating from "components/BazaarRating";
+import VariantSelector from "./VariantSelector";
 
 // Premium Animations
 const pulse = keyframes`
@@ -333,6 +334,12 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
+  
+  // Variant selection state (for clothing products)
+  const [selectedColor, setSelectedColor] = useState(null);
+  const [selectedSize, setSelectedSize] = useState(null);
+  const [selectedVariant, setSelectedVariant] = useState(null);
+  const [variants, setVariants] = useState(product.variants || []);
 
   useEffect(() => {
     if (typeof window !== 'undefined' && window.localStorage) {
@@ -366,31 +373,80 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
     setIsViewerOpen(false);
   };
 
+  // Update selected variant when color/size changes
+  useEffect(() => {
+    if (selectedColor && selectedSize && variants.length > 0) {
+      const variant = variants.find(
+        (v) => v.color === selectedColor && v.size === selectedSize && v.status === 1
+      );
+      setSelectedVariant(variant);
+    } else {
+      setSelectedVariant(null);
+    }
+  }, [selectedColor, selectedSize, variants]);
+
+  // Fetch variants if product has variants support
+  useEffect(() => {
+    if (product.variants && product.variants.length > 0) {
+      setVariants(product.variants);
+    } else if (product.id) {
+      // Optionally fetch variants from API if not provided
+      // This can be uncommented if you want to fetch variants separately
+      // fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_BASE}api/getProductVariants?item_id=${product.id}`)
+      //   .then(res => res.json())
+      //   .then(data => {
+      //     if (data.success) {
+      //       setVariants(data.variants);
+      //     }
+      //   });
+    }
+  }, [product]);
+
   const handleCartAmountChange = useCallback(
     (amount, addflag) => () => {
-      const priceToStore = salePrices > 0 ? salePrices : numericSalePrice;
+      // For clothing products with variants, validate selection
+      if (variants.length > 0 && !selectedVariant) {
+        toast.error("Please select color and size", { position: toast.POSITION.TOP_RIGHT });
+        return;
+      }
+
+      // Use variant price if available, otherwise use product price
+      const priceToStore = selectedVariant 
+        ? (selectedVariant.actual_price || selectedVariant.variant_price || salePrices)
+        : (salePrices > 0 ? salePrices : numericSalePrice);
+
+      const payload = {
+        mrp,
+        salePrice: priceToStore,
+        salePrices: priceToStore,
+        sku: selectedVariant ? selectedVariant.sku : sku,
+        slug,
+        price: priceToStore,
+        qty: amount,
+        name: name,
+        image: localimageurl + imgGroup[0],
+        id: id || routerId,
+        // Variant information for clothing products
+        ...(selectedVariant && {
+          variant_id: selectedVariant.id,
+          selected_color: selectedColor,
+          selected_size: selectedSize,
+          variant_sku: selectedVariant.sku,
+        }),
+      };
+
       dispatch({
         type: "CHANGE_CART_AMOUNT",
-        payload: {
-          mrp,
-          salePrice: priceToStore,
-          salePrices: priceToStore,
-          sku,
-          slug,
-          price: priceToStore,
-          qty: amount,
-          name: name,
-          image: localimageurl + imgGroup[0],
-          id: id || routerId,
-        },
+        payload,
       });
+      
       if (addflag) {
         toast.success("Added to cart", { position: toast.POSITION.TOP_RIGHT });
       } else {
         toast.error("Removed from cart", { position: toast.POSITION.TOP_RIGHT });
       }
     },
-    [salePrices, numericSalePrice, mrp, sku, slug, name, localimageurl, imgGroup, id, routerId, dispatch]
+    [salePrices, numericSalePrice, mrp, sku, slug, name, localimageurl, imgGroup, id, routerId, dispatch, selectedVariant, selectedColor, selectedSize, variants]
   );
 
   // Product features for trust badges
@@ -727,6 +783,20 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
                 )}
               </FlexBox>
               
+              {/* Variant Selector for Clothing Products */}
+              {variants && variants.length > 0 && (
+                <Box mt={3} position="relative" zIndex={1}>
+                  <VariantSelector
+                    variants={variants}
+                    selectedColor={selectedColor}
+                    selectedSize={selectedSize}
+                    onColorChange={setSelectedColor}
+                    onSizeChange={setSelectedSize}
+                    productId={id}
+                  />
+                </Box>
+              )}
+              
               {/* Stock Status */}
               <FlexBox alignItems="center" mt={3} position="relative" zIndex={1}>
                 {stock === "0.00" ? (
@@ -767,7 +837,7 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
             </PriceCard>
 
             {/* Add to Cart / Quantity Controls */}
-            {stock === "0.00" ? (
+            {(stock === "0.00" || (selectedVariant && selectedVariant.stock_quantity === 0)) ? (
               <AddToCartButton
                 disabled
                 fullWidth
@@ -785,6 +855,17 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
                 }}
               >
                 Out of Stock - Notify When Available
+              </AddToCartButton>
+            ) : (variants.length > 0 && !selectedVariant) ? (
+              <AddToCartButton
+                fullWidth
+                variant="contained"
+                isDark={isDark}
+                disabled
+                sx={{ mb: 3, opacity: 0.6, cursor: "not-allowed" }}
+              >
+                <ShoppingCartOutlined sx={{ mr: 1.5, fontSize: "22px" }} />
+                Please Select Color & Size
               </AddToCartButton>
             ) : !cartItem?.qty ? (
               <AddToCartButton

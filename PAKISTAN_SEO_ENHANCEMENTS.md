@@ -1,6 +1,6 @@
-# SEO Enhancements for Pakistani Audience - Chitral Hive
+# SEO Enhancements for Pakistani Audience - Meerab's Wardrobe
 
-This document outlines all the SEO enhancements implemented specifically to optimize Chitral Hive for Pakistani audience and search engines.
+This document outlines all the SEO enhancements implemented specifically to optimize Meerab's Wardrobe for Pakistani audience and search engines.
 
 ## Summary of Enhancements
 

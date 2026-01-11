@@ -2,7 +2,7 @@
 
 ## Quick Test Checklist
 
-Use this checklist to verify that the theme system is working correctly across your Chitral Hive e-commerce platform.
+Use this checklist to verify that the theme system is working correctly across your Meerab's Wardrobe e-commerce platform.
 
 ## ✅ Visual Tests
 

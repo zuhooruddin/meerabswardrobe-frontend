@@ -19,7 +19,7 @@ This document summarizes the rebranding changes from **Chitral Hive** to **Meera
   - New: "Shop premium women's clothing online in Pakistan at Meerab's Wardrobe. Discover elegant dresses, trendy tops, stylish bottoms, traditional wear, and contemporary fashion..."
 - **Keywords**: Changed to women's fashion keywords
   - "women's clothing Pakistan, ladies fashion Pakistan, women's dresses online, designer clothes Pakistan, ethnic wear Pakistan, etc."
-- **Site Name**: Changed from "Chitral Hive" to "Meerab's Wardrobe"
+- **Site Name**: Changed  "Chitral Hive" to "Meerab's Wardrobe"
 - **Social Media**: Twitter handle changed from @chitralhive to @meerabswardrobe
 - **Geo Location**: Updated from Chitral-specific to Pakistan-wide
 - **Brand Color**: Changed tile color from blue (#1976d2) to elegant pink-magenta (#d946a0)
