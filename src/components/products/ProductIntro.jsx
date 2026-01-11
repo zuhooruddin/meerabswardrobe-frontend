@@ -416,16 +416,16 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
         : (salePrices > 0 ? salePrices : numericSalePrice);
 
       const payload = {
-        mrp,
-        salePrice: priceToStore,
-        salePrices: priceToStore,
+          mrp,
+          salePrice: priceToStore,
+          salePrices: priceToStore,
         sku: selectedVariant ? selectedVariant.sku : sku,
-        slug,
-        price: priceToStore,
-        qty: amount,
-        name: name,
-        image: localimageurl + imgGroup[0],
-        id: id || routerId,
+          slug,
+          price: priceToStore,
+          qty: amount,
+          name: name,
+          image: localimageurl + imgGroup[0],
+          id: id || routerId,
         // Variant information for clothing products
         ...(selectedVariant && {
           variant_id: selectedVariant.id,

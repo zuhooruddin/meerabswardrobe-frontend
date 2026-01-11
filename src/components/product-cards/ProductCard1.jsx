@@ -254,6 +254,11 @@ const ProductCard1 = ({
   sorting,
   ProductReviews,
   wishlist,
+  // Variant support
+  variants,
+  price_range,
+  available_colors,
+  available_sizes,
 }) => {
   // Ensure salePrice and discount are valid numbers
   const numericSalePrice = parseFloat(salePrice) || 0;
@@ -323,6 +328,15 @@ const ProductCard1 = ({
   
   const handleCartAmountChange = useCallback(
     (amount, addedflag) => () => {
+      // For products with variants, redirect to product detail page to select variant
+      if ((variants && variants.length > 0) || (available_colors && available_colors.length > 0)) {
+        toast.info("Please select color and size on product page", { 
+          position: toast.POSITION.TOP_RIGHT 
+        });
+        router.push(`/product/${slug}`);
+        return;
+      }
+
       dispatch({
         type: "CHANGE_CART_AMOUNT",
         payload: {
@@ -345,7 +359,7 @@ const ProductCard1 = ({
         });
       }
     },
-    []
+    [variants, available_colors, slug, router]
   );
   
   const myFunction = () => {
@@ -557,22 +571,50 @@ const ProductCard1 = ({
                 display: "flex",
                 fontFamily: "'Outfit', sans-serif",
                 letterSpacing: "-0.02em",
+                flexWrap: "wrap",
+                gap: 0.5,
               }}
             >
-              {currency}. {isNaN(salePrice) ? '0.00' : salePrice.toFixed(2)}
-              {!!numericDiscount && numericDiscount > 0 && (
-                <Box
-                  component="span"
-                  sx={{
-                    color: "grey.500",
-                    fontWeight: "400",
-                    fontSize: "0.875rem",
-                    ml: 1.5,
-                    textDecoration: "line-through",
-                  }}
-                >
-                  {currency}.{isNaN(discountprice) ? '0.00' : discountprice.toFixed(2)}
-                </Box>
+              {/* Show "From ₹X" if product has variants */}
+              {((variants && variants.length > 0) || (price_range && price_range.min_price !== price_range.max_price)) ? (
+                <>
+                  <Box component="span">From</Box>
+                  <Box component="span">
+                    {currency}. {price_range 
+                      ? (isNaN(price_range.min_price) ? '0.00' : price_range.min_price.toFixed(2))
+                      : (isNaN(salePrice) ? '0.00' : salePrice.toFixed(2))}
+                  </Box>
+                  {price_range && price_range.max_price > price_range.min_price && (
+                    <Box
+                      component="span"
+                      sx={{
+                        color: "text.secondary",
+                        fontWeight: "400",
+                        fontSize: "0.9rem",
+                      }}
+                    >
+                      - {currency}. {isNaN(price_range.max_price) ? '0.00' : price_range.max_price.toFixed(2)}
+                    </Box>
+                  )}
+                </>
+              ) : (
+                <>
+                  {currency}. {isNaN(salePrice) ? '0.00' : salePrice.toFixed(2)}
+                  {!!numericDiscount && numericDiscount > 0 && (
+                    <Box
+                      component="span"
+                      sx={{
+                        color: "grey.500",
+                        fontWeight: "400",
+                        fontSize: "0.875rem",
+                        ml: 1.5,
+                        textDecoration: "line-through",
+                      }}
+                    >
+                      {currency}.{isNaN(discountprice) ? '0.00' : discountprice.toFixed(2)}
+                    </Box>
+                  )}
+                </>
               )}
             </Box>
           </FlexBox>

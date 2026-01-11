@@ -49,6 +49,24 @@ const getItemDetail = async (slug) => {
   return response.data;
 };
 
+// Enhanced product detail with variants support
+const getItemDetailWithVariants = async (slug) => {
+  try {
+    const response = await axios({
+      method: 'get',
+      url: server_ip + 'getItemDetailWithVariants',
+      params: {
+        slug: slug
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching product with variants:', error);
+    // Fallback to regular getItemDetail
+    return getItemDetail(slug);
+  }
+};
+
 const getSearchItem = async (slug) => {
   const response = await  axios({
     method: 'get',
@@ -212,6 +230,7 @@ const getReviews= async () => {
 export default {
   getNavCategories,
   getItemDetail,
+  getItemDetailWithVariants,
   getCategoryDetail,
   
   getProducts,

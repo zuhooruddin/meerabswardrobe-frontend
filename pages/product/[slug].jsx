@@ -458,11 +458,33 @@ const companyname=process.env.NEXT_PUBLIC_COMPANY_NAME
 export async function getServerSideProps(context) {
   const slug = context.query["slug"];
 
-  const productDetails = await api.getItemDetail(slug);
+  // Try to get product with variants first, fallback to regular detail
+  let productDetails = null;
+  try {
+    const variantData = await api.getItemDetailWithVariants(slug);
+    if (variantData && variantData.success && variantData.product) {
+      // Transform variant API response to match existing format
+      productDetails = [{
+        ...variantData.product,
+        imgUrl: variantData.product.image || variantData.product.imgUrl,
+        imgGroup: variantData.gallery || [variantData.product.image],
+        variants: variantData.product.variants || [],
+        available_colors: variantData.product.available_colors || [],
+        available_sizes: variantData.product.available_sizes || [],
+        price_range: variantData.product.price_range || null,
+      }];
+    }
+  } catch (error) {
+    console.log('Variant API not available, using regular detail');
+  }
 
+  // Fallback to regular getItemDetail if variant API failed
+  if (!productDetails || !productDetails.length) {
+    productDetails = await api.getItemDetail(slug);
+  }
 
-
-  const ProductReviews=await api.getReviews()
+  const ProductReviews = await api.getReviews();
+  
   if (!productDetails || !productDetails.length) {
     return {
       redirect: {
@@ -472,7 +494,7 @@ export async function getServerSideProps(context) {
     };
   }
   return {
-    props: { productDetails,ProductReviews },
+    props: { productDetails, ProductReviews },
   };
 }
 
