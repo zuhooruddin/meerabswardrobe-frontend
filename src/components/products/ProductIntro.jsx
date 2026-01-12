@@ -335,6 +335,21 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
   
+  // Ensure imgGroup is always an array
+  const imageGroup = useMemo(() => {
+    if (!imgGroup || !Array.isArray(imgGroup) || imgGroup.length === 0) {
+      return product.imgUrl ? [product.imgUrl] : [];
+    }
+    return imgGroup;
+  }, [imgGroup, product.imgUrl]);
+  
+  // Ensure selectedImage is within bounds
+  useEffect(() => {
+    if (imageGroup && imageGroup.length > 0 && selectedImage >= imageGroup.length) {
+      setSelectedImage(0);
+    }
+  }, [imageGroup, selectedImage]);
+  
 
   
 
@@ -363,16 +378,10 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
     (item) => item.id === id || item.id === routerId
   );
 
-  // Ensure imgGroup is always an array
-  const imageGroup = useMemo(() => {
-    if (!imgGroup || !Array.isArray(imgGroup) || imgGroup.length === 0) {
-      return product.imgUrl ? [product.imgUrl] : [];
-    }
-    return imgGroup;
-  }, [imgGroup, product.imgUrl]);
-
   const handleImageClick = (ind) => () => {
-    setSelectedImage(ind);
+    if (imageGroup && ind >= 0 && ind < imageGroup.length) {
+      setSelectedImage(ind);
+    }
   };
 
   const openImageViewer = useCallback((index) => {
