@@ -335,11 +335,15 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
   
+
+  
+
   // Variant selection state (for clothing products)
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedVariant, setSelectedVariant] = useState(null);
-  const [variants, setVariants] = useState(product.variants || []);
+  const [variants, setVariants] = useState(product.variants || product.available_colors ? [] : []);
+  const [displayPrice, setDisplayPrice] = useState(salePrices);
 
   useEffect(() => {
     if (typeof window !== 'undefined' && window.localStorage) {
@@ -359,17 +363,26 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
     (item) => item.id === id || item.id === routerId
   );
 
+  // Ensure imgGroup is always an array
+  const imageGroup = useMemo(() => {
+    if (!imgGroup || !Array.isArray(imgGroup) || imgGroup.length === 0) {
+      return product.imgUrl ? [product.imgUrl] : [];
+    }
+    return imgGroup;
+  }, [imgGroup, product.imgUrl]);
+
   const handleImageClick = (ind) => () => {
     setSelectedImage(ind);
   };
 
   const openImageViewer = useCallback((index) => {
-    setCurrentImage(index);
-    setIsViewerOpen(true);
-  }, []);
+    if (imageGroup && imageGroup.length > 0) {
+      setCurrentImage(index);
+      setIsViewerOpen(true);
+    }
+  }, [imageGroup]);
 
   const closeImageViewer = () => {
-    setCurrentImage(0);
     setIsViewerOpen(false);
   };
 
@@ -380,25 +393,44 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
         (v) => v.color === selectedColor && v.size === selectedSize && v.status === 1
       );
       setSelectedVariant(variant);
+      
+      // Update display price based on selected variant
+      if (variant) {
+        const variantPrice = variant.variant_price || variant.actual_price;
+        if (variantPrice && variantPrice > 0) {
+          setDisplayPrice(parseFloat(variantPrice));
+        } else {
+          setDisplayPrice(salePrices);
+        }
+      } else {
+        setDisplayPrice(salePrices);
+      }
     } else {
       setSelectedVariant(null);
+      setDisplayPrice(salePrices);
     }
-  }, [selectedColor, selectedSize, variants]);
+  }, [selectedColor, selectedSize, variants, salePrices]);
 
   // Fetch variants if product has variants support
   useEffect(() => {
     if (product.variants && product.variants.length > 0) {
       setVariants(product.variants);
-    } else if (product.id) {
-      // Optionally fetch variants from API if not provided
-      // This can be uncommented if you want to fetch variants separately
-      // fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_BASE}api/getProductVariants?item_id=${product.id}`)
-      //   .then(res => res.json())
-      //   .then(data => {
-      //     if (data.success) {
-      //       setVariants(data.variants);
-      //     }
-      //   });
+    } else if (product.available_colors && product.available_colors.length > 0) {
+      // Product has variant support but variants not loaded, fetch them
+      const fetchVariants = async () => {
+        try {
+          const response = await fetch(
+            `${process.env.NEXT_PUBLIC_BACKEND_API_BASE}getProductVariants?item_id=${product.id}`
+          );
+          const data = await response.json();
+          if (data.success && data.variants) {
+            setVariants(data.variants);
+          }
+        } catch (error) {
+          console.error('Error fetching variants:', error);
+        }
+      };
+      fetchVariants();
     }
   }, [product]);
 
@@ -485,122 +517,264 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
       }}
     >
       <Grid container spacing={{ xs: 2, md: 4 }} justifyContent="space-around">
-        {/* Image Gallery Section */}
+        {/* Image Gallery Section - Professional Design */}
         <Grid item md={6} xs={12}>
-          <ProductCard isDark={isDark} sx={{ animationDelay: "0.1s" }}>
-            {/* Discount Badge */}
-            {!!numericDiscount && numericDiscount > 0 && (
-              <Chip
-                label={`${Math.round(numericDiscount)}% OFF`}
-                sx={{
-                  position: "absolute",
-                  top: 24,
-                  right: 24,
-                  zIndex: 2,
-                  background: "linear-gradient(135deg, #EF4444 0%, #DC2626 100%)",
-                  color: "white",
-                  fontWeight: 700,
-                  fontSize: "14px",
-                  height: "36px",
-                  borderRadius: "18px",
-                  boxShadow: "0 6px 16px rgba(239, 68, 68, 0.4)",
-                  animation: `${pulse} 2s infinite`,
-                }}
-              />
-            )}
-
-            {/* Main Image */}
-            <FlexBox justifyContent="center" mb={3}>
-              <ImageGalleryCard
-                isDark={isDark}
-                role="button"
-                tabIndex={0}
-                aria-label={`View larger image of ${name}`}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    openImageViewer(imgGroup.indexOf(imgGroup[selectedImage]));
-                  }
-                }}
-                onClick={() => openImageViewer(imgGroup.indexOf(imgGroup[selectedImage]))}
-              >
-                <LazyImage
-                  width={400}
-                  height={400}
-                  alt={name ? `${name} - Premium Women's Clothing | Buy Online in Europe at Meerab's Wardrobe` : "Women's Clothing"}
-                  loading="eager"
-                  priority
-                  objectFit="contain"
-                  src={localimageurl + `${product.imgGroup[selectedImage]}`}
-                  title={name || "Women's Clothing"}
-                  style={{ borderRadius: "16px", aspectRatio: "1 / 1" }}
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  quality={85}
-                />
-              </ImageGalleryCard>
-            </FlexBox>
-
-            {/* Image Viewer Modal */}
-            {isViewerOpen && (
-              <ImageViewer
-                src={imgGroup.map((img) => localimageurl + img)}
-                onClose={closeImageViewer}
-                currentIndex={currentImage}
-                backgroundStyle={{
-                  backgroundColor: "rgba(0,0,0,0.95)",
-                  zIndex: 1501,
-                  backdropFilter: "blur(10px)",
-                }}
-              />
-            )}
-
-            {/* Thumbnails */}
-            <FlexBox 
-              overflow="auto" 
-              sx={{ 
-                gap: "14px", 
-                justifyContent: "center", 
-                pb: 1,
-                "&::-webkit-scrollbar": { height: "6px" },
-                "&::-webkit-scrollbar-track": {
-                  background: isDark ? "#1E293B" : "#F1F5F9",
-                  borderRadius: "10px",
-                },
-                "&::-webkit-scrollbar-thumb": {
-                  background: isDark ? "#4B5563" : "#CBD5E1",
-                  borderRadius: "10px",
-                },
+          <Box
+            sx={{
+              position: "sticky",
+              top: 100,
+              [theme.breakpoints.down("md")]: {
+                position: "relative",
+                top: 0,
+              },
+            }}
+          >
+            <Box
+              sx={{
+                background: isDark ? "#1E293B" : "#FFFFFF",
+                borderRadius: "8px",
+                border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "#E5E7EB"}`,
+                overflow: "hidden",
+                boxShadow: isDark
+                  ? "0 1px 3px rgba(0, 0, 0, 0.3)"
+                  : "0 1px 3px rgba(0, 0, 0, 0.05)",
+                position: "relative",
               }}
             >
-              {imgGroup.map((url, ind) => (
-                <ThumbnailButton
-                  key={ind}
-                  isSelected={selectedImage === ind}
-                  isDark={isDark}
+              {/* Discount Badge - Clean & Minimal */}
+              {!!numericDiscount && numericDiscount > 0 && (
+                <Box
+                  sx={{
+                    position: "absolute",
+                    top: 12,
+                    right: 12,
+                    zIndex: 10,
+                    background: "#EF4444",
+                    color: "white",
+                    padding: "4px 10px",
+                    borderRadius: "4px",
+                    fontSize: "12px",
+                    fontWeight: 600,
+                    letterSpacing: "0.3px",
+                    boxShadow: "0 2px 6px rgba(239, 68, 68, 0.3)",
+                  }}
+                >
+                  -{Math.round(numericDiscount)}%
+                </Box>
+              )}
+
+              {/* Main Product Image - Clean & Professional */}
+              {imageGroup && imageGroup.length > 0 && (
+                <Box
+                  sx={{
+                    position: "relative",
+                    width: "100%",
+                    aspectRatio: "1 / 1",
+                    background: isDark ? "#0F172A" : "#FFFFFF",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    cursor: "pointer",
+                    transition: "all 0.2s ease",
+                    "&:hover": {
+                      "& .zoom-hint": {
+                        opacity: 1,
+                      },
+                    },
+                  }}
                   role="button"
                   tabIndex={0}
-                  aria-label={`View ${name} image ${ind + 1}`}
-                  aria-pressed={selectedImage === ind}
-                  onClick={handleImageClick(ind)}
+                  aria-label={`View larger image of ${name}`}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
-                      handleImageClick(ind)();
+                      openImageViewer(selectedImage);
                     }
                   }}
+                  onClick={() => openImageViewer(selectedImage)}
                 >
-                  <BazaarAvatar
-                    src={localimageurl + `${url}`}
-                    variant="square"
-                    height={48}
-                    width={48}
-                    sx={{ borderRadius: "10px" }}
-                    alt={`${name} - Image ${ind + 1}`}
+                  <LazyImage
+                    width={800}
+                    height={800}
+                    alt={name ? `${name} - Premium Women's Clothing | Buy Online in Europe at Meerab's Wardrobe` : "Women's Clothing"}
+                    loading="eager"
+                    priority
+                    objectFit="contain"
+                    src={localimageurl + imageGroup[selectedImage]}
+                    title={name || "Women's Clothing"}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain",
+                      padding: "20px",
+                    }}
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    quality={100}
                   />
-                </ThumbnailButton>
-              ))}
-            </FlexBox>
-          </ProductCard>
+                  
+                  {/* Zoom Hint */}
+                  <Box
+                    className="zoom-hint"
+                    sx={{
+                      position: "absolute",
+                      bottom: 12,
+                      right: 12,
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 0.5,
+                      padding: "6px 10px",
+                      background: isDark
+                        ? "rgba(0, 0, 0, 0.7)"
+                        : "rgba(0, 0, 0, 0.6)",
+                      borderRadius: "4px",
+                      fontSize: "11px",
+                      fontWeight: 500,
+                      color: "#FFFFFF",
+                      opacity: 0,
+                      transition: "opacity 0.2s ease",
+                      pointerEvents: "none",
+                    }}
+                  >
+                    <Box
+                      component="svg"
+                      sx={{ width: 12, height: 12 }}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"
+                      />
+                    </Box>
+                    Click to zoom
+                  </Box>
+                </Box>
+              )}
+
+              {/* Image Viewer Modal */}
+              {isViewerOpen && imageGroup && imageGroup.length > 0 && (
+                <ImageViewer
+                  src={imageGroup.map((img) => localimageurl + img)}
+                  currentIndex={currentImage}
+                  onClose={closeImageViewer}
+                  disableScroll={false}
+                  closeOnClickOutside={true}
+                  backgroundStyle={{
+                    backgroundColor: "rgba(0, 0, 0, 0.95)",
+                    zIndex: 1501,
+                  }}
+                />
+              )}
+
+              {/* Thumbnail Gallery - Clean & Professional */}
+              {imageGroup && imageGroup.length > 1 && (
+                <Box
+                  sx={{
+                    borderTop: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "#E5E7EB"}`,
+                    padding: "12px",
+                    background: isDark ? "#1E293B" : "#FFFFFF",
+                  }}
+                >
+                  <FlexBox
+                    gap={1}
+                    sx={{
+                      overflowX: "auto",
+                      overflowY: "hidden",
+                      justifyContent: { xs: "flex-start", sm: "center" },
+                      scrollBehavior: "smooth",
+                      "&::-webkit-scrollbar": {
+                        height: "3px",
+                      },
+                      "&::-webkit-scrollbar-track": {
+                        background: isDark ? "#0F172A" : "#F9FAFB",
+                      },
+                      "&::-webkit-scrollbar-thumb": {
+                        background: isDark ? "#475569" : "#CBD5E1",
+                        borderRadius: "2px",
+                        "&:hover": {
+                          background: isDark ? "#64748B" : "#94A3B8",
+                        },
+                      },
+                    }}
+                  >
+                    {imageGroup.map((url, ind) => (
+                      <Box
+                        key={ind}
+                        onClick={handleImageClick(ind)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            handleImageClick(ind)();
+                          }
+                        }}
+                        role="button"
+                        tabIndex={0}
+                        aria-label={`View ${name} image ${ind + 1}`}
+                        aria-pressed={selectedImage === ind}
+                        sx={{
+                          position: "relative",
+                          width: 70,
+                          height: 70,
+                          minWidth: 70,
+                          borderRadius: "6px",
+                          overflow: "hidden",
+                          cursor: "pointer",
+                          border: `2px solid ${
+                            selectedImage === ind
+                              ? "#D23F57"
+                              : isDark
+                              ? "rgba(255, 255, 255, 0.1)"
+                              : "#E5E7EB"
+                          }`,
+                          background: isDark ? "#0F172A" : "#FAFAFA",
+                          transition: "all 0.2s ease",
+                          "&:hover": {
+                            borderColor: selectedImage === ind
+                              ? "#D23F57"
+                              : isDark
+                              ? "rgba(255, 255, 255, 0.2)"
+                              : "#CBD5E1",
+                            transform: "translateY(-2px)",
+                            boxShadow: isDark
+                              ? "0 4px 8px rgba(0, 0, 0, 0.3)"
+                              : "0 4px 8px rgba(0, 0, 0, 0.1)",
+                          },
+                        }}
+                      >
+                        <BazaarAvatar
+                          src={localimageurl + url}
+                          variant="square"
+                          sx={{
+                            width: "100%",
+                            height: "100%",
+                            borderRadius: "4px",
+                            objectFit: "cover",
+                          }}
+                          alt={`${name} - Image ${ind + 1}`}
+                        />
+                        {selectedImage === ind && (
+                          <Box
+                            sx={{
+                              position: "absolute",
+                              inset: 0,
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              background: "rgba(210, 63, 87, 0.15)",
+                              pointerEvents: "none",
+                            }}
+                          />
+                        )}
+                      </Box>
+                    ))}
+                  </FlexBox>
+                </Box>
+              )}
+            </Box>
+          </Box>
         </Grid>
 
         {/* Product Details Section */}
@@ -750,7 +924,7 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
                     fontFamily: "'Outfit', sans-serif",
                   }}
                 >
-                  {currency} {salePrices?.toFixed(2) || '0.00'}
+                  {currency} {displayPrice?.toFixed(2) || salePrices?.toFixed(2) || '0.00'}
                 </H2>
                 
                 {!!numericDiscount && numericDiscount > 0 && (
@@ -783,151 +957,278 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
                 )}
               </FlexBox>
               
-              {/* Variant Selector for Clothing Products */}
-              {variants && variants.length > 0 && (
-                <Box mt={3} position="relative" zIndex={1}>
-                  <VariantSelector
-                    variants={variants}
-                    selectedColor={selectedColor}
-                    selectedSize={selectedSize}
-                    onColorChange={setSelectedColor}
-                    onSizeChange={setSelectedSize}
-                    productId={id}
-                  />
+              {/* Variant Selector for Clothing Products - Show prominently */}
+              {(variants && variants.length > 0) || (product.available_colors && product.available_colors.length > 0) ? (
+                <Box 
+                  mt={3} 
+                  position="relative" 
+                  zIndex={1}
+                  sx={{
+                    background: isDark 
+                      ? "rgba(255, 255, 255, 0.05)" 
+                      : "rgba(0, 0, 0, 0.02)",
+                    padding: "20px",
+                    borderRadius: "16px",
+                    border: `2px solid ${isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.05)"}`,
+                  }}
+                >
+                  <H6 
+                    mb={2} 
+                    sx={{ 
+                      fontWeight: 700, 
+                      fontSize: "16px",
+                      color: isDark ? "#F9FAFB" : "#0F172A",
+                    }}
+                  >
+                    Select Options:
+                  </H6>
+                  {variants && variants.length > 0 ? (
+                    <VariantSelector
+                      variants={variants}
+                      selectedColor={selectedColor}
+                      selectedSize={selectedSize}
+                      onColorChange={setSelectedColor}
+                      onSizeChange={setSelectedSize}
+                      productId={id}
+                    />
+                  ) : (
+                    <Box>
+                      <H6 mb={1.5} sx={{ fontWeight: 600, fontSize: "14px", color: isDark ? "#D1D5DB" : "#475569" }}>
+                        Loading variant options...
+                      </H6>
+                    </Box>
+                  )}
                 </Box>
-              )}
+              ) : null}
               
-              {/* Stock Status */}
+              {/* Stock Status - Show variant stock if variant selected */}
               <FlexBox alignItems="center" mt={3} position="relative" zIndex={1}>
-                {stock === "0.00" ? (
-                  <Chip
-                    label="⚠️ Out of Stock"
-                    sx={{
-                      background: isDark
-                        ? "linear-gradient(135deg, #7F1D1D 0%, #991B1B 100%)"
-                        : "linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%)",
-                      color: isDark ? "#FCA5A5" : "#B91C1C",
-                      height: "40px",
-                      px: 2.5,
-                      fontWeight: 700,
-                      fontSize: "15px",
-                      borderRadius: "14px",
-                      border: `2px solid ${isDark ? "#DC2626" : "#FCA5A5"}`,
-                    }}
-                  />
-                ) : (
-                  <Chip
-                    icon={<VerifiedUser sx={{ color: isDark ? "#6EE7B7" : "#047857", fontSize: 20 }} />}
-                    label="✓ In Stock - Ready to Ship"
-                    sx={{
-                      background: isDark
-                        ? "linear-gradient(135deg, #064E3B 0%, #065F46 100%)"
-                        : "linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%)",
-                      color: isDark ? "#6EE7B7" : "#047857",
-                      height: "40px",
-                      px: 2.5,
-                      fontWeight: 700,
-                      fontSize: "15px",
-                      borderRadius: "14px",
-                      border: `2px solid ${isDark ? "#10B981" : "#6EE7B7"}`,
-                    }}
-                  />
-                )}
+                {(() => {
+                  // Check variant stock if variant is selected
+                  if (selectedVariant) {
+                    const variantStock = selectedVariant.stock_quantity || 0;
+                    if (variantStock === 0) {
+                      return (
+                        <Chip
+                          label="⚠️ This variant is out of stock"
+                          sx={{
+                            background: isDark
+                              ? "linear-gradient(135deg, #7F1D1D 0%, #991B1B 100%)"
+                              : "linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%)",
+                            color: isDark ? "#FCA5A5" : "#B91C1C",
+                            height: "40px",
+                            px: 2.5,
+                            fontWeight: 700,
+                            fontSize: "15px",
+                            borderRadius: "14px",
+                            border: `2px solid ${isDark ? "#DC2626" : "#FCA5A5"}`,
+                          }}
+                        />
+                      );
+                    } else if (variantStock <= 5) {
+                      return (
+                        <Chip
+                          icon={<VerifiedUser sx={{ color: isDark ? "#FCD34D" : "#D97706", fontSize: 20 }} />}
+                          label={`⚠️ Only ${variantStock} left in stock!`}
+                          sx={{
+                            background: isDark
+                              ? "linear-gradient(135deg, #78350F 0%, #92400E 100%)"
+                              : "linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%)",
+                            color: isDark ? "#FCD34D" : "#D97706",
+                            height: "40px",
+                            px: 2.5,
+                            fontWeight: 700,
+                            fontSize: "15px",
+                            borderRadius: "14px",
+                            border: `2px solid ${isDark ? "#F59E0B" : "#FCD34D"}`,
+                          }}
+                        />
+                      );
+                    } else {
+                      return (
+                        <Chip
+                          icon={<VerifiedUser sx={{ color: isDark ? "#6EE7B7" : "#047857", fontSize: 20 }} />}
+                          label={`✓ In Stock (${variantStock} available)`}
+                          sx={{
+                            background: isDark
+                              ? "linear-gradient(135deg, #064E3B 0%, #065F46 100%)"
+                              : "linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%)",
+                            color: isDark ? "#6EE7B7" : "#047857",
+                            height: "40px",
+                            px: 2.5,
+                            fontWeight: 700,
+                            fontSize: "15px",
+                            borderRadius: "14px",
+                            border: `2px solid ${isDark ? "#10B981" : "#6EE7B7"}`,
+                          }}
+                        />
+                      );
+                    }
+                  }
+                  // Fallback to product stock
+                  return stock === "0.00" ? (
+                    <Chip
+                      label="⚠️ Out of Stock"
+                      sx={{
+                        background: isDark
+                          ? "linear-gradient(135deg, #7F1D1D 0%, #991B1B 100%)"
+                          : "linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%)",
+                        color: isDark ? "#FCA5A5" : "#B91C1C",
+                        height: "40px",
+                        px: 2.5,
+                        fontWeight: 700,
+                        fontSize: "15px",
+                        borderRadius: "14px",
+                        border: `2px solid ${isDark ? "#DC2626" : "#FCA5A5"}`,
+                      }}
+                    />
+                  ) : (
+                    <Chip
+                      icon={<VerifiedUser sx={{ color: isDark ? "#6EE7B7" : "#047857", fontSize: 20 }} />}
+                      label="✓ In Stock - Ready to Ship"
+                      sx={{
+                        background: isDark
+                          ? "linear-gradient(135deg, #064E3B 0%, #065F46 100%)"
+                          : "linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%)",
+                        color: isDark ? "#6EE7B7" : "#047857",
+                        height: "40px",
+                        px: 2.5,
+                        fontWeight: 700,
+                        fontSize: "15px",
+                        borderRadius: "14px",
+                        border: `2px solid ${isDark ? "#10B981" : "#6EE7B7"}`,
+                      }}
+                    />
+                  );
+                })()}
               </FlexBox>
             </PriceCard>
 
             {/* Add to Cart / Quantity Controls */}
-            {(stock === "0.00" || (selectedVariant && selectedVariant.stock_quantity === 0)) ? (
-              <AddToCartButton
-                disabled
-                fullWidth
-                isDark={isDark}
-                sx={{
-                  mb: 3,
-                  background: isDark ? "#374151" : "#E5E7EB",
-                  color: isDark ? "#9CA3AF" : "#6B7280",
-                  boxShadow: "none",
-                  cursor: "not-allowed",
-                  "&:hover": {
-                    transform: "none",
-                    boxShadow: "none",
-                  },
-                }}
-              >
-                Out of Stock - Notify When Available
-              </AddToCartButton>
-            ) : (variants.length > 0 && !selectedVariant) ? (
-              <AddToCartButton
-                fullWidth
-                variant="contained"
-                isDark={isDark}
-                disabled
-                sx={{ mb: 3, opacity: 0.6, cursor: "not-allowed" }}
-              >
-                <ShoppingCartOutlined sx={{ mr: 1.5, fontSize: "22px" }} />
-                Please Select Color & Size
-              </AddToCartButton>
-            ) : !cartItem?.qty ? (
-              <AddToCartButton
-                fullWidth
-                variant="contained"
-                isDark={isDark}
-                onClick={handleCartAmountChange(1, true)}
-                aria-label={`Add ${name} to cart`}
-                sx={{ mb: 3 }}
-              >
-                <ShoppingCartOutlined sx={{ mr: 1.5, fontSize: "22px" }} />
-                Add to Cart
-              </AddToCartButton>
-            ) : (
-              <FlexBox 
-                alignItems="center" 
-                justifyContent="space-between" 
-                mb={3} 
-                sx={{
-                  background: isDark
-                    ? "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-                    : "linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%)",
-                  padding: { xs: "14px 18px", md: "18px 24px" },
-                  borderRadius: "18px",
-                  border: `2px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.04)"}`,
-                  boxShadow: isDark
-                    ? "0 6px 20px rgba(0, 0, 0, 0.4)"
-                    : "0 6px 20px rgba(0, 0, 0, 0.06)",
-                }}
-              >
-                <QuantityButton
-                  variant="decrease"
-                  isDark={isDark}
-                  onClick={handleCartAmountChange(cartItem?.qty - 1, false)}
-                  aria-label={`Decrease quantity of ${name}`}
-                >
-                  <Remove fontSize="small" />
-                </QuantityButton>
-
-                <H3 
-                  fontWeight="800" 
-                  sx={{ 
-                    fontSize: { xs: "1.5rem", md: "1.75rem" },
-                    color: isDark ? "#F9FAFB" : "#0F172A",
-                    minWidth: "60px",
-                    textAlign: "center",
-                    fontFamily: "'Outfit', sans-serif",
+            {(() => {
+              // Check if product has variants
+              const hasVariants = (variants && variants.length > 0) || (product.available_colors && product.available_colors.length > 0);
+              
+              // Check stock status
+              const isOutOfStock = stock === "0.00" || (selectedVariant && selectedVariant.stock_quantity === 0);
+              
+              // Check if variant selection is required but not done
+              const needsVariantSelection = hasVariants && !selectedVariant;
+              
+              if (isOutOfStock) {
+                return (
+                  <AddToCartButton
+                    disabled
+                    fullWidth
+                    isDark={isDark}
+                    sx={{
+                      mb: 3,
+                      background: isDark ? "#374151" : "#E5E7EB",
+                      color: isDark ? "#9CA3AF" : "#6B7280",
+                      boxShadow: "none",
+                      cursor: "not-allowed",
+                      "&:hover": {
+                        transform: "none",
+                        boxShadow: "none",
+                      },
+                    }}
+                  >
+                    Out of Stock - Notify When Available
+                  </AddToCartButton>
+                );
+              }
+              
+              if (needsVariantSelection) {
+                return (
+                  <AddToCartButton
+                    fullWidth
+                    variant="contained"
+                    isDark={isDark}
+                    disabled
+                    sx={{ 
+                      mb: 3, 
+                      opacity: 0.6, 
+                      cursor: "not-allowed",
+                      background: isDark ? "#374151" : "#E5E7EB",
+                      "&:hover": {
+                        transform: "none",
+                        boxShadow: "none",
+                      },
+                    }}
+                  >
+                    <ShoppingCartOutlined sx={{ mr: 1.5, fontSize: "22px" }} />
+                    Please Select Color & Size First
+                  </AddToCartButton>
+                );
+              }
+              
+              if (!cartItem?.qty) {
+                return (
+                  <AddToCartButton
+                    fullWidth
+                    variant="contained"
+                    isDark={isDark}
+                    onClick={handleCartAmountChange(1, true)}
+                    aria-label={`Add ${name} to cart`}
+                    sx={{ mb: 3 }}
+                  >
+                    <ShoppingCartOutlined sx={{ mr: 1.5, fontSize: "22px" }} />
+                    Add to Cart
+                  </AddToCartButton>
+                );
+              }
+              
+              // Quantity controls
+              return (
+                <FlexBox 
+                  alignItems="center" 
+                  justifyContent="space-between" 
+                  mb={3} 
+                  sx={{
+                    background: isDark
+                      ? "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
+                      : "linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%)",
+                    padding: { xs: "14px 18px", md: "18px 24px" },
+                    borderRadius: "18px",
+                    border: `2px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.04)"}`,
+                    boxShadow: isDark
+                      ? "0 6px 20px rgba(0, 0, 0, 0.4)"
+                      : "0 6px 20px rgba(0, 0, 0, 0.06)",
                   }}
                 >
-                  {cartItem?.qty.toString().padStart(2, "0")}
-                </H3>
+                  <QuantityButton
+                    variant="decrease"
+                    isDark={isDark}
+                    onClick={handleCartAmountChange(cartItem?.qty - 1, false)}
+                    aria-label={`Decrease quantity of ${name}`}
+                  >
+                    <Remove fontSize="small" />
+                  </QuantityButton>
 
-                <QuantityButton
-                  variant="increase"
-                  isDark={isDark}
-                  onClick={handleCartAmountChange(cartItem?.qty + 1, true)}
-                  aria-label={`Increase quantity of ${name}`}
-                >
-                  <Add fontSize="small" />
-                </QuantityButton>
-              </FlexBox>
-            )}
+                  <H3 
+                    fontWeight="800" 
+                    sx={{ 
+                      fontSize: { xs: "1.5rem", md: "1.75rem" },
+                      color: isDark ? "#F9FAFB" : "#0F172A",
+                      minWidth: "60px",
+                      textAlign: "center",
+                      fontFamily: "'Outfit', sans-serif",
+                    }}
+                  >
+                    {cartItem?.qty.toString().padStart(2, "0")}
+                  </H3>
+
+                  <QuantityButton
+                    variant="increase"
+                    isDark={isDark}
+                    onClick={handleCartAmountChange(cartItem?.qty + 1, true)}
+                    aria-label={`Increase quantity of ${name}`}
+                  >
+                    <Add fontSize="small" />
+                  </QuantityButton>
+                </FlexBox>
+              );
+            })()}
 
             {/* Trust Badges / Features */}
             <Box>

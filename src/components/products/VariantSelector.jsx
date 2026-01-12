@@ -3,18 +3,30 @@ import { Box, Chip, Typography, styled, Tooltip } from "@mui/material";
 import { H6 } from "components/Typography";
 
 const ColorSwatch = styled(Box)(({ theme, selected, available, colorHex }) => ({
-  width: 40,
-  height: 40,
+  width: 48,
+  height: 48,
   borderRadius: "50%",
   cursor: available ? "pointer" : "not-allowed",
-  border: `3px solid ${selected ? theme.palette.primary.main : "transparent"}`,
+  border: selected 
+    ? `4px solid ${theme.palette.primary.main}` 
+    : available 
+    ? `3px solid ${theme.palette.grey[300]}` 
+    : `3px solid ${theme.palette.grey[400]}`,
   backgroundColor: colorHex || "#ccc",
   opacity: available ? 1 : 0.4,
   position: "relative",
-  transition: "all 0.2s ease",
+  transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+  boxShadow: selected 
+    ? `0 0 0 3px ${theme.palette.primary.light}40, 0 4px 12px rgba(0,0,0,0.15)` 
+    : available 
+    ? "0 2px 8px rgba(0,0,0,0.1)" 
+    : "none",
   "&:hover": {
-    transform: available ? "scale(1.1)" : "none",
-    boxShadow: available ? `0 0 0 2px ${theme.palette.primary.light}` : "none",
+    transform: available ? "scale(1.15)" : "none",
+    boxShadow: available 
+      ? `0 0 0 3px ${theme.palette.primary.light}60, 0 6px 16px rgba(0,0,0,0.2)` 
+      : "none",
+    borderColor: available ? theme.palette.primary.main : undefined,
   },
   "&::after": {
     content: available ? '""' : '"✕"',
@@ -23,45 +35,57 @@ const ColorSwatch = styled(Box)(({ theme, selected, available, colorHex }) => ({
     left: "50%",
     transform: "translate(-50%, -50%)",
     color: "#fff",
-    fontSize: "18px",
+    fontSize: "20px",
     fontWeight: "bold",
-    textShadow: "0 0 3px rgba(0,0,0,0.5)",
+    textShadow: "0 0 4px rgba(0,0,0,0.7)",
+    display: available ? "none" : "block",
   },
 }));
 
 const SizeChip = styled(Chip)(({ theme, selected, available }) => ({
-  minWidth: 50,
-  height: 40,
+  minWidth: 56,
+  height: 44,
   cursor: available ? "pointer" : "not-allowed",
   backgroundColor: selected
     ? theme.palette.primary.main
     : available
-    ? theme.palette.grey[100]
+    ? theme.palette.background.paper
     : theme.palette.grey[300],
   color: selected
     ? "#fff"
     : available
     ? theme.palette.text.primary
     : theme.palette.text.disabled,
-  border: `2px solid ${
-    selected
-      ? theme.palette.primary.main
-      : available
-      ? theme.palette.grey[300]
-      : theme.palette.grey[400]
-  }`,
-  fontWeight: selected ? 700 : 500,
-  transition: "all 0.2s ease",
+  border: selected
+    ? `3px solid ${theme.palette.primary.main}`
+    : available
+    ? `2px solid ${theme.palette.grey[400]}`
+    : `2px solid ${theme.palette.grey[400]}`,
+  fontWeight: selected ? 700 : 600,
+  fontSize: "14px",
+  transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+  boxShadow: selected 
+    ? `0 4px 12px ${theme.palette.primary.main}40` 
+    : available 
+    ? "0 2px 6px rgba(0,0,0,0.08)" 
+    : "none",
   "&:hover": {
-    transform: available ? "scale(1.05)" : "none",
+    transform: available ? "translateY(-2px) scale(1.05)" : "none",
     backgroundColor: available
       ? selected
         ? theme.palette.primary.dark
-        : theme.palette.grey[200]
+        : theme.palette.grey[100]
       : theme.palette.grey[300],
+    boxShadow: available 
+      ? selected
+        ? `0 6px 16px ${theme.palette.primary.main}50`
+        : "0 4px 12px rgba(0,0,0,0.12)"
+      : "none",
+    borderColor: available ? theme.palette.primary.main : undefined,
   },
   "&.Mui-disabled": {
-    opacity: 0.5,
+    opacity: 0.4,
+    cursor: "not-allowed",
   },
 }));
 
@@ -148,17 +172,51 @@ const VariantSelector = ({
       {/* Color Selector */}
       {availableColors.length > 0 && (
         <Box mb={3}>
-          <H6 mb={1.5} sx={{ fontWeight: 600, fontSize: "14px" }}>
-            Color: {selectedColor || "Select a color"}
+          <H6 
+            mb={2} 
+            sx={{ 
+              fontWeight: 700, 
+              fontSize: "15px",
+              color: "text.primary",
+              display: "flex",
+              alignItems: "center",
+              gap: 1,
+            }}
+          >
+            <Typography component="span" sx={{ fontWeight: 600, color: "text.secondary" }}>
+              Color:
+            </Typography>
+            <Typography 
+              component="span" 
+              sx={{ 
+                fontWeight: selectedColor ? 700 : 400,
+                color: selectedColor ? "primary.main" : "text.disabled",
+              }}
+            >
+              {selectedColor || "Please select"}
+            </Typography>
+            {!selectedColor && (
+              <Typography 
+                component="span" 
+                sx={{ 
+                  fontSize: "12px",
+                  color: "error.main",
+                  ml: 1,
+                }}
+              >
+                *
+              </Typography>
+            )}
           </H6>
-          <Box display="flex" gap={1.5} flexWrap="wrap">
+          <Box display="flex" gap={2} flexWrap="wrap" alignItems="center">
             {availableColors.map((colorData) => {
               const isSelected = selectedColor === colorData.color;
               return (
                 <Tooltip
                   key={colorData.color}
-                  title={colorData.color}
+                  title={`${colorData.color}${isSelected ? " (Selected)" : ""}`}
                   arrow
+                  placement="top"
                 >
                   <ColorSwatch
                     selected={isSelected}
@@ -168,6 +226,16 @@ const VariantSelector = ({
                       if (colorData.available) {
                         onColorChange(colorData.color);
                         // Reset size when color changes
+                        onSizeChange(null);
+                      }
+                    }}
+                    aria-label={`Select color ${colorData.color}`}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if ((e.key === 'Enter' || e.key === ' ') && colorData.available) {
+                        e.preventDefault();
+                        onColorChange(colorData.color);
                         onSizeChange(null);
                       }
                     }}
@@ -182,10 +250,43 @@ const VariantSelector = ({
       {/* Size Selector */}
       {availableSizes.length > 0 && (
         <Box mb={3}>
-          <H6 mb={1.5} sx={{ fontWeight: 600, fontSize: "14px" }}>
-            Size: {selectedSize || "Select a size"}
+          <H6 
+            mb={2} 
+            sx={{ 
+              fontWeight: 700, 
+              fontSize: "15px",
+              color: "text.primary",
+              display: "flex",
+              alignItems: "center",
+              gap: 1,
+            }}
+          >
+            <Typography component="span" sx={{ fontWeight: 600, color: "text.secondary" }}>
+              Size:
+            </Typography>
+            <Typography 
+              component="span" 
+              sx={{ 
+                fontWeight: selectedSize ? 700 : 400,
+                color: selectedSize ? "primary.main" : "text.disabled",
+              }}
+            >
+              {selectedSize || "Please select"}
+            </Typography>
+            {!selectedSize && (
+              <Typography 
+                component="span" 
+                sx={{ 
+                  fontSize: "12px",
+                  color: "error.main",
+                  ml: 1,
+                }}
+              >
+                *
+              </Typography>
+            )}
           </H6>
-          <Box display="flex" gap={1} flexWrap="wrap">
+          <Box display="flex" gap={1.5} flexWrap="wrap">
             {availableSizes.map((size) => {
               const isSelected = selectedSize === size;
               const isAvailable = sizeAvailability[size];
@@ -201,6 +302,7 @@ const VariantSelector = ({
                       onSizeChange(size);
                     }
                   }}
+                  aria-label={`Select size ${size}${!isAvailable ? " (Out of stock)" : ""}`}
                 />
               );
             })}
