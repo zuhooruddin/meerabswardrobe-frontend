@@ -10,7 +10,6 @@ import useSettings from "hooks/useSettings";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import React, { useCallback, useState, useMemo, useEffect } from "react";
-import ImageViewer from "react-simple-image-viewer";
 import { FlexBox, FlexRowCenter } from "../flex-box";
 import { toast } from "react-toastify";
 import BazaarRating from "components/BazaarRating";
@@ -334,6 +333,10 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
+  const [zoomLevel, setZoomLevel] = useState(1);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   
   // Ensure imgGroup is always an array
   const imageGroup = useMemo(() => {
@@ -350,9 +353,17 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
     }
   }, [imageGroup, selectedImage]);
   
-
+  // Reset zoom when image changes
+  useEffect(() => {
+    if (isViewerOpen) {
+      setZoomLevel(1);
+      setPosition({ x: 0, y: 0 });
+    }
+  }, [currentImage, isViewerOpen]);
   
 
+  
+  
   // Variant selection state (for clothing products)
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
@@ -381,19 +392,117 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
   const handleImageClick = (ind) => () => {
     if (imageGroup && ind >= 0 && ind < imageGroup.length) {
       setSelectedImage(ind);
+      if (isViewerOpen) {
+        setCurrentImage(ind);
+        setZoomLevel(1);
+        setPosition({ x: 0, y: 0 });
+      }
     }
   };
 
   const openImageViewer = useCallback((index) => {
     if (imageGroup && imageGroup.length > 0) {
-      setCurrentImage(index);
+      const safeIndex = Math.max(0, Math.min(index, imageGroup.length - 1));
+      setCurrentImage(safeIndex);
+      setSelectedImage(safeIndex); // Sync with selected image
+      setZoomLevel(1);
+      setPosition({ x: 0, y: 0 });
       setIsViewerOpen(true);
     }
   }, [imageGroup]);
 
   const closeImageViewer = () => {
     setIsViewerOpen(false);
+    setZoomLevel(1);
+    setPosition({ x: 0, y: 0 });
   };
+
+  const handleZoomIn = () => {
+    setZoomLevel((prev) => Math.min(prev + 0.5, 5));
+  };
+
+  const handleZoomOut = () => {
+    setZoomLevel((prev) => Math.max(prev - 0.5, 1));
+    if (zoomLevel <= 1) {
+      setPosition({ x: 0, y: 0 });
+    }
+  };
+
+  const handleResetZoom = () => {
+    setZoomLevel(1);
+    setPosition({ x: 0, y: 0 });
+  };
+
+  const handleNextImage = () => {
+    if (imageGroup && currentImage < imageGroup.length - 1) {
+      setCurrentImage(currentImage + 1);
+      setZoomLevel(1);
+      setPosition({ x: 0, y: 0 });
+    }
+  };
+
+  const handlePrevImage = () => {
+    if (currentImage > 0) {
+      setCurrentImage(currentImage - 1);
+      setZoomLevel(1);
+      setPosition({ x: 0, y: 0 });
+    }
+  };
+
+  const handleMouseDown = (e) => {
+    if (zoomLevel > 1) {
+      setIsDragging(true);
+      setDragStart({
+        x: e.clientX - position.x,
+        y: e.clientY - position.y,
+      });
+    }
+  };
+
+  const handleMouseMove = (e) => {
+    if (isDragging && zoomLevel > 1) {
+      setPosition({
+        x: e.clientX - dragStart.x,
+        y: e.clientY - dragStart.y,
+      });
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleWheel = (e) => {
+    if (e.ctrlKey || e.metaKey) {
+      e.preventDefault();
+      const delta = e.deltaY > 0 ? -0.2 : 0.2;
+      setZoomLevel((prev) => Math.max(1, Math.min(5, prev + delta)));
+    }
+  };
+
+  // Keyboard navigation
+  useEffect(() => {
+    if (!isViewerOpen) return;
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        closeImageViewer();
+      } else if (e.key === 'ArrowRight') {
+        handleNextImage();
+      } else if (e.key === 'ArrowLeft') {
+        handlePrevImage();
+      } else if (e.key === '+' || e.key === '=') {
+        handleZoomIn();
+      } else if (e.key === '-') {
+        handleZoomOut();
+      } else if (e.key === '0') {
+        handleResetZoom();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isViewerOpen, currentImage, imageGroup]);
 
   // Update selected variant when color/size changes
   useEffect(() => {
@@ -527,7 +636,8 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
     >
       <Grid container spacing={{ xs: 2, md: 4 }} justifyContent="space-around">
         {/* Image Gallery Section - Professional Design */}
-        <Grid item md={6} xs={12}>
+     {/* Image Gallery Section - Professional E-commerce Design */}
+     <Grid item md={6} xs={12}>
           <Box
             sx={{
               position: "sticky",
@@ -540,143 +650,305 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
           >
             <Box
               sx={{
-                background: isDark ? "#1E293B" : "#FFFFFF",
-                borderRadius: "8px",
-                border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.08)" : "#E5E7EB"}`,
+                background: isDark ? "#FFFFFF" : "#FFFFFF",
+                borderRadius: "12px",
+                border: isDark ? "1px solid #E5E7EB" : "1px solid #E5E7EB",
                 overflow: "hidden",
-                boxShadow: isDark
-                  ? "0 1px 3px rgba(0, 0, 0, 0.3)"
-                  : "0 1px 3px rgba(0, 0, 0, 0.05)",
+                boxShadow: "0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06)",
                 position: "relative",
               }}
             >
-              {/* Discount Badge - Clean & Minimal */}
-              {!!numericDiscount && numericDiscount > 0 && (
+              {/* Discount Badge - Professional Style */}
+            {!!numericDiscount && numericDiscount > 0 && (
                 <Box
-                  sx={{
-                    position: "absolute",
-                    top: 12,
-                    right: 12,
+                sx={{
+                  position: "absolute",
+                    top: 16,
+                    right: 16,
                     zIndex: 10,
-                    background: "#EF4444",
-                    color: "white",
-                    padding: "4px 10px",
-                    borderRadius: "4px",
-                    fontSize: "12px",
-                    fontWeight: 600,
-                    letterSpacing: "0.3px",
-                    boxShadow: "0 2px 6px rgba(239, 68, 68, 0.3)",
+                    background: "#DC2626",
+                  color: "white",
+                    padding: "6px 12px",
+                    borderRadius: "6px",
+                    fontSize: "13px",
+                    fontWeight: 700,
+                    letterSpacing: "0.5px",
+                    boxShadow: "0 2px 8px rgba(220, 38, 38, 0.25)",
                   }}
                 >
-                  -{Math.round(numericDiscount)}%
+                  -{Math.round(numericDiscount)}% OFF
                 </Box>
               )}
 
-              {/* Main Product Image - Clean & Professional */}
+              {/* Main Product Image - Professional Layout with In-Place Zoom */}
               {imageGroup && imageGroup.length > 0 && (
                 <Box
                   sx={{
                     position: "relative",
                     width: "100%",
                     aspectRatio: "1 / 1",
-                    background: isDark ? "#0F172A" : "#FFFFFF",
+                    background: "#FAFAFA",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    cursor: "pointer",
-                    transition: "all 0.2s ease",
-                    "&:hover": {
-                      "& .zoom-hint": {
-                        opacity: 1,
-                      },
-                    },
+                    overflow: "hidden",
+                    borderRadius: "12px",
                   }}
-                  role="button"
-                  tabIndex={0}
-                  aria-label={`View larger image of ${name}`}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      openImageViewer(selectedImage);
-                    }
-                  }}
-                  onClick={() => openImageViewer(selectedImage)}
                 >
-                  <LazyImage
-                    width={800}
-                    height={800}
-                    alt={name ? `${name} - Premium Women's Clothing | Buy Online in Europe at Meerab's Wardrobe` : "Women's Clothing"}
-                    loading="eager"
-                    priority
-                    objectFit="contain"
-                    src={localimageurl + imageGroup[selectedImage]}
-                    title={name || "Women's Clothing"}
-                    style={{
+                  {/* Zoom Container */}
+                  <Box
+                    sx={{
+                      position: "relative",
                       width: "100%",
                       height: "100%",
-                      objectFit: "contain",
-                      padding: "20px",
+                      overflow: "hidden",
+                      cursor: isViewerOpen && zoomLevel > 1 ? (isDragging ? "grabbing" : "grab") : "zoom-in",
                     }}
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    quality={100}
-                  />
-                  
-                  {/* Zoom Hint */}
-                  <Box
-                    className="zoom-hint"
-                    sx={{
-                      position: "absolute",
-                      bottom: 12,
-                      right: 12,
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 0.5,
-                      padding: "6px 10px",
-                      background: isDark
-                        ? "rgba(0, 0, 0, 0.7)"
-                        : "rgba(0, 0, 0, 0.6)",
-                      borderRadius: "4px",
-                      fontSize: "11px",
-                      fontWeight: 500,
-                      color: "#FFFFFF",
-                      opacity: 0,
-                      transition: "opacity 0.2s ease",
-                      pointerEvents: "none",
+                    onMouseDown={isViewerOpen ? handleMouseDown : undefined}
+                    onMouseMove={isViewerOpen ? handleMouseMove : undefined}
+                    onMouseUp={isViewerOpen ? handleMouseUp : undefined}
+                    onMouseLeave={isViewerOpen ? handleMouseUp : undefined}
+                    onWheel={isViewerOpen ? handleWheel : undefined}
+                    onClick={() => {
+                      if (!isViewerOpen) {
+                        openImageViewer(selectedImage);
+                      }
                     }}
                   >
                     <Box
-                      component="svg"
-                      sx={{ width: 12, height: 12 }}
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
+                      sx={{
+                        width: "100%",
+                        height: "100%",
+                        transform: isViewerOpen
+                          ? `scale(${zoomLevel}) translate(${position.x / zoomLevel}px, ${position.y / zoomLevel}px)`
+                          : "scale(1)",
+                        transition: isViewerOpen && !isDragging ? "transform 0.2s ease" : "none",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"
+                      <LazyImage
+                        width={800}
+                        height={800}
+                        alt={name ? `${name} - Premium Women's Clothing | Buy Online in Europe at Meerab's Wardrobe` : "Women's Clothing"}
+                        loading="eager"
+                        priority
+                        objectFit="contain"
+                        src={localimageurl + imageGroup[selectedImage]}
+                        title={name || "Women's Clothing"}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "contain",
+                          padding: "32px",
+                          userSelect: "none",
+                          pointerEvents: "none",
+                        }}
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        quality={100}
                       />
                     </Box>
-                    Click to zoom
                   </Box>
+
+                  {/* Zoom Controls - Only show when zoomed */}
+                  {isViewerOpen && (
+                    <Box
+                      sx={{
+                        position: "absolute",
+                        top: 12,
+                        right: 12,
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: 0.5,
+                        zIndex: 10,
+                      }}
+                    >
+                      {/* Close Button */}
+                      <IconButton
+                        onClick={closeImageViewer}
+                        size="small"
+                        sx={{
+                          background: "rgba(255, 255, 255, 0.95)",
+                          color: "#374151",
+                          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
+                          "&:hover": {
+                            background: "#FFFFFF",
+                          },
+                        }}
+                      >
+                        <Box
+                          component="svg"
+                          sx={{ width: 18, height: 18 }}
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M6 18L18 6M6 6l12 12"
+                          />
+                        </Box>
+                      </IconButton>
+
+                      {/* Zoom Controls */}
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                          background: "rgba(255, 255, 255, 0.95)",
+                          borderRadius: "8px",
+                          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
+                          overflow: "hidden",
+                        }}
+                      >
+                        <IconButton
+                          onClick={handleZoomIn}
+                          disabled={zoomLevel >= 5}
+                          size="small"
+                          sx={{
+                            color: "#374151",
+                            borderRadius: 0,
+                            "&:hover": {
+                              background: "#F3F4F6",
+                            },
+                            "&:disabled": {
+                              opacity: 0.3,
+                            },
+                          }}
+                        >
+                          <Box
+                            component="svg"
+                            sx={{ width: 16, height: 16 }}
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M12 4v16m8-8H4"
+                            />
+                          </Box>
+                        </IconButton>
+
+                        <Box
+                          sx={{
+                            padding: "4px 8px",
+                            fontSize: "11px",
+                            fontWeight: 600,
+                            color: "#1F2937",
+                            textAlign: "center",
+                            borderTop: "1px solid #E5E7EB",
+                            borderBottom: "1px solid #E5E7EB",
+                            background: "#F9FAFB",
+                          }}
+                        >
+                          {Math.round(zoomLevel * 100)}%
+                        </Box>
+
+                        <IconButton
+                          onClick={handleZoomOut}
+                          disabled={zoomLevel <= 1}
+                          size="small"
+                          sx={{
+                            color: "#374151",
+                            borderRadius: 0,
+                            "&:hover": {
+                              background: "#F3F4F6",
+                            },
+                            "&:disabled": {
+                              opacity: 0.3,
+                            },
+                          }}
+                        >
+                          <Box
+                            component="svg"
+                            sx={{ width: 16, height: 16 }}
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M20 12H4"
+                            />
+                          </Box>
+                        </IconButton>
+
+                        {zoomLevel > 1 && (
+                          <IconButton
+                            onClick={handleResetZoom}
+                            size="small"
+                            sx={{
+                              color: "#374151",
+                              fontSize: "10px",
+                              fontWeight: 500,
+                              borderTop: "1px solid #E5E7EB",
+                              borderRadius: 0,
+                              "&:hover": {
+                                background: "#F3F4F6",
+                              },
+                            }}
+                          >
+                            Reset
+                          </IconButton>
+                        )}
+                      </Box>
+                    </Box>
+                  )}
+
+                  {/* Zoom Hint - Show when not zoomed */}
+                  {!isViewerOpen && (
+                    <Box
+                      className="zoom-hint"
+                      sx={{
+                        position: "absolute",
+                        bottom: 16,
+                        right: 16,
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 0.75,
+                        padding: "8px 12px",
+                        background: "rgba(255, 255, 255, 0.95)",
+                        backdropFilter: "blur(8px)",
+                        border: "1px solid rgba(0, 0, 0, 0.08)",
+                        borderRadius: "6px",
+                        fontSize: "12px",
+                        fontWeight: 600,
+                        color: "#374151",
+                        opacity: 0,
+                        transition: "opacity 0.2s ease",
+                        pointerEvents: "none",
+                        boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+                      }}
+                    >
+                      <Box
+                        component="svg"
+                        sx={{ width: 14, height: 14 }}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"
+                        />
+                      </Box>
+                      Click to zoom
+                    </Box>
+                  )}
                 </Box>
               )}
 
-              {/* Image Viewer Modal */}
-              {isViewerOpen && imageGroup && imageGroup.length > 0 && (
-                <ImageViewer
-                  src={imageGroup.map((img) => localimageurl + img)}
-                  currentIndex={currentImage}
-                  onClose={closeImageViewer}
-                  disableScroll={false}
-                  closeOnClickOutside={true}
-                  backgroundStyle={{
-                    backgroundColor: "rgba(0, 0, 0, 0.95)",
-                    zIndex: 1501,
-                  }}
-                />
-              )}
+              {/* Zoom functionality is now in-place in the image container above */}
 
               {/* Thumbnail Gallery - Clean & Professional */}
               {imageGroup && imageGroup.length > 1 && (
@@ -697,28 +969,28 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
                       "&::-webkit-scrollbar": {
                         height: "3px",
                       },
-                      "&::-webkit-scrollbar-track": {
+                "&::-webkit-scrollbar-track": {
                         background: isDark ? "#0F172A" : "#F9FAFB",
-                      },
-                      "&::-webkit-scrollbar-thumb": {
+                },
+                "&::-webkit-scrollbar-thumb": {
                         background: isDark ? "#475569" : "#CBD5E1",
                         borderRadius: "2px",
                         "&:hover": {
                           background: isDark ? "#64748B" : "#94A3B8",
                         },
-                      },
-                    }}
-                  >
+                },
+              }}
+            >
                     {imageGroup.map((url, ind) => (
                       <Box
-                        key={ind}
-                        onClick={handleImageClick(ind)}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            handleImageClick(ind)();
-                          }
-                        }}
+                  key={ind}
+                  onClick={handleImageClick(ind)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      handleImageClick(ind)();
+                    }
+                  }}
                         role="button"
                         tabIndex={0}
                         aria-label={`View ${name} image ${ind + 1}`}
@@ -752,18 +1024,18 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
                               : "0 4px 8px rgba(0, 0, 0, 0.1)",
                           },
                         }}
-                      >
-                        <BazaarAvatar
+                >
+                  <BazaarAvatar
                           src={localimageurl + url}
-                          variant="square"
+                    variant="square"
                           sx={{
                             width: "100%",
                             height: "100%",
                             borderRadius: "4px",
                             objectFit: "cover",
                           }}
-                          alt={`${name} - Image ${ind + 1}`}
-                        />
+                    alt={`${name} - Image ${ind + 1}`}
+                  />
                         {selectedImage === ind && (
                           <Box
                             sx={{
@@ -778,8 +1050,8 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
                           />
                         )}
                       </Box>
-                    ))}
-                  </FlexBox>
+              ))}
+            </FlexBox>
                 </Box>
               )}
             </Box>
