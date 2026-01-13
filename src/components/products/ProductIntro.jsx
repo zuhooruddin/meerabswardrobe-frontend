@@ -379,13 +379,12 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
   }, []);
 
   const imgurl = process.env.NEXT_PUBLIC_IMAGE_BASE_API_URL;
-  // Correct base URL format: https://api.meerabs.com/media/ (not /api/media/)
-  // Since NEXT_PUBLIC_BACKEND_API_BASE is https://api.meerabs.com/api/, we need to replace /api with /media
-  const backendBase = process.env.NEXT_PUBLIC_BACKEND_API_BASE || '';
-  const localimageurl = backendBase.replace('/api/', '/media/').replace('/api', '/media') + (backendBase.endsWith('/') ? '' : '/');
+  const localimageurl = process.env.NEXT_PUBLIC_BACKEND_API_BASE + "media/";
 
   // Professional helper function to normalize image URLs and prevent double paths
   // Correct format: https://api.meerabs.com/media/path/to/image.png
+  // Since NEXT_PUBLIC_BACKEND_API_BASE = https://api.meerabs.com/api/
+  // We need to convert /api/media/ to /media/
   const getImageUrl = useCallback((imagePath) => {
     if (!imagePath) return '';
     
@@ -420,29 +419,19 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
     // Remove leading slash if present
     normalizedPath = normalizedPath.startsWith('/') ? normalizedPath.substring(1) : normalizedPath;
     
-    // Construct final URL with correct base: https://api.meerabs.com/media/
-    // The correct format should be: base_url/media/path (not base_url/api/media/path)
+    // Construct base URL: NEXT_PUBLIC_BACKEND_API_BASE + "media/" = https://api.meerabs.com/api/media/
+    // But we need: https://api.meerabs.com/media/
+    // So we replace /api/media/ with /media/
     let baseUrl = localimageurl;
     
-    // If baseUrl contains /api/media, replace it with /media
-    // Example: https://api.meerabs.com/api/media/ -> https://api.meerabs.com/media/
-    if (baseUrl.includes('/api/media')) {
-      baseUrl = baseUrl.replace('/api/media', '/media');
-    }
+    // Replace /api/media/ with /media/ to get correct format
+    // https://api.meerabs.com/api/media/ -> https://api.meerabs.com/media/
+    baseUrl = baseUrl.replace('/api/media/', '/media/');
+    baseUrl = baseUrl.replace('/api/media', '/media');
     
-    // Ensure base URL ends with /media/ (not /api/media/)
-    if (!baseUrl.endsWith('/media/')) {
-      // If it ends with /media, add trailing slash
-      if (baseUrl.endsWith('/media')) {
-        baseUrl = baseUrl + '/';
-      } else if (!baseUrl.endsWith('/')) {
-        // If it doesn't end with /media/, check if we need to add it
-        if (!baseUrl.includes('/media')) {
-          baseUrl = baseUrl + 'media/';
-        } else {
-          baseUrl = baseUrl + '/';
-        }
-      }
+    // Ensure base URL ends with /
+    if (!baseUrl.endsWith('/')) {
+      baseUrl = baseUrl + '/';
     }
     
     return baseUrl + normalizedPath;
