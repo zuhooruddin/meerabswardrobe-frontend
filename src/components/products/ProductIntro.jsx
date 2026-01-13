@@ -382,6 +382,7 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
   const localimageurl = process.env.NEXT_PUBLIC_BACKEND_API_BASE + "media/";
 
   // Professional helper function to normalize image URLs and prevent double paths
+  // Correct format: https://api.meerabs.com/media/path/to/image.png
   const getImageUrl = useCallback((imagePath) => {
     if (!imagePath) return '';
     
@@ -390,27 +391,57 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
       return imagePath;
     }
     
-    // If path already contains /api/media/, remove it and reconstruct
+    // Normalize the path by removing any existing /api/media/, /media/, or api/media/ prefixes
     let normalizedPath = imagePath;
+    
+    // Remove /api/media/ if present (handles double paths like /api/media//api/media/...)
     if (normalizedPath.includes('/api/media/')) {
-      // Extract the part after /api/media/
       const parts = normalizedPath.split('/api/media/');
       normalizedPath = parts[parts.length - 1];
-      // Remove leading slash if present
-      normalizedPath = normalizedPath.startsWith('/') ? normalizedPath.substring(1) : normalizedPath;
-    } else if (normalizedPath.startsWith('/api/media/')) {
-      // Remove leading /api/media/
+    }
+    
+    // Remove /media/ if present at the start
+    if (normalizedPath.startsWith('/media/')) {
+      normalizedPath = normalizedPath.replace('/media/', '');
+    } else if (normalizedPath.startsWith('media/')) {
+      normalizedPath = normalizedPath.replace('media/', '');
+    }
+    
+    // Remove /api/media/ if present at the start (after previous checks)
+    if (normalizedPath.startsWith('/api/media/')) {
       normalizedPath = normalizedPath.replace('/api/media/', '');
     } else if (normalizedPath.startsWith('api/media/')) {
-      // Remove leading api/media/
       normalizedPath = normalizedPath.replace('api/media/', '');
     }
     
     // Remove leading slash if present
     normalizedPath = normalizedPath.startsWith('/') ? normalizedPath.substring(1) : normalizedPath;
     
-    // Construct final URL
-    const baseUrl = localimageurl.endsWith('/') ? localimageurl : localimageurl;
+    // Construct final URL with correct base: https://api.meerabs.com/media/
+    // The correct format should be: base_url/media/path (not base_url/api/media/path)
+    let baseUrl = localimageurl;
+    
+    // If baseUrl contains /api/media, replace it with /media
+    // Example: https://api.meerabs.com/api/media/ -> https://api.meerabs.com/media/
+    if (baseUrl.includes('/api/media')) {
+      baseUrl = baseUrl.replace('/api/media', '/media');
+    }
+    
+    // Ensure base URL ends with /media/ (not /api/media/)
+    if (!baseUrl.endsWith('/media/')) {
+      // If it ends with /media, add trailing slash
+      if (baseUrl.endsWith('/media')) {
+        baseUrl = baseUrl + '/';
+      } else if (!baseUrl.endsWith('/')) {
+        // If it doesn't end with /media/, check if we need to add it
+        if (!baseUrl.includes('/media')) {
+          baseUrl = baseUrl + 'media/';
+        } else {
+          baseUrl = baseUrl + '/';
+        }
+      }
+    }
+    
     return baseUrl + normalizedPath;
   }, [localimageurl]);
 
