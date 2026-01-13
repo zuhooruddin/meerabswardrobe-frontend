@@ -379,8 +379,32 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
   }, []);
 
   const imgurl = process.env.NEXT_PUBLIC_IMAGE_BASE_API_URL;
-  const localimageurl = process.env.NEXT_PUBLIC_BACKEND_API_BASE + "media/";
+  // Construct correct base URL: https://api.meerabs.com/media/
+  // Since NEXT_PUBLIC_BACKEND_API_BASE = https://api.meerabs.com/api/
+  // We need to replace /api/ with /media/ to get: https://api.meerabs.com/media/
+  const backendBase = process.env.NEXT_PUBLIC_BACKEND_API_BASE || '';
+  let localimageurl = '';
+  
+  if (backendBase.includes('/api/')) {
+    // Replace /api/ with /media/ to get: https://api.meerabs.com/media/
+    localimageurl = backendBase.replace('/api/', '/media/');
+  } else if (backendBase.includes('/api')) {
+    // Handle case without trailing slash: https://api.meerabs.com/api -> https://api.meerabs.com/media/
+    localimageurl = backendBase.replace('/api', '/media');
+    if (!localimageurl.endsWith('/')) {
+      localimageurl = localimageurl + '/';
+    }
+  } else {
+    // Fallback: just append media/ if no /api/ found
+    localimageurl = backendBase + (backendBase.endsWith('/') ? '' : '/') + 'media/';
+  }
+  
+  // Final check: ensure it ends with /
+  if (!localimageurl.endsWith('/')) {
+    localimageurl = localimageurl + '/';
+  }
 
+  
   // Professional helper function to normalize image URLs and prevent double paths
   // Correct format: https://api.meerabs.com/media/path/to/image.png
   // Since NEXT_PUBLIC_BACKEND_API_BASE = https://api.meerabs.com/api/
@@ -416,24 +440,24 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
       normalizedPath = normalizedPath.replace('api/media/', '');
     }
     
-    // Remove leading slash if present
+    // Remove leading slash if present (we'll add it back when constructing URL)
     normalizedPath = normalizedPath.startsWith('/') ? normalizedPath.substring(1) : normalizedPath;
     
-    // Construct base URL: NEXT_PUBLIC_BACKEND_API_BASE + "media/" = https://api.meerabs.com/api/media/
-    // But we need: https://api.meerabs.com/media/
-    // So we replace /api/media/ with /media/
+    // Use the already-corrected base URL (should be https://api.meerabs.com/media/)
     let baseUrl = localimageurl;
     
-    // Replace /api/media/ with /media/ to get correct format
-    // https://api.meerabs.com/api/media/ -> https://api.meerabs.com/media/
+    // Double-check: if somehow /api/media/ still exists, replace it
     baseUrl = baseUrl.replace('/api/media/', '/media/');
     baseUrl = baseUrl.replace('/api/media', '/media');
     
-    // Ensure base URL ends with /
-    if (!baseUrl.endsWith('/')) {
-      baseUrl = baseUrl + '/';
-    }
+    // Ensure base URL ends with exactly one /
+    baseUrl = baseUrl.replace(/\/+$/, '/'); // Remove trailing slashes and add one
     
+    // Ensure normalizedPath doesn't start with / (we already handled this above, but double-check)
+    normalizedPath = normalizedPath.startsWith('/') ? normalizedPath.substring(1) : normalizedPath;
+    
+    // Construct final URL: baseUrl (ends with /) + normalizedPath (no leading /)
+    // Result: https://api.meerabs.com/media/sitesetting/image.png
     return baseUrl + normalizedPath;
   }, [localimageurl]);
 
