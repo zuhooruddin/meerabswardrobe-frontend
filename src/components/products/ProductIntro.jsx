@@ -379,7 +379,10 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
   }, []);
 
   const imgurl = process.env.NEXT_PUBLIC_IMAGE_BASE_API_URL;
-  const localimageurl = process.env.NEXT_PUBLIC_BACKEND_API_BASE + "media/";
+  // Correct base URL format: https://api.meerabs.com/media/ (not /api/media/)
+  // Since NEXT_PUBLIC_BACKEND_API_BASE is https://api.meerabs.com/api/, we need to replace /api with /media
+  const backendBase = process.env.NEXT_PUBLIC_BACKEND_API_BASE || '';
+  const localimageurl = backendBase.replace('/api/', '/media/').replace('/api', '/media') + (backendBase.endsWith('/') ? '' : '/');
 
   // Professional helper function to normalize image URLs and prevent double paths
   // Correct format: https://api.meerabs.com/media/path/to/image.png
