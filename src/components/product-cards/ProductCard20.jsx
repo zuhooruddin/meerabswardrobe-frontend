@@ -158,63 +158,92 @@ const total=Reviews.length;
   //     }),
   //   []
   // );
+  // Professional helper function to check if product has variants
+  const hasProductVariants = useCallback(() => {
+    if (!product) return false;
+    
+    // Check variants array
+    const hasVariantsArray = 
+      product.variants !== undefined && 
+      product.variants !== null && 
+      Array.isArray(product.variants) && 
+      product.variants.length > 0;
+    
+    // Check available_colors array
+    const hasColors = 
+      product.available_colors !== undefined && 
+      product.available_colors !== null && 
+      Array.isArray(product.available_colors) && 
+      product.available_colors.length > 0;
+    
+    // Check available_sizes array
+    const hasSizes = 
+      product.available_sizes !== undefined && 
+      product.available_sizes !== null && 
+      Array.isArray(product.available_sizes) && 
+      product.available_sizes.length > 0;
+    
+    return hasVariantsArray || hasColors || hasSizes;
+  }, [product]);
+
   const handleCartAmountChange = useCallback(
     (amount, addedflag) => () => {
-      // Professional variant detection: Check all possible variant sources
-      // This ensures it works in both development and production environments
-      const hasVariants = 
-        (product.variants !== undefined && 
-         product.variants !== null && 
-         Array.isArray(product.variants) && 
-         product.variants.length > 0) || 
-        (product.available_colors !== undefined && 
-         product.available_colors !== null && 
-         Array.isArray(product.available_colors) && 
-         product.available_colors.length > 0) ||
-        (product.available_sizes !== undefined && 
-         product.available_sizes !== null && 
-         Array.isArray(product.available_sizes) && 
-         product.available_sizes.length > 0);
+      // Validate inputs
+      if (!product || !product.id) {
+        console.error('ProductCard20: Invalid product data');
+        return;
+      }
+
+      // Professional variant detection using helper function
+      const hasVariants = hasProductVariants();
       
-      // Professional logging for debugging (works in both dev and production)
-      if (addedflag) {
-        if (typeof window !== 'undefined' && window.console) {
-          console.log('🔍 ProductCard20 Variant Check:', {
-            productId: product.id,
-            productName: product.name,
-            hasVariants,
-            variants: product.variants,
-            variantsLength: product.variants?.length,
-            available_colors: product.available_colors,
-            available_colorsLength: product.available_colors?.length,
-            available_sizes: product.available_sizes,
-            available_sizesLength: product.available_sizes?.length,
-            cartItemVariantId: cartItem?.variant_id,
-            addedflag,
-            amount
-          });
-        }
+      // Professional logging for debugging (production-safe)
+      if (addedflag && typeof window !== 'undefined' && window.console && process.env.NODE_ENV === 'development') {
+        console.log('🔍 ProductCard20 Professional Variant Check:', {
+          productId: product.id,
+          productName: product.name,
+          hasVariants,
+          variants: product.variants,
+          variantsLength: product.variants?.length || 0,
+          available_colors: product.available_colors,
+          available_colorsLength: product.available_colors?.length || 0,
+          available_sizes: product.available_sizes,
+          available_sizesLength: product.available_sizes?.length || 0,
+          cartItemVariantId: cartItem?.variant_id || null,
+          addedflag,
+          amount
+        });
       }
       
-      // Professional variant dialog trigger: Only open if product has variants AND 
-      // item is not already in cart with variant info AND user is adding (not removing)
-      if (hasVariants && !cartItem?.variant_id && (addedflag === true || addedflag === 1)) {
-        setOpenVariantDialog(true);
+      // Professional variant dialog trigger logic:
+      // 1. Product must have variants
+      // 2. Item must not already be in cart with variant info
+      // 3. User must be adding (not removing) - check for true or 1
+      const isAdding = addedflag === true || addedflag === 1;
+      const needsVariantSelection = hasVariants && !cartItem?.variant_id && isAdding;
+      
+      if (needsVariantSelection) {
+        // Use setTimeout to ensure state update happens after current execution
+        // This is important for production builds where React batching might affect state updates
+        setTimeout(() => {
+          setOpenVariantDialog(true);
+        }, 0);
         return;
       }
 
       // If no variants or item already has variant info, proceed with normal add/update
       if (!hasVariants || cartItem?.variant_id) {
+        // Professional payload construction with proper validation
         const payload = {
-          mrp: product.mrp,
-          salePrice: salePrice,
-          salePrices: salePrice,
-          price: salePrice,
-          qty: amount,
-          name: product.name,
-          sku: product.sku,
-          slug: product.slug,
-          image: imgbaseurl + product.image,
+          mrp: product.mrp || 0,
+          salePrice: salePrice || 0,
+          salePrices: salePrice || 0,
+          price: salePrice || 0,
+          qty: amount || 1,
+          name: product.name || 'Product',
+          sku: product.sku || '',
+          slug: product.slug || '',
+          image: product.image ? (imgbaseurl + product.image) : '',
           id: product.id,
           // Preserve variant information if cartItem has it
           ...(cartItem?.variant_id && {
@@ -225,18 +254,35 @@ const total=Reviews.length;
           }),
         };
         
-        dispatch({
-          type: "CHANGE_CART_AMOUNT",
-          payload,
-        });
-        if (addedflag == true || addedflag === 1) {
-          toast.success("Added to cart", { position: toast.POSITION.TOP_RIGHT });
-        } else {
-          toast.error("Removed from cart", { position: toast.POSITION.TOP_RIGHT });
+        // Professional error handling
+        try {
+          dispatch({
+            type: "CHANGE_CART_AMOUNT",
+            payload,
+          });
+          
+          // Professional user feedback
+          if (isAdding) {
+            toast.success("Added to cart", { 
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 2000,
+            });
+          } else {
+            toast.error("Removed from cart", { 
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 2000,
+            });
+          }
+        } catch (error) {
+          console.error('ProductCard20: Error updating cart:', error);
+          toast.error("Failed to update cart. Please try again.", { 
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 3000,
+          });
         }
       }
     },
-    [product, salePrice, imgbaseurl, cartItem, dispatch]
+    [product, salePrice, imgbaseurl, cartItem, dispatch, hasProductVariants]
   );
 
   const handleAddToCart = (product) => {
@@ -382,22 +428,26 @@ const total=Reviews.length;
 
         <VariantSelectionDialog
           open={openVariantDialog}
-          onClose={() => setOpenVariantDialog(false)}
+          onClose={() => {
+            setOpenVariantDialog(false);
+          }}
           product={{
-            id: product.id,
-            name: product.name,
-            mrp: product.mrp,
-            sku: product.sku,
-            slug: product.slug,
-            salePrice: salePrice,
-            description: product.description,
-            categoryName: product.categoryName,
-            stock: product.stock,
-            image: imgbaseurl+product.image,
-            imgGroup: [imgbaseurl+product.image, imgbaseurl+product.image],
-            variants: product.variants,
-            available_colors: product.available_colors,
-            available_sizes: product.available_sizes,
+            id: product?.id || '',
+            name: product?.name || 'Product',
+            mrp: product?.mrp || 0,
+            sku: product?.sku || '',
+            slug: product?.slug || '',
+            salePrice: salePrice || 0,
+            description: product?.description || '',
+            categoryName: product?.categoryName || '',
+            stock: product?.stock || 0,
+            image: product?.image ? (imgbaseurl + product.image) : '',
+            imgGroup: product?.image 
+              ? [imgbaseurl + product.image, imgbaseurl + product.image]
+              : [],
+            variants: product?.variants || [],
+            available_colors: product?.available_colors || [],
+            available_sizes: product?.available_sizes || [],
           }}
         />
 
@@ -694,22 +744,26 @@ const total=Reviews.length;
 
         <VariantSelectionDialog
           open={openVariantDialog}
-          onClose={() => setOpenVariantDialog(false)}
+          onClose={() => {
+            setOpenVariantDialog(false);
+          }}
           product={{
-            id: product.id,
-            name: product.name,
-            mrp: product.mrp,
-            sku: product.sku,
-            slug: product.slug,
-            salePrice: salePrice,
-            description: product.description,
-            categoryName: product.categoryName,
-            stock: product.stock,
-            image: imgbaseurl+product.image,
-            imgGroup: [imgbaseurl+product.image, imgbaseurl+product.image],
-            variants: product.variants,
-            available_colors: product.available_colors,
-            available_sizes: product.available_sizes,
+            id: product?.id || '',
+            name: product?.name || 'Product',
+            mrp: product?.mrp || 0,
+            sku: product?.sku || '',
+            slug: product?.slug || '',
+            salePrice: salePrice || 0,
+            description: product?.description || '',
+            categoryName: product?.categoryName || '',
+            stock: product?.stock || 0,
+            image: product?.image ? (imgbaseurl + product.image) : '',
+            imgGroup: product?.image 
+              ? [imgbaseurl + product.image, imgbaseurl + product.image]
+              : [],
+            variants: product?.variants || [],
+            available_colors: product?.available_colors || [],
+            available_sizes: product?.available_sizes || [],
           }}
         />
 

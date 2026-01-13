@@ -381,6 +381,39 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
   const imgurl = process.env.NEXT_PUBLIC_IMAGE_BASE_API_URL;
   const localimageurl = process.env.NEXT_PUBLIC_BACKEND_API_BASE + "media/";
 
+  // Professional helper function to normalize image URLs and prevent double paths
+  const getImageUrl = useCallback((imagePath) => {
+    if (!imagePath) return '';
+    
+    // If already a full URL (starts with http/https), return as is
+    if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+      return imagePath;
+    }
+    
+    // If path already contains /api/media/, remove it and reconstruct
+    let normalizedPath = imagePath;
+    if (normalizedPath.includes('/api/media/')) {
+      // Extract the part after /api/media/
+      const parts = normalizedPath.split('/api/media/');
+      normalizedPath = parts[parts.length - 1];
+      // Remove leading slash if present
+      normalizedPath = normalizedPath.startsWith('/') ? normalizedPath.substring(1) : normalizedPath;
+    } else if (normalizedPath.startsWith('/api/media/')) {
+      // Remove leading /api/media/
+      normalizedPath = normalizedPath.replace('/api/media/', '');
+    } else if (normalizedPath.startsWith('api/media/')) {
+      // Remove leading api/media/
+      normalizedPath = normalizedPath.replace('api/media/', '');
+    }
+    
+    // Remove leading slash if present
+    normalizedPath = normalizedPath.startsWith('/') ? normalizedPath.substring(1) : normalizedPath;
+    
+    // Construct final URL
+    const baseUrl = localimageurl.endsWith('/') ? localimageurl : localimageurl;
+    return baseUrl + normalizedPath;
+  }, [localimageurl]);
+
   const router = useRouter();
   const routerId = router.query.id;
   const { state, dispatch } = useAppContext();
@@ -574,7 +607,7 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
           price: priceToStore,
           qty: amount,
           name: name,
-          image: localimageurl + imgGroup[0],
+          image: getImageUrl(imgGroup[0]),
           id: id || routerId,
         // Variant information for clothing products
         ...(selectedVariant && {
@@ -735,7 +768,7 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
                         loading="eager"
                         priority
                         objectFit="contain"
-                        src={localimageurl + imageGroup[selectedImage]}
+                        src={getImageUrl(imageGroup[selectedImage])}
                         title={name || "Women's Clothing"}
                         style={{
                           width: "100%",
@@ -1026,7 +1059,7 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
                         }}
                 >
                   <BazaarAvatar
-                          src={localimageurl + url}
+                          src={getImageUrl(url)}
                     variant="square"
                           sx={{
                             width: "100%",
