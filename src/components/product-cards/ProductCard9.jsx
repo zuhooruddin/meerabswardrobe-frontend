@@ -135,11 +135,30 @@ useEffect(()=>{
   }
 
   const handleCartAmountChange = useCallback((product, amount) => () => {
-    // Check if product has variants (via available_colors or variants prop)
-    const hasVariants = (variants && variants.length > 0) || (available_colors && available_colors.length > 0);
+    // Check if product has variants (via available_colors, available_sizes, or variants array)
+    // IMPORTANT: Use robust checking to handle production edge cases
+    const hasVariants = (variants !== undefined && variants !== null && Array.isArray(variants) && variants.length > 0) || 
+                        (available_colors !== undefined && available_colors !== null && Array.isArray(available_colors) && available_colors.length > 0) ||
+                        (available_sizes !== undefined && available_sizes !== null && Array.isArray(available_sizes) && available_sizes.length > 0);
+    
+    // Debug: Log variant information to help diagnose production issues
+    if (amount === true && process.env.NODE_ENV === 'development') {
+      console.log('🔍 ProductCard9 variant check:', {
+        productId: id,
+        productName: name,
+        hasVariants,
+        variants,
+        variantsLength: variants?.length,
+        available_colors,
+        available_colorsLength: available_colors?.length,
+        available_sizes,
+        available_sizesLength: available_sizes?.length,
+        cartItemVariantId: cartItem?.variant_id,
+      });
+    }
     
     // If product has variants and item is not in cart with variant info, open variant selection dialog
-    if (hasVariants && !cartItem?.variant_id && amount === true) {
+    if (hasVariants && !cartItem?.variant_id && (amount === true || amount === 1)) {
       setOpenVariantDialog(true);
       return;
     }
@@ -167,7 +186,7 @@ useEffect(()=>{
         toast.error("Removed from cart", { position: toast.POSITION.TOP_RIGHT });
       }
     }
-  }, [variants, available_colors, cartItem, dispatch]);
+  }, [variants, available_colors, available_sizes, cartItem, dispatch, id, name]);
   if (session) {
     return (
       <>
