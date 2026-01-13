@@ -170,6 +170,7 @@ useEffect(()=>{
   }, [variants, available_colors, cartItem, dispatch]);
   if (session) {
     return (
+      <>
       <Wrapper>
         <IconButton
           onClick={() => addwishtlist()}
@@ -344,11 +345,32 @@ useEffect(()=>{
               )}
             </FlexBox>
           </Grid>
+          
         </Grid>
       </Wrapper>
+
+      <VariantSelectionDialog
+        open={openVariantDialog}
+        onClose={() => setOpenVariantDialog(false)}
+        product={{
+          id,
+          name,
+          mrp,
+          salePrice,
+          sku,
+          slug,
+          image: imgbaseurl + image,
+          imgGroup: [imgbaseurl + image, imgbaseurl + image],
+          variants,
+          available_colors,
+          available_sizes,
+        }}
+      />
+      </>
     );
   } else {
     return (
+      <>
       <Wrapper>
         <Grid container spacing={1}>
           <Grid item sm={1.5} xs={10}>
@@ -525,6 +547,7 @@ useEffect(()=>{
           available_sizes,
         }}
       />
+      </>
     );
   }
 };
