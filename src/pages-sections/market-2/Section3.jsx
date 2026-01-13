@@ -56,6 +56,16 @@ const AdTitle1 = styled(H3)(({ theme }) => ({
 const Section3 = (dataa) => {
   const imgbaseurl=process.env.NEXT_PUBLIC_IMAGE_BASE_API_URL+'/api/media/'
   const slugbaseurl='category/'
+
+  // Helper function to normalize slug (remove leading slashes and path prefixes)
+  const normalizeSlug = (slug) => {
+    if (!slug) return '';
+    // Remove leading slashes
+    let normalized = slug.replace(/^\/+/, '');
+    // Remove 'categories/' or 'category/' prefix if present
+    normalized = normalized.replace(/^(categories|category)\//, '');
+    return normalized;
+  };
   
   // Filter out null/undefined data and only include valid items
   const dataItems = [dataa.data1, dataa.data2, dataa.data3, dataa.data4, dataa.data5, dataa.data6]
@@ -67,7 +77,7 @@ const Section3 = (dataa) => {
   }
   
   const data = dataItems.map((item, index) => ({
-    url: slugbaseurl + item.category_slug,
+    url: slugbaseurl + normalizeSlug(item.category_slug),
     title: item.category_name || `Category${index + 3}`,
     id: item.id,
     img: item.image && +item.image ? imgbaseurl + item.image : '/assets/images/banners/default.png',

@@ -5,6 +5,7 @@ import { Add,  Remove} from "@mui/icons-material";
 import BazaarButton from "components/BazaarButton";
 import { H1, H2, H3,H4,H5, H6 } from "components/Typography";
 import ProductViewDialog from "components/products/ProductViewDialog";
+import VariantSelectionDialog from "components/products/VariantSelectionDialog";
 import {  Paragraph, Small } from "components/Typography";
 import { useAppContext } from "contexts/AppContext";
 import { FlexBox } from "../flex-box";
@@ -14,6 +15,7 @@ import Link from "next/link";
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { toast } from 'react-toastify';
 import { FlexRowCenter } from "components/flex-box";
+import { useRouter } from "next/router";
 
 // import { useState } from "react"; // custom styled components
 // import mypic from '../../public/assets/images/promotion/offer-1.png'
@@ -101,11 +103,11 @@ const salePrice=calculatedDiscountedSubtotal;
 
 
 
-const Reviews = data.Reviews.filter((item) => item.itemid_id === product.id);
+const Reviews = (data?.Reviews || []).filter((item) => item.itemid_id === product.id);
 
 const totalRatings = Reviews.reduce((total, item) => total + item.rating, 0);
 
-const averageRating = totalRatings /Reviews.length;
+const averageRating = Reviews.length > 0 ? totalRatings / Reviews.length : 0;
  
 const roundedAverageRating = Math.min(Math.round(averageRating * 100) / 100, 5);
 
@@ -133,17 +135,20 @@ const total=Reviews.length;
   }
 
   const { state, dispatch } = useAppContext();
+  const router = useRouter();
   const [openDialog, setOpenDialog] = useState(false);
+  const [openVariantDialog, setOpenVariantDialog] = useState(false);
   const [isFavorite, setIsFavorite] = useState(undefined);
   if (Array.isArray(wishList) && isFavorite === undefined) {
     setIsFavorite((fav) =>
       fav === undefined ? wishList.some((item) => item.id === product.id) : false
     );
   }
+  // Check for cart item with variant matching (if product has variants)
   const cartItem = state.cart.find((item) => item.id === product.id); // handle favourite
   const MAX_LENGTH = 18;
-  const toggleDialog = useCallback(() => setOpenModal((open) => !open), []);
-  const [active, setActive] = useState(false)
+  const toggleDialog = useCallback(() => setOpenDialog((open) => !open), []);
+  const [active, setActive] = useState(false);
 
   // const handleCartAmountChange = useCallback(
   //   (product) => () =>
@@ -155,30 +160,69 @@ const total=Reviews.length;
   // );
   const handleCartAmountChange = useCallback(
     (amount,addedflag) => () => {
-      dispatch({
-        type: "CHANGE_CART_AMOUNT",
-        payload: {
-          mrp:product.mrp,
-          salePrice:salePrice,
-          price:salePrice,
+      // Check if product has variants (via available_colors, available_sizes, or variants array)
+      // IMPORTANT: Since user confirmed "every product has variant", we should check if ANY variant-related field exists
+      const hasVariants = (product.variants !== undefined && product.variants !== null && Array.isArray(product.variants) && product.variants.length > 0) || 
+                          (product.available_colors !== undefined && product.available_colors !== null && Array.isArray(product.available_colors) && product.available_colors.length > 0) ||
+                          (product.available_sizes !== undefined && product.available_sizes !== null && Array.isArray(product.available_sizes) && product.available_sizes.length > 0);
+      
+      // Debug: Log variant information to help diagnose API response issues
+      if (addedflag && process.env.NODE_ENV === 'development') {
+        console.log('🔍 Product variant check:', {
+          productId: product.id,
+          productName: product.name,
+          hasVariants,
+          variants: product.variants,
+          variantsLength: product.variants?.length,
+          available_colors: product.available_colors,
+          available_colorsLength: product.available_colors?.length,
+          available_sizes: product.available_sizes,
+          cartItemVariantId: cartItem?.variant_id,
+          fullProduct: product
+        });
+      }
+      
+      // If product has variants and item is not in cart with variant info, open variant selection dialog
+      if (hasVariants && !cartItem?.variant_id && addedflag) {
+        setOpenVariantDialog(true);
+        return;
+      }
+
+
+      // If no variants or item already has variant info, proceed with normal add/update
+      if (!hasVariants || cartItem?.variant_id) {
+        const payload = {
+          mrp: product.mrp,
+          salePrice: salePrice,
+          salePrices: salePrice,
+          price: salePrice,
           qty: amount,
           name: product.name,
-          sku:product.sku,
-          slug:product.slug,
-          image: imgbaseurl+product.image,
-          id: product.id || routerId,
-
+          sku: product.sku,
+          slug: product.slug,
+          image: imgbaseurl + product.image,
+          id: product.id,
+          // Preserve variant information if cartItem has it
+          ...(cartItem?.variant_id && {
+            variant_id: cartItem.variant_id,
+            selected_color: cartItem.selected_color,
+            selected_size: cartItem.selected_size,
+            variant_sku: cartItem.variant_sku,
+          }),
+        };
+        
+        dispatch({
+          type: "CHANGE_CART_AMOUNT",
+          payload,
+        });
+        if (addedflag == true) {
+          toast.success("Added to cart", { position: toast.POSITION.TOP_RIGHT });
+        } else {
+          toast.error("Removed from cart", { position: toast.POSITION.TOP_RIGHT });
         }
-      });
-      if (addedflag==true) {
-      
-        toast.success("Added to cart", { position: toast.POSITION.TOP_RIGHT });
-      } else {
-
-        toast.error("Removed from cart", { position: toast.POSITION.TOP_RIGHT });
       }
     },
-    []
+    [product, salePrice, imgbaseurl, cartItem, dispatch]
   );
 
   const handleAddToCart = (product) => {
@@ -315,8 +359,31 @@ const total=Reviews.length;
             categoryName:product.categoryName,
             stock:product.stock,
             image: imgbaseurl+product.image,
-
             imgGroup: [imgbaseurl+product.image, imgbaseurl+product.image],
+            variants: product.variants,
+            available_colors: product.available_colors,
+            available_sizes: product.available_sizes,
+          }}
+        />
+
+        <VariantSelectionDialog
+          open={openVariantDialog}
+          onClose={() => setOpenVariantDialog(false)}
+          product={{
+            id: product.id,
+            name: product.name,
+            mrp: product.mrp,
+            sku: product.sku,
+            slug: product.slug,
+            salePrice: salePrice,
+            description: product.description,
+            categoryName: product.categoryName,
+            stock: product.stock,
+            image: imgbaseurl+product.image,
+            imgGroup: [imgbaseurl+product.image, imgbaseurl+product.image],
+            variants: product.variants,
+            available_colors: product.available_colors,
+            available_sizes: product.available_sizes,
           }}
         />
 

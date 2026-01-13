@@ -5,6 +5,7 @@ import { Box, Button, Chip, IconButton, styled, Rating } from "@mui/material";
 import BazaarCard from "components/BazaarCard";
 import LazyImage from "components/LazyImage";
 import ProductViewDialog from "components/products/ProductViewDialog";
+import VariantSelectionDialog from "components/products/VariantSelectionDialog";
 import { H3, H4, H5, Span } from "components/Typography";
 import { useAppContext } from "contexts/AppContext";
 import Link from "next/link";
@@ -16,6 +17,7 @@ import { Paragraph, Small } from "components/Typography";
 import Image from "next/image";
 import BazaarButton from "components/BazaarButton";
 import { FlexRowCenter } from "components/flex-box";
+import { useRouter } from "next/router";
 
 const StyledBazaarCard = styled(BazaarCard)(() => ({
   height: "100%",
@@ -140,6 +142,10 @@ const SearchCard1 = ({
   category,
   ProductReviews,
   wishlist,
+  // Variant support
+  variants,
+  available_colors,
+  available_sizes,
 }) => {
   // Ensure salePrice and discount are valid numbers
   const numericSalePrice = parseFloat(salePrice) || 0;
@@ -155,10 +161,12 @@ const SearchCard1 = ({
 
   const categoryName = "";
   const { data: session, status } = useSession();
+  const router = useRouter();
 
   const { state, dispatch } = useAppContext();
   const [openModal, setOpenModal] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
+  const [openVariantDialog, setOpenVariantDialog] = useState(false);
 
   const[currency,setCurrency]=useState('')
 
@@ -210,33 +218,55 @@ const SearchCard1 = ({
   }
 
   const toggleDialog = useCallback(() => setOpenModal((open) => !open), []);
+  // Check for cart item with variant matching (if product has variants)
   const cartItem = state.cart.find((item) => item.id === id);
   const handleCartAmountChange = useCallback(
     (amount, addedflag) => () => {
-      dispatch({
-        type: "CHANGE_CART_AMOUNT",
-        payload: {
+      // Check if product has variants (via available_colors or variants prop)
+      const hasVariants = (variants && variants.length > 0) || (available_colors && available_colors.length > 0);
+      
+      // If product has variants and item is not in cart with variant info, open variant selection dialog
+      if (hasVariants && !cartItem?.variant_id && addedflag) {
+        setOpenVariantDialog(true);
+        return;
+      }
+
+      // If no variants or item already has variant info, proceed with normal add/update
+      if (!hasVariants || cartItem?.variant_id) {
+        const payload = {
           mrp: mrp,
           salePrice: salePrice,
+          salePrices: salePrice,
           price: salePrice,
           qty: amount,
-
           name: name,
           sku: sku,
           slug: slug,
           image: imgbaseurl + image,
-          id: id || routerId,
-        },
-      });
-      if (addedflag == true) {
-        toast.success("Added to cart", { position: toast.POSITION.TOP_RIGHT });
-      } else {
-        toast.error("Removed from cart", {
-          position: toast.POSITION.TOP_RIGHT,
+          id: id,
+          // Preserve variant information from cartItem if it exists
+          ...(cartItem?.variant_id && {
+            variant_id: cartItem.variant_id,
+            selected_color: cartItem.selected_color,
+            selected_size: cartItem.selected_size,
+            variant_sku: cartItem.variant_sku,
+          }),
+        };
+        
+        dispatch({
+          type: "CHANGE_CART_AMOUNT",
+          payload,
         });
+        if (addedflag == true) {
+          toast.success("Added to cart", { position: toast.POSITION.TOP_RIGHT });
+        } else {
+          toast.error("Removed from cart", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        }
       }
     },
-    []
+    [mrp, salePrice, name, sku, slug, imgbaseurl, image, id, cartItem, dispatch, variants, available_colors]
   );
 
   if (session) {
@@ -369,6 +399,30 @@ const SearchCard1 = ({
             categoryName,
             stock,
             imgGroup: [imgbaseurl + image, imgbaseurl + image],
+            variants,
+            available_colors,
+            available_sizes,
+          }}
+        />
+
+        <VariantSelectionDialog
+          open={openVariantDialog}
+          onClose={() => setOpenVariantDialog(false)}
+          product={{
+            name,
+            mrp,
+            id,
+            salePrice,
+            sku,
+            slug,
+            description,
+            categoryName,
+            stock,
+            imgGroup: [imgbaseurl + image, imgbaseurl + image],
+            image: imgbaseurl + image,
+            variants,
+            available_colors,
+            available_sizes,
           }}
         />
 
@@ -612,6 +666,30 @@ const SearchCard1 = ({
             categoryName,
             stock,
             imgGroup: [imgbaseurl + image, imgbaseurl + image],
+            variants,
+            available_colors,
+            available_sizes,
+          }}
+        />
+
+        <VariantSelectionDialog
+          open={openVariantDialog}
+          onClose={() => setOpenVariantDialog(false)}
+          product={{
+            name,
+            mrp,
+            id,
+            salePrice,
+            sku,
+            slug,
+            description,
+            categoryName,
+            stock,
+            imgGroup: [imgbaseurl + image, imgbaseurl + image],
+            image: imgbaseurl + image,
+            variants,
+            available_colors,
+            available_sizes,
           }}
         />
 

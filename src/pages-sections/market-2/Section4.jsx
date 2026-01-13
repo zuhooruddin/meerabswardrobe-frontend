@@ -88,12 +88,22 @@ const StyledLink = styled(Link)({
 const Section4Modern = ({ data1, data2, data3 }) => {
   const imgbaseurl = process.env.NEXT_PUBLIC_BACKEND_API_BASE + "media/";
 
+  // Helper function to normalize slug (remove leading slashes and path prefixes)
+  const normalizeSlug = (slug) => {
+    if (!slug) return '';
+    // Remove leading slashes
+    let normalized = slug.replace(/^\/+/, '');
+    // Remove 'categories/' or 'category/' prefix if present
+    normalized = normalized.replace(/^(categories|category)\//, '');
+    return normalized;
+  };
+
   const banners = [data1, data2, data3]
     .filter((item) => item != null)
     .map((item, index) => ({
       id: item?.id || `banner-${index}`,
       name: item?.category_name || `Category ${index + 1}`,
-      slug: item?.category_slug || `category-${index}`,
+      slug: normalizeSlug(item?.category_slug) || `category-${index}`,
       image: item?.image ? imgbaseurl + item.image : "/assets/images/banners/default.png",
     }));
 

@@ -10,11 +10,21 @@ const Section6 = ({data1, data2}) => {
   const imgbaseurl = process.env.NEXT_PUBLIC_BACKEND_API_BASE + 'media/';
   const slugbaseurl = 'category/';
 
+  // Helper function to normalize slug (remove leading slashes and path prefixes)
+  const normalizeSlug = (slug) => {
+    if (!slug) return '';
+    // Remove leading slashes
+    let normalized = slug.replace(/^\/+/, '');
+    // Remove 'categories/' or 'category/' prefix if present
+    normalized = normalized.replace(/^(categories|category)\//, '');
+    return normalized;
+  };
+
   return (
     <Container sx={{ my: 8 }}>
       <Grid container spacing={3}>
       <Grid item md={6} xs={12}>
-          <Link href={slugbaseurl + data1.category_slug}>
+          <Link href={slugbaseurl + normalizeSlug(data1.category_slug)}>
             <a href="">
               <Box sx={{
                 position: 'relative',
@@ -93,7 +103,7 @@ const Section6 = ({data1, data2}) => {
         {/* sx={{ border: '2px solid #ccc' }} */}
 
         <Grid item md={6} xs={12}>
-          <Link href={slugbaseurl + data2.category_slug}>
+          <Link href={slugbaseurl + normalizeSlug(data2.category_slug)}>
             <a href="">
               <Box sx={{
                 position: 'relative',

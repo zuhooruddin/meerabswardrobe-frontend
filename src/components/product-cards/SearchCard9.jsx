@@ -19,6 +19,7 @@ import React, { useCallback, useEffect, useState } from "react"; // styled compo
 import { useSession, signIn, signOut } from "next-auth/react";
 import { toast } from "react-toastify";
 import BazaarRating from "components/BazaarRating";
+import VariantSelectionDialog from "components/products/VariantSelectionDialog";
 
 const Wrapper = styled(Card)(() => ({
   width: "100%",
@@ -58,6 +59,10 @@ const SearchCard9 = ({
   wishList,
   ProductReviews,
   wishlist,
+  // Variant support
+  variants,
+  available_colors,
+  available_sizes,
 }) => {
   const discountprice = salePrice;
   const calculatedDiscountAmount = (salePrice * discount) / 100;
@@ -83,6 +88,7 @@ useEffect(()=>{
   const { state, dispatch } = useAppContext();
   const cartItem = state.cart.find((item) => item.id === id);
   const { data: session, status } = useSession();
+  const [openVariantDialog, setOpenVariantDialog] = useState(false);
   const addwishtlist = async () => {
     let userid = session.user.id;
     await fetch(process.env.NEXT_PUBLIC_BACKEND_API_BASE + "updateWishlist", {
@@ -120,16 +126,39 @@ useEffect(()=>{
   }
 
   const handleCartAmountChange = useCallback((product, amount) => () => {
-    dispatch({
-      type: "CHANGE_CART_AMOUNT",
-      payload: product,
-    });
-    if (amount == true) {
-      toast.success("Added to cart", { position: toast.POSITION.TOP_RIGHT });
-    } else {
-      toast.error("Removed from cart", { position: toast.POSITION.TOP_RIGHT });
+    // Check if product has variants (via available_colors or variants prop)
+    const hasVariants = (variants && variants.length > 0) || (available_colors && available_colors.length > 0);
+    
+    // If product has variants and item is not in cart with variant info, open variant selection dialog
+    if (hasVariants && !cartItem?.variant_id && amount === true) {
+      setOpenVariantDialog(true);
+      return;
     }
-  });
+
+    // If no variants or item already has variant info, proceed with normal add/update
+    if (!hasVariants || cartItem?.variant_id) {
+      const payload = {
+        ...product,
+        // Preserve variant information from cartItem if it exists
+        ...(cartItem?.variant_id && {
+          variant_id: cartItem.variant_id,
+          selected_color: cartItem.selected_color,
+          selected_size: cartItem.selected_size,
+          variant_sku: cartItem.variant_sku,
+        }),
+      };
+      
+      dispatch({
+        type: "CHANGE_CART_AMOUNT",
+        payload,
+      });
+      if (amount == true) {
+        toast.success("Added to cart", { position: toast.POSITION.TOP_RIGHT });
+      } else {
+        toast.error("Removed from cart", { position: toast.POSITION.TOP_RIGHT });
+      }
+    }
+  }, [variants, available_colors, cartItem, dispatch]);
   if (session) {
     return (
       <Wrapper>
@@ -460,6 +489,24 @@ useEffect(()=>{
           </Grid>
         </Grid>
       </Wrapper>
+
+      <VariantSelectionDialog
+        open={openVariantDialog}
+        onClose={() => setOpenVariantDialog(false)}
+        product={{
+          id,
+          name,
+          mrp,
+          salePrice,
+          sku,
+          slug,
+          image: imgbaseurl + image,
+          imgGroup: [imgbaseurl + image, imgbaseurl + image],
+          variants,
+          available_colors,
+          available_sizes,
+        }}
+      />
     );
   }
 };

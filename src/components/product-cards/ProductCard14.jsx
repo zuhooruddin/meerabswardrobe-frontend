@@ -9,10 +9,12 @@ import BazaarRating from "components/BazaarRating";
 import { FlexBetween, FlexBox } from "components/flex-box";
 import LazyImage from "components/LazyImage";
 import ProductViewDialog from "components/products/ProductViewDialog";
+import VariantSelectionDialog from "components/products/VariantSelectionDialog";
 import { H3, Span } from "components/Typography";
 import { useAppContext } from "contexts/AppContext";
 import Link from "next/link";
 import React, { Fragment, useCallback, useState } from "react";
+import { toast } from "react-toastify";
 const StyledBazaarCard = styled(BazaarCard)(({ theme }) => ({
   margin: "auto",
   height: "100%",
@@ -119,11 +121,12 @@ const ButtonBox = styled(FlexBox)(({ theme }) => ({
 
 // =============================================================
 const ProductCard14 = (props) => {
-  const { off, id, title, price, imgUrl, rating, hideRating, hoverEffect } =
+  const { off, id, title, price, imgUrl, rating, hideRating, hoverEffect, variants, available_colors, available_sizes } =
     props;
   const { palette } = useTheme();
   const { state, dispatch } = useAppContext();
   const [openModal, setOpenModal] = useState(false);
+  const [openVariantDialog, setOpenVariantDialog] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
   const toggleIsFavorite = () => setIsFavorite((fav) => !fav);
@@ -131,19 +134,45 @@ const ProductCard14 = (props) => {
   const toggleDialog = useCallback(() => setOpenModal((open) => !open), []);
   const cartItem = state.cart.find((item) => item.id === id);
   const handleCartAmountChange = useCallback(
-    (amount) => () => {
-      dispatch({
-        type: "CHANGE_CART_AMOUNT",
-        payload: {
+    (amount, addedflag) => () => {
+      // Check if product has variants (via available_colors or variants prop)
+      const hasVariants = (variants && variants.length > 0) || (available_colors && available_colors.length > 0);
+      
+      // If product has variants and item is not in cart with variant info, open variant selection dialog
+      if (hasVariants && !cartItem?.variant_id && addedflag) {
+        setOpenVariantDialog(true);
+        return;
+      }
+
+      // If no variants or item already has variant info, proceed with normal add/update
+      if (!hasVariants || cartItem?.variant_id) {
+        const payload = {
           price,
           imgUrl,
           id,
           name: title,
           qty: amount,
-        },
-      });
+          // Preserve variant information from cartItem if it exists
+          ...(cartItem?.variant_id && {
+            variant_id: cartItem.variant_id,
+            selected_color: cartItem.selected_color,
+            selected_size: cartItem.selected_size,
+            variant_sku: cartItem.variant_sku,
+          }),
+        };
+        
+        dispatch({
+          type: "CHANGE_CART_AMOUNT",
+          payload,
+        });
+        if (addedflag) {
+          toast.success("Added to cart", { position: toast.POSITION.TOP_RIGHT });
+        } else {
+          toast.error("Removed from cart", { position: toast.POSITION.TOP_RIGHT });
+        }
+      }
     },
-    []
+    [variants, available_colors, cartItem, dispatch, price, imgUrl, id, title]
   );
   return (
     <StyledBazaarCard hoverEffect={hoverEffect}>
@@ -255,7 +284,8 @@ const ProductCard14 = (props) => {
               fontSize: "13px",
             }}
             onClick={handleCartAmountChange(
-              cartItem?.qty ? cartItem.qty - 1 : 1
+              cartItem?.qty ? cartItem.qty - 1 : 1,
+              !cartItem?.qty
             )}
           >
             {cartItem?.qty ? (

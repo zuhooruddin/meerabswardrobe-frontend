@@ -28,6 +28,16 @@ const Section12 = ({ products,data,Section2Name,slug,productreviews}) => {
   // const imgbaseurl='https://idrisbookbank-dev-server.inara.tech/media/'
   const slugbaseurl='category/'
   const width = useWindowSize();
+
+  // Helper function to normalize slug (remove leading slashes and path prefixes)
+  const normalizeSlug = (slug) => {
+    if (!slug) return '';
+    // Remove leading slashes
+    let normalized = slug.replace(/^\/+/, '');
+    // Remove 'categories/' or 'category/' prefix if present
+    normalized = normalized.replace(/^(categories|category)\//, '');
+    return normalized;
+  };
   const [visibleSlides, setVisibleSlides] = useState(4);
   useEffect(() => {
     if (width < 426) setVisibleSlides(1);
@@ -58,7 +68,7 @@ const Section12 = ({ products,data,Section2Name,slug,productreviews}) => {
 
             >
                {data.length>0?data.map((data) => (
-                         <StyledListItem key={data.category_slug}><Link href={slugbaseurl+data.category_slug
+                         <StyledListItem key={data.category_slug}><Link href={slugbaseurl+normalizeSlug(data.category_slug)
                          }><a>{data.category_name
                          }</a></Link></StyledListItem>
 
@@ -66,7 +76,7 @@ const Section12 = ({ products,data,Section2Name,slug,productreviews}) => {
               // Render dummy categories when data is empty
               dummyCategories.map((data) => (
                 <StyledListItem key={data.category_slug}>
-                  <Link href={slugbaseurl + data.category_slug}>
+                  <Link href={slugbaseurl + normalizeSlug(data.category_slug)}>
                     <a>{data.category_name}</a>
                   </Link>
                 </StyledListItem>
@@ -76,7 +86,7 @@ const Section12 = ({ products,data,Section2Name,slug,productreviews}) => {
             </List>
 
             <NavLink3
-              href={slugbaseurl+slug}
+              href={slugbaseurl+normalizeSlug(slug)}
               text="Browse All"
               color="dark.main"
               hoverColor="dark.main"

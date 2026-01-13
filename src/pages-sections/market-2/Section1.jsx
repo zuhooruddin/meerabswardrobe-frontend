@@ -14,6 +14,16 @@ const Section1 = (data) => {
   const imgbaseurl = process.env.NEXT_PUBLIC_BACKEND_API_BASE + "media/";
   const slugbaseurl = "category/";
 
+  // Helper function to normalize slug (remove leading slashes and path prefixes)
+  const normalizeSlug = (slug) => {
+    if (!slug) return '';
+    // Remove leading slashes
+    let normalized = slug.replace(/^\/+/, '');
+    // Remove 'categories/' or 'category/' prefix if present
+    normalized = normalized.replace(/^(categories|category)\//, '');
+    return normalized;
+  };
+
   // custom css
   const bannerHeight = "245.5px"; 
   const bannerWidth = "100%"; 
@@ -186,7 +196,7 @@ const Section1 = (data) => {
                 spacing={1}
               >
                 {/* <BannerCard3 flex={1} img={imgbaseurl+data.data1.image}> */}
-                <Link href={data.data1 && data.data1.category_slug ? slugbaseurl + data.data1.category_slug : ''}>
+                <Link href={data.data1 && data.data1.category_slug ? slugbaseurl + normalizeSlug(data.data1.category_slug) : ''}>
 
                   <a>
                     <BannerCard3
@@ -213,7 +223,7 @@ const Section1 = (data) => {
                         {data.data1 && data.data1.category_name ? data.data1.category_name : 'Category1'}
                       </H4>
                       <NavLink3
-                        href={data.data1 && data.data1.category_slug ? slugbaseurl + data.data1.category_slug : ''}
+                        href={data.data1 && data.data1.category_slug ? slugbaseurl + normalizeSlug(data.data1.category_slug) : ''}
 
                         text="Shop Now"
                         color="#fff"
@@ -223,7 +233,7 @@ const Section1 = (data) => {
                 </Link>
 
                 {/* <BannerCard3 flex={1} img={imgbaseurl+data.data2.image}> */}
-                <Link href={slugbaseurl + data.data2.category_slug}>
+                <Link href={slugbaseurl + normalizeSlug(data.data2.category_slug)}>
                   <a>
                     <BannerCard3
                       className="logo"
@@ -249,7 +259,7 @@ const Section1 = (data) => {
                         {data.data2.category_name&&data.data2.category_name?data.data2.category_name:'Category2'}
                       </H4>
                       <NavLink3
-                        href={slugbaseurl + data.data2.category_slug}
+                        href={slugbaseurl + normalizeSlug(data.data2.category_slug)}
                         text="Shop Now"
                         color="#fff"
                       />

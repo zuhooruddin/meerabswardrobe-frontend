@@ -5,6 +5,7 @@ import { Box, Button, Chip, IconButton, styled, Rating, keyframes } from "@mui/m
 import BazaarCard from "components/BazaarCard";
 import LazyImage from "components/LazyImage";
 import ProductViewDialog from "components/products/ProductViewDialog";
+import VariantSelectionDialog from "components/products/VariantSelectionDialog";
 import { H3, H4, H5, Span } from "components/Typography";
 import { useAppContext } from "contexts/AppContext";
 import Link from "next/link";
@@ -277,6 +278,7 @@ const ProductCard1 = ({
   const { state, dispatch } = useAppContext();
   const [openModal, setOpenModal] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
+  const [openVariantDialog, setOpenVariantDialog] = useState(false);
   const [currency, setCurrency] = useState('');
 
   useEffect(() => {
@@ -328,38 +330,51 @@ const ProductCard1 = ({
   
   const handleCartAmountChange = useCallback(
     (amount, addedflag) => () => {
-      // For products with variants, redirect to product detail page to select variant
-      if ((variants && variants.length > 0) || (available_colors && available_colors.length > 0)) {
-        toast.info("Please select color and size on product page", { 
-          position: toast.POSITION.TOP_RIGHT 
-        });
-        router.push(`/product/${slug}`);
+      // Check if product has variants (via available_colors or variants prop)
+      const hasVariants = (variants && variants.length > 0) || (available_colors && available_colors.length > 0);
+      
+      // If product has variants and item is not in cart with variant info, open variant selection dialog
+      if (hasVariants && !cartItem?.variant_id && addedflag) {
+        setOpenVariantDialog(true);
         return;
       }
 
-      dispatch({
-        type: "CHANGE_CART_AMOUNT",
-        payload: {
-          mrp: mrp,
-          salePrice: salePrice,
-          price: salePrice,
-          qty: amount,
-          name: name,
-          sku: sku,
-          slug: slug,
-          image: imgbaseurl + image,
-          id: id || routerId,
-        },
-      });
-      if (addedflag == true) {
-        toast.success("Added to cart", { position: toast.POSITION.TOP_RIGHT });
-      } else {
-        toast.error("Removed from cart", {
-          position: toast.POSITION.TOP_RIGHT,
+      // If no variants or item already has variant info, proceed with normal add/update
+      if (!hasVariants || cartItem?.variant_id) {
+        const payload = {
+        mrp: mrp,
+        salePrice: salePrice,
+        salePrices: salePrice,
+        price: salePrice,
+        qty: amount,
+        name: name,
+        sku: sku,
+        slug: slug,
+        image: imgbaseurl + image,
+        id: id,
+        // Preserve variant information if cartItem has it
+        ...(cartItem?.variant_id && {
+          variant_id: cartItem.variant_id,
+          selected_color: cartItem.selected_color,
+          selected_size: cartItem.selected_size,
+          variant_sku: cartItem.variant_sku,
+        }),
+      };
+
+        dispatch({
+          type: "CHANGE_CART_AMOUNT",
+          payload,
         });
+        if (addedflag == true) {
+          toast.success("Added to cart", { position: toast.POSITION.TOP_RIGHT });
+        } else {
+          toast.error("Removed from cart", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        }
       }
     },
-    [variants, available_colors, slug, router]
+    [variants, available_colors, mrp, salePrice, name, sku, imgbaseurl, image, id, cartItem, dispatch]
   );
   
   const myFunction = () => {
@@ -523,6 +538,30 @@ const ProductCard1 = ({
           categoryName,
           stock,
           imgGroup: [imgbaseurl + image, imgbaseurl + image],
+          variants,
+          available_colors,
+          available_sizes,
+        }}
+      />
+
+      <VariantSelectionDialog
+        open={openVariantDialog}
+        onClose={() => setOpenVariantDialog(false)}
+        product={{
+          name,
+          mrp,
+          id,
+          salePrice,
+          sku,
+          slug,
+          description,
+          categoryName,
+          stock,
+          imgGroup: [imgbaseurl + image, imgbaseurl + image],
+          image: imgbaseurl + image,
+          variants,
+          available_colors,
+          available_sizes,
         }}
       />
 

@@ -14,9 +14,11 @@ import Carousel from "components/carousel/Carousel";
 import { FlexBox } from "components/flex-box";
 import { H1, H2, H3, H6, Paragraph } from "components/Typography";
 import { useAppContext } from "contexts/AppContext";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, Fragment } from "react";
 import { Chip } from "@mui/material";
 import { toast } from "react-toastify";
+import { useRouter } from "next/router";
+import VariantSelectionDialog from "./VariantSelectionDialog";
 
 // import {server_ip} from "utils/backend_server_ip.jsx"
 
@@ -83,32 +85,67 @@ useEffect(()=>{
 
 
   const { state, dispatch } = useAppContext();
-  const cartItem = state.cart.find((item) => item.id === product.id);
+  const router = useRouter();
+  const [openVariantDialog, setOpenVariantDialog] = useState(false);
+  // Check for cart item - if product has variants, match by variant_id too
+  const cartItem = (product.variants && product.variants.length > 0) || (product.available_colors && product.available_colors.length > 0)
+    ? state.cart.find((item) => 
+        item.id === product.id && 
+        (!item.variant_id || item.variant_id === product.selectedVariant?.id)
+      )
+    : state.cart.find((item) => item.id === product.id);
+  
   const handleCartAmountChange = useCallback(
     (amount, addflag) => () => {
-      const payload = {
-        ...product,
-        qty: amount,
-        price: product.salePrice,
-        sku: product.sku,
-        slug: product.slug,
-        name: product.name,
-        imgUrl: product.imgGroup[0],
-        image: product.imgGroup[0],
-      };
-      if (addflag == true) {
-        dispatch({ type: "CHANGE_CART_AMOUNT", payload });
-        toast.success("Added to cart", { position: toast.POSITION.TOP_RIGHT });
-      } else {
-        dispatch({ type: "CHANGE_CART_AMOUNT", payload });
-        toast.error("Removed from cart", {
-          position: toast.POSITION.TOP_RIGHT,
-        });
+      // Check if product has variants (via available_colors or variants)
+      const hasVariants = (product.variants && product.variants.length > 0) || 
+                          (product.available_colors && product.available_colors.length > 0);
+      
+      // If product has variants and item is not in cart with variant info, open variant selection dialog
+      if (hasVariants && !cartItem?.variant_id && addflag) {
+        handleCloseDialog();
+        setOpenVariantDialog(true);
+        return;
+      }
+
+      // If no variants or item already has variant info, proceed with normal add/update
+      if (!hasVariants || cartItem?.variant_id) {
+        const payload = {
+          ...product,
+          mrp: product.mrp,
+          salePrice: product.salePrice,
+          salePrices: product.salePrice,
+          qty: amount,
+          price: product.salePrice,
+          sku: product.sku,
+          slug: product.slug,
+          name: product.name,
+          imgUrl: product.imgGroup[0],
+          image: product.imgGroup[0],
+          id: product.id,
+          // Preserve variant information if cartItem has it
+          ...(cartItem?.variant_id && {
+            variant_id: cartItem.variant_id,
+            selected_color: cartItem.selected_color,
+            selected_size: cartItem.selected_size,
+            variant_sku: cartItem.variant_sku,
+          }),
+        };
+        if (addflag == true) {
+          dispatch({ type: "CHANGE_CART_AMOUNT", payload });
+          toast.success("Added to cart", { position: toast.POSITION.TOP_RIGHT });
+        } else {
+          dispatch({ type: "CHANGE_CART_AMOUNT", payload });
+          toast.error("Removed from cart", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        }
       }
     },
-    [dispatch, product]
+    [dispatch, product, cartItem, handleCloseDialog]
   );
   return (
+    <Fragment>
     <Dialog
       open={openDialog}
       maxWidth={false}
@@ -276,6 +313,13 @@ useEffect(()=>{
         </IconButton>
       </DialogContent>
     </Dialog>
+
+    <VariantSelectionDialog
+      open={openVariantDialog}
+      onClose={() => setOpenVariantDialog(false)}
+      product={product}
+    />
+    </Fragment>
   );
 };
 

@@ -55,9 +55,19 @@ const Section7 = ({ data1 }) => {
   const imgbaseurl = process.env.NEXT_PUBLIC_BACKEND_API_BASE + 'media/'
   const words = data1 && data1.category_name ? data1.category_name.split(' ') : ["Category 13"];;
 
+  // Helper function to normalize slug (remove leading slashes and path prefixes)
+  const normalizeSlug = (slug) => {
+    if (!slug) return '';
+    // Remove leading slashes
+    let normalized = slug.replace(/^\/+/, '');
+    // Remove 'categories/' or 'category/' prefix if present
+    normalized = normalized.replace(/^(categories|category)\//, '');
+    return normalized;
+  };
+
   return (
     <Container sx={{ my: { xs: 4, sm: 6, md: 8 }, px: { xs: 2, sm: 3 } }}>
-      <CustomLink href={slugbaseurl + data1.category_slug}>
+      <CustomLink href={slugbaseurl + normalizeSlug(data1.category_slug)}>
         { /* Use BannerWrapper for desktop view and MobileBannerWrapper for mobile view */ }
         { /* You can determine which to use based on the screen size */ }
         <Box sx={{ display: { xs: 'none', md: 'block' } }}>
@@ -74,7 +84,7 @@ const Section7 = ({ data1 }) => {
                 ))}
               </H3>
               <NavLinkWrapper
-                href={slugbaseurl + data1.category_slug}
+                href={slugbaseurl + normalizeSlug(data1.category_slug)}
                 text="Shop Now"
                 color="dark.main"
                 hoverColor="dark.main"
@@ -101,7 +111,7 @@ const Section7 = ({ data1 }) => {
                 ))}
               </H4>
               <NavLink3
-                href={slugbaseurl+data1.category_slug}
+                href={slugbaseurl + normalizeSlug(data1.category_slug)}
                 text="Shop Now"
                 color="black"
                 hoverColor="white"
