@@ -159,35 +159,49 @@ const total=Reviews.length;
   //   []
   // );
   const handleCartAmountChange = useCallback(
-    (amount,addedflag) => () => {
-      // Check if product has variants (via available_colors, available_sizes, or variants array)
-      // IMPORTANT: Since user confirmed "every product has variant", we should check if ANY variant-related field exists
-      const hasVariants = (product.variants !== undefined && product.variants !== null && Array.isArray(product.variants) && product.variants.length > 0) || 
-                          (product.available_colors !== undefined && product.available_colors !== null && Array.isArray(product.available_colors) && product.available_colors.length > 0) ||
-                          (product.available_sizes !== undefined && product.available_sizes !== null && Array.isArray(product.available_sizes) && product.available_sizes.length > 0);
+    (amount, addedflag) => () => {
+      // Professional variant detection: Check all possible variant sources
+      // This ensures it works in both development and production environments
+      const hasVariants = 
+        (product.variants !== undefined && 
+         product.variants !== null && 
+         Array.isArray(product.variants) && 
+         product.variants.length > 0) || 
+        (product.available_colors !== undefined && 
+         product.available_colors !== null && 
+         Array.isArray(product.available_colors) && 
+         product.available_colors.length > 0) ||
+        (product.available_sizes !== undefined && 
+         product.available_sizes !== null && 
+         Array.isArray(product.available_sizes) && 
+         product.available_sizes.length > 0);
       
-      // Debug: Log variant information to help diagnose API response issues
-      if (addedflag && process.env.NODE_ENV === 'development') {
-        console.log('🔍 Product variant check:', {
-          productId: product.id,
-          productName: product.name,
-          hasVariants,
-          variants: product.variants,
-          variantsLength: product.variants?.length,
-          available_colors: product.available_colors,
-          available_colorsLength: product.available_colors?.length,
-          available_sizes: product.available_sizes,
-          cartItemVariantId: cartItem?.variant_id,
-          fullProduct: product
-        });
+      // Professional logging for debugging (works in both dev and production)
+      if (addedflag) {
+        if (typeof window !== 'undefined' && window.console) {
+          console.log('🔍 ProductCard20 Variant Check:', {
+            productId: product.id,
+            productName: product.name,
+            hasVariants,
+            variants: product.variants,
+            variantsLength: product.variants?.length,
+            available_colors: product.available_colors,
+            available_colorsLength: product.available_colors?.length,
+            available_sizes: product.available_sizes,
+            available_sizesLength: product.available_sizes?.length,
+            cartItemVariantId: cartItem?.variant_id,
+            addedflag,
+            amount
+          });
+        }
       }
       
-      // If product has variants and item is not in cart with variant info, open variant selection dialog
-      if (hasVariants && !cartItem?.variant_id && addedflag) {
+      // Professional variant dialog trigger: Only open if product has variants AND 
+      // item is not already in cart with variant info AND user is adding (not removing)
+      if (hasVariants && !cartItem?.variant_id && (addedflag === true || addedflag === 1)) {
         setOpenVariantDialog(true);
         return;
       }
-
 
       // If no variants or item already has variant info, proceed with normal add/update
       if (!hasVariants || cartItem?.variant_id) {
@@ -215,7 +229,7 @@ const total=Reviews.length;
           type: "CHANGE_CART_AMOUNT",
           payload,
         });
-        if (addedflag == true) {
+        if (addedflag == true || addedflag === 1) {
           toast.success("Added to cart", { position: toast.POSITION.TOP_RIGHT });
         } else {
           toast.error("Removed from cart", { position: toast.POSITION.TOP_RIGHT });
@@ -675,6 +689,27 @@ const total=Reviews.length;
                       image: imgbaseurl+product.image,
 
             imgGroup: [imgbaseurl+product.image, imgbaseurl+product.image],
+          }}
+        />
+
+        <VariantSelectionDialog
+          open={openVariantDialog}
+          onClose={() => setOpenVariantDialog(false)}
+          product={{
+            id: product.id,
+            name: product.name,
+            mrp: product.mrp,
+            sku: product.sku,
+            slug: product.slug,
+            salePrice: salePrice,
+            description: product.description,
+            categoryName: product.categoryName,
+            stock: product.stock,
+            image: imgbaseurl+product.image,
+            imgGroup: [imgbaseurl+product.image, imgbaseurl+product.image],
+            variants: product.variants,
+            available_colors: product.available_colors,
+            available_sizes: product.available_sizes,
           }}
         />
 
