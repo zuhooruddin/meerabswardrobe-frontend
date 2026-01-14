@@ -395,11 +395,21 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
   // Professional helper function to normalize image URLs and prevent double paths
   // Correct format: https://api.meerabs.com/media/path/to/image.png
   const getImageUrl = useCallback((imagePath) => {
-    if (!imagePath) return '';
+    if (!imagePath) {
+      console.warn('ProductIntro: getImageUrl called with empty imagePath');
+      return '';
+    }
     
     // If already a full URL (starts with http/https), return as is
     if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
-      return imagePath;
+      // Still normalize to remove any double paths
+      let url = imagePath;
+      if (url.includes('/api/media//api/media/') || url.includes('/api/media//media/')) {
+        // Remove duplicate paths
+        url = url.replace(/\/api\/media\/+\/api\/media\//g, '/media/');
+        url = url.replace(/\/api\/media\/+\/media\//g, '/media/');
+      }
+      return url;
     }
     
     // Normalize the path by removing any existing /api/media/, /media/, or api/media/ prefixes
@@ -796,25 +806,40 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
                         justifyContent: "center",
                       }}
                     >
-                      <LazyImage
-                        width={800}
-                        height={800}
+                      <Box
+                        component="img"
+                        src={getImageUrl(imageGroup[selectedImage]) || ''}
                         alt={name ? `${name} - Premium Women's Clothing | Buy Online in Europe at Meerab's Wardrobe` : "Women's Clothing"}
-                        loading="eager"
-                        priority
-                        objectFit="contain"
-                        src={getImageUrl(imageGroup[selectedImage])}
                         title={name || "Women's Clothing"}
-                        style={{
+                        loading="eager"
+                        onError={(e) => {
+                          if (typeof window !== 'undefined' && window.console) {
+                            const imageUrl = getImageUrl(imageGroup[selectedImage]);
+                            console.error('ProductIntro: Image load error for URL:', imageUrl);
+                            console.error('ProductIntro: Original image path:', imageGroup[selectedImage]);
+                          }
+                          // Show error state
+                          e.target.style.border = '2px solid #DC2626';
+                          e.target.style.backgroundColor = '#FAFAFA';
+                        }}
+                        onLoad={(e) => {
+                          // Ensure image is visible when loaded
+                          e.target.style.opacity = '1';
+                          e.target.style.display = 'block';
+                        }}
+                        sx={{
                           width: "100%",
                           height: "100%",
                           objectFit: "contain",
                           padding: "32px",
                           userSelect: "none",
                           pointerEvents: "none",
+                          display: "block",
+                          maxWidth: "100%",
+                          maxHeight: "100%",
+                          backgroundColor: "transparent",
+                          opacity: 1,
                         }}
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        quality={100}
                       />
                     </Box>
                   </Box>
