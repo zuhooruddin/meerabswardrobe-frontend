@@ -226,7 +226,7 @@ const total=Reviews.length;
         // Use setTimeout to ensure state update happens after current execution
         // This is important for production builds where React batching might affect state updates
         setTimeout(() => {
-          setOpenVariantDialog(true);
+        setOpenVariantDialog(true);
         }, 0);
         return;
       }
@@ -256,10 +256,10 @@ const total=Reviews.length;
         
         // Professional error handling
         try {
-          dispatch({
-            type: "CHANGE_CART_AMOUNT",
-            payload,
-          });
+        dispatch({
+          type: "CHANGE_CART_AMOUNT",
+          payload,
+        });
           
           // Professional user feedback
           if (isAdding) {
@@ -267,7 +267,7 @@ const total=Reviews.length;
               position: toast.POSITION.TOP_RIGHT,
               autoClose: 2000,
             });
-          } else {
+        } else {
             toast.error("Removed from cart", { 
               position: toast.POSITION.TOP_RIGHT,
               autoClose: 2000,

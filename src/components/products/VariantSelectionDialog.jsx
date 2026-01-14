@@ -100,7 +100,7 @@ const AddToCartButton = styled(Box)(({ theme, disabled }) => ({
   width: "100%",
   padding: "14px 24px",
   borderRadius: "8px",
-  background: disabled 
+  background: disabled
     ? theme.palette.grey[300] 
     : theme.palette.primary.main,
   color: disabled ? theme.palette.text.disabled : "#fff",
@@ -332,7 +332,7 @@ const VariantSelectionDialog = ({
   const imageUrl = mainImage?.startsWith('http') ? mainImage : (imgbaseurl + mainImage || localimageurl + mainImage);
 
   return (
-    <Dialog
+      <Dialog
       open={open}
       onClose={onClose}
       maxWidth="lg"
@@ -421,34 +421,34 @@ const VariantSelectionDialog = ({
                 {/* Product Name & Price */}
                 <Box sx={{ mb: 3 }}>
                   <H3
-                    sx={{
-                      fontWeight: 700,
+                  sx={{
+                    fontWeight: 700,
                       fontSize: "24px",
                       color: "text.primary",
-                      mb: 1,
-                      lineHeight: 1.3,
-                    }}
-                  >
+                    mb: 1,
+                    lineHeight: 1.3,
+                  }}
+                >
                     {product?.name || 'Product'}
                   </H3>
                   <H4
-                    sx={{
-                      fontWeight: 800,
+                  sx={{
+                    fontWeight: 800,
                       fontSize: "28px",
                       color: "primary.main",
-                    }}
-                  >
+                  }}
+                >
                     {currency} {displayPrice > 0 ? displayPrice.toFixed(2) : (product?.salePrice || product?.price || product?.mrp || 0).toFixed(2)}
                   </H4>
-                </Box>
+          </Box>
 
                 {/* Variant Selection */}
-                {loading ? (
-                  <Box sx={{ textAlign: "center", py: 4 }}>
+          {loading ? (
+            <Box sx={{ textAlign: "center", py: 4 }}>
                     <Typography sx={{ color: "text.secondary" }}>
-                      Loading variant options...
-                    </Typography>
-                  </Box>
+                Loading variant options...
+              </Typography>
+            </Box>
                 ) : (
                   <Box sx={{ flex: 1, mb: 3 }}>
                     {/* Color Selection */}
@@ -495,7 +495,7 @@ const VariantSelectionDialog = ({
                     {availableSizes.length > 0 && (
                       <Box sx={{ mb: 4 }}>
                         <Typography
-                          sx={{
+              sx={{
                             fontWeight: 600,
                             fontSize: "16px",
                             color: "text.primary",
@@ -508,7 +508,7 @@ const VariantSelectionDialog = ({
                           value={selectedSize || ''}
                           onChange={(e) => setSelectedSize(e.target.value)}
                           sx={{ gap: 1 }}
-                        >
+            >
                           {availableSizes.map((size) => {
                             const variantForSize = variants.find(
                               (v) =>
@@ -536,60 +536,60 @@ const VariantSelectionDialog = ({
                             );
                           })}
                         </RadioGroup>
-                      </Box>
-                    )}
+            </Box>
+          )}
 
-                    {/* Stock Status */}
-                    {selectedVariant && (
+          {/* Stock Status */}
+          {selectedVariant && (
                       <Box sx={{ mb: 2 }}>
-                        {isOutOfStock ? (
-                          <Typography
-                            sx={{
+              {isOutOfStock ? (
+                <Typography
+                  sx={{
                               color: "error.main",
-                              fontWeight: 600,
-                              fontSize: "14px",
-                            }}
-                          >
-                            ⚠️ This variant is out of stock
-                          </Typography>
-                        ) : selectedVariant.stock_quantity <= 5 ? (
-                          <Typography
-                            sx={{
+                    fontWeight: 600,
+                    fontSize: "14px",
+                  }}
+                >
+                  ⚠️ This variant is out of stock
+                </Typography>
+              ) : selectedVariant.stock_quantity <= 5 ? (
+                <Typography
+                  sx={{
                               color: "warning.main",
-                              fontWeight: 600,
-                              fontSize: "14px",
-                            }}
-                          >
-                            ⚠️ Only {selectedVariant.stock_quantity} left in stock!
-                          </Typography>
-                        ) : (
-                          <Typography
-                            sx={{
+                    fontWeight: 600,
+                    fontSize: "14px",
+                  }}
+                >
+                  ⚠️ Only {selectedVariant.stock_quantity} left in stock!
+                </Typography>
+              ) : (
+                <Typography
+                  sx={{
                               color: "success.main",
-                              fontWeight: 600,
-                              fontSize: "14px",
-                            }}
-                          >
+                    fontWeight: 600,
+                    fontSize: "14px",
+                  }}
+                >
                             ✓ In Stock
-                          </Typography>
+                </Typography>
                         )}
                       </Box>
-                    )}
-                  </Box>
-                )}
+              )}
+            </Box>
+          )}
 
-                {/* Add to Cart Button */}
-                <AddToCartButton
-                  disabled={!canAddToCart}
+          {/* Add to Cart Button */}
+          <AddToCartButton
+            disabled={!canAddToCart}
                   onClick={canAddToCart ? handleAddToCart : undefined}
-                >
+          >
                   <ShoppingCart sx={{ fontSize: "20px" }} />
-                  {!selectedColor || !selectedSize
-                    ? "Please Select Color & Size"
-                    : isOutOfStock
-                    ? "Out of Stock"
-                    : "Add to Cart"}
-                </AddToCartButton>
+            {!selectedColor || !selectedSize
+              ? "Please Select Color & Size"
+              : isOutOfStock
+              ? "Out of Stock"
+              : "Add to Cart"}
+          </AddToCartButton>
               </Box>
             </Grid>
           </Grid>
