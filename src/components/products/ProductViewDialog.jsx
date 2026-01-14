@@ -87,8 +87,37 @@ useEffect(()=>{
   const { state, dispatch } = useAppContext();
   const router = useRouter();
   const [openVariantDialog, setOpenVariantDialog] = useState(false);
+  
+  // Professional helper function to detect if a product has any variants
+  const hasProductVariants = useCallback(() => {
+    if (!product) return false;
+    
+    // Check variants array
+    const hasVariantsArray = 
+      product.variants !== undefined && 
+      product.variants !== null && 
+      Array.isArray(product.variants) && 
+      product.variants.length > 0;
+    
+    // Check available_colors array
+    const hasColors = 
+      product.available_colors !== undefined && 
+      product.available_colors !== null && 
+      Array.isArray(product.available_colors) && 
+      product.available_colors.length > 0;
+    
+    // Check available_sizes array
+    const hasSizes = 
+      product.available_sizes !== undefined && 
+      product.available_sizes !== null && 
+      Array.isArray(product.available_sizes) && 
+      product.available_sizes.length > 0;
+    
+    return hasVariantsArray || hasColors || hasSizes;
+  }, [product]);
+  
   // Check for cart item - if product has variants, match by variant_id too
-  const cartItem = (product.variants && product.variants.length > 0) || (product.available_colors && product.available_colors.length > 0)
+  const cartItem = hasProductVariants()
     ? state.cart.find((item) => 
         item.id === product.id && 
         (!item.variant_id || item.variant_id === product.selectedVariant?.id)
@@ -97,14 +126,40 @@ useEffect(()=>{
   
   const handleCartAmountChange = useCallback(
     (amount, addflag) => () => {
-      // Check if product has variants (via available_colors or variants)
-      const hasVariants = (product.variants && product.variants.length > 0) || 
-                          (product.available_colors && product.available_colors.length > 0);
+      // Validate product object before proceeding
+      if (!product || typeof product !== 'object') {
+        console.error('ProductViewDialog: Invalid product object received for handleCartAmountChange.');
+        toast.error('Product data is missing or invalid.', { position: toast.POSITION.TOP_RIGHT });
+        return;
+      }
+
+      const hasVariants = hasProductVariants();
+      
+      // Professional logging for debugging (production-safe)
+      if (addflag && typeof window !== 'undefined' && window.console) {
+        console.log('🔍 ProductViewDialog Variant Check:', {
+          productId: product.id,
+          productName: product.name,
+          hasVariants,
+          variants: product.variants,
+          variantsLength: product.variants?.length || 0,
+          available_colors: product.available_colors,
+          available_colorsLength: product.available_colors?.length || 0,
+          available_sizes: product.available_sizes,
+          available_sizesLength: product.available_sizes?.length || 0,
+          cartItemVariantId: cartItem?.variant_id || null,
+          addflag,
+          amount,
+        });
+      }
       
       // If product has variants and item is not in cart with variant info, open variant selection dialog
-      if (hasVariants && !cartItem?.variant_id && addflag) {
+      if (hasVariants && !cartItem?.variant_id && (addflag === true || addflag === 1)) {
         handleCloseDialog();
-        setOpenVariantDialog(true);
+        // Use setTimeout to ensure state update is not batched away in production builds
+        setTimeout(() => {
+          setOpenVariantDialog(true);
+        }, 0);
         return;
       }
 
@@ -142,7 +197,7 @@ useEffect(()=>{
         }
       }
     },
-    [dispatch, product, cartItem, handleCloseDialog]
+    [dispatch, product, cartItem, handleCloseDialog, hasProductVariants]
   );
   return (
     <Fragment>
@@ -317,7 +372,12 @@ useEffect(()=>{
     <VariantSelectionDialog
       open={openVariantDialog}
       onClose={() => setOpenVariantDialog(false)}
-      product={product}
+      product={{
+        ...product,
+        variants: product?.variants || [],
+        available_colors: product?.available_colors || [],
+        available_sizes: product?.available_sizes || [],
+      }}
     />
     </Fragment>
   );
