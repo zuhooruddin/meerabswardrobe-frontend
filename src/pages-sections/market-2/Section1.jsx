@@ -198,6 +198,7 @@ const Section1 = (data) => {
                 {/* <BannerCard3 flex={1} img={imgbaseurl+data.data1.image}> */}
                 <Link href={data.data1 && data.data1.category_slug ? slugbaseurl + normalizeSlug(data.data1.category_slug) : ''}>
 
+
                   <a>
                     <BannerCard3
                       className="logo"
@@ -205,9 +206,21 @@ const Section1 = (data) => {
                       img={data.data1 && data.data1.image ? imgbaseurl + data.data1.image : '/assets/images/banners/default3.png'}
                       sx={{
                         height: bannerHeight, // set the fixed height for the banner
-                        width: bannerWidth, // set the fixed width for the banner
+                        width: bannerWidth, // set the fixed width f
+                        // or the banner
                         position: "relative",
                         overflow: "hidden",
+                        "&::before": {
+                          content: '""',
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          background: "linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.5) 100%)",
+                          zIndex: 1,
+                          pointerEvents: "none",
+                        },
                         "&:hover img": {
                           filter: "brightness(50%)",
                           transition: "filter 0.5s ease-in-out",
@@ -215,6 +228,17 @@ const Section1 = (data) => {
                         "&:hover h4": {
                           color: "#fff",
                           transition: "color 0.5s ease-in-out",
+                        },
+                        "& h4": {
+                          textShadow: "2px 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(0,0,0,0.5)",
+                          fontWeight: 700,
+                          zIndex: 2,
+                          position: "relative",
+                        },
+                        "& a": {
+                          textShadow: "1px 1px 3px rgba(0,0,0,0.8), 0 0 8px rgba(0,0,0,0.5)",
+                          zIndex: 2,
+                          position: "relative",
                         },
                       }}
                     >
@@ -244,6 +268,17 @@ const Section1 = (data) => {
                         width: bannerWidth, // set the fixed width for the banner
                         position: "relative",
                         overflow: "hidden",
+                        "&::before": {
+                          content: '""',
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          background: "linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.5) 100%)",
+                          zIndex: 1,
+                          pointerEvents: "none",
+                        },
                         "&:hover img": {
                           filter: "brightness(50%)",
                           transition: "filter 0.5s ease-in-out",
@@ -251,6 +286,17 @@ const Section1 = (data) => {
                         "&:hover h4": {
                           color: "#fff",
                           transition: "color 0.5s ease-in-out",
+                        },
+                        "& h4": {
+                          textShadow: "2px 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(0,0,0,0.5)",
+                          fontWeight: 700,
+                          zIndex: 2,
+                          position: "relative",
+                        },
+                        "& a": {
+                          textShadow: "1px 1px 3px rgba(0,0,0,0.8), 0 0 8px rgba(0,0,0,0.5)",
+                          zIndex: 2,
+                          position: "relative",
                         },
                       }}
                     >
