@@ -736,11 +736,17 @@ const total=Reviews.length;
             description: product.description,
             categoryName:product.categoryName,
             stock:product.stock,
-                      image: imgbaseurl+product.image,
-
+            image: imgbaseurl+product.image,
             imgGroup: [imgbaseurl+product.image, imgbaseurl+product.image],
+            variants: product.variants,
+            available_colors: product.available_colors,
+            available_sizes: product.available_sizes,
           }}
         />
+
+
+
+
 
         <VariantSelectionDialog
           open={openVariantDialog}

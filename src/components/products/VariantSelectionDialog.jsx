@@ -337,9 +337,6 @@ const VariantSelectionDialog = ({
       onClose={onClose}
       maxWidth="lg"
       fullWidth
-      sx={{
-        zIndex: 1600, // Higher than ProductViewDialog (1501) to ensure it appears on top
-      }}
       PaperProps={{
         sx: {
           borderRadius: "16px",
@@ -350,7 +347,7 @@ const VariantSelectionDialog = ({
         },
       }}
       sx={{
-        zIndex: 1500,
+        zIndex: 1502, // Higher than ProductViewDialog (1501) to ensure it appears on top
       }}
     >
       <DialogContainer>

@@ -35,6 +35,7 @@ const CategoryTitle = styled(Box)(() => ({
 
 // ============================================================
 const CategoryCard2 = ({ image, title, url }) => {
+  console.log(image, title, url);
   return (
     <Link href={url}>
       <a aria-label={`Browse ${title} products`}>

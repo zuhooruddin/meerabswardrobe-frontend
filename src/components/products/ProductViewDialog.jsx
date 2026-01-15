@@ -155,13 +155,13 @@ useEffect(()=>{
       
       // If product has variants and item is not in cart with variant info, open variant selection dialog
       if (hasVariants && !cartItem?.variant_id && (addflag === true || addflag === 1)) {
-        // Open variant dialog - it will appear on top of main dialog due to higher z-index (1600 vs 1501)
-        // Don't close main dialog immediately to ensure state persists for non-logged-in users
+        // First open the variant dialog, then close the parent dialog
+        // This ensures the variant dialog opens even for non-logged-in users
         setOpenVariantDialog(true);
-        // Close main dialog after a short delay to allow variant dialog to render
+        // Close parent dialog after a small delay to ensure variant dialog state is set
         setTimeout(() => {
           handleCloseDialog();
-        }, 200);
+        }, 100);
         return;
       }
 

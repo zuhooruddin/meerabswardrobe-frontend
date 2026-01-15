@@ -54,7 +54,19 @@ const AdTitle1 = styled(H3)(({ theme }) => ({
 }));
 
 const Section3 = (dataa) => {
-  const imgbaseurl=process.env.NEXT_PUBLIC_IMAGE_BASE_API_URL+'/api/media/'
+  console.log(dataa);
+  // Construct correct base URL: https://api.meerabs.com/media/
+  // Since NEXT_PUBLIC_BACKEND_API_BASE = https://api.meerabs.com/api/
+  // We need to replace /api/ with /media/ to get: https://api.meerabs.com/media/
+  const backendBase = process.env.NEXT_PUBLIC_BACKEND_API_BASE || '';
+  let imgbaseurl = backendBase.replace('/api/', '/media/');
+  // If replacement didn't work (no /api/ found), try without trailing slash
+  if (imgbaseurl === backendBase) {
+    imgbaseurl = backendBase.replace('/api', '/media');
+  }
+  // Ensure the base URL ends with exactly one /
+  imgbaseurl = imgbaseurl.replace(/\/+$/, '') + '/';
+  
   const slugbaseurl='category/'
   
   // Helper function to normalize slug (remove leading slashes and path prefixes)
@@ -80,9 +92,10 @@ const Section3 = (dataa) => {
     url: slugbaseurl + normalizeSlug(item.category_slug),
     title: item.category_name || `Category${index + 3}`,
     id: item.id,
-    img: item.image && +item.image ? imgbaseurl + item.image : '/assets/images/banners/default.png',
+    img: item.image && item.image.trim() !== '' ? imgbaseurl + item.image : '/assets/images/banners/default.png',
   }));
-  
+  console.log(data);
+
   return (
     <Container
       sx={{
