@@ -20,6 +20,7 @@ const StyledListItem = styled(ListItem)(({ theme }) => ({
 
 // ======================================================================
 const Section12 = ({ products,data,Section2Name,slug,productreviews}) => {
+  console.log(products,data,Section2Name,slug,productreviews);
   const dummyCategories = [
     { category_name: "Sub-Category 1", category_slug: "category-1" },
     { category_name: "Sub-Category 2", category_slug: "category-2" },
