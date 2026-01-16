@@ -14,7 +14,13 @@ const CardContent = styled(Box)(() => ({
   position: "absolute",
   flexDirection: "column",
   justifyContent: "center",
+  
   backgroundRepeat: "round",
+  color: "#fff",
+  textShadow: "0 2px 8px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.7)",
+  "& *": {
+    textShadow: "inherit",
+  },
 })); // ========================================================
 
 // ========================================================
@@ -33,9 +39,12 @@ const BannerCard3 = ({ img, children, priority = false, ...props }) => {
         sizes="(max-width: 600px) 100vw, (max-width: 960px) 50vw, 33vw"
       />
 
+
       <CardContent>{children}</CardContent>
     </CardWrapper>
   );
 };
 
 export default BannerCard3;
+
+

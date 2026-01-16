@@ -52,7 +52,7 @@ const Wrapper = styled(Box)(({ theme }) => ({
 const CategoryTitle = styled(Box)(({ theme }) => ({
   left: 12,
   right: 12,
-  bottom: 12,
+  bottom: 8,
   padding: "12px 16px",
   textAlign: "center",
   borderRadius: "8px",
@@ -65,8 +65,8 @@ const CategoryTitle = styled(Box)(({ theme }) => ({
   "& h4": {
     margin: 0,
     fontWeight: 600,
-    fontSize: "14px",
-    lineHeight: 1.4,
+    fontSize: "12px",
+    lineHeight: 1.2,
     color: theme.palette.text.primary,
     transition: "all 0.4s ease",
     textTransform: "capitalize",
@@ -78,7 +78,7 @@ const CategoryTitle = styled(Box)(({ theme }) => ({
     bottom: 8,
     padding: "10px 12px",
     "& h4": {
-      fontSize: "13px",
+      fontSize: "12px",
     },
   },
 })); // ============================================================

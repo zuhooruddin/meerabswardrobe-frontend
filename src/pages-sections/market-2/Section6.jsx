@@ -89,10 +89,10 @@ const Section6 = ({data1, data2}) => {
                   />
                 </Box>
                 <Box sx={{ position: 'absolute', top: 0, left: 0, zIndex: 1 }}>
-                  <H4 fontSize={18} lineHeight={1} sx={{ color: '#000000', mb: 1, ml: 10 }}>
+                  <H4 fontSize={18} lineHeight={1} sx={{ color: '#fff', mb: 1, ml: 10 }}>
                     {data1.category_name&&data1.category_name?data1.category_name:'Category12'}
                   </H4>
-                  <Span fontSize={14} lineHeight={1} sx={{ color: '#000000', ml: 10 }}>
+                  <Span fontSize={14} lineHeight={1} sx={{ color: '#fff', ml: 10 }}>
                     View all
                   </Span>
                 </Box>
@@ -169,10 +169,10 @@ const Section6 = ({data1, data2}) => {
                 </Box>
                 <Box sx={{ position: 'absolute', top: 0, left: 0, zIndex: 1 }}>
                   <div>
-                    <H4 fontSize={18} lineHeight={1} sx={{ color: '#000000', mb: 1, ml: 10 }}>
+                    <H4 fontSize={18} lineHeight={1} sx={{ color: '#fff', mb: 1, ml: 10 }}>
                       {data2.category_name&&data2.category_name?data2.category_name:'Category13'}
                     </H4>
-                    <Span fontSize={14} lineHeight={1} sx={{ color: '#000000', ml: 10 }}>
+                    <Span fontSize={14} lineHeight={1} sx={{ color: '#fff', ml: 10 }}>
                       View all
                     </Span>
                   </div>
