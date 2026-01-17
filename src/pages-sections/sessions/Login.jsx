@@ -41,7 +41,7 @@ const fadeIn = keyframes`
 export const Wrapper = styled(({ children, passwordVisibility, ...rest }) => (
   <Card {...rest}>{children}</Card>
 ))(({ theme, passwordVisibility }) => ({
-  width: 500,
+  width: 560,
   padding: "3rem 3.5rem",
   borderRadius: "24px",
   background: theme.palette.mode === 'dark' 
