@@ -310,7 +310,7 @@ const IndexPage = (props) => {
 
   return (
     <ShopLayout1
-      topbarBgColor={theme.palette.grey[900]}
+      topbarBgColor={undefined}
       navCategories={navCategories}
       generalSetting={GeneralSettingMemo}
       footerData={null} // Can be passed from props if available
@@ -401,8 +401,8 @@ const IndexPage = (props) => {
         </LazySection>
         <LazySection>
             <Section12
-              products={props.product}
-              data={props.SectionSequenceOrdera2}
+              products={Array.isArray(props.product) ? props.product : []}
+              data={props.SectionSequenceOrdera2 || []}
               Section2Name={props.Section2Name || ""}
               slug={props.slug2 || ""}
               productreviews={props.ProductReviews} 

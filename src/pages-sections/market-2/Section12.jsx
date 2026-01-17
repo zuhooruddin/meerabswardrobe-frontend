@@ -21,6 +21,10 @@ const StyledListItem = styled(ListItem)(({ theme }) => ({
 // ======================================================================
 const Section12 = ({ products,data,Section2Name,slug,productreviews}) => {
   console.log(products,data,Section2Name,slug,productreviews);
+  // Ensure products is always an array
+  const productsArray = Array.isArray(products) ? products : [];
+  const dataArray = Array.isArray(data) ? data : [];
+  
   const dummyCategories = [
     { category_name: "Sub-Category 1", category_slug: "category-1" },
     { category_name: "Sub-Category 2", category_slug: "category-2" },
@@ -68,7 +72,7 @@ const Section12 = ({ products,data,Section2Name,slug,productreviews}) => {
               }}
 
             >
-               {data.length>0?data.map((data) => (
+               {dataArray.length>0?dataArray.map((data) => (
                          <StyledListItem key={data.category_slug}><Link href={slugbaseurl+normalizeSlug(data.category_slug)
                          }><a>{data.category_name
                          }</a></Link></StyledListItem>
@@ -98,11 +102,11 @@ const Section12 = ({ products,data,Section2Name,slug,productreviews}) => {
 
         <Grid item md={9} xs={12}>
           <Carousel
-            totalSlides={products.length}
+            totalSlides={productsArray.length}
             visibleSlides={visibleSlides}
             sx={carouselStyled}
           >
-            {products.length>0?products.map((product) => (
+            {productsArray.length>0?productsArray.map((product) => (
               <ProductCard20 product={product} key={product.id} data={productreviews} />
             )):"No Products Added"}
           </Carousel>

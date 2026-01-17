@@ -235,8 +235,15 @@ const Footer = ({ footerData: initialFooterData }) => {
                           height={48}
                         src={footerData?.footer_logo ? imgbaseurl + footerData.footer_logo : defaultLogo}
                           alt="Chitral Hive Logo"
-                        style={{ display: 'block', maxWidth: '160px', height: 'auto' }}
-                        quality={85}
+                        style={{ 
+                          display: 'block', 
+                          maxWidth: '160px', 
+                          height: 'auto',
+                          objectFit: 'contain',
+                          filter: 'brightness(1.1) contrast(1.1)',
+                          transition: 'all 0.3s ease',
+                        }}
+                        quality={95}
                         loading="lazy"
                       />
                       </Box>
@@ -454,7 +461,7 @@ const Footer = ({ footerData: initialFooterData }) => {
                     fontSize: "14px",
                   }}
                 >
-                  © {new Date().getFullYear()} Chitral Hive. All rights reserved.
+                  © {new Date().getFullYear()} Meerabs Wardrobe. All rights reserved.
                 </Paragraph>
                 
                 <FlexBox gap={3}>

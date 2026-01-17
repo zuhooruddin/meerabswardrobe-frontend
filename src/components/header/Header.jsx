@@ -230,7 +230,7 @@ const Header = ({ isFixed, headerdata, className, searchBoxType = "type2" }) => 
                     : '/assets/images/logos/webpack.png'} 
                 alt={comopanyalt || "Logo"}
                   priority
-                  quality={85}
+                  quality={95}
                   style={{ 
                     display: 'block !important',
                     visibility: 'visible !important',
@@ -239,6 +239,8 @@ const Header = ({ isFixed, headerdata, className, searchBoxType = "type2" }) => 
                     width: '100%',
                     height: 'auto',
                     maxWidth: '100%',
+                    objectFit: 'contain',
+                    filter: theme.palette.mode === 'dark' ? 'brightness(1.1) contrast(1.1)' : 'none',
                   }}
                   sizes="(max-width: 768px) 120px, 160px"
               />

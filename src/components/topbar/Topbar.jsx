@@ -29,6 +29,11 @@ const TopbarWrapper = styled(Box, {
     ? "#FFFFFF" 
     : theme.palette.secondary.contrastText),
   transition: 'all 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+  zIndex: 1100,
+  position: 'relative',
+  display: 'block',
+  visibility: 'visible',
+  opacity: 1,
   // Ensure all text and icons are visible in dark mode
   "& a": {
     color: "inherit",
@@ -371,8 +376,14 @@ const server_ip=process.env.NEXT_PUBLIC_BACKEND_API_BASE
                   src={topbardata?imgbaseurl+topbardata[0].site_logo:'/assets/images/logos/webpack.png'}
                   alt="logo"
                   priority
-                  quality={85}
+                  quality={95}
                   sizes="120px"
+                  style={{
+                    display: 'block',
+                    objectFit: 'contain',
+                    filter: 'brightness(1.1) contrast(1.1)',
+                    transition: 'all 0.3s ease',
+                  }}
                 />
               </Link>
             </div>
@@ -516,8 +527,14 @@ const server_ip=process.env.NEXT_PUBLIC_BACKEND_API_BASE
                   src={topbardata?imgbaseurl+topbardata[0].site_logo:'/assets/images/logos/webpack.png'}
                   alt="logo"
                   priority
-                  quality={85}
+                  quality={95}
                   sizes="120px"
+                  style={{
+                    display: 'block',
+                    objectFit: 'contain',
+                    filter: 'brightness(1.1) contrast(1.1)',
+                    transition: 'all 0.3s ease',
+                  }}
                 />
               </Link>
             </div>
