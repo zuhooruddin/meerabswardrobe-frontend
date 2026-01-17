@@ -400,9 +400,10 @@ const SearchCard1 = ({
           handleCloseDialog={() => setOpenDialog(false)}
           product={{
             name,
-            mrp,
+            mrp: numericMrp,
             id,
-            salePrice,
+            salePrice: finalSalePrice,
+            discount: numericDiscount,
             sku,
             slug,
             description,
@@ -420,9 +421,10 @@ const SearchCard1 = ({
           onClose={() => setOpenVariantDialog(false)}
           product={{
             name,
-            mrp,
+            mrp: numericMrp,
             id,
-            salePrice,
+            salePrice: finalSalePrice,
+            discount: numericDiscount,
             sku,
             slug,
             description,
@@ -667,9 +669,10 @@ const SearchCard1 = ({
           handleCloseDialog={() => setOpenDialog(false)}
           product={{
             name,
-            mrp,
+            mrp: numericMrp,
             id,
-            salePrice,
+            salePrice: finalSalePrice,
+            discount: numericDiscount,
             sku,
             slug,
             description,
@@ -687,9 +690,10 @@ const SearchCard1 = ({
           onClose={() => setOpenVariantDialog(false)}
           product={{
             name,
-            mrp,
+            mrp: numericMrp,
             id,
-            salePrice,
+            salePrice: finalSalePrice,
+            discount: numericDiscount,
             sku,
             slug,
             description,

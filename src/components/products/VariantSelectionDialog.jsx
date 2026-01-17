@@ -238,23 +238,10 @@ const VariantSelectionDialog = ({
       setSelectedVariant(variant);
       
       if (variant) {
-        // Get variant price (this is typically the variant's MRP)
+        // Use variant price if available, otherwise use product price
         const variantPrice = variant.variant_price || variant.actual_price || variant.price;
-        
         if (variantPrice && variantPrice > 0) {
-          // Check if variant has its own MRP, otherwise use variant price as MRP
-          const variantMrp = variant.mrp || variant.variant_mrp || variantPrice;
-          
-          // Apply discount to variant MRP if discount exists
-          if (numericDiscount > 0 && variantMrp > 0) {
-            // Calculate discounted price from variant MRP
-            const calculatedVariantDiscount = (variantMrp * numericDiscount) / 100;
-            const finalVariantPrice = variantMrp - calculatedVariantDiscount;
-            setDisplayPrice(parseFloat(finalVariantPrice));
-          } else {
-            // No discount, use variant price as is
-            setDisplayPrice(parseFloat(variantPrice));
-          }
+          setDisplayPrice(parseFloat(variantPrice));
         } else {
           // Fallback to calculated product price
           setDisplayPrice(baseFinalSalePrice);
@@ -268,7 +255,7 @@ const VariantSelectionDialog = ({
       // Use calculated product price when no variant selected
       setDisplayPrice(baseFinalSalePrice);
     }
-  }, [selectedColor, selectedSize, variants, product, baseFinalSalePrice, numericDiscount, numericMrp]);
+  }, [selectedColor, selectedSize, variants, product, baseFinalSalePrice]);
 
   // Reset selections when dialog opens/closes
   useEffect(() => {
@@ -303,30 +290,14 @@ const VariantSelectionDialog = ({
       return;
     }
 
-    // Get variant price and apply discount if needed
+    // Use variant price if available, otherwise use calculated product price
     const variantPrice = selectedVariant.actual_price || selectedVariant.variant_price || selectedVariant.price;
-    // Check if variant has its own MRP, otherwise use variant price as MRP
-    const variantMrp = selectedVariant.mrp || selectedVariant.variant_mrp || variantPrice || numericMrp;
-    
-    let priceToStore = baseFinalSalePrice;
-    
-    if (variantPrice && variantPrice > 0) {
-      // Apply discount to variant MRP if discount exists
-      if (numericDiscount > 0 && variantMrp > 0) {
-        // Calculate discounted price from variant MRP
-        const calculatedVariantDiscount = (variantMrp * numericDiscount) / 100;
-        priceToStore = variantMrp - calculatedVariantDiscount;
-      } else {
-        // No discount, use variant price as is
-        priceToStore = parseFloat(variantPrice);
-      }
-    }
-    
+    const priceToStore = variantPrice && variantPrice > 0 ? parseFloat(variantPrice) : baseFinalSalePrice;
     const imageUrl = product.imgGroup?.[selectedImageIndex] || product.imgGroup?.[0] || product.image || product.imgUrl;
     const image = imageUrl?.startsWith('http') ? imageUrl : (imgbaseurl + imageUrl || localimageurl + imageUrl);
 
     const payload = {
-      mrp: variantMrp,
+      mrp: numericMrp,
       salePrice: priceToStore,
       salePrices: priceToStore,
       price: priceToStore,
@@ -479,44 +450,33 @@ const VariantSelectionDialog = ({
                 >
                       {currency} {displayPrice > 0 ? displayPrice.toFixed(2) : baseFinalSalePrice.toFixed(2)}
                   </H4>
-                    {numericDiscount > 0 && (() => {
-                      // Get variant MRP if available, otherwise use product MRP
-                      const displayMrp = selectedVariant 
-                        ? (selectedVariant.mrp || selectedVariant.variant_mrp || numericMrp)
-                        : numericMrp;
-                      
-                      // Only show discount if MRP is greater than display price
-                      if (displayMrp > 0 && displayMrp > displayPrice) {
-                        return (
-                          <>
-                            <Typography
-                              sx={{
-                                color: "text.secondary",
-                                fontSize: "18px",
-                                textDecoration: "line-through",
-                                fontWeight: 500,
-                              }}
-                            >
-                              {currency} {displayMrp.toFixed(2)}
-                            </Typography>
-                            <Box
-                              sx={{
-                                background: "linear-gradient(135deg, #10B981 0%, #059669 100%)",
-                                color: "white",
-                                px: 1.5,
-                                py: 0.5,
-                                borderRadius: "12px",
-                                fontSize: "13px",
-                                fontWeight: 700,
-                              }}
-                            >
-                              SAVE {Math.round(numericDiscount)}%
-                            </Box>
-                          </>
-                        );
-                      }
-                      return null;
-                    })()}
+                    {numericDiscount > 0 && numericMrp > 0 && (
+                      <>
+                        <Typography
+                          sx={{
+                            color: "text.secondary",
+                            fontSize: "18px",
+                            textDecoration: "line-through",
+                            fontWeight: 500,
+                          }}
+                        >
+                          {currency} {numericMrp.toFixed(2)}
+                        </Typography>
+                        <Box
+                          sx={{
+                            background: "linear-gradient(135deg, #10B981 0%, #059669 100%)",
+                            color: "white",
+                            px: 1.5,
+                            py: 0.5,
+                            borderRadius: "12px",
+                            fontSize: "13px",
+                            fontWeight: 700,
+                          }}
+                        >
+                          SAVE {Math.round(numericDiscount)}%
+                        </Box>
+                      </>
+                    )}
                   </Box>
           </Box>
 

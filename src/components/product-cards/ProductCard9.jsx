@@ -401,8 +401,9 @@ useEffect(()=>{
         product={{
           id,
           name,
-          mrp,
-          salePrice,
+          mrp: numericMrp,
+          salePrice: finalSalePrice,
+          discount: numericDiscount,
           sku,
           slug,
           image: imgbaseurl + image,
@@ -582,8 +583,9 @@ useEffect(()=>{
         product={{
           id,
           name,
-          mrp,
-          salePrice,
+          mrp: numericMrp,
+          salePrice: finalSalePrice,
+          discount: numericDiscount,
           sku,
           slug,
           image: imgbaseurl + image,

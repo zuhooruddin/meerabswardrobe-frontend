@@ -111,11 +111,11 @@ const Login = () => {
     
     try {
       const result = await signIn("credentials", {
-        username: values.email,
-        password: values.password,
+      username: values.email,
+      password: values.password,
         role: 3,
         callbackUrl: `${window.location.origin}/`,
-        redirect: false,
+      redirect: false,
       });
 
       if (result?.error !== null) {
@@ -139,7 +139,7 @@ const Login = () => {
             position: toast.POSITION.TOP_RIGHT,
           });
         } else {
-          setLoginError(
+              setLoginError(
             <Alert 
               variant="filled" 
               severity="error"
@@ -204,8 +204,8 @@ const Login = () => {
   if (session) {
     router.push('/profile');
     return null;
-  }
-
+    }
+   
   return (
     <Wrapper elevation={3} passwordVisibility={passwordVisibility}>
       <form onSubmit={handleSubmit}>
@@ -227,7 +227,7 @@ const Login = () => {
               },
             }}
           >
-            {loginError}
+        {loginError}
           </Box>
         )}
 
@@ -245,7 +245,7 @@ const Login = () => {
             }}
           >
             Welcome Back
-          </H3>
+        </H3>
           <H4
             sx={{
               fontWeight: 600,
@@ -256,15 +256,15 @@ const Login = () => {
           >
             {siteName}
           </H4>
-          <Small
-            display="block"
+        <Small
+          display="block"
             fontSize="14px"
             fontWeight="500"
             color="text.secondary"
             sx={{ mt: 1 }}
           >
             Sign in to continue shopping
-          </Small>
+        </Small>
         </Box>
 
         {/* Email Field */}
