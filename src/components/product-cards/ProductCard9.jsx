@@ -67,11 +67,23 @@ const ProductCard9 = ({
   available_colors,
   available_sizes,
 }) => {
-  const discountprice = salePrice;
-  const calculatedDiscountAmount = (salePrice * discount) / 100;
-  const calculatedDiscountedSubtotal = salePrice - calculatedDiscountAmount;
-
-  salePrice = calculatedDiscountedSubtotal;
+  // Consistent discount calculation: discount is applied to MRP, not salePrice
+  const numericMrp = mrp != null && !isNaN(mrp) ? parseFloat(mrp) : 0;
+  const numericSalePrice = salePrice != null && !isNaN(salePrice) ? parseFloat(salePrice) : numericMrp;
+  const numericDiscount = discount != null && !isNaN(discount) ? parseFloat(discount) : 0;
+  
+  // Calculate discount amount from MRP (original price)
+  const calculatedDiscountAmount = numericDiscount > 0 ? (numericMrp * numericDiscount) / 100 : 0;
+  
+  // Final sale price: if discount exists, use discounted price, otherwise use original salePrice
+  const finalSalePrice = numericDiscount > 0 && numericMrp > 0 
+    ? (numericMrp - calculatedDiscountAmount) 
+    : numericSalePrice;
+  
+  // For display: show original price (MRP) when discount exists
+  const discountprice = numericDiscount > 0 ? numericMrp : numericSalePrice;
+  
+  // Use finalSalePrice for all price references (don't reassign prop)
 
   const imgbaseurl = process.env.NEXT_PUBLIC_IMAGE_BASE_API_URL;
 
@@ -166,7 +178,17 @@ useEffect(()=>{
     // If no variants or item already has variant info, proceed with normal add/update
     if (!hasVariants || cartItem?.variant_id) {
       const payload = {
-        ...product,
+        id: id,
+        name: name,
+        mrp: numericMrp,
+        salePrice: finalSalePrice,
+        salePrices: finalSalePrice,
+        price: finalSalePrice,
+        discount: numericDiscount,
+        sku: sku,
+        slug: slug,
+        image: imgbaseurl + image,
+        qty: amount || 1,
         // Preserve variant information from cartItem if it exists
         ...(cartItem?.variant_id && {
           variant_id: cartItem.variant_id,
@@ -262,7 +284,7 @@ useEffect(()=>{
 
               <FlexBox mt={1} mb={2} alignItems="center">
                 <H5 fontWeight={600} color="primary.main" mr={1}>
-                  {currency}. {salePrice.toFixed(2)}
+                  {currency}. {finalSalePrice.toFixed(2)}
                 </H5>
 
                 {!!discount && (
@@ -292,9 +314,11 @@ useEffect(()=>{
                       onClick={handleCartAmountChange(
                         {
                           id,
-                          mrp,
-                          salePrice,
-                          price: salePrice,
+                          mrp: numericMrp,
+                          salePrice: finalSalePrice,
+                          salePrices: finalSalePrice,
+                          price: finalSalePrice,
+                          discount: numericDiscount,
                           sku,
                           slug,
                           image: imgbaseurl + image,
@@ -319,9 +343,11 @@ useEffect(()=>{
                         onClick={handleCartAmountChange(
                           {
                             id,
-                            mrp,
-                            salePrice,
-                            price: salePrice,
+                            mrp: numericMrp,
+                            salePrice: finalSalePrice,
+                            salePrices: finalSalePrice,
+                            price: finalSalePrice,
+                            discount: numericDiscount,
                             sku,
                             slug,
                             image: imgbaseurl + image,
@@ -346,8 +372,11 @@ useEffect(()=>{
                           {
                             id,
                             mrp,
-                            salePrice,
-                            price: salePrice,
+                            salePrice: finalSalePrice,
+                            salePrices: finalSalePrice,
+                            price: finalSalePrice,
+                            mrp: numericMrp,
+                            discount: numericDiscount,
                             sku,
                             image: imgbaseurl + image,
                             name: name,
@@ -375,7 +404,9 @@ useEffect(()=>{
           id,
           name,
           mrp,
-          salePrice,
+          salePrice: finalSalePrice,
+          mrp: numericMrp,
+          discount: numericDiscount,
           sku,
           slug,
           image: imgbaseurl + image,
@@ -441,7 +472,7 @@ useEffect(()=>{
 
               <FlexBox mt={1} mb={2} alignItems="center">
                 <H5 fontWeight={600} color="primary.main" mr={1}>
-                 {currency}. {salePrice?.toFixed(2)}
+                 {currency}. {finalSalePrice?.toFixed(2)}
                 </H5>
 
                 {!!discount && (
@@ -473,8 +504,11 @@ useEffect(()=>{
                           {
                             id,
                             mrp,
-                            salePrice,
-                            price: salePrice,
+                            salePrice: finalSalePrice,
+                            salePrices: finalSalePrice,
+                            price: finalSalePrice,
+                            mrp: numericMrp,
+                            discount: numericDiscount,
                             sku,
                             slug,
                             image: imgbaseurl + image,
@@ -500,7 +534,9 @@ useEffect(()=>{
                             {
                               id,
                               mrp,
-                              salePrice,
+                              salePrice: finalSalePrice,
+          mrp: numericMrp,
+          discount: numericDiscount,
                               price: salePrice,
                               sku,
                               slug,
@@ -526,7 +562,9 @@ useEffect(()=>{
                             {
                               id,
                               mrp,
-                              salePrice,
+                              salePrice: finalSalePrice,
+          mrp: numericMrp,
+          discount: numericDiscount,
                               price: salePrice,
                               sku,
                               slug,
@@ -556,7 +594,9 @@ useEffect(()=>{
           id,
           name,
           mrp,
-          salePrice,
+          salePrice: finalSalePrice,
+          mrp: numericMrp,
+          discount: numericDiscount,
           sku,
           slug,
           image: imgbaseurl + image,

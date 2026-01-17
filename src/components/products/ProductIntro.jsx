@@ -313,21 +313,25 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
     categorySlug,
   } = product;
 
-  // Price calculations
+  // Consistent discount calculation: discount is applied to MRP, not salePrice
+  const numericMrp = mrp != null && mrp !== '' && !isNaN(mrp) ? parseFloat(mrp) : 0;
   const numericSalePrice = salePrice != null && salePrice !== '' && !isNaN(salePrice) 
     ? parseFloat(salePrice) 
-    : (mrp != null && mrp !== '' && !isNaN(mrp) ? parseFloat(mrp) : 0);
+    : numericMrp;
   const numericDiscount = discount != null && discount !== '' && !isNaN(discount) 
     ? parseFloat(discount) 
     : 0;
   
-  const discountprice = numericSalePrice;
-  const calculatedDiscountAmount = (numericSalePrice * numericDiscount) / 100;
-  const calculatedDiscountedSubtotal = numericSalePrice - calculatedDiscountAmount;
-
-  const salePrices = isNaN(calculatedDiscountedSubtotal) || calculatedDiscountedSubtotal <= 0 
-    ? numericSalePrice 
-    : calculatedDiscountedSubtotal;
+  // Calculate discount amount from MRP (original price)
+  const calculatedDiscountAmount = numericDiscount > 0 ? (numericMrp * numericDiscount) / 100 : 0;
+  
+  // Final sale price: if discount exists, use discounted price, otherwise use original salePrice
+  const salePrices = numericDiscount > 0 && numericMrp > 0 
+    ? (numericMrp - calculatedDiscountAmount) 
+    : numericSalePrice;
+  
+  // For display: show original price (MRP) when discount exists
+  const discountprice = numericDiscount > 0 ? numericMrp : numericSalePrice;
 
   const [currency, setCurrency] = useState('PKR');
   const [selectedImage, setSelectedImage] = useState(0);

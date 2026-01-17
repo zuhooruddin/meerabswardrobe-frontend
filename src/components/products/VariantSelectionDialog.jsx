@@ -134,10 +134,6 @@ const VariantSelectionDialog = ({
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedVariant, setSelectedVariant] = useState(null);
   const [variants, setVariants] = useState([]);
-  const [displayPrice, setDisplayPrice] = useState(() => {
-    // Initialize with actual product price
-    return product?.salePrice || product?.price || product?.mrp || 0;
-  });
   const [loading, setLoading] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
@@ -152,15 +148,30 @@ const VariantSelectionDialog = ({
     }
   }, []);
 
+  // Consistent discount calculation: discount is applied to MRP, not salePrice
+  const numericMrp = product?.mrp != null && !isNaN(product.mrp) ? parseFloat(product.mrp) : 0;
+  const numericSalePrice = product?.salePrice != null && !isNaN(product.salePrice) ? parseFloat(product.salePrice) : numericMrp;
+  const numericDiscount = product?.discount != null && !isNaN(product.discount) ? parseFloat(product.discount) : 0;
+  
+  // Calculate discount amount from MRP (original price)
+  const calculatedDiscountAmount = numericDiscount > 0 ? (numericMrp * numericDiscount) / 100 : 0;
+  
+  // Final sale price: if discount exists, use discounted price, otherwise use original salePrice
+  const baseFinalSalePrice = numericDiscount > 0 && numericMrp > 0 
+    ? (numericMrp - calculatedDiscountAmount) 
+    : numericSalePrice;
+
+  const [displayPrice, setDisplayPrice] = useState(() => {
+    // Initialize with calculated product price
+    return baseFinalSalePrice || 0;
+  });
+
   // Update price when product changes
   useEffect(() => {
-    if (product) {
-      const productPrice = product?.salePrice || product?.price || product?.mrp || 0;
-      if (!selectedVariant) {
-        setDisplayPrice(parseFloat(productPrice));
-      }
+    if (product && !selectedVariant) {
+      setDisplayPrice(baseFinalSalePrice);
     }
-  }, [product, selectedVariant]);
+  }, [product, baseFinalSalePrice, selectedVariant]);
 
   // Load variants
   useEffect(() => {
@@ -232,22 +243,19 @@ const VariantSelectionDialog = ({
         if (variantPrice && variantPrice > 0) {
           setDisplayPrice(parseFloat(variantPrice));
         } else {
-          // Fallback to product price
-          const productPrice = product?.salePrice || product?.price || product?.mrp || 0;
-          setDisplayPrice(parseFloat(productPrice));
+          // Fallback to calculated product price
+          setDisplayPrice(baseFinalSalePrice);
         }
       } else {
-        // No variant found, use product price
-        const productPrice = product?.salePrice || product?.price || product?.mrp || 0;
-        setDisplayPrice(parseFloat(productPrice));
+        // No variant found, use calculated product price
+        setDisplayPrice(baseFinalSalePrice);
       }
     } else {
       setSelectedVariant(null);
-      // Use actual product price when no variant selected
-      const productPrice = product?.salePrice || product?.price || product?.mrp || 0;
-      setDisplayPrice(parseFloat(productPrice));
+      // Use calculated product price when no variant selected
+      setDisplayPrice(baseFinalSalePrice);
     }
-  }, [selectedColor, selectedSize, variants, product]);
+  }, [selectedColor, selectedSize, variants, product, baseFinalSalePrice]);
 
   // Reset selections when dialog opens/closes
   useEffect(() => {
@@ -256,13 +264,11 @@ const VariantSelectionDialog = ({
       setSelectedSize(null);
       setSelectedVariant(null);
       setSelectedImageIndex(0);
-      // Reset to product price when dialog closes
-      const productPrice = product?.salePrice || product?.price || product?.mrp || 0;
-      setDisplayPrice(parseFloat(productPrice));
+      // Reset to calculated product price when dialog closes
+      setDisplayPrice(baseFinalSalePrice);
     } else {
-      // When dialog opens, set initial price to product price
-      const productPrice = product?.salePrice || product?.price || product?.mrp || 0;
-      setDisplayPrice(parseFloat(productPrice));
+      // When dialog opens, set initial price to calculated product price
+      setDisplayPrice(baseFinalSalePrice);
       
       if (availableColors.length > 0 && !selectedColor) {
         // Auto-select first color
@@ -284,17 +290,20 @@ const VariantSelectionDialog = ({
       return;
     }
 
-    const priceToStore = selectedVariant.actual_price || selectedVariant.variant_price || product.salePrice;
+    // Use variant price if available, otherwise use calculated product price
+    const variantPrice = selectedVariant.actual_price || selectedVariant.variant_price || selectedVariant.price;
+    const priceToStore = variantPrice && variantPrice > 0 ? parseFloat(variantPrice) : baseFinalSalePrice;
     const imageUrl = product.imgGroup?.[selectedImageIndex] || product.imgGroup?.[0] || product.image || product.imgUrl;
     const image = imageUrl?.startsWith('http') ? imageUrl : (imgbaseurl + imageUrl || localimageurl + imageUrl);
 
     const payload = {
-      mrp: product.mrp,
+      mrp: numericMrp,
       salePrice: priceToStore,
       salePrices: priceToStore,
+      price: priceToStore,
+      discount: numericDiscount,
       sku: selectedVariant.sku || product.sku,
       slug: product.slug,
-      price: priceToStore,
       qty: 1,
       name: product.name,
       image: image,
@@ -316,7 +325,7 @@ const VariantSelectionDialog = ({
     if (onAddToCart) {
       onAddToCart(payload);
     }
-  }, [selectedVariant, selectedColor, selectedSize, product, dispatch, onClose, onAddToCart, imgbaseurl, localimageurl, selectedImageIndex]);
+  }, [selectedVariant, selectedColor, selectedSize, product, dispatch, onClose, onAddToCart, imgbaseurl, localimageurl, selectedImageIndex, baseFinalSalePrice, numericMrp, numericDiscount]);
 
   const isOutOfStock = selectedVariant && selectedVariant.stock_quantity === 0;
   const canAddToCart = selectedVariant && !isOutOfStock;
@@ -431,15 +440,44 @@ const VariantSelectionDialog = ({
                 >
                     {product?.name || 'Product'}
                   </H3>
-                  <H4
-                  sx={{
-                    fontWeight: 800,
-                      fontSize: "28px",
-                      color: "primary.main",
-                  }}
-                >
-                    {currency} {displayPrice > 0 ? displayPrice.toFixed(2) : (product?.salePrice || product?.price || product?.mrp || 0).toFixed(2)}
-                  </H4>
+                  <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 2, flexWrap: 'wrap' }}>
+                    <H4
+                      sx={{
+                        fontWeight: 800,
+                        fontSize: "28px",
+                        color: "primary.main",
+                      }}
+                    >
+                      {currency} {displayPrice > 0 ? displayPrice.toFixed(2) : baseFinalSalePrice.toFixed(2)}
+                    </H4>
+                    {numericDiscount > 0 && numericMrp > 0 && (
+                      <>
+                        <Typography
+                          sx={{
+                            color: "text.secondary",
+                            fontSize: "18px",
+                            textDecoration: "line-through",
+                            fontWeight: 500,
+                          }}
+                        >
+                          {currency} {numericMrp.toFixed(2)}
+                        </Typography>
+                        <Box
+                          sx={{
+                            background: "linear-gradient(135deg, #10B981 0%, #059669 100%)",
+                            color: "white",
+                            px: 1.5,
+                            py: 0.5,
+                            borderRadius: "12px",
+                            fontSize: "13px",
+                            fontWeight: 700,
+                          }}
+                        >
+                          SAVE {Math.round(numericDiscount)}%
+                        </Box>
+                      </>
+                    )}
+                  </Box>
           </Box>
 
                 {/* Variant Selection */}

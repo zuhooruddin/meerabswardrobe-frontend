@@ -147,15 +147,23 @@ const SearchCard1 = ({
   available_colors,
   available_sizes,
 }) => {
-  // Ensure salePrice and discount are valid numbers
-  const numericSalePrice = parseFloat(salePrice) || 0;
-  const numericDiscount = parseFloat(discount) || 0;
-  const discountprice = numericSalePrice;
+  // Consistent discount calculation: discount is applied to MRP, not salePrice
+  const numericMrp = mrp != null && !isNaN(mrp) ? parseFloat(mrp) : 0;
+  const numericSalePrice = salePrice != null && !isNaN(salePrice) ? parseFloat(salePrice) : numericMrp;
+  const numericDiscount = discount != null && !isNaN(discount) ? parseFloat(discount) : 0;
   
-  const calculatedDiscountAmount = (numericSalePrice * numericDiscount) / 100;
-  const calculatedDiscountedSubtotal = numericSalePrice - calculatedDiscountAmount;
-
-  salePrice = calculatedDiscountedSubtotal;
+  // Calculate discount amount from MRP (original price)
+  const calculatedDiscountAmount = numericDiscount > 0 ? (numericMrp * numericDiscount) / 100 : 0;
+  
+  // Final sale price: if discount exists, use discounted price, otherwise use original salePrice
+  const finalSalePrice = numericDiscount > 0 && numericMrp > 0 
+    ? (numericMrp - calculatedDiscountAmount) 
+    : numericSalePrice;
+  
+  // For display: show original price (MRP) when discount exists
+  const discountprice = numericDiscount > 0 ? numericMrp : numericSalePrice;
+  
+  // Use finalSalePrice for all price references (don't reassign prop)
 
   const imgbaseurl = process.env.NEXT_PUBLIC_IMAGE_BASE_API_URL;
 
@@ -234,10 +242,11 @@ const SearchCard1 = ({
       // If no variants or item already has variant info, proceed with normal add/update
       if (!hasVariants || cartItem?.variant_id) {
         const payload = {
-          mrp: mrp,
-          salePrice: salePrice,
-          salePrices: salePrice,
-          price: salePrice,
+          mrp: numericMrp,
+          salePrice: finalSalePrice,
+          salePrices: finalSalePrice,
+          price: finalSalePrice,
+          discount: numericDiscount,
           qty: amount,
           name: name,
           sku: sku,
@@ -266,7 +275,7 @@ const SearchCard1 = ({
         }
       }
     },
-    [mrp, salePrice, name, sku, slug, imgbaseurl, image, id, cartItem, dispatch, variants, available_colors]
+    [mrp, finalSalePrice, numericMrp, numericDiscount, name, sku, slug, imgbaseurl, image, id, cartItem, dispatch, variants, available_colors]
   );
 
   if (session) {
@@ -392,7 +401,9 @@ const SearchCard1 = ({
             name,
             mrp,
             id,
-            salePrice,
+            salePrice: finalSalePrice,
+            mrp: numericMrp,
+            discount: numericDiscount,
             sku,
             slug,
             description,
@@ -412,7 +423,9 @@ const SearchCard1 = ({
             name,
             mrp,
             id,
-            salePrice,
+            salePrice: finalSalePrice,
+            mrp: numericMrp,
+            discount: numericDiscount,
             sku,
             slug,
             description,
@@ -450,7 +463,7 @@ const SearchCard1 = ({
                   display: "flex",
                 }}
               >
-                {currency}. {isNaN(salePrice) ? '0.00' : salePrice.toFixed(2)}
+                {currency}. {isNaN(finalSalePrice) ? '0.00' : finalSalePrice.toFixed(2)}
                 {!!numericDiscount && numericDiscount > 0 && (
                   <H5>
                     <Box
@@ -659,7 +672,9 @@ const SearchCard1 = ({
             name,
             mrp,
             id,
-            salePrice,
+            salePrice: finalSalePrice,
+            mrp: numericMrp,
+            discount: numericDiscount,
             sku,
             slug,
             description,
@@ -679,7 +694,9 @@ const SearchCard1 = ({
             name,
             mrp,
             id,
-            salePrice,
+            salePrice: finalSalePrice,
+            mrp: numericMrp,
+            discount: numericDiscount,
             sku,
             slug,
             description,
@@ -717,7 +734,7 @@ const SearchCard1 = ({
                   display: "flex",
                 }}
               >
-               {currency}. {salePrice.toFixed(2)}
+               {currency}. {finalSalePrice.toFixed(2)}
                 {!!discount && (
                   <H5>
                     <Box
