@@ -31,7 +31,7 @@ const Section5 = ({ products,data,SectionName,slug,productreviews}) => {
     console.log('Section5 - ProductsArray length:', productsArray.length);
     console.log('Section5 - ProductsArray:', productsArray);
   }
-  
+
   // const imgbaseurl='https://idrisbookbank-dev-server.inara.tech/media/'
   const slugbaseurl='category/'
   const width = useWindowSize();

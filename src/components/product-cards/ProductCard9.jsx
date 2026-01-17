@@ -83,7 +83,8 @@ const ProductCard9 = ({
   // For display: show original price (MRP) when discount exists
   const discountprice = numericDiscount > 0 ? numericMrp : numericSalePrice;
   
-  // Use finalSalePrice for all price references (don't reassign prop)
+  // Use finalSalePrice for all price references
+  salePrice = finalSalePrice;
 
   const imgbaseurl = process.env.NEXT_PUBLIC_IMAGE_BASE_API_URL;
 
@@ -284,7 +285,7 @@ useEffect(()=>{
 
               <FlexBox mt={1} mb={2} alignItems="center">
                 <H5 fontWeight={600} color="primary.main" mr={1}>
-                  {currency}. {finalSalePrice.toFixed(2)}
+                  {currency}. {salePrice.toFixed(2)}
                 </H5>
 
                 {!!discount && (
@@ -372,11 +373,8 @@ useEffect(()=>{
                           {
                             id,
                             mrp,
-                            salePrice: finalSalePrice,
-                            salePrices: finalSalePrice,
-                            price: finalSalePrice,
-                            mrp: numericMrp,
-                            discount: numericDiscount,
+                            salePrice,
+                            price: salePrice,
                             sku,
                             image: imgbaseurl + image,
                             name: name,
@@ -404,9 +402,7 @@ useEffect(()=>{
           id,
           name,
           mrp,
-          salePrice: finalSalePrice,
-          mrp: numericMrp,
-          discount: numericDiscount,
+          salePrice,
           sku,
           slug,
           image: imgbaseurl + image,
@@ -472,7 +468,7 @@ useEffect(()=>{
 
               <FlexBox mt={1} mb={2} alignItems="center">
                 <H5 fontWeight={600} color="primary.main" mr={1}>
-                 {currency}. {finalSalePrice?.toFixed(2)}
+                 {currency}. {salePrice?.toFixed(2)}
                 </H5>
 
                 {!!discount && (
@@ -504,11 +500,8 @@ useEffect(()=>{
                           {
                             id,
                             mrp,
-                            salePrice: finalSalePrice,
-                            salePrices: finalSalePrice,
-                            price: finalSalePrice,
-                            mrp: numericMrp,
-                            discount: numericDiscount,
+                            salePrice,
+                            price: salePrice,
                             sku,
                             slug,
                             image: imgbaseurl + image,
@@ -534,9 +527,7 @@ useEffect(()=>{
                             {
                               id,
                               mrp,
-                              salePrice: finalSalePrice,
-          mrp: numericMrp,
-          discount: numericDiscount,
+                              salePrice,
                               price: salePrice,
                               sku,
                               slug,
@@ -562,9 +553,7 @@ useEffect(()=>{
                             {
                               id,
                               mrp,
-                              salePrice: finalSalePrice,
-          mrp: numericMrp,
-          discount: numericDiscount,
+                              salePrice,
                               price: salePrice,
                               sku,
                               slug,
@@ -594,9 +583,7 @@ useEffect(()=>{
           id,
           name,
           mrp,
-          salePrice: finalSalePrice,
-          mrp: numericMrp,
-          discount: numericDiscount,
+          salePrice,
           sku,
           slug,
           image: imgbaseurl + image,

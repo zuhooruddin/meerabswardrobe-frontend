@@ -277,7 +277,8 @@ const ProductCard1 = ({
   // For display: show original price (MRP) when discount exists
   const discountprice = numericDiscount > 0 ? numericMrp : numericSalePrice;
   
-  // Use finalSalePrice for all price references (don't reassign prop)
+  // Use finalSalePrice for all price references
+  salePrice = finalSalePrice;
 
   const imgbaseurl = process.env.NEXT_PUBLIC_IMAGE_BASE_API_URL;
   var image = image ? image : imageUrl;
@@ -384,7 +385,7 @@ const ProductCard1 = ({
         }
       }
     },
-    [variants, available_colors, mrp, finalSalePrice, numericMrp, numericDiscount, name, sku, imgbaseurl, image, id, cartItem, dispatch]
+    [variants, available_colors, mrp, salePrice, name, sku, imgbaseurl, image, id, cartItem, dispatch]
   );
   
   const myFunction = () => {
@@ -539,10 +540,9 @@ const ProductCard1 = ({
         handleCloseDialog={() => setOpenDialog(false)}
         product={{
           name,
-          mrp: numericMrp,
+          mrp,
           id,
-          salePrice: finalSalePrice,
-          discount: numericDiscount,
+          salePrice,
           sku,
           slug,
           description,
@@ -560,10 +560,9 @@ const ProductCard1 = ({
         onClose={() => setOpenVariantDialog(false)}
         product={{
           name,
-          mrp: numericMrp,
+          mrp,
           id,
-          salePrice: finalSalePrice,
-          discount: numericDiscount,
+          salePrice,
           sku,
           slug,
           description,
@@ -633,7 +632,7 @@ const ProductCard1 = ({
                   <Box component="span">
                     {currency}. {price_range 
                       ? (isNaN(price_range.min_price) ? '0.00' : price_range.min_price.toFixed(2))
-                      : (isNaN(finalSalePrice) ? '0.00' : finalSalePrice.toFixed(2))}
+                      : (isNaN(salePrice) ? '0.00' : salePrice.toFixed(2))}
                   </Box>
                   {price_range && price_range.max_price > price_range.min_price && (
                     <Box
@@ -650,7 +649,7 @@ const ProductCard1 = ({
                 </>
               ) : (
                 <>
-                  {currency}. {isNaN(finalSalePrice) ? '0.00' : finalSalePrice.toFixed(2)}
+                  {currency}. {isNaN(salePrice) ? '0.00' : salePrice.toFixed(2)}
                   {!!numericDiscount && numericDiscount > 0 && (
                     <Box
                       component="span"

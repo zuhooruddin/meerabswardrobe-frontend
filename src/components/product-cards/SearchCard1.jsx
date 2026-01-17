@@ -163,7 +163,8 @@ const SearchCard1 = ({
   // For display: show original price (MRP) when discount exists
   const discountprice = numericDiscount > 0 ? numericMrp : numericSalePrice;
   
-  // Use finalSalePrice for all price references (don't reassign prop)
+  // Use finalSalePrice for all price references
+  salePrice = finalSalePrice;
 
   const imgbaseurl = process.env.NEXT_PUBLIC_IMAGE_BASE_API_URL;
 
@@ -275,7 +276,7 @@ const SearchCard1 = ({
         }
       }
     },
-    [mrp, finalSalePrice, numericMrp, numericDiscount, name, sku, slug, imgbaseurl, image, id, cartItem, dispatch, variants, available_colors]
+    [mrp, salePrice, name, sku, slug, imgbaseurl, image, id, cartItem, dispatch, variants, available_colors]
   );
 
   if (session) {
@@ -401,9 +402,7 @@ const SearchCard1 = ({
             name,
             mrp,
             id,
-            salePrice: finalSalePrice,
-            mrp: numericMrp,
-            discount: numericDiscount,
+            salePrice,
             sku,
             slug,
             description,
@@ -423,9 +422,7 @@ const SearchCard1 = ({
             name,
             mrp,
             id,
-            salePrice: finalSalePrice,
-            mrp: numericMrp,
-            discount: numericDiscount,
+            salePrice,
             sku,
             slug,
             description,
@@ -463,7 +460,7 @@ const SearchCard1 = ({
                   display: "flex",
                 }}
               >
-                {currency}. {isNaN(finalSalePrice) ? '0.00' : finalSalePrice.toFixed(2)}
+                {currency}. {isNaN(salePrice) ? '0.00' : salePrice.toFixed(2)}
                 {!!numericDiscount && numericDiscount > 0 && (
                   <H5>
                     <Box
@@ -672,9 +669,7 @@ const SearchCard1 = ({
             name,
             mrp,
             id,
-            salePrice: finalSalePrice,
-            mrp: numericMrp,
-            discount: numericDiscount,
+            salePrice,
             sku,
             slug,
             description,
@@ -694,9 +689,7 @@ const SearchCard1 = ({
             name,
             mrp,
             id,
-            salePrice: finalSalePrice,
-            mrp: numericMrp,
-            discount: numericDiscount,
+            salePrice,
             sku,
             slug,
             description,
@@ -734,7 +727,7 @@ const SearchCard1 = ({
                   display: "flex",
                 }}
               >
-               {currency}. {finalSalePrice.toFixed(2)}
+               {currency}. {salePrice.toFixed(2)}
                 {!!discount && (
                   <H5>
                     <Box

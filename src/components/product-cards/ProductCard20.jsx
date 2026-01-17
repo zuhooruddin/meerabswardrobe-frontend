@@ -424,11 +424,10 @@ const total=Reviews.length;
           product={{
             id: product.id,
             name: product.name,
-            mrp: product.mrp,
+            mrp: mrp,
             sku:product.sku,
             slug:product.slug,
             salePrice:finalSalePrice,
-            mrp: mrp,
             discount: discount,
             description: product.description,
             categoryName:product.categoryName,
@@ -449,10 +448,11 @@ const total=Reviews.length;
           product={{
             id: product?.id || '',
             name: product?.name || 'Product',
-            mrp: product?.mrp || 0,
+            mrp: mrp,
             sku: product?.sku || '',
             slug: product?.slug || '',
-            salePrice: salePrice || 0,
+            salePrice: finalSalePrice || 0,
+            discount: discount,
             description: product?.description || '',
             categoryName: product?.categoryName || '',
             stock: product?.stock || 0,
@@ -598,9 +598,11 @@ const total=Reviews.length;
               }}
               onClick={handleCartAmountChange({
                 id:product.id,
-                mrp:product.mrp,
-               salePrice:product.salePrice,
-                price: product.salePrice,
+                mrp:mrp,
+                salePrice:finalSalePrice,
+                salePrices:finalSalePrice,
+                price: finalSalePrice,
+                discount: discount,
                 sku:product.sku,
                 image:product.image,
                 name: product.name,
@@ -624,9 +626,11 @@ const total=Reviews.length;
                   }}
                   onClick={handleCartAmountChange({
                     id:product.id,
-                    mrp:product.mrp,
-                    salePrice:product.salePrice,
-                    price: product.salePrice,
+                    mrp:mrp,
+                    salePrice:finalSalePrice,
+                    salePrices:finalSalePrice,
+                    price: finalSalePrice,
+                    discount: discount,
                     sku:product.sku,
                     image:product.image,
                     name: product.name,
@@ -738,17 +742,17 @@ const total=Reviews.length;
 
         </CardMedia>
 
+
         <ProductViewDialog
           openDialog={openDialog}
           handleCloseDialog={() => setOpenDialog(false)}
           product={{
             id: product.id,
             name: product.name,
-            mrp: product.mrp,
+            mrp: mrp,
             sku:product.sku,
             slug:product.slug,
             salePrice:finalSalePrice,
-            mrp: mrp,
             discount: discount,
             description: product.description,
             categoryName:product.categoryName,
@@ -773,10 +777,11 @@ const total=Reviews.length;
           product={{
             id: product?.id || '',
             name: product?.name || 'Product',
-            mrp: product?.mrp || 0,
+            mrp: mrp,
             sku: product?.sku || '',
             slug: product?.slug || '',
-            salePrice: salePrice || 0,
+            salePrice: finalSalePrice || 0,
+            discount: discount,
             description: product?.description || '',
             categoryName: product?.categoryName || '',
             stock: product?.stock || 0,
@@ -924,9 +929,11 @@ const total=Reviews.length;
               }}
               onClick={handleCartAmountChange({
                 id:product.id,
-                mrp:product.mrp,
-               salePrice:product.salePrice,
-                price: product.salePrice,
+                mrp:mrp,
+                salePrice:finalSalePrice,
+                salePrices:finalSalePrice,
+                price: finalSalePrice,
+                discount: discount,
                 sku:product.sku,
                 image:product.image,
                 name: product.name,
@@ -950,9 +957,11 @@ const total=Reviews.length;
                   }}
                   onClick={handleCartAmountChange({
                     id:product.id,
-                    mrp:product.mrp,
-                    salePrice:product.salePrice,
-                    price: product.salePrice,
+                    mrp:mrp,
+                    salePrice:finalSalePrice,
+                    salePrices:finalSalePrice,
+                    price: finalSalePrice,
+                    discount: discount,
                     sku:product.sku,
                     image:product.image,
                     name: product.name,
