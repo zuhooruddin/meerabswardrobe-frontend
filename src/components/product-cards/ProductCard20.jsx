@@ -93,13 +93,21 @@ const ProductCard20 = ({ product, wishList,data}) => {
       setCurrency(storedCurrency);
     }
   }, []);
-  const discountprice=product.salePrice
-  const calculatedDiscountAmount =
-  (product.salePrice * product.discount) / 100;
-const calculatedDiscountedSubtotal =
- product.salePrice - calculatedDiscountAmount;
-
-const salePrice=calculatedDiscountedSubtotal;
+  // Consistent discount calculation: discount is applied to MRP, not salePrice
+  const mrp = product.mrp != null && !isNaN(product.mrp) ? parseFloat(product.mrp) : 0;
+  const originalSalePrice = product.salePrice != null && !isNaN(product.salePrice) ? parseFloat(product.salePrice) : mrp;
+  const discount = product.discount != null && !isNaN(product.discount) ? parseFloat(product.discount) : 0;
+  
+  // Calculate discount amount from MRP (original price)
+  const calculatedDiscountAmount = discount > 0 ? (mrp * discount) / 100 : 0;
+  
+  // Final sale price: if discount exists, use discounted price, otherwise use original salePrice
+  const finalSalePrice = discount > 0 && mrp > 0 
+    ? (mrp - calculatedDiscountAmount) 
+    : originalSalePrice;
+  
+  // For display: show original price (MRP) when discount exists
+  const displayOriginalPrice = discount > 0 ? mrp : originalSalePrice;
 
 
 
@@ -235,10 +243,11 @@ const total=Reviews.length;
       if (!hasVariants || cartItem?.variant_id) {
         // Professional payload construction with proper validation
         const payload = {
-          mrp: product.mrp || 0,
-          salePrice: salePrice || 0,
-          salePrices: salePrice || 0,
-          price: salePrice || 0,
+          mrp: mrp || 0,
+          salePrice: finalSalePrice || 0,
+          salePrices: finalSalePrice || 0,
+          price: finalSalePrice || 0,
+          discount: discount || 0,
           qty: amount || 1,
           name: product.name || 'Product',
           sku: product.sku || '',
@@ -282,7 +291,7 @@ const total=Reviews.length;
         }
       }
     },
-    [product, salePrice, imgbaseurl, cartItem, dispatch, hasProductVariants]
+    [product, finalSalePrice, mrp, discount, imgbaseurl, cartItem, dispatch, hasProductVariants]
   );
 
   const handleAddToCart = (product) => {
@@ -290,8 +299,12 @@ const total=Reviews.length;
       id: product.id,
       name: product.name,
       imgUrl: product.image,
-      mrp: salePrice,
-      qty: (cartItem?.quantity || 0) + 1,
+      mrp: mrp,
+      salePrice: finalSalePrice,
+      salePrices: finalSalePrice,
+      price: finalSalePrice,
+      discount: discount,
+      qty: (cartItem?.qty || 0) + 1,
     };
     dispatch({
       type: "CHANGE_CART_AMOUNT",
@@ -340,13 +353,13 @@ const total=Reviews.length;
     )
   ) : (
     product.isNewArrival < 1 && product.stock === "0.00" ? (
-      product.discount > 0 ? (
+      discount > 0 ? (
         <StyledChip1 color="secondary" size="small" label="Out of Stock | Sale" />
       ) : (
         <StyledChip1 color="secondary" size="small" label="Out of Stock" />
       )
     ) : (
-      product.discount > 0 ? (
+      discount > 0 ? (
         <StyledChip1 color="secondary" size="small" label="Sale" />
       ) : ('')
     )
@@ -414,7 +427,9 @@ const total=Reviews.length;
             mrp: product.mrp,
             sku:product.sku,
             slug:product.slug,
-            salePrice:salePrice,
+            salePrice:finalSalePrice,
+            mrp: mrp,
+            discount: discount,
             description: product.description,
             categoryName:product.categoryName,
             stock:product.stock,
@@ -465,8 +480,8 @@ const total=Reviews.length;
                 alignItems: 'center',
                 display: 'flex',
               }}>
-                {currency}. {(salePrice).toFixed(2)}
-                {!!product.discount  && (
+                {currency}. {(finalSalePrice).toFixed(2)}
+                {discount > 0 && mrp > 0 && (
              <span>
              <Box
                color="grey.600"
@@ -479,7 +494,7 @@ const total=Reviews.length;
                  fontSize: '11px', 
                }}
              >
-               <del>{currency}.{discountprice?.toFixed(2)}</del>
+               <del>{currency}.{mrp.toFixed(2)}</del>
              </Box>
            </span>
            
@@ -666,13 +681,13 @@ const total=Reviews.length;
     )
   ) : (
     product.isNewArrival < 1 && product.stock === "0.00" ? (
-      product.discount > 0 ? (
+      discount > 0 ? (
         <StyledChip1 color="secondary" size="small" label="Out of Stock | Sale" />
       ) : (
         <StyledChip1 color="secondary" size="small" label="Out of Stock" />
       )
     ) : (
-      product.discount > 0 ? (
+      discount > 0 ? (
         <StyledChip1 color="secondary" size="small" label="Sale" />
       ) : ('')
     )
@@ -732,7 +747,9 @@ const total=Reviews.length;
             mrp: product.mrp,
             sku:product.sku,
             slug:product.slug,
-            salePrice:salePrice,
+            salePrice:finalSalePrice,
+            mrp: mrp,
+            discount: discount,
             description: product.description,
             categoryName:product.categoryName,
             stock:product.stock,
@@ -786,8 +803,8 @@ const total=Reviews.length;
                 alignItems: 'center',
                 display: 'flex',
               }}>
-                {currency}. {(salePrice).toFixed(2)}
-                {!!product.discount  && (
+                {currency}. {(finalSalePrice).toFixed(2)}
+                {discount > 0 && mrp > 0 && (
              <span>
              <Box
                color="grey.600"
@@ -800,7 +817,7 @@ const total=Reviews.length;
                  fontSize: '11px', 
                }}
              >
-               <del>{currency}.{discountprice?.toFixed(2)}</del>
+               <del>{currency}.{mrp.toFixed(2)}</del>
              </Box>
            </span>
            
