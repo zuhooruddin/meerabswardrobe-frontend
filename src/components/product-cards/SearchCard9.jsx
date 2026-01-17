@@ -357,9 +357,11 @@ useEffect(()=>{
                         onClick={handleCartAmountChange(
                           {
                             id,
-                            mrp,
-                            salePrice,
-                            price: salePrice,
+                            mrp: numericMrp,
+                            salePrice: finalSalePrice,
+                            salePrices: finalSalePrice,
+                            price: finalSalePrice,
+                            discount: numericDiscount,
                             sku,
                             image: imgbaseurl + image,
                             name: name,
@@ -536,20 +538,22 @@ useEffect(()=>{
                         sx={{
                           padding: "5px",
                         }}
-                        onClick={handleCartAmountChange(
-                          {
-                            id,
-                            mrp,
-                            salePrice,
-                            price: salePrice,
-                            sku,
-                            slug,
-                            image: imgbaseurl + image,
-                            name: name,
-                            qty: (cartItem?.qty || 0) + 1,
-                          },
-                          true
-                        )}
+                          onClick={handleCartAmountChange(
+                            {
+                              id,
+                              mrp: numericMrp,
+                              salePrice: finalSalePrice,
+                              salePrices: finalSalePrice,
+                              price: finalSalePrice,
+                              discount: numericDiscount,
+                              sku,
+                              slug,
+                              image: imgbaseurl + image,
+                              name: name,
+                              qty: (cartItem?.qty || 0) + 1,
+                            },
+                            true
+                          )}
                       >
                         <Add fontSize="small" />
                       </Button>

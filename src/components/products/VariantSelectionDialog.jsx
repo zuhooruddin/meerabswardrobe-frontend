@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import {
   Dialog,
   DialogContent,
@@ -154,39 +154,81 @@ const VariantSelectionDialog = ({
   }, []);
 
   // Consistent discount calculation: discount is applied to MRP, not salePrice
-  const numericMrp = product?.mrp != null && !isNaN(product.mrp) ? parseFloat(product.mrp) : 0;
-  const numericDiscount = product?.discount != null && !isNaN(product.discount) ? parseFloat(product.discount) : 0;
-  
-  // Calculate discount amount from MRP (original price)
-  const calculatedDiscountAmount = numericDiscount > 0 && numericMrp > 0 ? (numericMrp * numericDiscount) / 100 : 0;
-  
-  // Final sale price: if discount exists, calculate from MRP, otherwise use the passed salePrice
-  // Note: salePrice passed from product cards is already the finalSalePrice, but we recalculate here for consistency
-  const baseFinalSalePrice = numericDiscount > 0 && numericMrp > 0 
-    ? (numericMrp - calculatedDiscountAmount) 
-    : (product?.salePrice != null && !isNaN(product.salePrice) ? parseFloat(product.salePrice) : numericMrp);
-
-  const [displayPrice, setDisplayPrice] = useState(() => {
-    // Initialize with calculated product price
-    return baseFinalSalePrice || 0;
-  });
-
-  // Update price when product changes
-  useEffect(() => {
-    if (product) {
-      // Recalculate to ensure we have the latest values when product changes
-      const recalcMrp = product?.mrp != null && !isNaN(product.mrp) ? parseFloat(product.mrp) : 0;
-      const recalcDiscount = product?.discount != null && !isNaN(product.discount) ? parseFloat(product.discount) : 0;
-      const recalcDiscountAmount = recalcDiscount > 0 && recalcMrp > 0 ? (recalcMrp * recalcDiscount) / 100 : 0;
-      const recalcFinalPrice = recalcDiscount > 0 && recalcMrp > 0 
-        ? (recalcMrp - recalcDiscountAmount) 
-        : (product?.salePrice != null && !isNaN(product.salePrice) ? parseFloat(product.salePrice) : recalcMrp);
-      
-      if (!selectedVariant) {
-        setDisplayPrice(recalcFinalPrice);
+  // Use useMemo to ensure recalculation when product values change
+  const { numericMrp, numericDiscount, baseFinalSalePrice } = useMemo(() => {
+    // Always use the MRP passed from product cards (this should be the original MRP before discount)
+    let mrp = product?.mrp != null && !isNaN(product.mrp) ? parseFloat(product.mrp) : 0;
+    const discount = product?.discount != null && !isNaN(product.discount) ? parseFloat(product.discount) : 0;
+    const passedSalePrice = product?.salePrice != null && !isNaN(product.salePrice) ? parseFloat(product.salePrice) : 0;
+    
+    // IMPORTANT: If discount exists and passedSalePrice is provided, but MRP equals passedSalePrice,
+    // it means the MRP passed might be wrong. In this case, calculate MRP from the discounted price.
+    // Formula: MRP = discountedPrice / (1 - discount/100)
+    if (discount > 0 && passedSalePrice > 0 && mrp > 0 && Math.abs(mrp - passedSalePrice) < 0.01) {
+      // MRP equals salePrice, which shouldn't happen with a discount
+      // Recalculate MRP from the discounted price
+      const calculatedMrp = passedSalePrice / (1 - discount / 100);
+      if (calculatedMrp > passedSalePrice) {
+        mrp = calculatedMrp;
+        console.warn('⚠️ VariantSelectionDialog: MRP was equal to salePrice with discount. Recalculated MRP:', {
+          originalMrp: product?.mrp,
+          newMrp: mrp,
+          discount,
+          passedSalePrice,
+        });
       }
     }
-  }, [product, selectedVariant]);
+    
+    // Calculate discount amount from MRP (original price)
+    const discountAmount = discount > 0 && mrp > 0 ? (mrp * discount) / 100 : 0;
+    
+    // Final sale price: ALWAYS calculate from MRP when discount exists
+    // IMPORTANT: When discount > 0, we MUST calculate from MRP, ignoring passed salePrice
+    let finalPrice;
+    if (discount > 0 && mrp > 0) {
+      // Calculate discounted price from MRP
+      finalPrice = mrp - discountAmount;
+    } else if (passedSalePrice > 0) {
+      // No discount, use passed salePrice
+      finalPrice = passedSalePrice;
+    } else {
+      // Fallback to MRP
+      finalPrice = mrp;
+    }
+    
+    // Debug logging to help diagnose issues
+    if (process.env.NODE_ENV === 'development' && discount > 0) {
+      console.log('🔍 VariantSelectionDialog Price Calculation:', {
+        productId: product?.id,
+        productName: product?.name,
+        originalMrp: product?.mrp,
+        calculatedMrp: mrp,
+        discount,
+        discountAmount,
+        calculatedFinalPrice: finalPrice,
+        passedSalePrice,
+        difference: mrp - finalPrice,
+        shouldShowDiscount: mrp > finalPrice,
+      });
+    }
+    
+    return {
+      numericMrp: mrp,
+      numericDiscount: discount,
+      baseFinalSalePrice: finalPrice,
+    };
+  }, [product?.mrp, product?.discount, product?.salePrice, product?.id]);
+
+  // Initialize displayPrice from memoized value
+  const [displayPrice, setDisplayPrice] = useState(baseFinalSalePrice || 0);
+
+  // Update price when product or baseFinalSalePrice changes - ensure we always use the latest calculation
+  useEffect(() => {
+    if (product && !selectedVariant) {
+      // Always use the memoized baseFinalSalePrice which is always up-to-date
+      setDisplayPrice(baseFinalSalePrice);
+    }
+  }, [product?.mrp, product?.discount, product?.salePrice, product?.id, selectedVariant, baseFinalSalePrice]);
 
   // Load variants
   useEffect(() => {
@@ -253,24 +295,32 @@ const VariantSelectionDialog = ({
       setSelectedVariant(variant);
       
       if (variant) {
-        // Use variant price if available, otherwise use product price
+        // Use variant price if available, otherwise use calculated product price
         const variantPrice = variant.variant_price || variant.actual_price || variant.price;
         if (variantPrice && variantPrice > 0) {
-          setDisplayPrice(parseFloat(variantPrice));
+          // Apply discount to variant price if product has discount
+          // Variant price is treated as MRP, so we apply discount to it
+          let finalVariantPrice = parseFloat(variantPrice);
+          if (numericDiscount > 0 && numericMrp > 0) {
+            // Apply the same discount percentage to variant price
+            const discountAmount = (finalVariantPrice * numericDiscount) / 100;
+            finalVariantPrice = finalVariantPrice - discountAmount;
+          }
+          setDisplayPrice(finalVariantPrice);
         } else {
-          // Fallback to calculated product price
+          // Fallback to memoized calculated product price
           setDisplayPrice(baseFinalSalePrice);
         }
       } else {
-        // No variant found, use calculated product price
+        // No variant found, use memoized calculated product price
         setDisplayPrice(baseFinalSalePrice);
       }
     } else {
       setSelectedVariant(null);
-      // Use calculated product price when no variant selected
+      // Use memoized calculated product price when no variant selected
       setDisplayPrice(baseFinalSalePrice);
     }
-  }, [selectedColor, selectedSize, variants, product, baseFinalSalePrice]);
+  }, [selectedColor, selectedSize, variants, product?.mrp, product?.discount, product?.salePrice, product?.id, numericDiscount, numericMrp, baseFinalSalePrice]);
 
   // Reset selections when dialog opens/closes
   useEffect(() => {
@@ -279,25 +329,16 @@ const VariantSelectionDialog = ({
       setSelectedSize(null);
       setSelectedVariant(null);
       setSelectedImageIndex(0);
-      // Reset to calculated product price when dialog closes
-      setDisplayPrice(baseFinalSalePrice);
     } else {
-      // When dialog opens, set initial price to calculated product price
-      // Recalculate to ensure we have the latest values
-      const recalcMrp = product?.mrp != null && !isNaN(product.mrp) ? parseFloat(product.mrp) : 0;
-      const recalcDiscount = product?.discount != null && !isNaN(product.discount) ? parseFloat(product.discount) : 0;
-      const recalcDiscountAmount = recalcDiscount > 0 && recalcMrp > 0 ? (recalcMrp * recalcDiscount) / 100 : 0;
-      const recalcFinalPrice = recalcDiscount > 0 && recalcMrp > 0 
-        ? (recalcMrp - recalcDiscountAmount) 
-        : (product?.salePrice != null && !isNaN(product.salePrice) ? parseFloat(product.salePrice) : recalcMrp);
-      setDisplayPrice(recalcFinalPrice);
+      // When dialog opens, use memoized calculated price
+      setDisplayPrice(baseFinalSalePrice);
       
       if (availableColors.length > 0 && !selectedColor) {
         // Auto-select first color
         setSelectedColor(availableColors[0].color);
       }
     }
-  }, [open, availableColors, selectedColor, product, baseFinalSalePrice]);
+  }, [open, availableColors, selectedColor, baseFinalSalePrice]);
 
   // Auto-select first size when color is selected
   useEffect(() => {
@@ -314,12 +355,30 @@ const VariantSelectionDialog = ({
 
     // Use variant price if available, otherwise use calculated product price
     const variantPrice = selectedVariant.actual_price || selectedVariant.variant_price || selectedVariant.price;
-    const priceToStore = variantPrice && variantPrice > 0 ? parseFloat(variantPrice) : baseFinalSalePrice;
+    let priceToStore;
+    
+    if (variantPrice && variantPrice > 0) {
+      // Variant has its own price - treat it as MRP and apply discount if product has discount
+      let finalVariantPrice = parseFloat(variantPrice);
+      if (numericDiscount > 0 && numericMrp > 0) {
+        // Apply the same discount percentage to variant price
+        const discountAmount = (finalVariantPrice * numericDiscount) / 100;
+        finalVariantPrice = finalVariantPrice - discountAmount;
+      }
+      priceToStore = finalVariantPrice;
+    } else {
+      // No variant price, use calculated product price
+      priceToStore = baseFinalSalePrice;
+    }
+    
+    // Use variant MRP if available, otherwise use product MRP
+    const variantMrp = variantPrice && variantPrice > 0 ? parseFloat(variantPrice) : numericMrp;
+    
     const imageUrl = product.imgGroup?.[selectedImageIndex] || product.imgGroup?.[0] || product.image || product.imgUrl;
     const image = imageUrl?.startsWith('http') ? imageUrl : (imgbaseurl + imageUrl || localimageurl + imageUrl);
 
     const payload = {
-      mrp: numericMrp,
+      mrp: variantMrp,
       salePrice: priceToStore,
       salePrices: priceToStore,
       price: priceToStore,
@@ -470,9 +529,9 @@ const VariantSelectionDialog = ({
                       color: "primary.main",
                   }}
                 >
-                      {currency} {displayPrice > 0 ? displayPrice.toFixed(2) : baseFinalSalePrice.toFixed(2)}
+                      {currency} {(displayPrice > 0 ? displayPrice : baseFinalSalePrice).toFixed(2)}
                   </H4>
-                    {numericDiscount > 0 && numericMrp > 0 && (
+                    {numericDiscount > 0 && numericMrp > 0 && numericMrp > baseFinalSalePrice && (
                       <>
                         <Typography
                           sx={{

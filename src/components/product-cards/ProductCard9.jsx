@@ -372,9 +372,11 @@ useEffect(()=>{
                         onClick={handleCartAmountChange(
                           {
                             id,
-                            mrp,
-                            salePrice,
-                            price: salePrice,
+                            mrp: numericMrp,
+                            salePrice: finalSalePrice,
+                            salePrices: finalSalePrice,
+                            price: finalSalePrice,
+                            discount: numericDiscount,
                             sku,
                             image: imgbaseurl + image,
                             name: name,
@@ -500,9 +502,11 @@ useEffect(()=>{
                         onClick={handleCartAmountChange(
                           {
                             id,
-                            mrp,
-                            salePrice,
-                            price: salePrice,
+                            mrp: numericMrp,
+                            salePrice: finalSalePrice,
+                            salePrices: finalSalePrice,
+                            price: finalSalePrice,
+                            discount: numericDiscount,
                             sku,
                             slug,
                             image: imgbaseurl + image,
@@ -527,9 +531,11 @@ useEffect(()=>{
                           onClick={handleCartAmountChange(
                             {
                               id,
-                              mrp,
-                              salePrice,
-                              price: salePrice,
+                              mrp: numericMrp,
+                              salePrice: finalSalePrice,
+                              salePrices: finalSalePrice,
+                              price: finalSalePrice,
+                              discount: numericDiscount,
                               sku,
                               slug,
                               image: imgbaseurl + image,
@@ -553,9 +559,11 @@ useEffect(()=>{
                           onClick={handleCartAmountChange(
                             {
                               id,
-                              mrp,
-                              salePrice,
-                              price: salePrice,
+                              mrp: numericMrp,
+                              salePrice: finalSalePrice,
+                              salePrices: finalSalePrice,
+                              price: finalSalePrice,
+                              discount: numericDiscount,
                               sku,
                               slug,
                               image: imgbaseurl + image,
