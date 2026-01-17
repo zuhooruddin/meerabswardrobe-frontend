@@ -99,25 +99,30 @@ const SizeRadio = styled(Radio)(({ theme }) => ({
 const AddToCartButton = styled(Box)(({ theme, disabled }) => ({
   width: "100%",
   padding: "14px 24px",
-  borderRadius: "8px",
+  borderRadius: "12px",
   background: disabled
     ? theme.palette.grey[300] 
-    : theme.palette.primary.main,
+    : "linear-gradient(135deg, #D23F57 0%, #E94560 100%)",
   color: disabled ? theme.palette.text.disabled : "#fff",
   cursor: disabled ? "not-allowed" : "pointer",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   gap: "8px",
-  fontWeight: 600,
+  fontWeight: 700,
   fontSize: "16px",
+  letterSpacing: "0.02em",
   transition: "all 0.3s ease",
+  boxShadow: disabled ? "none" : "0 4px 14px rgba(210, 63, 87, 0.4)",
   "&:hover": {
     background: disabled 
       ? theme.palette.grey[300] 
-      : theme.palette.primary.dark,
+      : "linear-gradient(135deg, #B8324F 0%, #D23F57 100%)",
     transform: disabled ? "none" : "translateY(-2px)",
-    boxShadow: disabled ? "none" : "0 4px 12px rgba(0,0,0,0.15)",
+    boxShadow: disabled ? "none" : "0 6px 20px rgba(210, 63, 87, 0.5)",
+  },
+  "&:active": {
+    transform: disabled ? "none" : "translateY(0)",
   },
 }));
 
@@ -150,16 +155,16 @@ const VariantSelectionDialog = ({
 
   // Consistent discount calculation: discount is applied to MRP, not salePrice
   const numericMrp = product?.mrp != null && !isNaN(product.mrp) ? parseFloat(product.mrp) : 0;
-  const numericSalePrice = product?.salePrice != null && !isNaN(product.salePrice) ? parseFloat(product.salePrice) : numericMrp;
   const numericDiscount = product?.discount != null && !isNaN(product.discount) ? parseFloat(product.discount) : 0;
   
   // Calculate discount amount from MRP (original price)
-  const calculatedDiscountAmount = numericDiscount > 0 ? (numericMrp * numericDiscount) / 100 : 0;
+  const calculatedDiscountAmount = numericDiscount > 0 && numericMrp > 0 ? (numericMrp * numericDiscount) / 100 : 0;
   
-  // Final sale price: if discount exists, use discounted price, otherwise use original salePrice
+  // Final sale price: if discount exists, calculate from MRP, otherwise use the passed salePrice
+  // Note: salePrice passed from product cards is already the finalSalePrice, but we recalculate here for consistency
   const baseFinalSalePrice = numericDiscount > 0 && numericMrp > 0 
     ? (numericMrp - calculatedDiscountAmount) 
-    : numericSalePrice;
+    : (product?.salePrice != null && !isNaN(product.salePrice) ? parseFloat(product.salePrice) : numericMrp);
 
   const [displayPrice, setDisplayPrice] = useState(() => {
     // Initialize with calculated product price
@@ -168,10 +173,20 @@ const VariantSelectionDialog = ({
 
   // Update price when product changes
   useEffect(() => {
-    if (product && !selectedVariant) {
-      setDisplayPrice(baseFinalSalePrice);
+    if (product) {
+      // Recalculate to ensure we have the latest values when product changes
+      const recalcMrp = product?.mrp != null && !isNaN(product.mrp) ? parseFloat(product.mrp) : 0;
+      const recalcDiscount = product?.discount != null && !isNaN(product.discount) ? parseFloat(product.discount) : 0;
+      const recalcDiscountAmount = recalcDiscount > 0 && recalcMrp > 0 ? (recalcMrp * recalcDiscount) / 100 : 0;
+      const recalcFinalPrice = recalcDiscount > 0 && recalcMrp > 0 
+        ? (recalcMrp - recalcDiscountAmount) 
+        : (product?.salePrice != null && !isNaN(product.salePrice) ? parseFloat(product.salePrice) : recalcMrp);
+      
+      if (!selectedVariant) {
+        setDisplayPrice(recalcFinalPrice);
+      }
     }
-  }, [product, baseFinalSalePrice, selectedVariant]);
+  }, [product, selectedVariant]);
 
   // Load variants
   useEffect(() => {
@@ -268,14 +283,21 @@ const VariantSelectionDialog = ({
       setDisplayPrice(baseFinalSalePrice);
     } else {
       // When dialog opens, set initial price to calculated product price
-      setDisplayPrice(baseFinalSalePrice);
+      // Recalculate to ensure we have the latest values
+      const recalcMrp = product?.mrp != null && !isNaN(product.mrp) ? parseFloat(product.mrp) : 0;
+      const recalcDiscount = product?.discount != null && !isNaN(product.discount) ? parseFloat(product.discount) : 0;
+      const recalcDiscountAmount = recalcDiscount > 0 && recalcMrp > 0 ? (recalcMrp * recalcDiscount) / 100 : 0;
+      const recalcFinalPrice = recalcDiscount > 0 && recalcMrp > 0 
+        ? (recalcMrp - recalcDiscountAmount) 
+        : (product?.salePrice != null && !isNaN(product.salePrice) ? parseFloat(product.salePrice) : recalcMrp);
+      setDisplayPrice(recalcFinalPrice);
       
       if (availableColors.length > 0 && !selectedColor) {
         // Auto-select first color
         setSelectedColor(availableColors[0].color);
       }
     }
-  }, [open, availableColors, selectedColor, product]);
+  }, [open, availableColors, selectedColor, product, baseFinalSalePrice]);
 
   // Auto-select first size when color is selected
   useEffect(() => {

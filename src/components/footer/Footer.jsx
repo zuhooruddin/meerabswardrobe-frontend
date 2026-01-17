@@ -259,7 +259,7 @@ const Footer = ({ footerData: initialFooterData }) => {
                       maxWidth: "320px",
                     }}
                   >
-                    {footerData?.footer_description || "Discover authentic Chitrali products. Quality craftsmanship delivered to your doorstep."}
+                    {footerData?.footer_description || "Discover timeless Pakistani fashion. Exquisite craftsmanship, delivered across Europe.."}
                   </Paragraph>
                   
                   {/* Newsletter Signup */}

@@ -1,31 +1,20 @@
-import { Card, Box, CircularProgress, Divider } from "@mui/material";
-import { styled, keyframes } from "@mui/material/styles";
+import { Card, Box, CircularProgress, Divider, TextField, Link as MuiLink, Typography } from "@mui/material";
+import { styled, keyframes, alpha } from "@mui/material/styles";
 import BazaarButton from "components/BazaarButton";
-import BazaarTextField from "components/BazaarTextField";
 import { H3, H4, Small } from "components/Typography";
 import { useFormik } from "formik";
 import React, { useCallback, useState, useEffect } from "react";
 import * as yup from "yup";
 import EyeToggleButton from "./EyeToggleButton";
 import SocialButtons from "./SocialButtons";
-import { useSession, signIn, signOut } from 'next-auth/react';
+import { useSession, signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import Alert from '@mui/material/Alert';
 import { toast } from 'react-toastify';
 import useSWR from 'swr'
 import axios from 'axios';
+import Link from 'next/link';
 
-
-
-
-const fbStyle = {
-  background: "#3B5998",
-  color: "white",
-};
-const googleStyle = {
-  background: "#4285F4",
-  color: "white",
-};
 // Premium fade-in animation
 const fadeIn = keyframes`
   from {
@@ -38,55 +27,124 @@ const fadeIn = keyframes`
   }
 `;
 
-export const Wrapper = styled(({ children, passwordVisibility, ...rest }) => (
-  <Card {...rest}>{children}</Card>
-))(({ theme, passwordVisibility }) => ({
-  width: 560,
-  padding: "3rem 3.5rem",
-  borderRadius: "24px",
+// Modern, clean wrapper
+export const Wrapper = styled(Card)(({ theme }) => ({
+  width: "100%",
+  maxWidth: "480px",
+  padding: "3rem",
+  borderRadius: "20px",
   background: theme.palette.mode === 'dark' 
-    ? "rgba(15, 23, 42, 0.95)" 
-    : "rgba(255, 255, 255, 0.98)",
-  backdropFilter: "blur(24px) saturate(180%)",
-  WebkitBackdropFilter: "blur(24px) saturate(180%)",
+    ? theme.palette.background.paper
+    : "#FFFFFF",
   boxShadow: theme.palette.mode === 'dark'
-    ? "0 20px 60px rgba(0, 0, 0, 0.5)"
-    : "0 20px 60px rgba(0, 0, 0, 0.1)",
-  border: theme.palette.mode === 'dark'
-    ? "1px solid rgba(255, 255, 255, 0.1)"
-    : "1px solid rgba(0, 0, 0, 0.05)",
-  animation: `${fadeIn} 0.4s ease-out`,
+    ? "0 24px 48px rgba(0, 0, 0, 0.4)"
+    : "0 8px 32px rgba(0, 0, 0, 0.08)",
+  border: "none",
+  animation: `${fadeIn} 0.4s cubic-bezier(0.4, 0, 0.2, 1)`,
   position: "relative",
   overflow: "hidden",
-  "&::before": {
-    content: '""',
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    height: "4px",
-    background: "linear-gradient(90deg, #D23F57 0%, #E94560 50%, #D23F57 100%)",
-    backgroundSize: "200% 100%",
-  },
   [theme.breakpoints.down("sm")]: {
-    width: "100%",
-    padding: "2rem 2.5rem",
+    padding: "2rem 1.5rem",
     borderRadius: "16px",
+    maxWidth: "100%",
   },
-  ".passwordEye": {
-    color: passwordVisibility
-      ? theme.palette.grey[600]
-      : theme.palette.grey[400],
+}));
+
+// Elegant input field styling
+const StyledTextField = styled(TextField)(({ theme }) => ({
+  "& .MuiOutlinedInput-root": {
+    borderRadius: "12px",
+    backgroundColor: theme.palette.mode === 'dark' 
+      ? alpha(theme.palette.common.white, 0.05)
+      : alpha(theme.palette.grey[50], 1),
+    transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
+    fontFamily: "'Inter', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif",
+    fontSize: "15px",
+    "& fieldset": {
+      borderColor: theme.palette.mode === 'dark'
+        ? alpha(theme.palette.common.white, 0.1)
+        : alpha(theme.palette.grey[300], 1),
+      borderWidth: "1.5px",
+      transition: "all 0.2s ease",
+    },
+    "&:hover": {
+      backgroundColor: theme.palette.mode === 'dark'
+        ? alpha(theme.palette.common.white, 0.08)
+        : alpha(theme.palette.grey[50], 1),
+      "& fieldset": {
+        borderColor: theme.palette.mode === 'dark'
+          ? alpha(theme.palette.common.white, 0.2)
+          : theme.palette.primary.main,
+      },
+    },
+    "&.Mui-focused": {
+      backgroundColor: theme.palette.mode === 'dark'
+        ? alpha(theme.palette.common.white, 0.08)
+        : "#FFFFFF",
+      "& fieldset": {
+        borderColor: theme.palette.primary.main,
+        borderWidth: "2px",
+        boxShadow: `0 0 0 3px ${alpha(theme.palette.primary.main, 0.1)}`,
+      },
+    },
+    "&.Mui-error": {
+      "& fieldset": {
+        borderColor: theme.palette.error.main,
+      },
+    },
   },
-  ".facebookButton": {
-    marginBottom: 10,
-    ...fbStyle,
-    "&:hover": fbStyle,
+  "& .MuiInputLabel-root": {
+    fontFamily: "'Inter', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif",
+    fontSize: "14px",
+    fontWeight: 500,
+    color: theme.palette.text.secondary,
+    "&.Mui-focused": {
+      color: theme.palette.primary.main,
+    },
   },
-  ".googleButton": { ...googleStyle, "&:hover": googleStyle },
-  ".agreement": {
-    marginTop: 12,
-    marginBottom: 24,
+  "& .MuiFormHelperText-root": {
+    fontFamily: "'Inter', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif",
+    fontSize: "12px",
+    marginTop: "6px",
+  },
+}));
+
+// Premium login button
+const LoginButton = styled(BazaarButton)(({ theme, disabled }) => ({
+  width: "100%",
+  height: "52px",
+  borderRadius: "12px",
+  fontSize: "16px",
+  fontWeight: 600,
+  letterSpacing: "0.01em",
+  textTransform: "none",
+  fontFamily: "'Inter', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif",
+  background: disabled
+    ? theme.palette.action.disabledBackground
+    : "linear-gradient(135deg, #D23F57 0%, #E94560 100%)",
+  color: "#FFFFFF",
+  boxShadow: disabled
+    ? "none"
+    : "0 4px 16px rgba(210, 63, 87, 0.35)",
+  transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+  "&:hover": {
+    background: disabled
+      ? theme.palette.action.disabledBackground
+      : "linear-gradient(135deg, #B8324F 0%, #D23F57 100%)",
+    boxShadow: disabled
+      ? "none"
+      : "0 6px 24px rgba(210, 63, 87, 0.45)",
+    transform: disabled ? "none" : "translateY(-1px)",
+  },
+  "&:active": {
+    transform: disabled ? "none" : "translateY(0)",
+    boxShadow: disabled
+      ? "none"
+      : "0 2px 8px rgba(210, 63, 87, 0.3)",
+  },
+  "&:focus-visible": {
+    outline: `3px solid ${alpha(theme.palette.primary.main, 0.3)}`,
+    outlineOffset: "2px",
   },
 }));
 
@@ -207,189 +265,199 @@ const Login = () => {
     }
    
   return (
-    <Wrapper elevation={3} passwordVisibility={passwordVisibility}>
-      <form onSubmit={handleSubmit}>
-        {/* Error Alert */}
-        {loginError && (
-          <Box 
-            sx={{ 
-              mb: 3, 
-              animation: "fadeIn 0.3s ease-out",
-              "@keyframes fadeIn": {
-                from: {
-                  opacity: 0,
-                  transform: "translateY(20px)",
-                },
-                to: {
-                  opacity: 1,
-                  transform: "translateY(0)",
-                },
-              },
-            }}
-          >
-        {loginError}
-          </Box>
-        )}
-
-        {/* Header Section */}
+    <Wrapper elevation={0}>
+      <form onSubmit={handleSubmit} noValidate>
+        {/* Header Section - Clear Visual Hierarchy */}
         <Box sx={{ textAlign: "center", mb: 4 }}>
-          <H3
+          <Typography
+            variant="h4"
             sx={{
-              fontWeight: 800,
-              fontSize: { xs: "24px", sm: "28px" },
+              fontWeight: 700,
+              fontSize: { xs: "26px", sm: "32px" },
               mb: 1,
-              background: "linear-gradient(135deg, #D23F57 0%, #E94560 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
+              color: "text.primary",
+              fontFamily: "'Inter', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif",
               letterSpacing: "-0.02em",
+              lineHeight: 1.2,
             }}
           >
             Welcome Back
-        </H3>
-          <H4
+          </Typography>
+          <Typography
+            variant="body1"
             sx={{
-              fontWeight: 600,
-              fontSize: "16px",
+              fontSize: "15px",
               color: "text.secondary",
-              mb: 0.5,
+              fontWeight: 400,
+              fontFamily: "'Inter', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif",
+              mt: 0.5,
             }}
           >
-            {siteName}
-          </H4>
-        <Small
-          display="block"
-            fontSize="14px"
-            fontWeight="500"
-            color="text.secondary"
-            sx={{ mt: 1 }}
-          >
-            Sign in to continue shopping
-        </Small>
+            Sign in to your account to continue
+          </Typography>
         </Box>
 
-        {/* Email Field */}
-        <BazaarTextField
-          mb={2}
-          fullWidth
-          name="email"
-          size="medium"
-          type="email"
-          variant="outlined"
-          onBlur={handleBlur}
-          value={values.email}
-          onChange={handleChange}
-          label="Email Address"
-          placeholder="your.email@example.com"
-          error={!!touched.email && !!errors.email}
-          helperText={touched.email && errors.email}
-          sx={{
-            "& .MuiOutlinedInput-root": {
-              borderRadius: "12px",
-              transition: "all 0.3s ease",
-              "&:hover": {
-                "& .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "primary.main",
-                },
-              },
-              "&.Mui-focused": {
-                "& .MuiOutlinedInput-notchedOutline": {
-                  borderWidth: "2px",
-                },
-              },
-            },
-          }}
-        />
+        {/* Error Alert - Subtle and Clean */}
+        {loginError && (
+          <Box sx={{ mb: 3 }}>
+            {loginError}
+          </Box>
+        )}
 
-        {/* Password Field */}
-        <BazaarTextField
-          mb={3}
-          fullWidth
-          size="medium"
-          name="password"
-          label="Password"
-          autoComplete="current-password"
-          variant="outlined"
-          onBlur={handleBlur}
-          onChange={handleChange}
-          value={values.password}
-          placeholder="Enter your password"
-          type={passwordVisibility ? "text" : "password"}
-          error={!!touched.password && !!errors.password}
-          helperText={touched.password && errors.password}
-          sx={{
-            "& .MuiOutlinedInput-root": {
-              borderRadius: "12px",
-              transition: "all 0.3s ease",
-              "&:hover": {
-                "& .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "primary.main",
-                },
-              },
-              "&.Mui-focused": {
-                "& .MuiOutlinedInput-notchedOutline": {
-                  borderWidth: "2px",
-                },
-              },
-            },
-          }}
-          InputProps={{
-            endAdornment: (
-              <EyeToggleButton
-                show={passwordVisibility}
-                click={togglePasswordVisibility}
-              />
-            ),
-          }}
-        />
+        {/* Form Fields - Elegant Inputs */}
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2.5, mb: 3 }}>
+          <StyledTextField
+            fullWidth
+            name="email"
+            type="email"
+            label="Email Address"
+            placeholder="Enter your email"
+            value={values.email}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={!!touched.email && !!errors.email}
+            helperText={touched.email && errors.email}
+            autoComplete="email"
+            autoFocus
+          />
 
-        {/* Login Button */}
-        <BazaarButton
-          fullWidth
+          <StyledTextField
+            fullWidth
+            name="password"
+            type={passwordVisibility ? "text" : "password"}
+            label="Password"
+            placeholder="Enter your password"
+            value={values.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={!!touched.password && !!errors.password}
+            helperText={touched.password && errors.password}
+            autoComplete="current-password"
+            InputProps={{
+              endAdornment: (
+                <EyeToggleButton
+                  show={passwordVisibility}
+                  click={togglePasswordVisibility}
+                />
+              ),
+            }}
+          />
+        </Box>
+
+        {/* Forgot Password Link - Subtle Secondary Action */}
+        <Box sx={{ display: "flex", justifyContent: "flex-end", mb: 3 }}>
+          <Link href="/forgot-password" passHref>
+            <MuiLink
+              sx={{
+                fontSize: "14px",
+                fontWeight: 500,
+                color: "text.secondary",
+                textDecoration: "none",
+                fontFamily: "'Inter', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif",
+                "&:hover": {
+                  color: "primary.main",
+                  textDecoration: "underline",
+                },
+                "&:focus-visible": {
+                  outline: `2px solid`,
+                  outlineColor: "primary.main",
+                  outlineOffset: "2px",
+                  borderRadius: "4px",
+                },
+              }}
+            >
+              Forgot password?
+            </MuiLink>
+          </Link>
+        </Box>
+
+        {/* Primary CTA - Standout Login Button */}
+        <LoginButton
           type="submit"
-          color="primary"
-          variant="contained"
           disabled={isLoading}
-          sx={{
-            mb: 2.5,
-            height: 48,
-            borderRadius: "12px",
-            fontSize: "16px",
-            fontWeight: 700,
-            textTransform: "none",
-            background: "linear-gradient(135deg, #D23F57 0%, #E94560 100%)",
-            boxShadow: "0 4px 14px rgba(210, 63, 87, 0.4)",
-            transition: "all 0.3s ease",
-            "&:hover": {
-              background: "linear-gradient(135deg, #B8324F 0%, #D23F57 100%)",
-              boxShadow: "0 6px 20px rgba(210, 63, 87, 0.5)",
-              transform: "translateY(-2px)",
-            },
-            "&:disabled": {
-              background: "rgba(0, 0, 0, 0.12)",
-              boxShadow: "none",
-            },
-          }}
+          fullWidth
         >
           {isLoading ? (
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
               <CircularProgress size={20} sx={{ color: 'white' }} />
               <span>Signing in...</span>
             </Box>
           ) : (
             "Sign In"
           )}
-        </BazaarButton>
+        </LoginButton>
 
-        <Divider sx={{ my: 3 }}>
-          <Small color="text.secondary" fontWeight={500}>
-            OR
-          </Small>
-        </Divider>
+        {/* Divider with OR */}
+        <Box sx={{ my: 3.5, position: "relative" }}>
+          <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.5) }} />
+          <Box
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              px: 2,
+              backgroundColor: "background.paper",
+            }}
+          >
+            <Typography
+              variant="caption"
+              sx={{
+                fontSize: "13px",
+                color: "text.secondary",
+                fontWeight: 500,
+                fontFamily: "'Inter', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif",
+              }}
+            >
+              OR
+            </Typography>
+          </Box>
+        </Box>
 
+        {/* Social Login - Clean Integration */}
+        <SocialButtons redirect="/signup" redirectText="Sign Up" />
+
+        {/* Sign Up Link - Subtle Secondary Action */}
+        <Box
+          sx={{
+            mt: 3,
+            textAlign: "center",
+            pt: 2.5,
+            borderTop: (theme) => `1px solid ${alpha(theme.palette.divider, 0.5)}`,
+          }}
+        >
+          <Typography
+            variant="body2"
+            sx={{
+              fontSize: "14px",
+              color: "text.secondary",
+              fontFamily: "'Inter', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif",
+            }}
+          >
+            Don&apos;t have an account?{" "}
+            <Link href="/signup" passHref>
+              <MuiLink
+                sx={{
+                  fontWeight: 600,
+                  color: "primary.main",
+                  textDecoration: "none",
+                  "&:hover": {
+                    textDecoration: "underline",
+                  },
+                  "&:focus-visible": {
+                    outline: `2px solid`,
+                    outlineColor: "primary.main",
+                    outlineOffset: "2px",
+                    borderRadius: "4px",
+                  },
+                }}
+              >
+                Sign Up
+              </MuiLink>
+            </Link>
+          </Typography>
+        </Box>
       </form>
-      
-      {/* Social Login Section */}
-      <SocialButtons redirect="/signup" redirectText="Sign Up" />
     </Wrapper>
   );
 };

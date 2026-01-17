@@ -1,89 +1,66 @@
-import { Box, Divider } from "@mui/material";
-import BazaarButton from "components/BazaarButton";
+import { Box, Button, alpha } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import Image from "components/BazaarImage";
-import { FlexBox, FlexRowCenter } from "components/flex-box";
-import { H6 } from "components/Typography";
-import Link from "next/link";
-import React, { Fragment } from "react";
-import {useSession,signIn,signOut} from 'next-auth/react';
+import { useSession, signIn } from 'next-auth/react';
+
+// Modern social button styling
+const SocialButton = styled(Button)(({ theme }) => ({
+  width: "100%",
+  height: "48px",
+  borderRadius: "12px",
+  fontSize: "15px",
+  fontWeight: 500,
+  textTransform: "none",
+  fontFamily: "'Inter', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif",
+  border: `1.5px solid ${theme.palette.mode === 'dark' 
+    ? alpha(theme.palette.common.white, 0.1)
+    : alpha(theme.palette.grey[300], 1)}`,
+  backgroundColor: theme.palette.mode === 'dark'
+    ? alpha(theme.palette.common.white, 0.05)
+    : "#FFFFFF",
+  color: theme.palette.text.primary,
+  transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
+  "&:hover": {
+    backgroundColor: theme.palette.mode === 'dark'
+      ? alpha(theme.palette.common.white, 0.08)
+      : alpha(theme.palette.grey[50], 1),
+    borderColor: theme.palette.mode === 'dark'
+      ? alpha(theme.palette.common.white, 0.2)
+      : theme.palette.grey[400],
+    transform: "translateY(-1px)",
+    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)",
+  },
+  "&:active": {
+    transform: "translateY(0)",
+  },
+  "&:focus-visible": {
+    outline: `2px solid ${alpha(theme.palette.primary.main, 0.3)}`,
+    outlineOffset: "2px",
+  },
+}));
 
 const SocialButtons = (props) => {
   const { redirect = "/login", redirectText = "Login" } = props;
  
   return (
-
-    
-    <Fragment>
-      <Box mb={2} mt={3.3}>
-        <Box width="200px" mx="auto">
-          <Divider />
-        </Box>
-
-        <FlexBox justifyContent="center" mt={-1.625}>
-          <Box color="grey.600" bgcolor="background.paper" px={2}>
-            or
-          </Box>
-        </FlexBox>
-      </Box>
-      {/* <BazaarButton
-        className="facebookButton"
-        size="medium"
-        fullWidth
+    <Box>
+      <SocialButton
+        onClick={() => signIn("google")}
+        startIcon={
+          <Image 
+            src="/assets/images/icons/google-1.svg" 
+            alt="Google" 
+            width={20}
+            height={20}
+          />
+        }
         sx={{
-          height: 44,
+          mb: 2,
         }}
       >
-        <Image
-          src="/assets/images/icons/facebook-filled-white.svg"
-          alt="facebook"
-        />
-        <Box fontSize="12px" ml={1}>
-          Continue with Facebook
-        </Box>
-      </BazaarButton> */}
-
-      <BazaarButton
-        onClick={()=>signIn("google")}
-        className="googleButton"
-        size="medium"
-        fullWidth
-        sx={{
-          height: 44,
-        }}
-      >
-        <Image src="/assets/images/icons/google-1.svg" alt="facebook" />
-        <Box fontSize="12px" ml={1}>
-          Continue with Google
-        </Box>
-      </BazaarButton>
-
-      <FlexRowCenter my="1.25rem">
-        <Box>Don&apos;t have account?</Box>
-        <Link href={redirect}>
-          <a>
-            <H6 ml={1} borderBottom="1px solid" borderColor="grey.900">
-              {redirectText}
-            </H6>
-          </a>
-        </Link>
-      </FlexRowCenter>
-
-      <FlexBox
-        justifyContent="center"
-        bgcolor="grey.200"
-        borderRadius="4px"
-        py={2.5}
-      >
-        Forgot your password?
-        <Link href="/forgot-password">
-          <a>
-            <H6 ml={1} borderBottom="1px solid" borderColor="grey.900">
-              Reset It
-            </H6>
-          </a>
-        </Link>
-      </FlexBox>
-    </Fragment>
+        Continue with Google
+      </SocialButton>
+    </Box>
   );
 };
 
