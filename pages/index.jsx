@@ -375,11 +375,11 @@ const IndexPage = (props) => {
             </Box>
           </LazySection>
         )}
-        {props.products && props.products.length > 0 && props.SectionSequenceOrdera && props.SectionSequenceOrdera.length > 0 && (
+        {Array.isArray(props.products) && props.products.length > 0 && props.SectionSequenceOrdera && props.SectionSequenceOrdera.length > 0 && (
           <LazySection>
             <Box sx={{ mt: 7 }}>
               <Section5
-                products={props.products}
+                products={Array.isArray(props.products) ? props.products : []}
                 data={props.SectionSequenceOrdera}
                 SectionName={props.Section1Name || ""}
                 slug={props.slug || ""}
@@ -568,9 +568,23 @@ export async function getStaticProps(context) {
 
   // Parallelize product fetches if both slugs exist
   const [products, product] = await Promise.all([
-    slug ? api.getProducts(slug) : Promise.resolve(null),
-    slug2 ? api.getSectionProduct(slug2) : Promise.resolve(null)
+    slug ? api.getProducts(slug) : Promise.resolve([]),
+    slug2 ? api.getSectionProduct(slug2) : Promise.resolve([])
   ]);
+
+  // Debug logging
+  if (process.env.NODE_ENV === 'development') {
+    console.log('getStaticProps - slug:', slug);
+    console.log('getStaticProps - slug2:', slug2);
+    console.log('getStaticProps - products type:', typeof products);
+    console.log('getStaticProps - products isArray:', Array.isArray(products));
+    console.log('getStaticProps - products length:', Array.isArray(products) ? products.length : 'N/A');
+    console.log('getStaticProps - products:', products);
+    console.log('getStaticProps - product type:', typeof product);
+    console.log('getStaticProps - product isArray:', Array.isArray(product));
+    console.log('getStaticProps - product length:', Array.isArray(product) ? product.length : 'N/A');
+    console.log('getStaticProps - product:', product);
+  }
 
   ////////////////////////Section Sequence Order 2/////////////////////////
 
@@ -627,8 +641,8 @@ export async function getStaticProps(context) {
     return {
       props: {
         navCategories: [],
-        products: null,
-        product: null,
+      products: [],
+      product: [],
         GeneralSetting: [],
       },
       revalidate: 60,

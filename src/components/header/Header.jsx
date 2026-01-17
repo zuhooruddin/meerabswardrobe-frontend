@@ -147,6 +147,9 @@ const LogoContainer = styled(Box)(({ theme }) => ({
     display: "block !important",
     visibility: "visible !important",
   },
+  "& .header-logo": {
+    filter: theme.palette.mode === 'dark' ? 'brightness(1.1) contrast(1.1)' : 'none',
+  },
 }));
 
 // Premium Badge with gradient
@@ -240,8 +243,8 @@ const Header = ({ isFixed, headerdata, className, searchBoxType = "type2" }) => 
                     height: 'auto',
                     maxWidth: '100%',
                     objectFit: 'contain',
-                    filter: theme.palette.mode === 'dark' ? 'brightness(1.1) contrast(1.1)' : 'none',
                   }}
+                  className="header-logo"
                   sizes="(max-width: 768px) 120px, 160px"
               />
               </LogoContainer>
