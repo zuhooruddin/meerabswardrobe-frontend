@@ -70,18 +70,82 @@ const StyledChip1 = styled(Chip)(() => ({
 // =====================================================
 const ProductViewDialog = (props) => {
   const { product, openDialog, handleCloseDialog } = props;
-  const imgurl = process.env.IMAGE_BASE_URL;
+  
+  const [currency, setCurrency] = useState('');
 
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const storedCurrency = localStorage.getItem('currency');
+      if (storedCurrency) setCurrency(storedCurrency);
+    }
+  }, []);
 
-const [currency,setCurrency]=useState('')
+  // Image URL construction - same as ProductIntro.jsx
+  const imgbaseurl = process.env.NEXT_PUBLIC_IMAGE_BASE_API_URL;
+  const backendBase = process.env.NEXT_PUBLIC_BACKEND_API_BASE || '';
+  
+  // Extract domain from backendBase: https://api.meerabs.com
+  const domainMatch = backendBase.match(/^(https?:\/\/[^\/]+)/);
+  const domain = domainMatch ? domainMatch[1] : 'https://api.meerabs.com';
+  
+  // Construct media URL: https://api.meerabs.com/media/
+  const localimageurl = domain + '/media/';
 
-useEffect(()=>{
-  if (typeof window !== 'undefined' && window.localStorage) {
-    const storedCurrency = localStorage.getItem('currency');
-
-    setCurrency(storedCurrency);
-  }
-},[])
+  // Professional helper function to normalize image URLs - same as ProductIntro.jsx
+  const getImageUrl = useCallback((imagePath) => {
+    if (!imagePath) {
+      return '';
+    }
+    
+    // If already a full URL (starts with http/https), return as is (but normalize double paths)
+    if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+      let url = imagePath;
+      // Remove duplicate paths if present
+      if (url.includes('/api/media//api/media/') || url.includes('/api/media//media/')) {
+        url = url.replace(/\/api\/media\/+\/api\/media\//g, '/media/');
+        url = url.replace(/\/api\/media\/+\/media\//g, '/media/');
+      }
+      return url;
+    }
+    
+    // Normalize the path by removing any existing /api/media/, /media/, or api/media/ prefixes
+    let normalizedPath = imagePath;
+    
+    // Remove /api/media/ if present
+    if (normalizedPath.includes('/api/media/')) {
+      const parts = normalizedPath.split('/api/media/');
+      normalizedPath = parts[parts.length - 1];
+    }
+    
+    // Remove /media/ if present at the start
+    if (normalizedPath.startsWith('/media/')) {
+      normalizedPath = normalizedPath.substring(7);
+    } else if (normalizedPath.startsWith('media/')) {
+      normalizedPath = normalizedPath.substring(6);
+    }
+    
+    // Remove /api/media/ if present at the start (after previous checks)
+    if (normalizedPath.startsWith('/api/media/')) {
+      normalizedPath = normalizedPath.substring(11);
+    } else if (normalizedPath.startsWith('api/media/')) {
+      normalizedPath = normalizedPath.substring(10);
+    }
+    
+    // Remove leading slash if present
+    normalizedPath = normalizedPath.startsWith('/') ? normalizedPath.substring(1) : normalizedPath;
+    
+    // Use the base URL
+    let baseUrl = localimageurl;
+    baseUrl = baseUrl.replace(/\/api\/media\//g, '/media/');
+    baseUrl = baseUrl.replace(/\/api\/media$/g, '/media/');
+    baseUrl = baseUrl.replace(/\/+$/, '') + '/';
+    
+    // Ensure normalizedPath doesn't start with /
+    normalizedPath = normalizedPath.startsWith('/') ? normalizedPath.substring(1) : normalizedPath;
+    
+    // Construct final URL
+    return baseUrl + normalizedPath;
+  }, [localimageurl]);
 
 
 
@@ -89,30 +153,41 @@ useEffect(()=>{
   const router = useRouter();
   const [openVariantDialog, setOpenVariantDialog] = useState(false);
   
-  // Get product images - check for gallery field first, then imgGroup, then fallback to single image
-  // Remove duplicates to ensure unique images
+  // Get product images - same logic as ProductIntro.jsx
+  // Check for gallery field first (from API), then imgGroup, then fallback to single image
   const productImages = useMemo(() => {
     let images = [];
     
-    // Check for gallery field (from API)
+    // Priority 1: Check for gallery field (from getItemDetailWithVariants API)
     if (product?.gallery && Array.isArray(product.gallery) && product.gallery.length > 0) {
       images = product.gallery;
     }
-    // Check for imgGroup field
+    // Priority 2: Check for imgGroup field (from getItemDetail API or product cards)
     else if (product?.imgGroup && Array.isArray(product.imgGroup) && product.imgGroup.length > 0) {
       images = product.imgGroup;
     }
-    // Fallback to single image
+    // Priority 3: Fallback to single image
     else if (product?.image) {
       images = [product.image];
     }
+    // Priority 4: Fallback to imgUrl
+    else if (product?.imgUrl) {
+      images = [product.imgUrl];
+    }
     
     // Remove duplicates by converting to Set and back to array
-    // Also filter out empty/null values
-    const uniqueImages = Array.from(new Set(images.filter(img => img && img.trim() !== '')));
+    // Also filter out empty/null values and normalize URLs
+    const uniqueImages = Array.from(
+      new Set(
+        images
+          .filter(img => img && (typeof img === 'string' ? img.trim() !== '' : true))
+          .map(img => getImageUrl(typeof img === 'string' ? img : ''))
+          .filter(url => url && url.trim() !== '')
+      )
+    );
     
     return uniqueImages.length > 0 ? uniqueImages : [];
-  }, [product?.gallery, product?.imgGroup, product?.image]);
+  }, [product?.gallery, product?.imgGroup, product?.image, product?.imgUrl, getImageUrl]);
   
   // Professional helper function to detect if a product has any variants
   const hasProductVariants = useCallback(() => {
@@ -203,8 +278,8 @@ useEffect(()=>{
           sku: product.sku,
           slug: product.slug,
           name: product.name,
-          imgUrl: productImages[0] || product?.image || product?.imgUrl || '',
-          image: productImages[0] || product?.image || product?.imgUrl || '',
+          imgUrl: productImages[0] || getImageUrl(product?.image || product?.imgUrl || ''),
+          image: productImages[0] || getImageUrl(product?.image || product?.imgUrl || ''),
           id: product.id,
           // Preserve variant information if cartItem has it
           ...(cartItem?.variant_id && {
@@ -225,7 +300,7 @@ useEffect(()=>{
         }
       }
     },
-    [dispatch, product, cartItem, handleCloseDialog, hasProductVariants]
+    [dispatch, product, cartItem, handleCloseDialog, hasProductVariants, productImages, getImageUrl]
   );
   return (
     <Fragment>
@@ -252,6 +327,7 @@ useEffect(()=>{
                     <BazaarImage
                       key={index}
                       src={item}
+                      alt={product?.name ? `${product.name} - Image ${index + 1}` : `Product Image ${index + 1}`}
                       sx={{
                         mx: "auto",
                         width: "100%",
@@ -266,7 +342,8 @@ useEffect(()=>{
                 </Carousel>
               ) : (
                 <BazaarImage
-                  src={product?.image || product?.imgUrl || ''}
+                  src={getImageUrl(product?.image || product?.imgUrl || '')}
+                  alt={product?.name || 'Product Image'}
                   sx={{
                     mx: "auto",
                     width: "100%",
