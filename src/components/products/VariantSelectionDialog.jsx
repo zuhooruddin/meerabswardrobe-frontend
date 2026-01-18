@@ -411,12 +411,30 @@ const VariantSelectionDialog = ({
   const isOutOfStock = selectedVariant && selectedVariant.stock_quantity === 0;
   const canAddToCart = selectedVariant && !isOutOfStock;
 
-  // Get product images
-  const productImages = product?.imgGroup && product.imgGroup.length > 0 
-    ? product.imgGroup 
-    : product?.image 
-      ? [product.image] 
-      : [];
+  // Get product images - check for gallery field first, then imgGroup, then fallback to single image
+  // Remove duplicates to ensure unique images
+  const productImages = React.useMemo(() => {
+    let images = [];
+    
+    // Check for gallery field (from API)
+    if (product?.gallery && Array.isArray(product.gallery) && product.gallery.length > 0) {
+      images = product.gallery;
+    }
+    // Check for imgGroup field
+    else if (product?.imgGroup && Array.isArray(product.imgGroup) && product.imgGroup.length > 0) {
+      images = product.imgGroup;
+    }
+    // Fallback to single image
+    else if (product?.image) {
+      images = [product.image];
+    }
+    
+    // Remove duplicates by converting to Set and back to array
+    // Also filter out empty/null values
+    const uniqueImages = Array.from(new Set(images.filter(img => img && img.trim() !== '')));
+    
+    return uniqueImages.length > 0 ? uniqueImages : [];
+  }, [product?.gallery, product?.imgGroup, product?.image]);
 
   const mainImage = productImages[selectedImageIndex] || productImages[0] || product?.image || '';
   const imageUrl = mainImage?.startsWith('http') ? mainImage : (imgbaseurl + mainImage || localimageurl + mainImage);

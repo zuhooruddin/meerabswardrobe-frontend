@@ -433,7 +433,12 @@ const total=Reviews.length;
             categoryName:product.categoryName,
             stock:product.stock,
             image: imgbaseurl+product.image,
-            imgGroup: [imgbaseurl+product.image, imgbaseurl+product.image],
+            imgGroup: product.gallery && product.gallery.length > 0 
+              ? product.gallery.map(img => img?.startsWith('http') ? img : (imgbaseurl + img))
+              : product.imgGroup && product.imgGroup.length > 0
+                ? product.imgGroup.map(img => img?.startsWith('http') ? img : (imgbaseurl + img))
+                : product.image ? [imgbaseurl+product.image] : [],
+            gallery: product.gallery,
             variants: product.variants,
             available_colors: product.available_colors,
             available_sizes: product.available_sizes,
@@ -457,9 +462,12 @@ const total=Reviews.length;
             categoryName: product?.categoryName || '',
             stock: product?.stock || 0,
             image: product?.image ? (imgbaseurl + product.image) : '',
-            imgGroup: product?.image 
-              ? [imgbaseurl + product.image, imgbaseurl + product.image]
-              : [],
+            imgGroup: product?.gallery && product.gallery.length > 0 
+              ? product.gallery.map(img => img?.startsWith('http') ? img : (imgbaseurl + img))
+              : product?.imgGroup && product.imgGroup.length > 0
+                ? product.imgGroup.map(img => img?.startsWith('http') ? img : (imgbaseurl + img))
+                : product?.image ? [imgbaseurl + product.image] : [],
+            gallery: product?.gallery,
             variants: product?.variants || [],
             available_colors: product?.available_colors || [],
             available_sizes: product?.available_sizes || [],
@@ -758,7 +766,12 @@ const total=Reviews.length;
             categoryName:product.categoryName,
             stock:product.stock,
             image: imgbaseurl+product.image,
-            imgGroup: [imgbaseurl+product.image, imgbaseurl+product.image],
+            imgGroup: product.gallery && product.gallery.length > 0 
+              ? product.gallery.map(img => img?.startsWith('http') ? img : (imgbaseurl + img))
+              : product.imgGroup && product.imgGroup.length > 0
+                ? product.imgGroup.map(img => img?.startsWith('http') ? img : (imgbaseurl + img))
+                : product.image ? [imgbaseurl+product.image] : [],
+            gallery: product.gallery,
             variants: product.variants,
             available_colors: product.available_colors,
             available_sizes: product.available_sizes,
@@ -786,9 +799,12 @@ const total=Reviews.length;
             categoryName: product?.categoryName || '',
             stock: product?.stock || 0,
             image: product?.image ? (imgbaseurl + product.image) : '',
-            imgGroup: product?.image 
-              ? [imgbaseurl + product.image, imgbaseurl + product.image]
-              : [],
+            imgGroup: product?.gallery && product.gallery.length > 0 
+              ? product.gallery.map(img => img?.startsWith('http') ? img : (imgbaseurl + img))
+              : product?.imgGroup && product.imgGroup.length > 0
+                ? product.imgGroup.map(img => img?.startsWith('http') ? img : (imgbaseurl + img))
+                : product?.image ? [imgbaseurl + product.image] : [],
+            gallery: product?.gallery,
             variants: product?.variants || [],
             available_colors: product?.available_colors || [],
             available_sizes: product?.available_sizes || [],

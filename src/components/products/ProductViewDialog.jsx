@@ -14,13 +14,14 @@ import Carousel from "components/carousel/Carousel";
 import { FlexBox } from "components/flex-box";
 import { H1, H2, H3, H6, Paragraph } from "components/Typography";
 import { useAppContext } from "contexts/AppContext";
-import { useCallback, useEffect, useState, Fragment } from "react";
+import React, { useCallback, useEffect, useState, Fragment, useMemo } from "react";
 import { Chip } from "@mui/material";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import VariantSelectionDialog from "./VariantSelectionDialog";
 
 // import {server_ip} from "utils/backend_server_ip.jsx"
+
 
 const ContentWrapper = styled(Box)(({ theme }) => ({
   "& .carousel:hover": {
@@ -87,6 +88,31 @@ useEffect(()=>{
   const { state, dispatch } = useAppContext();
   const router = useRouter();
   const [openVariantDialog, setOpenVariantDialog] = useState(false);
+  
+  // Get product images - check for gallery field first, then imgGroup, then fallback to single image
+  // Remove duplicates to ensure unique images
+  const productImages = useMemo(() => {
+    let images = [];
+    
+    // Check for gallery field (from API)
+    if (product?.gallery && Array.isArray(product.gallery) && product.gallery.length > 0) {
+      images = product.gallery;
+    }
+    // Check for imgGroup field
+    else if (product?.imgGroup && Array.isArray(product.imgGroup) && product.imgGroup.length > 0) {
+      images = product.imgGroup;
+    }
+    // Fallback to single image
+    else if (product?.image) {
+      images = [product.image];
+    }
+    
+    // Remove duplicates by converting to Set and back to array
+    // Also filter out empty/null values
+    const uniqueImages = Array.from(new Set(images.filter(img => img && img.trim() !== '')));
+    
+    return uniqueImages.length > 0 ? uniqueImages : [];
+  }, [product?.gallery, product?.imgGroup, product?.image]);
   
   // Professional helper function to detect if a product has any variants
   const hasProductVariants = useCallback(() => {
@@ -177,8 +203,8 @@ useEffect(()=>{
           sku: product.sku,
           slug: product.slug,
           name: product.name,
-          imgUrl: product.imgGroup[0],
-          image: product.imgGroup[0],
+          imgUrl: productImages[0] || product?.image || product?.imgUrl || '',
+          image: productImages[0] || product?.image || product?.imgUrl || '',
           id: product.id,
           // Preserve variant information if cartItem has it
           ...(cartItem?.variant_id && {
@@ -220,23 +246,38 @@ useEffect(()=>{
         <ContentWrapper>
           <Grid container spacing={3}>
             <Grid item md={6} xs={12}>
-              <Carousel totalSlides={product.imgGroup.length} visibleSlides={1}>
-                {product.imgGroup.map((item, index) => (
-                  <BazaarImage
-                    key={index}
-                    src={item}
-                    sx={{
-                      mx: "auto",
-                      width: "100%",
-                      objectFit: "contain",
-                      height: {
-                        sm: 400,
-                        xs: 250,
-                      },
-                    }}
-                  />
-                ))}
-              </Carousel>
+              {productImages.length > 0 ? (
+                <Carousel totalSlides={productImages.length} visibleSlides={1}>
+                  {productImages.map((item, index) => (
+                    <BazaarImage
+                      key={index}
+                      src={item}
+                      sx={{
+                        mx: "auto",
+                        width: "100%",
+                        objectFit: "contain",
+                        height: {
+                          sm: 400,
+                          xs: 250,
+                        },
+                      }}
+                    />
+                  ))}
+                </Carousel>
+              ) : (
+                <BazaarImage
+                  src={product?.image || product?.imgUrl || ''}
+                  sx={{
+                    mx: "auto",
+                    width: "100%",
+                    objectFit: "contain",
+                    height: {
+                      sm: 400,
+                      xs: 250,
+                    },
+                  }}
+                />
+              )}
             </Grid>
 
             <Grid item md={6} xs={12} alignSelf="center">
@@ -376,6 +417,8 @@ useEffect(()=>{
       onClose={() => setOpenVariantDialog(false)}
       product={{
         ...product,
+        imgGroup: productImages.length > 0 ? productImages : (product?.imgGroup || []),
+        gallery: product?.gallery || productImages,
         variants: product?.variants || [],
         available_colors: product?.available_colors || [],
         available_sizes: product?.available_sizes || [],
