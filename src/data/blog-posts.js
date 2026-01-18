@@ -5,9 +5,9 @@ export const blogPosts = [
     title: "Complete Guide to Women's Fashion: Style Tips & Trends",
     description: "Discover the latest fashion trends, styling tips, and wardrobe essentials. Learn how to build a versatile wardrobe with quality women's clothing that suits your style.",
     metaTitle: "Complete Guide to Women's Fashion - Style Tips & Trends",
-    imgUrl: "/images/blog/womens-fashion-guide.jpg",
-    publishedTime: "2024-12-15T10:00:00Z",
-    modifiedTime: "2024-12-15T10:00:00Z",
+    imgUrl: "/images/blogs/womens-fashion-guide.webp",
+    publishedTime: "2026-12-15T10:00:00Z",
+    modifiedTime: "2026-12-15T10:00:00Z",
     section: "Fashion Guides",
     tags: [
       "women's fashion guide",
@@ -85,20 +85,20 @@ export const blogPosts = [
     `,
     relatedPosts: [
       "wardrobe-essentials-guide",
-      "fashion-trends-2024"
+      "fashion-trends-2026"
     ]
   },
   {
-    slug: "fashion-trends-2024",
-    title: "Fashion Trends 2024: What's Hot in Women's Clothing",
-    description: "Discover the latest fashion trends for 2024, including popular styles, colors, and must-have pieces. Stay ahead of the curve with these contemporary fashion trends.",
-    metaTitle: "Fashion Trends 2024 - Latest Women's Clothing Styles",
-    imgUrl: "/images/blog/fashion-trends-2024.jpg",
-    publishedTime: "2024-12-10T10:00:00Z",
-    modifiedTime: "2024-12-10T10:00:00Z",
+    slug: "fashion-trends-2026",
+    title: "Fashion Trends 2026: What's Hot in Women's Clothing",
+    description: "Discover the latest fashion trends for 2026, including popular styles, colors, and must-have pieces. Stay ahead of the curve with these contemporary fashion trends.",
+    metaTitle: "Fashion Trends 2026 - Latest Women's Clothing Styles",
+    imgUrl: "/images/blogs/fashion-trends-2026.webp",
+    publishedTime: "2026-12-10T10:00:00Z",
+    modifiedTime: "2026-12-10T10:00:00Z",
     section: "Fashion Trends",
     tags: [
-      "fashion trends 2024",
+      "fashion trends 2026",
       "women's fashion",
       "latest trends",
       "style inspiration",
@@ -106,10 +106,10 @@ export const blogPosts = [
       "trendy clothing"
     ],
     content: `
-      <h2>Introduction to 2024 Fashion Trends</h2>
-      <p>Fashion is constantly evolving, and 2024 brings exciting new trends in women's clothing. From bold colors to sustainable fashion, this year's trends focus on self-expression, comfort, and style.</p>
+      <h2>Introduction to 2026 Fashion Trends</h2>
+      <p>Fashion is constantly evolving, and 2026 brings exciting new trends in women's clothing. From bold colors to sustainable fashion, this year's trends focus on self-expression, comfort, and style.</p>
 
-      <h2>Key Fashion Trends for 2024</h2>
+      <h2>Key Fashion Trends for 2026</h2>
       <p>This year's fashion landscape is defined by several key trends:</p>
       <ul>
         <li><strong>Sustainable Fashion:</strong> Eco-friendly and ethical clothing choices</li>
@@ -119,7 +119,7 @@ export const blogPosts = [
       </ul>
 
       <h2>Popular Styles and Silhouettes</h2>
-      <p>2024 sees the return of several classic styles with modern twists:</p>
+      <p>2026 sees the return of several classic styles with modern twists:</p>
       
       <h3>Dresses</h3>
       <ul>
@@ -146,7 +146,7 @@ export const blogPosts = [
       </ul>
 
       <h2>Color Trends</h2>
-      <p>2024 color palette includes:</p>
+      <p>2026 color palette includes:</p>
       <ul>
         <li><strong>Bold Reds:</strong> Vibrant reds making statements</li>
         <li><strong>Soft Pastels:</strong> Gentle pastel shades for spring</li>
@@ -173,7 +173,7 @@ export const blogPosts = [
       </ul>
 
       <h2>Conclusion</h2>
-      <p>2024 fashion trends offer exciting opportunities to refresh your wardrobe and express your personal style. Whether you prefer bold statements or subtle updates, there's a trend for everyone. Remember to choose pieces that make you feel confident and comfortable.</p>
+      <p>2026 fashion trends offer exciting opportunities to refresh your wardrobe and express your personal style. Whether you prefer bold statements or subtle updates, there's a trend for everyone. Remember to choose pieces that make you feel confident and comfortable.</p>
     `,
     relatedPosts: [
       "wardrobe-essentials-guide",
@@ -185,9 +185,9 @@ export const blogPosts = [
     title: "Wardrobe Essentials: Must-Have Pieces for Every Woman",
     description: "Build a versatile wardrobe with these essential pieces. Discover the must-have items every woman needs in her closet for creating stylish outfits for any occasion.",
     metaTitle: "Wardrobe Essentials Guide - Must-Have Women's Clothing",
-    imgUrl: "/images/blog/wardrobe-essentials.jpg",
-    publishedTime: "2024-12-08T10:00:00Z",
-    modifiedTime: "2024-12-08T10:00:00Z",
+    imgUrl: "/images/blogs/wardrobe-essentials.webp",
+    publishedTime: "2026-12-08T10:00:00Z",
+    modifiedTime: "2026-12-08T10:00:00Z",
     section: "Style Guides",
     tags: [
       "wardrobe essentials",
@@ -272,7 +272,7 @@ export const blogPosts = [
       <p>Building a wardrobe of essentials creates a solid foundation for your personal style. These timeless pieces can be mixed and matched to create countless outfits, making getting dressed easier and more enjoyable. Invest in quality essentials that will serve you well for years to come.</p>
     `,
     relatedPosts: [
-      "fashion-trends-2024",
+      "fashion-trends-2026",
       "complete-guide-to-womens-fashion"
     ]
   },
@@ -281,9 +281,9 @@ export const blogPosts = [
     title: "Styling Tips for Women's Clothing: How to Create Perfect Outfits",
     description: "Learn expert styling tips for women's clothing. Discover how to mix and match pieces, accessorize outfits, and create stylish looks for any occasion.",
     metaTitle: "Styling Tips for Women's Clothing - Fashion Guide",
-    imgUrl: "/images/blog/dry-fruits-guide.jpg",
-    publishedTime: "2024-12-05T10:00:00Z",
-    modifiedTime: "2024-12-05T10:00:00Z",
+    imgUrl: "/images/blogs/styling-tips-womens-clothing.webp",
+    publishedTime: "2026-12-05T10:00:00Z",
+    modifiedTime: "2026-12-05T10:00:00Z",
     section: "Product Guides",
     tags: [
       "styling tips",
@@ -366,9 +366,9 @@ export const blogPosts = [
     title: "Seasonal Fashion Guide: Dressing for Every Season",
     description: "Discover how to dress for each season with our comprehensive fashion guide. Learn about seasonal colors, fabrics, and styles that work best throughout the year.",
     metaTitle: "Seasonal Fashion Guide - Year-Round Style Tips",
-    imgUrl: "/images/blog/seasonal-fashion.jpg",
-    publishedTime: "2024-12-03T10:00:00Z",
-    modifiedTime: "2024-12-03T10:00:00Z",
+    imgUrl: "/images/blogs/seasonal-fashion.webp",
+    publishedTime: "2026-12-03T10:00:00Z",
+    modifiedTime: "2026-12-03T10:00:00Z",
     section: "Product Guides",
     tags: [
       "seasonal fashion",
