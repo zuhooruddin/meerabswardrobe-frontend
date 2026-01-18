@@ -30,7 +30,7 @@ const FAQPage = (props) => {
   const imgbaseurl = process.env.NEXT_PUBLIC_BACKEND_API_BASE + "media/";
   const apiUrl = process.env.NEXT_PUBLIC_BACKEND_API_BASE;
 
-  const title = "return-policy";
+  const title = "faq";
   const [data, setData] = useState(null);
   useEffect(() => {
     if (title) {
