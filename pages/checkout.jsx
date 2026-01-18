@@ -103,7 +103,7 @@ const Checkout = () => {
     else{
       const userid=null 
     
-      const data = await api.addOrder(values,cartList,totalPrice,userid,deliveryFee ).then((res) => {
+      const data = await api.addOrder(values,cartList,totalPrice,deliveryFee,userid).then((res) => {
         if(res.status == 200){
           if(paymentMethod!='cod'){
             console.log('payment with credit card');
