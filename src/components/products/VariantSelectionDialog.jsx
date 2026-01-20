@@ -21,9 +21,15 @@ import useSettings from "hooks/useSettings";
 const DialogContainer = styled(Box)(({ theme }) => ({
   background: theme.palette.background.paper,
   borderRadius: "16px",
-  overflow: "hidden",
+  overflow: "auto",
   maxWidth: "900px",
   width: "100%",
+  maxHeight: "90vh",
+  [theme.breakpoints.down("sm")]: {
+    borderRadius: 0,
+    maxWidth: "100%",
+    maxHeight: "100vh",
+  },
 }));
 
 const MainImageContainer = styled(Box)(({ theme }) => ({
@@ -50,6 +56,10 @@ const ThumbnailContainer = styled(Box)(({ theme, selected }) => ({
   "&:hover": {
     borderColor: theme.palette.primary.main,
     transform: "scale(1.05)",
+  },
+  [theme.breakpoints.down("sm")]: {
+    width: "64px",
+    height: "64px",
   },
 }));
 
@@ -79,6 +89,10 @@ const ColorSwatch = styled(Box)(({ theme, selected, colorHex }) => ({
     display: selected ? "flex" : "none",
     alignItems: "center",
     justifyContent: "center",
+  },
+  [theme.breakpoints.down("sm")]: {
+    width: "40px",
+    height: "40px",
   },
 }));
 
@@ -515,18 +529,18 @@ const VariantSelectionDialog = ({
   const imageUrl = mainImage;
 
   return (
-      <Dialog
+    <Dialog
       open={open}
       onClose={onClose}
       maxWidth="lg"
       fullWidth
       PaperProps={{
         sx: {
-          borderRadius: "16px",
+          borderRadius: { xs: 0, sm: "16px" },
           overflow: "hidden",
           background: "transparent",
           boxShadow: "none",
-          maxHeight: "90vh",
+          maxHeight: { xs: "100vh", sm: "90vh" },
         },
       }}
       sx={{
@@ -534,14 +548,14 @@ const VariantSelectionDialog = ({
       }}
     >
       <DialogContainer>
-        <Box sx={{ position: "relative", p: 3 }}>
+        <Box sx={{ position: "relative", p: { xs: 2, sm: 3 } }}>
           {/* Close Button */}
           <IconButton
             onClick={onClose}
             sx={{
               position: "absolute",
-              top: 16,
-              right: 16,
+              top: { xs: 8, sm: 16 },
+              right: { xs: 8, sm: 16 },
               zIndex: 10,
               background: "rgba(255, 255, 255, 0.9)",
               "&:hover": {
@@ -552,7 +566,7 @@ const VariantSelectionDialog = ({
             <Close />
           </IconButton>
 
-          <Grid container spacing={4}>
+          <Grid container spacing={{ xs: 2, md: 4 }}>
             {/* Left Side - Product Images */}
             <Grid item xs={12} md={6}>
               <MainImageContainer>
@@ -606,8 +620,8 @@ const VariantSelectionDialog = ({
                   <H3
                   sx={{
                     fontWeight: 700,
-                      fontSize: "24px",
-                      color: "text.primary",
+                    fontSize: { xs: "20px", sm: "24px" },
+                    color: "text.primary",
                     mb: 1,
                     lineHeight: 1.3,
                   }}
@@ -618,8 +632,8 @@ const VariantSelectionDialog = ({
                   <H4
                   sx={{
                     fontWeight: 800,
-                      fontSize: "28px",
-                      color: "primary.main",
+                    fontSize: { xs: "22px", sm: "28px" },
+                    color: "primary.main",
                   }}
                 >
                       {currency} {(displayPrice > 0 ? displayPrice : baseFinalSalePrice).toFixed(2)}
