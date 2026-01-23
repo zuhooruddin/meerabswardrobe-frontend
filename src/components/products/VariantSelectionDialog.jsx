@@ -705,9 +705,11 @@ const VariantSelectionDialog = ({
           overflow: "hidden",
           background: "transparent",
           boxShadow: "none",
-          maxHeight: "90vh",
+          maxHeight: { xs: "95vh", sm: "90vh" },
           margin: { xs: "8px", sm: "16px" },
           width: { xs: "calc(100% - 16px)", sm: "auto" },
+          display: "flex",
+          flexDirection: "column",
         },
       }}
       sx={{
@@ -715,7 +717,13 @@ const VariantSelectionDialog = ({
       }}
     >
       <DialogContainer>
-        <Box sx={{ position: "relative", p: { xs: 2, sm: 3 } }}>
+        <Box sx={{ 
+          position: "relative", 
+          p: { xs: 2, sm: 3 },
+          maxHeight: { xs: "95vh", sm: "auto" },
+          overflowY: { xs: "auto", sm: "visible" },
+          overflowX: "hidden",
+        }}>
           {/* Close Button */}
           <IconButton
             onClick={onClose}
@@ -783,7 +791,12 @@ const VariantSelectionDialog = ({
 
             {/* Right Side - Product Info & Variants */}
             <Grid item xs={12} md={6}>
-              <Box sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
+              <Box sx={{ 
+                height: "100%", 
+                display: "flex", 
+                flexDirection: "column",
+                minHeight: { xs: "auto", sm: "100%" },
+              }}>
                 {/* Product Name & Price */}
                 <Box sx={{ mb: { xs: 2, sm: 3 } }}>
                   <H3
@@ -937,60 +950,60 @@ const VariantSelectionDialog = ({
                             );
                           })}
                         </RadioGroup>
-            </Box>
-          )}
+                      </Box>
+                    )}
 
-          {/* Stock Status */}
-          {selectedVariant && (
+                    {/* Stock Status */}
+                    {selectedVariant && (
                       <Box sx={{ mb: { xs: 1.5, sm: 2 } }}>
-              {isOutOfStock ? (
-                <Typography
-                  sx={{
+                        {isOutOfStock ? (
+                          <Typography
+                            sx={{
                               color: "error.main",
-                    fontWeight: 600,
-                    fontSize: { xs: "12px", sm: "14px" },
-                  }}
-                >
-                  ⚠️ This variant is out of stock
-                </Typography>
-              ) : selectedVariant.stock_quantity <= 5 ? (
-                <Typography
-                  sx={{
+                              fontWeight: 600,
+                              fontSize: { xs: "12px", sm: "14px" },
+                            }}
+                          >
+                            ⚠️ This variant is out of stock
+                          </Typography>
+                        ) : selectedVariant.stock_quantity <= 5 ? (
+                          <Typography
+                            sx={{
                               color: "warning.main",
-                    fontWeight: 600,
-                    fontSize: { xs: "12px", sm: "14px" },
-                  }}
-                >
-                  ⚠️ Only {selectedVariant.stock_quantity} left in stock!
-                </Typography>
-              ) : (
-                <Typography
-                  sx={{
+                              fontWeight: 600,
+                              fontSize: { xs: "12px", sm: "14px" },
+                            }}
+                          >
+                            ⚠️ Only {selectedVariant.stock_quantity} left in stock!
+                          </Typography>
+                        ) : (
+                          <Typography
+                            sx={{
                               color: "success.main",
-                    fontWeight: 600,
-                    fontSize: { xs: "12px", sm: "14px" },
-                  }}
-                >
+                              fontWeight: 600,
+                              fontSize: { xs: "12px", sm: "14px" },
+                            }}
+                          >
                             ✓ In Stock
-                </Typography>
+                          </Typography>
                         )}
                       </Box>
-              )}
-            </Box>
+                    )}
+                  </Box>
+                )}
 
-
-          {/* Add to Cart Button */}
-          <AddToCartButton
-            disabled={!canAddToCart}
+                {/* Add to Cart Button */}
+                <AddToCartButton
+                  disabled={!canAddToCart}
                   onClick={canAddToCart ? handleAddToCart : undefined}
-          >
+                >
                   <ShoppingCart sx={{ fontSize: { xs: "18px", sm: "20px" } }} />
-            {!selectedColor || !selectedSize
-              ? "Please Select Color & Size"
-              : isOutOfStock
-              ? "Out of Stock"
-              : "Add to Cart"}
-          </AddToCartButton>
+                  {!selectedColor || !selectedSize
+                    ? "Please Select Color & Size"
+                    : isOutOfStock
+                    ? "Out of Stock"
+                    : "Add to Cart"}
+                </AddToCartButton>
               </Box>
             </Grid>
           </Grid>
