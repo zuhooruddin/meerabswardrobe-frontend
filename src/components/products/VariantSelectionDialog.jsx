@@ -481,18 +481,31 @@ const VariantSelectionDialog = ({
       setSelectedVariant(variant);
       
       if (variant) {
-        // Use variant price if available, otherwise use calculated product price
-        const variantPrice = variant.variant_price || variant.actual_price || variant.price;
-        if (variantPrice && variantPrice > 0) {
-          // Apply discount to variant price if product has discount
-          // Variant price is treated as MRP, so we apply discount to it
-          let finalVariantPrice = parseFloat(variantPrice);
-          if (numericDiscount > 0 && numericMrp > 0) {
-            // Apply the same discount percentage to variant price
+        // Get variant price - prioritize variant_price (MRP) if available
+        const variantMrp = variant.variant_price;
+        const variantActualPrice = variant.actual_price || variant.price;
+        
+        if (variantMrp && variantMrp > 0) {
+          // Variant has explicit MRP - check if it matches product MRP
+          const priceDifference = Math.abs(variantMrp - numericMrp);
+          const isSameBasePrice = priceDifference < 0.01; // Allow small floating point differences
+          
+          let finalVariantPrice = parseFloat(variantMrp);
+          
+          // Only apply product discount if variant uses the same base price as product
+          // This prevents double discounting when variant has different pricing structure
+          if (numericDiscount > 0 && numericMrp > 0 && isSameBasePrice) {
+            // Variant uses same base price as product, apply product discount
             const discountAmount = (finalVariantPrice * numericDiscount) / 100;
             finalVariantPrice = finalVariantPrice - discountAmount;
           }
+          // If variant has different base price, use it as-is (no discount applied)
+          
           setDisplayPrice(finalVariantPrice);
+        } else if (variantActualPrice && variantActualPrice > 0) {
+          // No explicit variant MRP, use actual_price as-is (backend calculated, may already be final)
+          // Don't apply discount to avoid double discounting
+          setDisplayPrice(parseFloat(variantActualPrice));
         } else {
           // Fallback to memoized calculated product price
           setDisplayPrice(baseFinalSalePrice);
@@ -539,32 +552,47 @@ const VariantSelectionDialog = ({
       return;
     }
 
-    // Use variant price if available, otherwise use calculated product price
-    const variantPrice = selectedVariant.actual_price || selectedVariant.variant_price || selectedVariant.price;
+    // Get variant price - prioritize variant_price (MRP) if available
+    const variantMrp = selectedVariant.variant_price;
+    const variantActualPrice = selectedVariant.actual_price || selectedVariant.price;
     let priceToStore;
     
-    if (variantPrice && variantPrice > 0) {
-      // Variant has its own price - treat it as MRP and apply discount if product has discount
-      let finalVariantPrice = parseFloat(variantPrice);
-      if (numericDiscount > 0 && numericMrp > 0) {
-        // Apply the same discount percentage to variant price
+    if (variantMrp && variantMrp > 0) {
+      // Variant has explicit MRP - check if it matches product MRP
+      const priceDifference = Math.abs(variantMrp - numericMrp);
+      const isSameBasePrice = priceDifference < 0.01; // Allow small floating point differences
+      
+      let finalVariantPrice = parseFloat(variantMrp);
+      
+      // Only apply product discount if variant uses the same base price as product
+      // This prevents double discounting when variant has different pricing structure
+      if (numericDiscount > 0 && numericMrp > 0 && isSameBasePrice) {
+        // Variant uses same base price as product, apply product discount
         const discountAmount = (finalVariantPrice * numericDiscount) / 100;
         finalVariantPrice = finalVariantPrice - discountAmount;
       }
+      // If variant has different base price, use it as-is (no discount applied)
+      
       priceToStore = finalVariantPrice;
+    } else if (variantActualPrice && variantActualPrice > 0) {
+      // No explicit variant MRP, use actual_price as-is (backend calculated, may already be final)
+      // Don't apply discount to avoid double discounting
+      priceToStore = parseFloat(variantActualPrice);
     } else {
       // No variant price, use calculated product price
       priceToStore = baseFinalSalePrice;
     }
     
     // Use variant MRP if available, otherwise use product MRP
-    const variantMrp = variantPrice && variantPrice > 0 ? parseFloat(variantPrice) : numericMrp;
+    const variantMrpForCart = variantMrp && variantMrp > 0 
+      ? parseFloat(variantMrp)
+      : (variantActualPrice && variantActualPrice > 0 ? parseFloat(variantActualPrice) : numericMrp);
     
     const imageUrl = productImages[selectedImageIndex] || productImages[0] || getImageUrl(product?.image || product?.imgUrl || '');
     const image = imageUrl;
 
     const payload = {
-      mrp: variantMrp,
+      mrp: variantMrpForCart,
       salePrice: priceToStore,
       salePrices: priceToStore,
       price: priceToStore,
