@@ -19,7 +19,10 @@ const SearchCard9List = ({ category,ProductReviews }) => {
   const { data: session} = useSession()
 
   const fetcher = async (url) => await axios.get(url).then((res) => res.data);
-  const { data, error } = useSWR(server_ip + `getAllWebsitePaginatedItems?page=${pageIndex}&search=${category}&pageSize=${pageSize}&sort=${sortOption}`, fetcher);
+  // Properly encode the search query to handle special characters and spaces
+  const encodedCategory = category ? encodeURIComponent(category.trim()) : '';
+  const searchUrl = server_ip + `getAllWebsitePaginatedItems?page=${pageIndex}&pageSize=${pageSize}&sort=${sortOption}${encodedCategory ? `&search=${encodedCategory}` : ''}`;
+  const { data, error } = useSWR(searchUrl, fetcher);
 
   const isLoading = !data && !error;
 

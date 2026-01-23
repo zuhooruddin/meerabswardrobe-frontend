@@ -540,9 +540,9 @@ const ProductCard1 = ({
         handleCloseDialog={() => setOpenDialog(false)}
         product={{
           name,
-          mrp: numericMrp,
+          mrp: numericMrp, // Pass original MRP, not discounted price
           id,
-          salePrice: finalSalePrice,
+          salePrice: numericSalePrice, // Pass original salePrice (before discount calculation)
           discount: numericDiscount,
           sku,
           slug,
@@ -561,9 +561,9 @@ const ProductCard1 = ({
         onClose={() => setOpenVariantDialog(false)}
         product={{
           name,
-          mrp: numericMrp,
+          mrp: numericMrp, // Pass original MRP, not discounted price
           id,
-          salePrice: finalSalePrice,
+          salePrice: numericSalePrice, // Pass original salePrice (before discount calculation)
           discount: numericDiscount,
           sku,
           slug,

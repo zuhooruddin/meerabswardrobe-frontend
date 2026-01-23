@@ -403,8 +403,8 @@ useEffect(()=>{
         product={{
           id,
           name,
-          mrp: numericMrp,
-          salePrice: finalSalePrice,
+          mrp: numericMrp, // Pass original MRP, not discounted price
+          salePrice: numericSalePrice, // Pass original salePrice (before discount calculation)
           discount: numericDiscount,
           sku,
           slug,
@@ -591,8 +591,8 @@ useEffect(()=>{
         product={{
           id,
           name,
-          mrp: numericMrp,
-          salePrice: finalSalePrice,
+          mrp: numericMrp, // Pass original MRP, not discounted price
+          salePrice: numericSalePrice, // Pass original salePrice (before discount calculation)
           discount: numericDiscount,
           sku,
           slug,

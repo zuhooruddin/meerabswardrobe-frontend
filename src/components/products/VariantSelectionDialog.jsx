@@ -356,38 +356,20 @@ const VariantSelectionDialog = ({
 
   // Consistent discount calculation: discount is applied to MRP, not salePrice
   // Use useMemo to ensure recalculation when product values change
+  // IMPORTANT: Always calculate from MRP when discount exists to avoid double discounting
   const { numericMrp, numericDiscount, baseFinalSalePrice } = useMemo(() => {
     // Always use the MRP passed from product cards (this should be the original MRP before discount)
     let mrp = product?.mrp != null && !isNaN(product.mrp) ? parseFloat(product.mrp) : 0;
     const discount = product?.discount != null && !isNaN(product.discount) ? parseFloat(product.discount) : 0;
     const passedSalePrice = product?.salePrice != null && !isNaN(product.salePrice) ? parseFloat(product.salePrice) : 0;
     
-    // IMPORTANT: If discount exists and passedSalePrice is provided, but MRP equals passedSalePrice,
-    // it means the MRP passed might be wrong. In this case, calculate MRP from the discounted price.
-    // Formula: MRP = discountedPrice / (1 - discount/100)
-    if (discount > 0 && passedSalePrice > 0 && mrp > 0 && Math.abs(mrp - passedSalePrice) < 0.01) {
-      // MRP equals salePrice, which shouldn't happen with a discount
-      // Recalculate MRP from the discounted price
-      const calculatedMrp = passedSalePrice / (1 - discount / 100);
-      if (calculatedMrp > passedSalePrice) {
-        mrp = calculatedMrp;
-        console.warn('⚠️ VariantSelectionDialog: MRP was equal to salePrice with discount. Recalculated MRP:', {
-          originalMrp: product?.mrp,
-          newMrp: mrp,
-          discount,
-          passedSalePrice,
-        });
-      }
-    }
-    
-    // Calculate discount amount from MRP (original price)
-    const discountAmount = discount > 0 && mrp > 0 ? (mrp * discount) / 100 : 0;
-    
-    // Final sale price: ALWAYS calculate from MRP when discount exists
-    // IMPORTANT: When discount > 0, we MUST calculate from MRP, ignoring passed salePrice
+    // CRITICAL: When discount exists, ALWAYS calculate from MRP, ignoring any passed salePrice
+    // This prevents double discounting (product cards may pass already-discounted prices)
     let finalPrice;
     if (discount > 0 && mrp > 0) {
-      // Calculate discounted price from MRP
+      // Calculate discount amount from MRP (original price)
+      const discountAmount = (mrp * discount) / 100;
+      // Calculate final price by applying discount to MRP
       finalPrice = mrp - discountAmount;
     } else if (passedSalePrice > 0) {
       // No discount, use passed salePrice
@@ -405,11 +387,12 @@ const VariantSelectionDialog = ({
         originalMrp: product?.mrp,
         calculatedMrp: mrp,
         discount,
-        discountAmount,
+        discountAmount: discount > 0 && mrp > 0 ? (mrp * discount) / 100 : 0,
         calculatedFinalPrice: finalPrice,
         passedSalePrice,
         difference: mrp - finalPrice,
         shouldShowDiscount: mrp > finalPrice,
+        note: 'Always calculating from MRP when discount exists to prevent double discounting',
       });
     }
     

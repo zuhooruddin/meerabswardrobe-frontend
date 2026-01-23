@@ -256,13 +256,9 @@ const ProductViewDialog = (props) => {
       
       // If product has variants and item is not in cart with variant info, open variant selection dialog
       if (hasVariants && !cartItem?.variant_id && (addflag === true || addflag === 1)) {
-        // First open the variant dialog, then close the parent dialog
-        // This ensures the variant dialog opens even for non-logged-in users
+        // Open the variant dialog - it will appear on top due to higher z-index (1502 vs 1501)
+        // Don't close parent dialog to prevent unmounting the variant dialog
         setOpenVariantDialog(true);
-        // Close parent dialog after a small delay to ensure variant dialog state is set
-        setTimeout(() => {
-          handleCloseDialog();
-        }, 100);
         return;
       }
 
@@ -491,9 +487,17 @@ const ProductViewDialog = (props) => {
 
     <VariantSelectionDialog
       open={openVariantDialog}
-      onClose={() => setOpenVariantDialog(false)}
+      onClose={() => {
+        setOpenVariantDialog(false);
+        // Close parent dialog when variant dialog closes
+        handleCloseDialog();
+      }}
       product={{
         ...product,
+        // Ensure we pass original MRP and discount, not pre-calculated prices
+        mrp: product?.mrp, // Original MRP
+        salePrice: product?.salePrice, // Original salePrice (before discount calculation)
+        discount: product?.discount, // Discount percentage
         imgGroup: productImages.length > 0 ? productImages : (product?.imgGroup || []),
         gallery: product?.gallery || productImages,
         variants: product?.variants || [],
