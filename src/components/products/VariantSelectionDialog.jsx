@@ -839,8 +839,8 @@ const VariantSelectionDialog = ({
 
                 {/* Variant Selection */}
           {loading ? (
-            <Box sx={{ textAlign: "center", py: 4 }}>
-                    <Typography sx={{ color: "text.secondary" }}>
+            <Box sx={{ textAlign: "center", py: { xs: 3, sm: 4 } }}>
+                    <Typography sx={{ color: "text.secondary", fontSize: { xs: "14px", sm: "16px" } }}>
                 Loading variant options...
               </Typography>
             </Box>
@@ -942,13 +942,13 @@ const VariantSelectionDialog = ({
 
           {/* Stock Status */}
           {selectedVariant && (
-                      <Box sx={{ mb: 2 }}>
+                      <Box sx={{ mb: { xs: 1.5, sm: 2 } }}>
               {isOutOfStock ? (
                 <Typography
                   sx={{
                               color: "error.main",
                     fontWeight: 600,
-                    fontSize: "14px",
+                    fontSize: { xs: "12px", sm: "14px" },
                   }}
                 >
                   ⚠️ This variant is out of stock
@@ -958,7 +958,7 @@ const VariantSelectionDialog = ({
                   sx={{
                               color: "warning.main",
                     fontWeight: 600,
-                    fontSize: "14px",
+                    fontSize: { xs: "12px", sm: "14px" },
                   }}
                 >
                   ⚠️ Only {selectedVariant.stock_quantity} left in stock!
@@ -968,7 +968,7 @@ const VariantSelectionDialog = ({
                   sx={{
                               color: "success.main",
                     fontWeight: 600,
-                    fontSize: "14px",
+                    fontSize: { xs: "12px", sm: "14px" },
                   }}
                 >
                             ✓ In Stock
@@ -977,14 +977,14 @@ const VariantSelectionDialog = ({
                       </Box>
               )}
             </Box>
-          )}
+
 
           {/* Add to Cart Button */}
           <AddToCartButton
             disabled={!canAddToCart}
                   onClick={canAddToCart ? handleAddToCart : undefined}
           >
-                  <ShoppingCart sx={{ fontSize: "20px" }} />
+                  <ShoppingCart sx={{ fontSize: { xs: "18px", sm: "20px" } }} />
             {!selectedColor || !selectedSize
               ? "Please Select Color & Size"
               : isOutOfStock
