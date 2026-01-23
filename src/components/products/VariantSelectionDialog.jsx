@@ -26,6 +26,10 @@ const DialogContainer = styled(Box)(({ theme }) => ({
   overflow: "hidden",
   maxWidth: "900px",
   width: "100%",
+  [theme.breakpoints.down('sm')]: {
+    borderRadius: "12px",
+    maxWidth: "100%",
+  },
 }));
 
 const MainImageContainer = styled(Box)(({ theme }) => ({
@@ -39,6 +43,10 @@ const MainImageContainer = styled(Box)(({ theme }) => ({
   justifyContent: "center",
   marginBottom: "16px",
   position: "relative",
+  [theme.breakpoints.down('sm')]: {
+    borderRadius: "8px",
+    marginBottom: "12px",
+  },
 }));
 
 const ThumbnailContainer = styled(Box)(({ theme, selected }) => ({
@@ -52,6 +60,12 @@ const ThumbnailContainer = styled(Box)(({ theme, selected }) => ({
   "&:hover": {
     borderColor: theme.palette.primary.main,
     transform: "scale(1.05)",
+  },
+  [theme.breakpoints.down('sm')]: {
+    width: "60px",
+    height: "60px",
+    borderRadius: "6px",
+    border: selected ? `2px solid ${theme.palette.primary.main}` : `1.5px solid ${theme.palette.grey[300]}`,
   },
 }));
 
@@ -81,6 +95,15 @@ const ColorSwatch = styled(Box)(({ theme, selected, colorHex }) => ({
     display: selected ? "flex" : "none",
     alignItems: "center",
     justifyContent: "center",
+  },
+  [theme.breakpoints.down('sm')]: {
+    width: "40px",
+    height: "40px",
+    border: selected ? `2.5px solid ${theme.palette.primary.main}` : `1.5px solid ${theme.palette.grey[300]}`,
+    "&::after": {
+      width: "16px",
+      height: "16px",
+    },
   },
 }));
 
@@ -125,6 +148,12 @@ const AddToCartButton = styled(Box)(({ theme, disabled }) => ({
   },
   "&:active": {
     transform: disabled ? "none" : "translateY(0)",
+  },
+  [theme.breakpoints.down('sm')]: {
+    padding: "12px 20px",
+    fontSize: "14px",
+    borderRadius: "10px",
+    gap: "6px",
   },
 }));
 
@@ -677,6 +706,8 @@ const VariantSelectionDialog = ({
           background: "transparent",
           boxShadow: "none",
           maxHeight: "90vh",
+          margin: { xs: "8px", sm: "16px" },
+          width: { xs: "calc(100% - 16px)", sm: "auto" },
         },
       }}
       sx={{
@@ -684,25 +715,27 @@ const VariantSelectionDialog = ({
       }}
     >
       <DialogContainer>
-        <Box sx={{ position: "relative", p: 3 }}>
+        <Box sx={{ position: "relative", p: { xs: 2, sm: 3 } }}>
           {/* Close Button */}
           <IconButton
             onClick={onClose}
             sx={{
               position: "absolute",
-              top: 16,
-              right: 16,
+              top: { xs: 8, sm: 16 },
+              right: { xs: 8, sm: 16 },
               zIndex: 10,
               background: "rgba(255, 255, 255, 0.9)",
+              width: { xs: 32, sm: 40 },
+              height: { xs: 32, sm: 40 },
               "&:hover": {
                 background: "rgba(255, 255, 255, 1)",
               },
             }}
           >
-            <Close />
+            <Close sx={{ fontSize: { xs: 20, sm: 24 } }} />
           </IconButton>
 
-          <Grid container spacing={4}>
+          <Grid container spacing={{ xs: 2, sm: 4 }}>
             {/* Left Side - Product Images */}
             <Grid item xs={12} md={6}>
               <MainImageContainer>
@@ -721,7 +754,7 @@ const VariantSelectionDialog = ({
               
               {/* Thumbnails */}
               {productImages.length > 1 && (
-                <Box sx={{ display: "flex", gap: 2, justifyContent: "center", flexWrap: "wrap" }}>
+                <Box sx={{ display: "flex", gap: { xs: 1, sm: 2 }, justifyContent: "center", flexWrap: "wrap" }}>
                     {productImages.slice(0, 4).map((img, index) => {
                     const thumbUrl = img; // Already normalized by getImageUrl in productImages
                     return (
@@ -752,11 +785,11 @@ const VariantSelectionDialog = ({
             <Grid item xs={12} md={6}>
               <Box sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
                 {/* Product Name & Price */}
-                <Box sx={{ mb: 3 }}>
+                <Box sx={{ mb: { xs: 2, sm: 3 } }}>
                   <H3
                   sx={{
                     fontWeight: 700,
-                      fontSize: "24px",
+                      fontSize: { xs: "18px", sm: "24px" },
                       color: "text.primary",
                     mb: 1,
                     lineHeight: 1.3,
@@ -764,11 +797,11 @@ const VariantSelectionDialog = ({
                 >
                     {product?.name || 'Product'}
                   </H3>
-                  <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 2, flexWrap: 'wrap' }}>
+                  <Box sx={{ display: 'flex', alignItems: 'baseline', gap: { xs: 1, sm: 2 }, flexWrap: 'wrap' }}>
                   <H4
                   sx={{
                     fontWeight: 800,
-                      fontSize: "28px",
+                      fontSize: { xs: "22px", sm: "28px" },
                       color: "primary.main",
                   }}
                 >
@@ -779,7 +812,7 @@ const VariantSelectionDialog = ({
                         <Typography
                           sx={{
                             color: "text.secondary",
-                            fontSize: "18px",
+                            fontSize: { xs: "14px", sm: "18px" },
                             textDecoration: "line-through",
                             fontWeight: 500,
                           }}
@@ -790,10 +823,10 @@ const VariantSelectionDialog = ({
                           sx={{
                             background: "linear-gradient(135deg, #10B981 0%, #059669 100%)",
                             color: "white",
-                            px: 1.5,
-                            py: 0.5,
-                            borderRadius: "12px",
-                            fontSize: "13px",
+                            px: { xs: 1, sm: 1.5 },
+                            py: { xs: 0.25, sm: 0.5 },
+                            borderRadius: { xs: "8px", sm: "12px" },
+                            fontSize: { xs: "11px", sm: "13px" },
                             fontWeight: 700,
                           }}
                         >
@@ -812,21 +845,21 @@ const VariantSelectionDialog = ({
               </Typography>
             </Box>
                 ) : (
-                  <Box sx={{ flex: 1, mb: 3 }}>
+                  <Box sx={{ flex: 1, mb: { xs: 2, sm: 3 } }}>
                     {/* Color Selection */}
                     {availableColors.length > 0 && (
-                      <Box sx={{ mb: 4 }}>
+                      <Box sx={{ mb: { xs: 2.5, sm: 4 } }}>
                         <Typography
                           sx={{
                             fontWeight: 600,
-                            fontSize: "16px",
+                            fontSize: { xs: "14px", sm: "16px" },
                             color: "text.primary",
-                            mb: 2,
+                            mb: { xs: 1.5, sm: 2 },
                           }}
                         >
                           Choose a Color
                         </Typography>
-                        <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
+                        <Box sx={{ display: "flex", gap: { xs: 1.5, sm: 2 }, flexWrap: "wrap" }}>
                           {availableColors.map((colorData) => {
                             const isSelected = selectedColor === colorData.color;
                             return (
@@ -848,7 +881,7 @@ const VariantSelectionDialog = ({
                                     }}
                                   >
                                     {isSelected && (
-                                      <CheckIcon sx={{ color: "#fff", fontSize: "20px" }} />
+                                      <CheckIcon sx={{ color: "#fff", fontSize: { xs: "16px", sm: "20px" } }} />
                                     )}
                                   </ColorSwatch>
                                 </Box>
@@ -861,13 +894,13 @@ const VariantSelectionDialog = ({
 
                     {/* Size Selection */}
                     {availableSizes.length > 0 && (
-                      <Box sx={{ mb: 4 }}>
+                      <Box sx={{ mb: { xs: 2.5, sm: 4 } }}>
                         <Typography
               sx={{
                             fontWeight: 600,
-                            fontSize: "16px",
+                            fontSize: { xs: "14px", sm: "16px" },
                             color: "text.primary",
-                            mb: 2,
+                            mb: { xs: 1.5, sm: 2 },
                           }}
                         >
                           Choose a Size
@@ -875,7 +908,7 @@ const VariantSelectionDialog = ({
                         <RadioGroup
                           value={selectedSize || ''}
                           onChange={(e) => setSelectedSize(e.target.value)}
-                          sx={{ gap: 1 }}
+                          sx={{ gap: { xs: 0.5, sm: 1 } }}
             >
                           {availableSizes.map((size) => {
                             const variantForSize = variants.find(
@@ -895,7 +928,7 @@ const VariantSelectionDialog = ({
                                 disabled={!isAvailable}
                                 sx={{
                                   "& .MuiFormControlLabel-label": {
-                                    fontSize: "15px",
+                                    fontSize: { xs: "13px", sm: "15px" },
                                     fontWeight: selectedSize === size ? 600 : 400,
                                     color: isAvailable ? "text.primary" : "text.disabled",
                                   },
