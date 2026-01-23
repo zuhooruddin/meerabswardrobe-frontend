@@ -333,7 +333,7 @@ const ProductIntro = ({ product, slug, total, average, category }) => {
   // For display: show original price (MRP) when discount exists
   const discountprice = numericDiscount > 0 ? numericMrp : numericSalePrice;
 
-  const [currency, setCurrency] = useState('PKR');
+  const [currency, setCurrency] = useState('Euro');
   const [selectedImage, setSelectedImage] = useState(0);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);

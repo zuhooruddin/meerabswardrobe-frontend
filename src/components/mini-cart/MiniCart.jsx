@@ -179,7 +179,7 @@ const MiniCart = ({ toggleSidenav }) => {
               </Link> */}
 
               <Tiny color="grey.600">
-               {currency || 'PKR'}. {item.salePrice != null && !isNaN(item.salePrice) ? item.salePrice.toFixed(2) : '0.00'} x {item.qty || 0}
+               {currency || 'Euro'}. {item.salePrice != null && !isNaN(item.salePrice) ? item.salePrice.toFixed(2) : '0.00'} x {item.qty || 0}
               </Tiny>
 
               <Box
@@ -188,7 +188,7 @@ const MiniCart = ({ toggleSidenav }) => {
                 color="primary.main"
                 mt={0.5}
               >
-                {currency || 'PKR'}. {item.salePrice != null && !isNaN(item.salePrice) && item.qty != null && !isNaN(item.qty) ? (item.qty * item.salePrice).toFixed(2) : '0.00'}
+                {currency || 'Euro'}. {item.salePrice != null && !isNaN(item.salePrice) && item.qty != null && !isNaN(item.qty) ? (item.qty * item.salePrice).toFixed(2) : '0.00'}
               </Box>
             </Box>
 
@@ -217,7 +217,7 @@ const MiniCart = ({ toggleSidenav }) => {
               }}
               onClick={toggleSidenav}
             >
-              Checkout Now ({currency || 'PKR'}. {isNaN(getTotalPrice()) ? '0.00' : getTotalPrice().toFixed(2)})
+              Checkout Now ({currency || 'Euro'}. {isNaN(getTotalPrice()) ? '0.00' : getTotalPrice().toFixed(2)})
             </BazaarButton>
           </Link>
 

@@ -144,31 +144,75 @@ const Checkout = () => {
   }
 
 
-  const handleCheckout = async (cartList,orderno,totalPrice,deliveryFee,email) => {
-
-    // console.log("Order No",orderno)
-
-
-    const stripe = await getStripePromise();
+  const handleCheckout = async (cartList, orderno, totalPrice, deliveryFee, email) => {
     try {
-      const response = await fetch("/api/create-checkout-session/", {
+      // Validate inputs
+      if (!cartList || cartList.length === 0) {
+        toast.error("Cart is empty", { position: toast.POSITION.TOP_RIGHT });
+        return;
+      }
+
+      if (!orderno) {
+        toast.error("Order number is missing", { position: toast.POSITION.TOP_RIGHT });
+        return;
+      }
+
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        toast.error("Valid email is required", { position: toast.POSITION.TOP_RIGHT });
+        return;
+      }
+
+      // Show loading state
+      setIsDisabled(true);
+
+      // Prepare cart items with proper pricing
+      const formattedCartList = cartList.map(item => ({
+        id: item.id || item.itemId,
+        name: item.name || 'Product',
+        price: item.price || item.salePrice || item.variant_price || 0,
+        qty: item.qty || 1,
+        image: item.image || '',
+        sku: item.sku || '',
+        description: item.description || undefined,
+        variant: item.variant || undefined,
+      }));
+
+      // Create checkout session
+      const response = await fetch("/api/create-checkout-session", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        cache: "no-cache",
-        body: JSON.stringify({ cartList, orderno,totalPrice,deliveryFee,email })
+        headers: { 
+          "Content-Type": "application/json" 
+        },
+        body: JSON.stringify({ 
+          cartList: formattedCartList, 
+          orderno, 
+          totalPrice, 
+          deliveryFee, 
+          email 
+        })
       });
-  
-      if (response.ok) {
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || errorData.message || 'Failed to create payment session');
+      }
+
+      const body = await response.json();
       
-        
-      const body = await response.json()
-      window.location.href = body.url
-       } else {
-         console.log('Request failed');
-        }
-      }catch (error) {
-        console.log('Error occurred during the request', error);
-       }
+      if (body.url) {
+        // Redirect to Stripe checkout
+        window.location.href = body.url;
+      } else {
+        throw new Error('Payment session URL not received');
+      }
+    } catch (error) {
+      console.error('Checkout error:', error);
+      setIsDisabled(false);
+      toast.error(
+        error.message || 'An error occurred during checkout. Please try again.',
+        { position: toast.POSITION.TOP_RIGHT }
+      );
+    }
   };
 
 

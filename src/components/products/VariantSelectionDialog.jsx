@@ -10,6 +10,7 @@ import {
   FormControlLabel,
   styled,
   Grid,
+  Tooltip,
 } from "@mui/material";
 import { Close, Check, ShoppingCart } from "@mui/icons-material";
 import { H3, H4 } from "components/Typography";
@@ -19,17 +20,12 @@ import LazyImage from "components/LazyImage";
 import useSettings from "hooks/useSettings";
 
 const DialogContainer = styled(Box)(({ theme }) => ({
+  
   background: theme.palette.background.paper,
   borderRadius: "16px",
-  overflow: "auto",
+  overflow: "hidden",
   maxWidth: "900px",
   width: "100%",
-  maxHeight: "90vh",
-  [theme.breakpoints.down("sm")]: {
-    borderRadius: 0,
-    maxWidth: "100%",
-    maxHeight: "100vh",
-  },
 }));
 
 const MainImageContainer = styled(Box)(({ theme }) => ({
@@ -56,10 +52,6 @@ const ThumbnailContainer = styled(Box)(({ theme, selected }) => ({
   "&:hover": {
     borderColor: theme.palette.primary.main,
     transform: "scale(1.05)",
-  },
-  [theme.breakpoints.down("sm")]: {
-    width: "64px",
-    height: "64px",
   },
 }));
 
@@ -89,10 +81,6 @@ const ColorSwatch = styled(Box)(({ theme, selected, colorHex }) => ({
     display: selected ? "flex" : "none",
     alignItems: "center",
     justifyContent: "center",
-  },
-  [theme.breakpoints.down("sm")]: {
-    width: "40px",
-    height: "40px",
   },
 }));
 
@@ -155,7 +143,7 @@ const VariantSelectionDialog = ({
   const [variants, setVariants] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const [currency, setCurrency] = useState('PKR');
+  const [currency, setCurrency] = useState('Euro');
 
   // Image URL construction - same as ProductIntro.jsx
   const imgbaseurl = process.env.NEXT_PUBLIC_IMAGE_BASE_API_URL;
@@ -229,6 +217,141 @@ const VariantSelectionDialog = ({
       const storedCurrency = localStorage.getItem('currency');
       if (storedCurrency) setCurrency(storedCurrency);
     }
+  }, []);
+
+  // Map color names to hex codes
+  const getColorHex = useCallback((colorName, providedHex) => {
+    // If hex is provided and valid, use it
+    if (providedHex && /^#[0-9A-F]{6}$/i.test(providedHex)) {
+      return providedHex;
+    }
+    
+    // Map common color names to hex codes
+    const colorMap = {
+      // Basic colors
+      'black': '#000000',
+      'white': '#FFFFFF',
+      'grey': '#808080',
+      'gray': '#808080',
+      'red': '#FF0000',
+      'blue': '#0000FF',
+      'green': '#008000',
+      'yellow': '#FFFF00',
+      'orange': '#FFA500',
+      'purple': '#800080',
+      'pink': '#FFC0CB',
+      'brown': '#A52A2A',
+      'beige': '#F5F5DC',
+      'navy': '#000080',
+      'maroon': '#800000',
+      'olive': '#808000',
+      'lime': '#00FF00',
+      'aqua': '#00FFFF',
+      'teal': '#008080',
+      'silver': '#C0C0C0',
+      'gold': '#FFD700',
+      'bronze': '#CD7F32',
+      
+      // Extended colors
+      'burgundy': '#800020',
+      'wine': '#722F37',
+      'crimson': '#DC143C',
+      'scarlet': '#FF2400',
+      'coral': '#FF7F50',
+      'salmon': '#FA8072',
+      'peach': '#FFE5B4',
+      'apricot': '#FBCEB1',
+      'tan': '#D2B48C',
+      'khaki': '#C3B091',
+      'mustard': '#FFDB58',
+      'amber': '#FFBF00',
+      'ivory': '#FFFFF0',
+      'cream': '#FFFDD0',
+      'champagne': '#F7E7CE',
+      'coffee': '#6F4E37',
+      'chocolate': '#7B3F00',
+      'caramel': '#AF6E4D',
+      'honey': '#FFC30B',
+      'mint': '#98FF98',
+      'emerald': '#50C878',
+      'jade': '#00A86B',
+      'turquoise': '#40E0D0',
+      'cyan': '#00FFFF',
+      'sky blue': '#87CEEB',
+      'royal blue': '#4169E1',
+      'indigo': '#4B0082',
+      'violet': '#8A2BE2',
+      'lavender': '#E6E6FA',
+      'lilac': '#C8A2C8',
+      'plum': '#8E4585',
+      'magenta': '#FF00FF',
+      'fuchsia': '#FF00FF',
+      'rose': '#FF007F',
+      'blush': '#DE5D83',
+      'dusty rose': '#C9A9A6',
+      'mauve': '#E0B0FF',
+      'taupe': '#483C32',
+      'charcoal': '#36454F',
+      'slate': '#708090',
+      'steel': '#4682B4',
+      'gunmetal': '#2C3539',
+      'bronze': '#CD7F32',
+      'copper': '#B87333',
+      'rust': '#B7410E',
+      'terracotta': '#E2725B',
+      'coral': '#FF7F50',
+      'salmon': '#FA8072',
+      'peach': '#FFE5B4',
+      'nude': '#E3BC9A',
+      'skin': '#E8B4A0',
+      'beige': '#F5F5DC',
+      'ivory': '#FFFFF0',
+      'cream': '#FFFDD0',
+      'off white': '#FAF9F6',
+      'ecru': '#C2B280',
+      
+      // Special colors from product names
+      'dalia': '#FF69B4',
+      'crystal': '#B8E6E6',
+      'sapphire': '#0F52BA',
+      'zircon': '#E8E8E8',
+      'feroza': '#00CED1',
+      'asmani nila': '#1E90FF',
+      'pista': '#90EE90',
+      'bottle green': '#006A4E',
+      'mehroon': '#800000',
+      'perple': '#800080',
+    };
+    
+    // Normalize color name for lookup
+    const normalizedColor = (colorName || '').toLowerCase().trim();
+    
+    // Try exact match first
+    if (colorMap[normalizedColor]) {
+      return colorMap[normalizedColor];
+    }
+    
+    // Try partial match (e.g., "dark blue" contains "blue")
+    for (const [key, hex] of Object.entries(colorMap)) {
+      if (normalizedColor.includes(key) || key.includes(normalizedColor)) {
+        return hex;
+      }
+    }
+    
+    // If no match found, return a default color based on first letter
+    // This provides some variety instead of all grey
+    const firstChar = normalizedColor.charAt(0);
+    const defaultColors = {
+      'a': '#FF6B6B', 'b': '#4ECDC4', 'c': '#45B7D1', 'd': '#FFA07A',
+      'e': '#98D8C8', 'f': '#F7DC6F', 'g': '#BB8FCE', 'h': '#85C1E2',
+      'i': '#F8B739', 'j': '#52BE80', 'k': '#E74C3C', 'l': '#3498DB',
+      'm': '#9B59B6', 'n': '#1ABC9C', 'o': '#E67E22', 'p': '#E91E63',
+      'q': '#00BCD4', 'r': '#F44336', 's': '#795548', 't': '#607D8B',
+      'u': '#3F51B5', 'v': '#9C27B0', 'w': '#FFFFFF', 'x': '#FFC107',
+      'y': '#FFEB3B', 'z': '#009688'
+    };
+    
+    return defaultColors[firstChar] || '#CCCCCC';
   }, []);
 
   // Consistent discount calculation: discount is applied to MRP, not salePrice
@@ -341,15 +464,17 @@ const VariantSelectionDialog = ({
     variants.forEach((variant) => {
       if (variant.status === 1 && variant.stock_quantity > 0) {
         if (!colorsMap.has(variant.color)) {
+          // Use getColorHex to get proper color hex from name or provided hex
+          const colorHex = getColorHex(variant.color, variant.color_hex);
           colorsMap.set(variant.color, {
             color: variant.color,
-            color_hex: variant.color_hex || "#ccc",
+            color_hex: colorHex,
           });
         }
       }
     });
     return Array.from(colorsMap.values());
-  }, [variants]);
+  }, [variants, getColorHex]);
 
   const availableSizes = React.useMemo(() => {
     if (!variants || variants.length === 0) return [];
@@ -529,18 +654,18 @@ const VariantSelectionDialog = ({
   const imageUrl = mainImage;
 
   return (
-    <Dialog
+      <Dialog
       open={open}
       onClose={onClose}
       maxWidth="lg"
       fullWidth
       PaperProps={{
         sx: {
-          borderRadius: { xs: 0, sm: "16px" },
+          borderRadius: "16px",
           overflow: "hidden",
           background: "transparent",
           boxShadow: "none",
-          maxHeight: { xs: "100vh", sm: "90vh" },
+          maxHeight: "90vh",
         },
       }}
       sx={{
@@ -548,14 +673,14 @@ const VariantSelectionDialog = ({
       }}
     >
       <DialogContainer>
-        <Box sx={{ position: "relative", p: { xs: 2, sm: 3 } }}>
+        <Box sx={{ position: "relative", p: 3 }}>
           {/* Close Button */}
           <IconButton
             onClick={onClose}
             sx={{
               position: "absolute",
-              top: { xs: 8, sm: 16 },
-              right: { xs: 8, sm: 16 },
+              top: 16,
+              right: 16,
               zIndex: 10,
               background: "rgba(255, 255, 255, 0.9)",
               "&:hover": {
@@ -566,7 +691,7 @@ const VariantSelectionDialog = ({
             <Close />
           </IconButton>
 
-          <Grid container spacing={{ xs: 2, md: 4 }}>
+          <Grid container spacing={4}>
             {/* Left Side - Product Images */}
             <Grid item xs={12} md={6}>
               <MainImageContainer>
@@ -620,8 +745,8 @@ const VariantSelectionDialog = ({
                   <H3
                   sx={{
                     fontWeight: 700,
-                    fontSize: { xs: "20px", sm: "24px" },
-                    color: "text.primary",
+                      fontSize: "24px",
+                      color: "text.primary",
                     mb: 1,
                     lineHeight: 1.3,
                   }}
@@ -632,8 +757,8 @@ const VariantSelectionDialog = ({
                   <H4
                   sx={{
                     fontWeight: 800,
-                    fontSize: { xs: "22px", sm: "28px" },
-                    color: "primary.main",
+                      fontSize: "28px",
+                      color: "primary.main",
                   }}
                 >
                       {currency} {(displayPrice > 0 ? displayPrice : baseFinalSalePrice).toFixed(2)}
@@ -694,23 +819,29 @@ const VariantSelectionDialog = ({
                           {availableColors.map((colorData) => {
                             const isSelected = selectedColor === colorData.color;
                             return (
-                              <Box
+                              <Tooltip
                                 key={colorData.color}
-                                sx={{ position: "relative" }}
+                                title={colorData.color}
+                                arrow
+                                placement="top"
                               >
-                                <ColorSwatch
-                                  selected={isSelected}
-                                  colorHex={colorData.color_hex}
-                                  onClick={() => {
-                                    setSelectedColor(colorData.color);
-                                    setSelectedSize(null); // Reset size when color changes
-                                  }}
+                                <Box
+                                  sx={{ position: "relative" }}
                                 >
-                                  {isSelected && (
-                                    <CheckIcon sx={{ color: "#fff", fontSize: "20px" }} />
-                                  )}
-                                </ColorSwatch>
-                              </Box>
+                                  <ColorSwatch
+                                    selected={isSelected}
+                                    colorHex={colorData.color_hex}
+                                    onClick={() => {
+                                      setSelectedColor(colorData.color);
+                                      setSelectedSize(null); // Reset size when color changes
+                                    }}
+                                  >
+                                    {isSelected && (
+                                      <CheckIcon sx={{ color: "#fff", fontSize: "20px" }} />
+                                    )}
+                                  </ColorSwatch>
+                                </Box>
+                              </Tooltip>
                             );
                           })}
                         </Box>
