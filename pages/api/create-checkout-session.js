@@ -118,10 +118,12 @@ export default async function handler(req, res) {
         enabled: true,
       },
 
-      // Consent collection
-      consent_collection: {
-        terms_of_service: 'required',
-      },
+      // Consent collection - commented out until Terms of Service URL is set in Stripe Dashboard
+      // To enable: Set Terms of Service URL in Stripe Dashboard at https://dashboard.stripe.com/settings/public
+      // Then uncomment the following:
+      // consent_collection: {
+      //   terms_of_service: 'required',
+      // },
 
       // Success and cancel URLs
       success_url: `${req.headers.origin}/success?session_id={CHECKOUT_SESSION_ID}&orderno=${encodeURIComponent(body.orderno)}`,
