@@ -41,7 +41,7 @@ function CancelPayment() {
           })
             .then((response) => response.json())
             .then((responseData) => {
-              console.log('Response from second API:', responseData);
+              // Response received
             })
             .catch((error) => {
               console.error('Error sending data to second API:', error);

@@ -236,23 +236,6 @@ const ProductViewDialog = (props) => {
 
       const hasVariants = hasProductVariants();
       
-      // Professional logging for debugging (production-safe)
-      if (addflag && typeof window !== 'undefined' && window.console) {
-        console.log('🔍 ProductViewDialog Variant Check:', {
-          productId: product.id,
-          productName: product.name,
-          hasVariants,
-          variants: product.variants,
-          variantsLength: product.variants?.length || 0,
-          available_colors: product.available_colors,
-          available_colorsLength: product.available_colors?.length || 0,
-          available_sizes: product.available_sizes,
-          available_sizesLength: product.available_sizes?.length || 0,
-          cartItemVariantId: cartItem?.variant_id || null,
-          addflag,
-          amount,
-        });
-      }
       
       // If product has variants and item is not in cart with variant info, open variant selection dialog
       if (hasVariants && !cartItem?.variant_id && (addflag === true || addflag === 1)) {

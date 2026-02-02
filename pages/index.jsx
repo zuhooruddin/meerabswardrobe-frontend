@@ -572,19 +572,6 @@ export async function getStaticProps(context) {
     slug2 ? api.getSectionProduct(slug2) : Promise.resolve([])
   ]);
 
-  // Debug logging
-  if (process.env.NODE_ENV === 'development') {
-    console.log('getStaticProps - slug:', slug);
-    console.log('getStaticProps - slug2:', slug2);
-    console.log('getStaticProps - products type:', typeof products);
-    console.log('getStaticProps - products isArray:', Array.isArray(products));
-    console.log('getStaticProps - products length:', Array.isArray(products) ? products.length : 'N/A');
-    console.log('getStaticProps - products:', products);
-    console.log('getStaticProps - product type:', typeof product);
-    console.log('getStaticProps - product isArray:', Array.isArray(product));
-    console.log('getStaticProps - product length:', Array.isArray(product) ? product.length : 'N/A');
-    console.log('getStaticProps - product:', product);
-  }
 
   ////////////////////////Section Sequence Order 2/////////////////////////
 

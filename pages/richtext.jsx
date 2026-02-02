@@ -15,7 +15,6 @@ const HomePage = () => {
       console.error('API Error:', error);
     }
   
-    console.log('Response:', data);
 
 
 
@@ -72,7 +71,7 @@ const HomePage = () => {
     })
       .then(response => response.json())
       .then(responseData => {
-        console.log('API Response:', responseData);
+        // API Response received
       })
       .catch(error => {
         console.error('API Error:', error);

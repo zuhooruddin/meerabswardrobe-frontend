@@ -124,8 +124,6 @@ const AddressList = () => {
     validationSchema: checkoutSchema,
     onSubmit: async (values, { resetForm }) => {
 
-console.log("Values",values)
-
 
       try {
         const formData = new FormData();

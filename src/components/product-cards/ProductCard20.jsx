@@ -205,24 +205,6 @@ const total=Reviews.length;
       // Professional variant detection using helper function
       const hasVariants = hasProductVariants();
       
-      // Professional logging for debugging (production-safe)
-      if (addedflag && typeof window !== 'undefined' && window.console && process.env.NODE_ENV === 'development') {
-        console.log('🔍 ProductCard20 Professional Variant Check:', {
-          productId: product.id,
-          productName: product.name,
-          hasVariants,
-          variants: product.variants,
-          variantsLength: product.variants?.length || 0,
-          available_colors: product.available_colors,
-          available_colorsLength: product.available_colors?.length || 0,
-          available_sizes: product.available_sizes,
-          available_sizesLength: product.available_sizes?.length || 0,
-          cartItemVariantId: cartItem?.variant_id || null,
-          addedflag,
-          amount
-        });
-      }
-      
       // Professional variant dialog trigger logic:
       // 1. Product must have variants
       // 2. Item must not already be in cart with variant info

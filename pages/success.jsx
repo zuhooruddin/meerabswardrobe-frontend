@@ -74,7 +74,7 @@ function Success() {
           })
             .then((response) => response.json())
             .then((responseData) => {
-              console.log('Response from second API:', responseData);
+              // Response received
             })
             .catch((error) => {
               console.error('Error sending data to second API:', error);
@@ -86,7 +86,6 @@ function Success() {
     }
   }, []);
   
-  console.log("Pay",paymentDetails)
 
   return (
     <ShopLayout1 topbarBgColor={theme.palette.grey[900]}>

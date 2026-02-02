@@ -32,7 +32,13 @@ const Checkout = () => {
   const { state } = useAppContext();
   const fetcher = async (url) => await axios.get(url).then((res) => res.data);
   const server_ip = process.env.NEXT_PUBLIC_BACKEND_API_BASE;
-  const { data, error } = useSWR(server_ip + 'getGeneralSetting', fetcher);
+  // Cache getGeneralSetting for 5 minutes to reduce API calls
+  const { data, error } = useSWR(server_ip + 'getGeneralSetting', fetcher, {
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+    dedupingInterval: 300000, // 5 minutes
+    shouldRetryOnError: false,
+  });
 
   const cartList = state.cart;
 
@@ -106,7 +112,6 @@ const Checkout = () => {
       const data = await api.addOrder(values,cartList,totalPrice,deliveryFee,userid).then((res) => {
         if(res.status == 200){
           if(paymentMethod!='cod'){
-            console.log('payment with credit card');
             handleCheckout(cartList,res.data.addOrder.orderNo,onlinetotalprice,deliveryFee,values.email);
           }
           else{
@@ -231,7 +236,7 @@ const Checkout = () => {
         },
       })
       .then((response) => {
-        console.log('Data saved successfully:', response.data);
+        // Voucher saved successfully
       })
       .catch((error) => {
         console.error('Error saving data:', error);
@@ -245,7 +250,12 @@ const Checkout = () => {
   }, [address]);
   const[shippingprice,setShippingPrice]=useState()
   useEffect(() => {
-    if (address && address) {
+    // Debounce API call to prevent excessive requests
+    if (!address || !cartList || cartList.length === 0) {
+      return;
+    }
+    
+    const timeoutId = setTimeout(() => {
       const urladdress = process.env.NEXT_PUBLIC_BACKEND_API_BASE + 'calculateweight';
       fetch(urladdress, {
         method: 'POST',
@@ -262,12 +272,17 @@ const Checkout = () => {
         .catch((err) => {
           console.error("Error fetching shipping price:", err);
         });
-    }
-  }, [address]);
-
-
+    }, 500); // Wait 500ms after user stops typing
+    
+    return () => clearTimeout(timeoutId);
+  }, [address, cartList]);
 
 const[field,setFieldValue]=useState()
+
+  const getDeliveryFee = () => {
+    const baseFee = shippingprice && shippingprice ? shippingprice.shippingCharges : 6;
+    return totalPrice >= 50 ? 0 : baseFee;
+  };
 
   const handleFormSubmit = (values) => {
     
@@ -275,14 +290,13 @@ const[field,setFieldValue]=useState()
     
     const cartList = state.cart;
 
-    const deliveryFee = shippingprice&&shippingprice? shippingprice.shippingCharges:300;
+    const deliveryFee = getDeliveryFee();
   
     createOrder(values,cartList,totalPrice,deliveryFee,router)
     setIsDisabled(true)
   };
   const [isCouponValid, setIsCouponValid] = useState(false);
   const [couponData, setCouponData] = useState(null);
-
 
   
   return (
@@ -317,7 +331,7 @@ const[field,setFieldValue]=useState()
           <Grid item lg={4} md={4} xs={12}>
             <CheckoutSummary2
             
-            DeliveryFee={shippingprice&&shippingprice? shippingprice.shippingCharges:0}
+            DeliveryFee={getDeliveryFee()}
 
             couponData={couponData}
             setTotalPrice={setTotalPrice}

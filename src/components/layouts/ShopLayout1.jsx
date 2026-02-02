@@ -43,7 +43,6 @@ const ShopLayout1 = ({
   const fetcher = async (url) => {
     try {
       const res = await axiosWithTimeout.get(url);
-      console.log('API Response from', url, ':', res.data);
       // Check if response is valid
       if (res.data && typeof res.data === 'object') {
         return res.data;
@@ -86,11 +85,6 @@ const ShopLayout1 = ({
   const data = footerData || swrFooterData;
   const data1 = generalSetting || swrGeneralSetting;
 
-  // Debug logging
-  if (process.env.NODE_ENV === 'development') {
-    console.log('Footer Data:', data);
-    console.log('Footer Error:', footerError);
-  }
 
 
 

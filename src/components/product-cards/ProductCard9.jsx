@@ -154,21 +154,6 @@ useEffect(()=>{
                         (available_colors !== undefined && available_colors !== null && Array.isArray(available_colors) && available_colors.length > 0) ||
                         (available_sizes !== undefined && available_sizes !== null && Array.isArray(available_sizes) && available_sizes.length > 0);
     
-    // Debug: Log variant information to help diagnose production issues
-    if (amount === true && process.env.NODE_ENV === 'development') {
-      console.log('🔍 ProductCard9 variant check:', {
-        productId: id,
-        productName: name,
-        hasVariants,
-        variants,
-        variantsLength: variants?.length,
-        available_colors,
-        available_colorsLength: available_colors?.length,
-        available_sizes,
-        available_sizesLength: available_sizes?.length,
-        cartItemVariantId: cartItem?.variant_id,
-      });
-    }
     
     // If product has variants and item is not in cart with variant info, open variant selection dialog
     if (hasVariants && !cartItem?.variant_id && (amount === true || amount === 1)) {

@@ -45,15 +45,6 @@ const CategoryMenu = ({ open: isOpen = false, children, navCategories }) => {
     
     setOpen(newOpenState);
     
-    // Debug log in development
-    if (process.env.NODE_ENV === 'development') {
-      console.log('CategoryMenu toggle:', { 
-        currentState: open, 
-        newState: newOpenState,
-        isOpenProp: isOpen,
-        position: triggerRef.current ? triggerRef.current.getBoundingClientRect() : null
-      });
-    }
   };
 
   useEffect(() => {
@@ -108,10 +99,6 @@ const CategoryMenu = ({ open: isOpen = false, children, navCategories }) => {
             width: rect.width,
           };
           setMenuPosition(newPosition);
-          
-          if (process.env.NODE_ENV === 'development') {
-            console.log('Menu position updated:', newPosition);
-          }
         }
       };
       

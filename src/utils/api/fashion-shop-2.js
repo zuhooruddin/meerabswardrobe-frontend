@@ -18,51 +18,22 @@ const getProducts = async (slug) => {
       const args = {'id':slug}
       let data = await axiosInstance.post(url,args).then((res) => res.data);
       
-      // Debug logging
-      if (process.env.NODE_ENV === 'development') {
-        console.log('getProducts API Response for slug:', slug);
-        console.log('Response type:', typeof data);
-        console.log('Is Array:', Array.isArray(data));
-        console.log('Response data:', data);
-        if (data && typeof data === 'object' && !Array.isArray(data)) {
-          console.log('Object keys:', Object.keys(data));
-        }
-      }
-      
       // Ensure we always return an array
       if (Array.isArray(data)) {
-        if (process.env.NODE_ENV === 'development') {
-          console.log('Returning array with', data.length, 'items');
-        }
         return data;
       } else if (data && typeof data === 'object') {
         // If it's an object, try to extract array from common keys
         if (Array.isArray(data.products)) {
-          if (process.env.NODE_ENV === 'development') {
-            console.log('Found products array with', data.products.length, 'items');
-          }
           return data.products;
         }
         if (Array.isArray(data.items)) {
-          if (process.env.NODE_ENV === 'development') {
-            console.log('Found items array with', data.items.length, 'items');
-          }
           return data.items;
         }
         if (Array.isArray(data.data)) {
-          if (process.env.NODE_ENV === 'development') {
-            console.log('Found data array with', data.data.length, 'items');
-          }
           return data.data;
         }
         // If it's a single object, wrap it in an array
-        if (process.env.NODE_ENV === 'development') {
-          console.log('Wrapping single object in array');
-        }
         return [data];
-      }
-      if (process.env.NODE_ENV === 'development') {
-        console.log('Returning empty array');
       }
       return [];
     } catch (error) {

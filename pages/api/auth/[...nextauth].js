@@ -154,8 +154,7 @@ export default NextAuth({
       }
 
       if (account && user && account.provider === "facebook") {
-        console.log("facebook: account", account)
-        console.log("facebook: profile", profile)
+        // Facebook authentication
         const response = await axios({
           method: "post",
           url: process.env.NEXT_PUBLIC_BACKEND_API_BASE + "facebook/",

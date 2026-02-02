@@ -54,7 +54,6 @@ const AdTitle1 = styled(H3)(({ theme }) => ({
 }));
 
 const Section3 = (dataa) => {
-  console.log(dataa);
   // Construct correct base URL: https://api.meerabs.com/media/
   // Since NEXT_PUBLIC_BACKEND_API_BASE = https://api.meerabs.com/api/
   // We need to replace /api/ with /media/ to get: https://api.meerabs.com/media/
@@ -94,7 +93,6 @@ const Section3 = (dataa) => {
     id: item.id,
     img: item.image && item.image.trim() !== '' ? imgbaseurl + item.image : '/assets/images/banners/default.png',
   }));
-  console.log(data);
 
   return (
     <Container

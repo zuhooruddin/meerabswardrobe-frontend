@@ -23,14 +23,6 @@ const Section5 = ({ products,data,SectionName,slug,productreviews}) => {
   // Ensure products is always an array
   const productsArray = Array.isArray(products) ? products : [];
   
-  // Debug logging
-  if (process.env.NODE_ENV === 'development') {
-    console.log('Section5 - Products prop:', products);
-    console.log('Section5 - Products type:', typeof products);
-    console.log('Section5 - Is Array:', Array.isArray(products));
-    console.log('Section5 - ProductsArray length:', productsArray.length);
-    console.log('Section5 - ProductsArray:', productsArray);
-  }
 
   // const imgbaseurl='https://idrisbookbank-dev-server.inara.tech/media/'
   const slugbaseurl='category/'

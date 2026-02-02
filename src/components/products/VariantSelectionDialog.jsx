@@ -408,22 +408,6 @@ const VariantSelectionDialog = ({
       finalPrice = mrp;
     }
     
-    // Debug logging to help diagnose issues
-    if (process.env.NODE_ENV === 'development' && discount > 0) {
-      console.log('🔍 VariantSelectionDialog Price Calculation:', {
-        productId: product?.id,
-        productName: product?.name,
-        originalMrp: product?.mrp,
-        calculatedMrp: mrp,
-        discount,
-        discountAmount: discount > 0 && mrp > 0 ? (mrp * discount) / 100 : 0,
-        calculatedFinalPrice: finalPrice,
-        passedSalePrice,
-        difference: mrp - finalPrice,
-        shouldShowDiscount: mrp > finalPrice,
-        note: 'Always calculating from MRP when discount exists to prevent double discounting',
-      });
-    }
     
     return {
       numericMrp: mrp,

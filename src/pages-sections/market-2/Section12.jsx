@@ -24,14 +24,6 @@ const Section12 = ({ products,data,Section2Name,slug,productreviews}) => {
   const productsArray = Array.isArray(products) ? products : [];
   const dataArray = Array.isArray(data) ? data : [];
   
-  // Debug logging
-  if (process.env.NODE_ENV === 'development') {
-    console.log('Section12 - Products prop:', products);
-    console.log('Section12 - Products type:', typeof products);
-    console.log('Section12 - Is Array:', Array.isArray(products));
-    console.log('Section12 - ProductsArray length:', productsArray.length);
-    console.log('Section12 - ProductsArray:', productsArray);
-  }
   
   const dummyCategories = [
     { category_name: "Sub-Category 1", category_slug: "category-1" },

@@ -45,7 +45,6 @@ const ReturnPolicy = (props) => {
       .get(url)
       .then((response) => {
         setData(response.data);
-        console.log("Respomse", response.data);
       })
       .catch((error) => {
         console.error("API Error:", error);

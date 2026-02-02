@@ -174,9 +174,7 @@ const Footer = ({ footerData: initialFooterData }) => {
   const defaultLogo = "/assets/images/logos/webpack.png";
 
   useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
-      console.log('Footer component - footerData:', footerData);
-    }
+    // Footer data loaded
   }, [footerData]);
 
   return (

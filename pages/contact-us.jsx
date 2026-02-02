@@ -87,7 +87,6 @@ const ContactUs = (props) => {
       .get(url)
       .then((response) => {
         setData(response.data);
-        console.log("Response", response.data);
       })
       .catch((error) => {
         console.error("API Error:", error);

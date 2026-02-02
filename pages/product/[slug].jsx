@@ -62,9 +62,6 @@ const ErrorContainer = styled(Box)(({ theme }) => ({
 const ProductDetails = (props) => {
 
 
-  console.log("Propsssssss",props)
-
-
 
   const { productDetails,ProductReviews } = props;
 
@@ -475,7 +472,7 @@ export async function getServerSideProps(context) {
       }];
     }
   } catch (error) {
-    console.log('Variant API not available, using regular detail');
+    // Variant API not available, using regular detail
   }
 
   // Fallback to regular getItemDetail if variant API failed
