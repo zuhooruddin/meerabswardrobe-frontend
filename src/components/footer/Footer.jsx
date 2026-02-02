@@ -173,9 +173,6 @@ const Footer = ({ footerData: initialFooterData }) => {
   const imgbaseurl = process.env.NEXT_PUBLIC_BACKEND_API_BASE + "media/";
   const defaultLogo = "/assets/images/logos/webpack.png";
 
-  useEffect(() => {
-    // Footer data loaded
-  }, [footerData]);
 
   return (
     <Footwrapper>

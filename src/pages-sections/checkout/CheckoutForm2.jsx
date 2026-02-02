@@ -139,7 +139,6 @@ const CheckoutForm2 = (props) => {
   const toggleHasVoucher = () => setHasVoucher((has) => !has);
 
   useEffect(() => {
-    
     setAddress(addressData&&addressData&&addressData[0]?addressData[0].city:'')
   }, [addressData]);
 

@@ -47,7 +47,7 @@ const Section10 = (data) => {
     <Container sx={{ mt: 8 }}>
       <FlexBetween mb={3}>
         <H2 style={{ color: '#d83c54', fontSize: 20 }}>Product Bundles</H2>
-        <Link href="/products"><a style={{ color: '#d83c54', fontSize: 16 }}>View All</a></Link>
+        <Link href="/products" style={{ color: '#d83c54', fontSize: 16, textDecoration: 'none' }}>View All</Link>
       </FlexBetween>
         <Carousel
         totalSlides={data.data.length}

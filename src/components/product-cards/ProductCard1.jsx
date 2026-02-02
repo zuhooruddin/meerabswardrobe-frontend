@@ -479,33 +479,31 @@ const ProductCard1 = ({
   const CardContent = ({ showWishlist = false }) => (
     <Card height="100%">
       <CardMedia>
-        <Link href={`/product/${slug}`}>
-          <a onClick={myFunction}>
-            {renderBadge()}
-            
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                padding: "16px",
+        <Link href={`/product/${slug}`} onClick={myFunction} style={{ display: 'block', textDecoration: 'none' }}>
+          {renderBadge()}
+          
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              padding: "16px",
+            }}
+          >
+            <Image
+              width={300}
+              height={300}
+              alt={name ? `${name} - Buy Premium Women's Clothing Online at Meerab's Wardrobe` : "Women's Clothing"}
+              title={name || "Women's Clothing"}
+              objectFit="contain"
+              layout="intrinsic"
+              src={imgbaseurl + image}
+              loading="lazy"
+              style={{
+                transition: "transform 600ms cubic-bezier(0.4, 0, 0.2, 1)",
               }}
-            >
-              <Image
-                width={300}
-                height={300}
-                alt={name ? `${name} - Buy Premium Women's Clothing Online at Meerab's Wardrobe` : "Women's Clothing"}
-                title={name || "Women's Clothing"}
-                objectFit="contain"
-                layout="intrinsic"
-                src={imgbaseurl + image}
-                loading="lazy"
-                style={{
-                  transition: "transform 600ms cubic-bezier(0.4, 0, 0.2, 1)",
-                }}
-              />
-            </Box>
-          </a>
+            />
+          </Box>
         </Link>
 
         <ActionButton

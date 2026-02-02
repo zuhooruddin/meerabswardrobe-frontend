@@ -22,7 +22,6 @@ const StyledListItem = styled(ListItem)(({ theme }) => ({
 const Section5 = ({ products,data,SectionName,slug,productreviews}) => {
   // Ensure products is always an array
   const productsArray = Array.isArray(products) ? products : [];
-  
 
   // const imgbaseurl='https://idrisbookbank-dev-server.inara.tech/media/'
   const slugbaseurl='category/'

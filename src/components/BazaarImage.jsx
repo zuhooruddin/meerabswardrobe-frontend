@@ -18,12 +18,15 @@ const BazaarImage = styled(({ src, alt = "", width, height, objectFit = "cover",
 
   // Use fill layout if fill prop is provided or if in a positioned container
   if (canOptimize && fill) {
+    // Extract style props that conflict with Next.js Image
+    const { display, width, height, maxWidth, ...safeStyle } = rest.style || {};
     return (
       <NextImage
         src={normalizedSrc}
         alt={alt || 'Image'}
         layout="fill"
-        style={{ objectFit, ...rest.style }}
+        objectFit={objectFit}
+        style={safeStyle}
         priority={priority}
         quality={quality}
         loading={priority ? "eager" : "lazy"}
@@ -35,13 +38,16 @@ const BazaarImage = styled(({ src, alt = "", width, height, objectFit = "cover",
 
   // Use width/height layout if both are provided
   if (canOptimize && width && height) {
+    // Extract style props that conflict with Next.js Image
+    const { display, maxWidth, objectFit: styleObjectFit, ...safeStyle } = rest.style || {};
     return (
       <NextImage
         src={normalizedSrc}
         alt={alt || 'Image'}
         width={width}
         height={height}
-        style={{ objectFit, ...rest.style }}
+        objectFit={objectFit}
+        style={safeStyle}
         priority={priority}
         quality={quality}
         loading={priority ? "eager" : "lazy"}

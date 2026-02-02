@@ -41,30 +41,28 @@ const CategoryTitle = styled(Box)(() => ({
 // ============================================================
 const CategoryCard1 = ({ image, title, url }) => {
   return (
-    <Link href={url}>
-      <a aria-label={`Browse ${title} products`}>
-        <Wrapper position="relative" sx={{ aspectRatio: '1/1' }}>
-          <Box
-            position="absolute"
-            top={0}
-            left={0}
-            width="100%"
-            height="100%"
-          >
-            <Image
-              src={image || '/assets/images/banners/default.png'}
-              alt={title ? `${title} - Shop premium women's clothing` : 'Category'}
-              layout="fill"
-              sizes="(max-width: 600px) 45vw, (max-width: 960px) 30vw, 200px"
-              style={{ objectFit: 'cover' }}
-              quality={70}
-              loading="lazy"
-            />
-          </Box>
+    <Link href={url} style={{ textDecoration: 'none', display: 'block' }}>
+      <Wrapper position="relative" sx={{ aspectRatio: '1/1' }} aria-label={`Browse ${title} products`}>
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          width="100%"
+          height="100%"
+        >
+          <Image
+            src={image || '/assets/images/banners/default.png'}
+            alt={title ? `${title} - Shop premium women's clothing` : 'Category'}
+            layout="fill"
+            sizes="(max-width: 600px) 45vw, (max-width: 960px) 30vw, 200px"
+            objectFit="cover"
+            quality={70}
+            loading="lazy"
+          />
+        </Box>
 
-          <H4 textAlign='center'>{title}</H4>
-        </Wrapper>
-      </a>
+        <H4 textAlign='center'>{title}</H4>
+      </Wrapper>
     </Link>
   );
 };

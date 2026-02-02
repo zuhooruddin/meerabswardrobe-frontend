@@ -24,9 +24,8 @@ const NavLink = ({ href, children, style, className, ...props }) => {
 
   const currentRoute = checkRouteMatch();
   return (
-    <Link href={href} passHref>
+    <Link href={href} legacyBehavior>
       <StyledLink
-        href={href}
         style={style}
         className={clsx(className)}
         active_route={currentRoute ? "active" : ""}

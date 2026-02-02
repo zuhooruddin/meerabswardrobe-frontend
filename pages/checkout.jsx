@@ -236,7 +236,6 @@ const Checkout = () => {
         },
       })
       .then((response) => {
-        // Voucher saved successfully
       })
       .catch((error) => {
         console.error('Error saving data:', error);

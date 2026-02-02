@@ -205,6 +205,7 @@ const total=Reviews.length;
       // Professional variant detection using helper function
       const hasVariants = hasProductVariants();
       
+      
       // Professional variant dialog trigger logic:
       // 1. Product must have variants
       // 2. Item must not already be in cart with variant info

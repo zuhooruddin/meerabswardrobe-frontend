@@ -44,7 +44,7 @@ const BannerCard6 = ({ img, children, ...props }) => {
         height="100%"
         width="100%"
         src={img}
-        style={{ objectFit: "contain" }} // use objectFit: "cover"
+        objectFit="contain"
       />
       <CardContent>{children}</CardContent>
     </CardWrapper>

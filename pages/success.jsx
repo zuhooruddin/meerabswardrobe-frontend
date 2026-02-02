@@ -74,7 +74,6 @@ function Success() {
           })
             .then((response) => response.json())
             .then((responseData) => {
-              // Response received
             })
             .catch((error) => {
               console.error('Error sending data to second API:', error);
@@ -85,7 +84,6 @@ function Success() {
         });
     }
   }, []);
-  
 
   return (
     <ShopLayout1 topbarBgColor={theme.palette.grey[900]}>

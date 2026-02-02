@@ -60,9 +60,6 @@ const ErrorContainer = styled(Box)(({ theme }) => ({
 }));
 
 const ProductDetails = (props) => {
-
-
-
   const { productDetails,ProductReviews } = props;
 
   const imgbaseurl = process.env.NEXT_PUBLIC_IMAGE_BASE_API_URL;
@@ -472,7 +469,6 @@ export async function getServerSideProps(context) {
       }];
     }
   } catch (error) {
-    // Variant API not available, using regular detail
   }
 
   // Fallback to regular getItemDetail if variant API failed

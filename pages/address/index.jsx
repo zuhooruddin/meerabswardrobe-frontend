@@ -123,8 +123,6 @@ const AddressList = () => {
     initialValues: initialValues,
     validationSchema: checkoutSchema,
     onSubmit: async (values, { resetForm }) => {
-
-
       try {
         const formData = new FormData();
         formData.append('country', values.country);

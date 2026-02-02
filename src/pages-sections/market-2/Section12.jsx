@@ -24,7 +24,6 @@ const Section12 = ({ products,data,Section2Name,slug,productreviews}) => {
   const productsArray = Array.isArray(products) ? products : [];
   const dataArray = Array.isArray(data) ? data : [];
   
-  
   const dummyCategories = [
     { category_name: "Sub-Category 1", category_slug: "category-1" },
     { category_name: "Sub-Category 2", category_slug: "category-2" },
